@@ -1,17 +1,19 @@
 ---
 import { Icon } from 'astro-icon';
 import { PROFILE } from '~/config.mjs';
+import { FOOTER } from '~/config.mjs';
 import { getHomePermalink } from '~/utils/permalinks';
 ---
 
 <footer class="border-t border-gray-200 dark:border-slate-800">
 	<div class="max-w-6xl mx-auto px-4 sm:px-6">
 		<div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
-			<div class="col-span-12 lg:col-span-4">
+			<div class="col-span-6 lg:col-span-6">
 				<div class="mb-2">
 					<a class="inline-block font-bold text-xl" href={getHomePermalink()}>Liran Tal</a>
 				</div>
 				<div class="text-sm text-gray-600">
+					<!-- @TODO 
 					<a
 						class="text-gray-600 hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
 						href="#">Terms</a
@@ -19,80 +21,61 @@ import { getHomePermalink } from '~/utils/permalinks';
 					<a
 						class="text-gray-600 hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
 						href="#">Privacy Policy</a
-					>
+					> -->
 				</div>
 			</div>
-			<div class="col-span-6 md:col-span-3 lg:col-span-2">
-				<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">Product</div>
+			<div class="col-span-3 md:col-span-3 lg:col-span-3">
+				<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">{FOOTER.column1.title}</div>
 				<ul class="text-sm">
 					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Features</a
+						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column1.items.item1_url}
+							>{FOOTER.column1.items.item1}</a
 						>
 					</li>
 					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Security</a
+						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column1.items.item2_url}
+							>{FOOTER.column1.items.item2}</a
 						>
 					</li>
 					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Team</a
+						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column1.items.item3_url}
+							>{FOOTER.column1.items.item3}</a
 						>
 					</li>
 					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Enterprise</a
+						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column1.items.item4_url}
+							>{FOOTER.column1.items.item4}</a
 						>
 					</li>
 					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Customer stories</a
+						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column1.items.item5_url}
+							>{FOOTER.column1.items.item5}</a
 						>
 					</li>
 					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Pricing</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Resources</a
+						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column1.items.item6_url}
+							>{FOOTER.column1.items.item6}</a
 						>
 					</li>
 				</ul>
 			</div>
-			<div class="col-span-6 md:col-span-3 lg:col-span-2">
-				<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">Platform</div>
+			<div class="col-span-3 md:col-span-3 lg:col-span-3">
+				<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">{FOOTER.column2.title}</div>
 				<ul class="text-sm">
 					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Developer API</a
+						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column2.items.item1_url}
+							>{FOOTER.column2.items.item1}</a
 						>
 					</li>
 					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Partners</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Atom</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Electron</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>GitHub Desktop</a
+						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column2.items.item2_url}
+							>{FOOTER.column2.items.item2}</a
 						>
 					</li>
 				</ul>
 			</div>
-			<div class="col-span-6 md:col-span-3 lg:col-span-2">
+		</div>
+			<!-- <div class="col-span-6 md:col-span-3 lg:col-span-2">
 				<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">Support</div>
 				<ul class="text-sm">
 					<li class="mb-2">
@@ -162,7 +145,7 @@ import { getHomePermalink } from '~/utils/permalinks';
 					</li>
 				</ul>
 			</div>
-		</div>
+		</div> -->
 		<div class="md:flex md:items-center md:justify-between py-6 md:py-8">
 			<ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0">
 				<li>
@@ -209,15 +192,17 @@ import { getHomePermalink } from '~/utils/permalinks';
 				</div>
 
 				<div>
-				<span 
+				<!--
+					@TODO logo distracting, moving out for now
+					<span 
 					class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 float-left rounded-sm bg-[url(https://onwidget.com/favicon/favicon-32x32.png)]"
-				>
-				</span>
+					</span>
+				> -->
+				
 				Made by <a class="text-blue-600 hover:underline dark:text-gray-200" href="https://onwidget.com/"> onWidget</a> ·
 				All rights reserved.
 				</div>
 			</div>
-			
 		</div>
 	</div>
 </footer>
