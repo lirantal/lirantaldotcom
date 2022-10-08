@@ -1,0 +1,71 @@
+---
+import { Icon } from 'astro-icon';
+import { PROFILE } from '~/config.mjs';
+import Picture from '~/components/core/Picture.astro';
+---
+
+<section>
+	<div class="max-w-6xl mx-auto px-4 sm:px-6">
+		<div class="py-12 md:py-20">
+			<div class="text-center pb-10 md:pb-16">
+                <div>
+                    <div class="relative mb-8 m-auto max-w-3xl">
+                        <Picture
+                            src="https://github.com/lirantal.png"
+                            class="mx-auto rounded-full shadow-lg"
+                            widths={[100, 200]}
+                            alt="Liran Tal"
+                            deprecated-src={import('~/assets/images/hero.jpg')}
+                            deprecated-class="mx-auto rounded-md shadow-lg bg-gray-400 dark:bg-slate-700 w-full"
+                            deprecated-widths={[400, 768]}
+                            deprecated-sizes=" (max-width: 767px) 400px, 768px"
+                            deprecated-aspectRatio="16:9"
+                        />
+                    </div>
+                </div>
+				<h1 class="text-5xl md:text-[3.50rem] font-bold leading-tighter tracking-tighter mb-4 font-heading">
+					👋 Hi there, I'm 
+					<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">Liran Tal</span>
+					<!-- <span
+						class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 sm:whitespace-nowrap"
+						>Tal</span
+					> -->
+				</h1>
+				<div class="max-w-3xl mx-auto">
+					<p class="text-l text-gray-600 mb-8 dark:text-slate-400">
+
+						Known for his open source and JavaScript security initiatives, Liran Tal is an award-winning software developer, security researcher, and open source champion in the JavaScript community. He's an internationally recognized GitHub Star, acknowledged for his open source advocacy, and has received the OpenJS Foundation's Pathfinder for Security for his work on Node.js security. His contributions to developer security education include leading OWASP projects, building supply chain security tools, participation in CNCF and OpenSSF initiatives, and authoring books such as O'Reilly's Serverless Security. He leads the developer advocacy team at Snyk.io and is on a mission to empower developers with better application security skills.
+
+						<!-- @TODO review this bio which is from the old lirantal.com website -->
+                        <!-- A GitHub Star, world-wide recognized for championing open source software and actively working within communities to inspire and lift other humans. A JavaScript & Node.js software developer, building web applications and command-line tools. A web security activist , engaging in security research, software supply chain security, and regular contributor and project lead to OWASP Foundation projects. An avid member of the Node.js Foundation ecosystem security working group, dedicated to advancing Node.js security awareness and skillset in the open source community. Developer Advocate at Snyk. -->
+
+                        <!-- @TODO - text here can be hidden on mobile devices -->
+						<!-- <span class="inline sm:hidden">...</span><span
+							class="hidden sm:inline"
+							></span
+						> -->
+					</p>
+					<div class="max-w-none px-6 flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4">
+						<div class="flex w-full sm:w-auto">
+							<a
+								class="btn text-white border border-primary-600 bg-primary-600 hover:bg-primary-800 hover:border-primary-800 sm:mb-0 w-full"
+								href={PROFILE.twitterURL}
+								target="_blank"
+								rel="noopener"
+							>
+								<Icon name="tabler:brand-twitter" class="w-5 h-5 mr-1 -ml-1.5" /> Follow
+							</a>
+						</div>
+						<div class="flex w-full sm:w-auto">
+							<a
+								class="btn text-white bg-gray-900 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-800 w-full"
+								href="#features">Learn more</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>

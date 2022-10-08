@@ -1,3 +1,9 @@
+export const PROFILE = {
+	githubURL: 'https://github.com/lirantal',
+	twitterURL: 'https://twitter.com/liran_tal',
+	linkedinURL: 'https://www.linkedin.com/in/lirantal'
+}
+
 export const SITE = {
 	name: 'Liran Tal',
 
