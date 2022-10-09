@@ -23,12 +23,26 @@ export const FOOTER = {
 		}
 	},
 	column2: {
-		title: 'Books',
+		title: 'Published Author',
 		items: {
 			item1: 'Essential Node.js Security',
 			item1_url: 'https://leanpub.com/nodejssecurity',
 			item2: 'O\'Reilly Serverless Security',
-			item2_url: 'https://www.oreilly.com/library/view/serverless-security/9781492082538/'
+			item2_url: 'https://www.oreilly.com/library/view/serverless-security/9781492082538/',
+			// @TODO update data
+			item3: 'HTTP Security Headers',
+			item3_url: ''
+		}
+	},
+	column3: {
+		title: 'Awards',
+		items: {
+			item1: 'GitHub Star',
+			item1_url: 'https://stars.github.com/profiles/lirantal/',
+			item2: 'Pathfinder Award for Security',
+			item2_url: 'https://openjsf.org/announcement/2022/06/07/first-ever-javascriptlandia-awards-celebrate-community-leaders/',
+			item3: '',
+			item3_url: '#'
 		}
 	}
 }
@@ -48,7 +62,7 @@ export const SITE = {
 
 export const BLOG = {
 	disabled: false,
-	postsPerPage: 2,
+	postsPerPage: 25,
 
 	blog: {
 		disabled: false,
@@ -57,7 +71,7 @@ export const BLOG = {
 
 	post: {
 		disabled: false,
-		pathname: '', // empty for /some-post, value for /pathname/some-post 
+		pathname: 'blog', // empty for /some-post, value for /pathname/some-post 
 	},
 
 	category: {
