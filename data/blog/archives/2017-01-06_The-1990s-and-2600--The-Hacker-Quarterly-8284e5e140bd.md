@@ -7,6 +7,7 @@ keywords: []
 tags: []
 slug: the-1990s-and-2600-the-hacker-quarterly-8284e5e140bd
 pubDate: '2017-01-06T07:09:08.809Z'
+image: ~/assets/images/blog/0__GYmpXHjEXiMsrEi8.jpg
 ---
 
 Oh those magnificent days of the 1990s.
