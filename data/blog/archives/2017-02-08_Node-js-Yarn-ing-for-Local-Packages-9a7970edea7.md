@@ -9,10 +9,8 @@ keywords: []
 tags: []
 slug: node-js-yarning-for-local-packages-9a7970edea7
 pubDate: '2017-02-08T16:40:30.315Z'
-image: ~/assets/images/blog/cf737db3c2ffc0696295a72d9a7792ee.jpeg
+image: ~/assets/images/blog/1__l2uYvct0tWWIaUw__SSJFIQ.jpeg
 ---
-
-![](/images/blog/1__l2uYvct0tWWIaUw__SSJFIQ.jpeg)
 
 This is not another praise for npm package [management](https://hackernoon.com/tagged/management) with Yarn but rather a concise recipe for working with locally developed packages.
 
