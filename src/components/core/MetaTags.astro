@@ -59,10 +59,10 @@ const image =
 				alt: ogTitle,
 			},
 		] : undefined,
-		// site_name: 'SiteName',
+		site_name: 'Liran Tal',
 	}}
 	twitter={{
-		// handle: '@handle',
+		handle: '@liran_tal',
 		// site: '@site',
 		cardType: image ? 'summary_large_image' : undefined,
 	}}
@@ -75,5 +75,14 @@ const image =
 
 <!-- Google Analytics -->
 {SITE.googleAnalyticsId && <GoogleAnalytics id={String(SITE.googleAnalyticsId)} partytown={true} />}
+
+<!-- Splitbee Analytics -->
+{SITE.splitbeeAnalytics?.enabled && 
+	<script 
+		data-respect-dnt={SITE.splitbeeAnalytics?.doNotTrack}
+		data-no-cookie={SITE.splitbeeAnalytics?.noCookieMode}
+		async src="https://cdn.splitbee.io/sb.js">
+	</script>
+}
 
 <ExtraMetaTags />

@@ -58,6 +58,12 @@ export const SITE = {
 
 	deprecated_googleAnalyticsId: false, // or "G-XXXXXXXXXX",
 	deprecated_googleSiteVerificationId: 'orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M',
+
+	splitbeeAnalytics: {
+		enabled: true,
+		doNotTrack: true,
+		noCookieMode: false,
+	}
 };
 
 export const BLOG = {
