@@ -4,47 +4,72 @@ export const PROFILE = {
 	linkedinURL: 'https://www.linkedin.com/in/lirantal'
 }
 
+
 export const FOOTER = {
-	column1: {
-		title: 'Projects',
-		items: {
-			item1: 'dockly',
-			item1_url: 'https://github.com/lirantal/dockly',
-			item2: 'lockfile-lint',
-			item2_url: 'https://github.com/lirantal/lockfile-lint',
-			item3: 'is-website-vulnerable',
-			item3_url: 'https://github.com/lirantal/is-website-vulnerable',
-			item4: 'npq',
-			item4_url: 'https://github.com/lirantal/npq',
-			item5: 'Node.js CLI apps best practices',
-			item5_url: 'https://github.com/lirantal/nodejs-cli-apps-best-practices',
-			item6: 'awesome-nodejs-security',
-			item6_url: 'https://github.com/lirantal/awesome-nodejs-security'
+	columns: [
+		{
+			title: 'Open Source Projects',
+			items: [
+				{
+					title: 'dockly',
+					link: 'https://github.com/lirantal/dockly',
+				},
+				{
+					title: 'lockfile-lint',
+					link: 'https://github.com/lirantal/lockfile-lint',
+				},
+				{
+					title: 'is-website-vulnerable',
+					link: 'https://github.com/lirantal/is-website-vulnerable',
+				},
+				{
+					title: 'npq',
+					link: 'https://github.com/lirantal/npq',
+				},
+				{
+					title: 'Node.js CLI apps best practices',
+					link: 'https://github.com/lirantal/nodejs-cli-apps-best-practices',
+				},
+				{
+					title: 'awesome-nodejs-security',
+					link: 'https://github.com/lirantal/awesome-nodejs-security'
+				}
+			]
+		},
+		{
+			title: 'Published Author',
+			items: [
+				{
+					title: 'Essential Node.js Security',
+					link: 'https://leanpub.com/nodejssecurity',
+				},
+				{
+					title: 'O\'Reilly Serverless Security',
+					link: 'https://www.oreilly.com/library/view/serverless-security/9781492082538/',
+				},
+				// {
+				// 	// @TODO update data
+				// 	title: 'HTTP Security Headers',
+				// 	link: ''
+				// }
+			],
+		},
+		{
+			title: 'Awards',
+			items: [
+				{
+					title: 'GitHub Star',
+					link: 'https://stars.github.com/profiles/lirantal/',
+					icon: 'emojione:glowing-star'
+				},
+				{
+					title: 'Pathfinder Award for Security',
+					link: 'https://openjsf.org/announcement/2022/06/07/',
+					icon: 'logos:openjs-foundation-icon'
+				}
+			]
 		}
-	},
-	column2: {
-		title: 'Published Author',
-		items: {
-			item1: 'Essential Node.js Security',
-			item1_url: 'https://leanpub.com/nodejssecurity',
-			item2: 'O\'Reilly Serverless Security',
-			item2_url: 'https://www.oreilly.com/library/view/serverless-security/9781492082538/',
-			// @TODO update data
-			item3: 'HTTP Security Headers',
-			item3_url: ''
-		}
-	},
-	column3: {
-		title: 'Awards',
-		items: {
-			item1: 'GitHub Star',
-			item1_url: 'https://stars.github.com/profiles/lirantal/',
-			item2: 'Pathfinder Award for Security',
-			item2_url: 'https://openjsf.org/announcement/2022/06/07/first-ever-javascriptlandia-awards-celebrate-community-leaders/',
-			item3: '',
-			item3_url: '#'
-		}
-	}
+	]
 }
 
 export const SITE = {

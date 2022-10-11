@@ -1,7 +1,6 @@
 ---
 import { Icon } from 'astro-icon';
-import { PROFILE } from '~/config.mjs';
-import { FOOTER } from '~/config.mjs';
+import { FOOTER, PROFILE } from '~/config.mjs';
 import { getHomePermalink } from '~/utils/permalinks';
 ---
 
@@ -24,121 +23,34 @@ import { getHomePermalink } from '~/utils/permalinks';
 					> -->
 				</div>
 			</div>
-			<div class="col-span-3 md:col-span-3 lg:col-span-3">
-				<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">{FOOTER.column1.title}</div>
-				<ul class="text-sm">
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column1.items.item1_url}
-							>{FOOTER.column1.items.item1}</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column1.items.item2_url}
-							>{FOOTER.column1.items.item2}</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column1.items.item3_url}
-							>{FOOTER.column1.items.item3}</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column1.items.item4_url}
-							>{FOOTER.column1.items.item4}</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column1.items.item5_url}
-							>{FOOTER.column1.items.item5}</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column1.items.item6_url}
-							>{FOOTER.column1.items.item6}</a
-						>
-					</li>
-				</ul>
-			</div>
-			<div class="col-span-3 md:col-span-3 lg:col-span-3">
-				<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">{FOOTER.column2.title}</div>
-				<ul class="text-sm">
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column2.items.item1_url}
-							>{FOOTER.column2.items.item1}</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column2.items.item2_url}
-							>{FOOTER.column2.items.item2}</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column2.items.item3_url}
-							>{FOOTER.column2.items.item3}</a
-						>
-					</li>
-				</ul>
-			</div>
-			<div class="col-span-3 md:col-span-3 lg:col-span-3">
-				<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">{FOOTER.column3.title}</div>
-				<ul class="text-sm">
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column3.items.item1_url}
-							>
-								<Icon name="emojione:glowing-star" class="inline-flex w-5 h-5" /> 
-								{FOOTER.column3.items.item1}
-						</a>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href={FOOTER.column3.items.item2_url}
-							>
-								<Icon name="logos:openjs-foundation-icon" class="inline-flex w-5 h-5" />
-								{FOOTER.column3.items.item2}
-						</a>
-					</li>
-				</ul>
-			</div>
-			<!--
-			<div class="col-span-6 md:col-span-3 lg:col-span-2">
-				<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">Company</div>
-				<ul class="text-sm">
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>About</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Blog</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Careers</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Press</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Inclusion</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Social Impact</a
-						>
-					</li>
-					<li class="mb-2">
-						<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out" href="#"
-							>Shop</a
-						>
-					</li>
-				</ul>
-			</div> -->
+
+
+			{FOOTER.columns.map(column => {
+				return (
+					<>
+					<div class="col-span-3 md:col-span-3 lg:col-span-3">
+						<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">{column.title}</div>
+						<ul class="text-sm">
+						{
+							column.items.map(item => {
+								return (
+								<li class="mb-2">
+									<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 	ease-in-out" href={item.link}>
+										{ item.icon ? 
+										<Icon name={item.icon} class="inline-flex w-5 h-5" /> : ''
+										}
+										{item.title}
+									</a>
+								</li>
+								)
+							})
+						}
+						</ul>
+					</div>
+					</>	
+				)})
+			}
+
 		</div>
 		<div class="md:flex md:items-center md:justify-between py-6 md:py-8">
 			<ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0">
