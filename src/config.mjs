@@ -56,8 +56,8 @@ export const SITE = {
 	title: 'Liran Tal',
 	description: 'Open Source developer, author, speaker.',
 
-	googleAnalyticsId: false, // or "G-XXXXXXXXXX",
-	googleSiteVerificationId: 'orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M',
+	deprecated_googleAnalyticsId: false, // or "G-XXXXXXXXXX",
+	deprecated_googleSiteVerificationId: 'orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M',
 };
 
 export const BLOG = {
