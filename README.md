@@ -1,3 +1,7 @@
+# References
+
+- Available icons: https://icon-sets.iconify.design
+
 # 🚀 AstroWind
 
 <img src="lighthouse-score.png" align="right"
@@ -25,17 +29,23 @@
 <details>
 <summary>Table of Contents</summary>
 
-- [Demo](#demo)
-- [Getting started](#getting-started)
-  - [Project structure](#project-structure)
-  - [Commands](#commands)
-  - [Configuration](#configuration)
-  - [Deploy](#deploy)
-- [Roadmap](#roadmap)
-- [Frequently Asked Questions](#frequently-asked-questions)
-- [Contributing](#contributing)
-- [Acknowledgements](#acknowledgements)
-- [License](#license)
+- [References](#references)
+- [🚀 AstroWind](#-astrowind)
+  - [Features](#features)
+  - [Demo](#demo)
+  - [Getting started](#getting-started)
+    - [Project structure](#project-structure)
+    - [Commands](#commands)
+    - [Configuration](#configuration)
+    - [Deploy](#deploy)
+      - [Deploy to production (manual)](#deploy-to-production-manual)
+      - [Deploy to Netlify](#deploy-to-netlify)
+      - [Deploy to Vercel](#deploy-to-vercel)
+  - [Roadmap](#roadmap)
+  - [Frequently Asked Questions](#frequently-asked-questions)
+  - [Contributing](#contributing)
+  - [Acknowledgements](#acknowledgements)
+  - [License](#license)
 
 </details>
 
