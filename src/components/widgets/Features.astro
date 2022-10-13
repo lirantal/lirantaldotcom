@@ -1,72 +1,193 @@
 ---
-import { Icon } from 'astro-icon';
-
+// import { Icon } from 'astro-icon';
 const items = [
 	{
-		title: 'Headers',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
-		icon: 'flat-color-icons:home',
+		name: 'Luciano Mammino',
+		title: 'Author of Node.js Design Patterns',
+		avatar: "https://pbs.twimg.com/profile_images/1294586885726240770/Dx7103Wv_400x400.jpg",
+		tweet: 'FANTASTIC WORKSHOP! Learned a ton! Thanks a lot 🙏',
+		link: 'https://twitter.com/loige/status/1576984806092525570?s=20&t=ay3XtgwKP0Y51MOwtErh4g',
+		picture: 'https://pbs.twimg.com/media/FeJ2OteWIAEzHl-?format=jpg&name=large'
+	},
+
+	{
+		name: "Caleb Queern",
+		title: "DevSecOps at KPMG Cyber Security",
+		avatar: "https://pbs.twimg.com/profile_images/1522075842087694337/w0-WMx-0_400x400.jpg",
+		tweet: "👀 Wow what great work from @HTTPArchive on the 2022 Web Almanac's Security chapter! Nice job @_clarkio, @liran_tal, @Saptak013 https://almanac.httparchive.org/en/2022/security Lots of detailed analysis of progress and opportunities to better secure the web",
+		link: "https://twitter.com/HttpSecHeaders/status/1574596777008930823?s=20&t=ay3XtgwKP0Y51MOwtErh4g",
+		picture: ""
 	},
 	{
-		title: 'Footers',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
-		icon: 'flat-color-icons:faq',
+		name: "Jim Manico",
+		title: "OWASP Leader",
+		avatar: "https://pbs.twimg.com/profile_images/1535106388128456704/9cUwGQ4T_400x400.jpg",
+		tweet: "What an honor. Thank you Liran. Some people talk about AppSec (me) and some people really dig in and do the work (you). I’m a big fan. 🤙🏻",
+		link: "https://twitter.com/manicode/status/1326929685553451008",
+		picture: ""
 	},
 	{
-		title: 'Features',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
-		icon: 'flat-color-icons:video-projector',
+		name: 'Rob Whittaker',
+		title: 'Director of Software Development',
+		avatar: "https://pbs.twimg.com/profile_images/1488829088441712645/uxOjGqYL_400x400.jpg",
+		tweet: "This is an excellent little article by @liran_tal on installing Ruby on macOS for local development. There are plenty of options available to you. (I prefer `asdf`.) The most important thing is not to use the system Ruby.",
+		link: 'https://twitter.com/purinkle/status/1577728577470173195',
+		picture: ''
 	},
 	{
-		title: 'Call-to-Action',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
-		icon: 'flat-color-icons:video-projector',
+		name: "Jose Aguinaga",
+		title: "Head of Engineering at @hoprnet",
+		avatar: "https://pbs.twimg.com/profile_images/620137226232397824/-bCZ07sG_400x400.jpg",
+		tweet: "This is one of the best guides I've seen on this topic, really cool stuff. Definitely going to take a look at @snyksec's @github action to add it in our @hoprnet project.",
+		link: "https://twitter.com/jjperezaguinaga/status/1349368415014825989",
+		picture: ""
 	},
 	{
-		title: 'Pricing',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
-		icon: 'flat-color-icons:calculator',
+		name: "Dev Sharma",
+		title: "Software Developer",
+		avatar: "https://pbs.twimg.com/profile_images/1476874332357808133/RYWzOj1v_400x400.png",
+		tweet: "This has become my primary source for learning docker with node. Thanks for sharing these 💝",
+		link: "https://twitter.com/cryptus_neoxys/status/1393221416175034369",
+		picture: ""
 	},
 	{
-		title: 'Testimonial',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
-		icon: 'flat-color-icons:voice-presentation',
+		name: "Fernando Carrascosa",
+		title: "Tech Lead",
+		avatar: "https://pbs.twimg.com/profile_images/1512047671552450565/fQvrbswJ_400x400.jpg",
+		tweet: "After being in a workshop by @liran_tal and realizing that RegExps can be exploited fairly easily, I decided to use a validation library. I even contributed to the @DefinitelyTyped definition of it :D",
+		link: "https://twitter.com/fcarrascosa_dev/status/1543694130940870659",
+		picture: ""
 	},
+	{
+		name: "Jan Demel",
+		title: "Software Developer",
+		avatar: "https://pbs.twimg.com/profile_images/1576851930223190016/sApke43V_400x400.jpg",
+		tweet: "Just watched @liran_tal's talk about path traversal vulnerability @NodeConfEU. It was absolutely amazing! I was always into security issues and learning things from such an expert was an honor!",
+		link: "https://twitter.com/JanDemel1/status/1577221795274711040?s=20&t=ay3XtgwKP0Y51MOwtErh4g",
+		picture: "https://pbs.twimg.com/media/FeNq3BJWIAIkgxL?format=jpg&name=large"
+	},
+	// {
+	// 	name: "tbd",
+	// 	title: "tbd",
+	// 	avatar: "tbd",
+	// 	tweet: "tbd",
+	// 	link: "tbd",
+	// 	picture: "tbd"
+	// },
+
 ];
+
+const columnsSplit = Math.ceil(items.length / 3);
 ---
 
 <section class="relative">
 	<div class="absolute inset-0 bg-primary-50 dark:bg-slate-800 pointer-events-none mb-32" aria-hidden="true"></div>
-	<div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+	<div class="relative max-w-8xl mx-auto px-4">
+		<!-- <div class="relative max-w-6xl mx-auto px-4 sm:px-6"> -->
 		<div class="py-4 pt-8 sm:py-6 lg:py-8 lg:pt-12">
 			<div class="mb-8 text-center">
-				<p class="text-base text-primary-600 dark:text-primary-200 font-semibold tracking-wide uppercase">Components</p>
+				<p class="text-base text-primary-600 dark:text-primary-200 font-semibold tracking-wide uppercase"></p>
 				<h2 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter mb-4 font-heading">
-					Most used widgets
+					Friends share feedback
 				</h2>
 				<p class="max-w-3xl mx-auto text-center text-xl text-gray-600 dark:text-slate-400">
-					Provides frequently used components for building websites using Tailwind CSS
+					Testimonials from social media
 				</p>
 			</div>
-			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-start my-12 dark:text-white">
-				{
-					items.map(({ title, description, icon }) => (
-						<div class="relative flex flex-col p-6 bg-white dark:bg-slate-900 rounded shadow-xl hover:shadow-lg transition dark:border dark:border-slate-800">
-							<div class="flex items-center mb-4">
-								<Icon name={icon} class="w-12 h-12" />
 
-								<div class="ml-4 text-xl font-bold">{title}</div>
+				<div class="justify-center grid overflow-hidden grid-cols-1 gap-2 mx-auto md:grid-cols-3 lg:grid-cols-3 items-start my-12 dark:text-white">
+
+
+				<ul class="space-y-8">
+				{
+				items.slice(0, columnsSplit).map((item) => {
+					return (
+						<>	
+						<li class="text-sm leading-6">
+							<div class="flex flex-col justify-center items-center">
+								<div class="block p-4 max-w-md bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+									<figcaption class="mb-2 p-2 w-full flex justify-left items-center space-x-3">
+										<img class="w-9 h-9 rounded-full" src={item.avatar} alt="profile picture">
+										<div class="space-y-0.5 font-bold leading-tighter tracking-tighter font-heading text-left">
+											<div>{item.name}</div>
+											<div class="text-sm font-light text-gray-600 dark:text-slate-400">{item.title}</div>
+										</div>
+									</figcaption>
+									
+									<p class="text-sm font-normal text-gray-600 dark:text-slate-400">
+										{item.tweet}
+									</p>
+									<img class="mt-2 rounded-t-lg" src={item.picture} alt="" />
+								</div>
 							</div>
-							<p class="text-gray-500 dark:text-gray-400 text-md">{description}</p>
-						</div>
-					))
+						</li>		
+						</>
+					)})
 				}
+				</ul>
+
+
+
+
+				<ul class="space-y-8">
+				{
+				items.slice(columnsSplit, columnsSplit*2).map((item) => {
+					return (
+						<>	
+						<li class="text-sm leading-6">
+							<div class="flex flex-col justify-center items-center">
+								<div class="block p-4 max-w-md bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+									<figcaption class="mb-2 p-2 w-full flex justify-left items-center space-x-3">
+										<img class="w-9 h-9 rounded-full" src={item.avatar} alt="profile picture">
+										<div class="space-y-0.5 font-bold leading-tighter tracking-tighter font-heading text-left">
+											<div>{item.name}</div>
+											<div class="text-sm font-light text-gray-600 dark:text-slate-400">{item.title}</div>
+										</div>
+									</figcaption>
+									
+									<p class="font-normal text-gray-700 dark:text-gray-400">
+										{item.tweet}
+									</p>
+									<img class="mt-2 rounded-t-lg" src={item.picture} alt="" />
+								</div>
+							</div>
+						</li>		
+						</>
+					)})
+				}
+				</ul>
+
+
+
+	
+				<ul class="space-y-8">
+				{
+				items.slice(columnsSplit*2).map((item) => {
+					return (
+						<>	
+						<li class="text-sm leading-6">
+							<div class="flex flex-col justify-center items-center">
+								<div class="block p-4 max-w-md bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+									<figcaption class="mb-2 p-2 w-full flex justify-left items-center space-x-3">
+										<img class="w-9 h-9 rounded-full" src={item.avatar} alt="profile picture">
+										<div class="space-y-0.5 font-bold leading-tighter tracking-tighter font-heading text-left">
+											<div>{item.name}</div>
+											<div class="text-sm font-light text-gray-600 dark:text-slate-400">{item.title}</div>
+										</div>
+									</figcaption>
+									
+									<p class="font-normal text-gray-600 dark:text-slate-400">
+										{item.tweet}
+									</p>
+									<img class="mt-2 rounded-t-lg" src={item.picture} alt="" />
+								</div>
+							</div>
+						</li>		
+						</>
+					)})
+					}
+				</ul>
+
 			</div>
 		</div>
 	</div>
