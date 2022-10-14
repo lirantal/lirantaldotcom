@@ -1,5 +1,5 @@
 ---
-title: 'Angular vs React: the security risk of indirect dependencies | Snyk'
+title: 'Angular vs React: the security risk of indirect dependencies'
 description: >-
   This is a blog mirror of Snyk’s State of JavaScript frameworks security report
   2019.
@@ -10,9 +10,8 @@ tags: []
 slug: angular-vs-react-the-security-risk-of-indirect-dependencies-snyk-af83b24d429e
 pubDate: '2019-10-30T00:01:37.000Z'
 image: ~/assets/images/blog/d9ebc36b73eb2a4e4cbdfd11dc796714.jpeg
+canonical: https://snyk.io/blog/angular-vs-react-the-security-risk-of-indirect-dependencies
 ---
-
-This is a blog mirror of [Snyk’s State of JavaScript frameworks security report 2019](https://snyk.io/blog/javascript-frameworks-security-report-2019/).
 
 In this section, we review the security risk of the indirect independencies for both Angular and React, and then we also review the direct dependencies, first for Angular and then for React.
 
@@ -122,5 +121,3 @@ Overall, ZEIT employs strong security practices that should be replicated by oth
 ZEIT and their management of the Next.js framework is a great example of good open source security policies; ZEIT takes matters seriously and demonstrates a true commitment to the overall security of their users with policies and actions that should be adopted by others.
 
 Or download the [full version of the report](https://bit.ly/js-security-report) in its digital format.
-
-_Originally published at_ [_https://snyk.io_](https://snyk.io/blog/angular-vs-react-the-security-risk-of-indirect-dependencies/) _on October 30, 2019._

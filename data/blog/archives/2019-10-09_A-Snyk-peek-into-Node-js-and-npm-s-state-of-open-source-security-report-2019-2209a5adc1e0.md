@@ -11,6 +11,7 @@ slug: >-
   a-snyk-peek-into-node-js-and-npms-state-of-open-source-security-report-2019-2209a5adc1e0
 pubDate: '2019-10-09T14:05:00.000Z'
 image: ~/assets/images/blog/862777f77ae5e16d5fa7285b288f7caa.jpeg
+canonical: https://snyk.io/blog/a-snyk-peek-into-node-js-and-npms-state-of-open-source-security-report-2019/
 ---
 
 In the [State of Open Source Security Report 2019](https://snyk.io/stateofossecurity/), we set out to measure the pulse of the open source security landscape throughout the different language ecosystems and have analyzed responses from over five hundred open source maintainers and users who provided us with insights into their processes and knowledge of open source security risks as well as the skill level of the average maintainer.
@@ -36,5 +37,3 @@ To emphasize how unique this vulnerability is to Node.js we examined other ecosy
 ![](/images/blog/0__lufb49va7JucSMHI.png)
 
 [Continue reading](https://snyk.io/opensourcesecurity-2019/) on more findings of the report
-
-_Originally published at_ [_https://snyk.io_](https://snyk.io/blog/a-snyk-peek-into-node-js-and-npms-state-of-open-source-security-report-2019/) _on October 9, 2019._

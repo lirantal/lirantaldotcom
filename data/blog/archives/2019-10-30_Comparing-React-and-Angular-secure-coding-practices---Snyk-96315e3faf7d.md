@@ -1,5 +1,5 @@
 ---
-title: Comparing React and Angular secure coding practices | Snyk
+title: Comparing React and Angular secure coding practices
 description: >-
   As a follow-up to Snyk’s State of JavaScript frameworks security report 2019,
   this section of the report is about Angular and React…
@@ -10,6 +10,7 @@ tags: []
 slug: comparing-react-and-angular-secure-coding-practices-snyk-96315e3faf7d
 pubDate: '2019-10-30T00:01:35.000Z'
 image: ~/assets/images/blog/f8e264edee29e37dc0b11613b993ce3f.jpeg
+canonical: "https://snyk.io/blog/comparing-react-and-angular-secure-coding-practices/"
 ---
 
 As a follow-up to Snyk’s State of JavaScript frameworks security report 2019, this section of the report is about Angular and React projects overall security posture.
@@ -62,5 +63,3 @@ We **highly recommend** **to download** the [full version of the report](https:/
 *   [Angular vs React: The Security Risk of Indirect Dependencies](https://snyk.io/blog/angular-vs-react-the-security-risk-of-indirect-dependencies)
 *   [Comparing React and Angular Secure Coding Practices](https://snyk.io/blog/comparing-react-and-angular-secure-coding-practices/)
 *   [84% of all websites are impacted by jQuery XSS vulnerabilities](https://snyk.io/blog/84-percent-of-all-websites-impacted-by-jquery-xss-vulnerabilities/)
-
-_Originally published at_ [_https://snyk.io_](https://snyk.io/blog/comparing-react-and-angular-secure-coding-practices/) _on October 30, 2019._

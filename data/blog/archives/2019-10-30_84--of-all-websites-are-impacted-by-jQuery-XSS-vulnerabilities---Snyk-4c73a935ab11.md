@@ -1,8 +1,8 @@
 ---
-title: 84% of all websites are impacted by jQuery XSS vulnerabilities | Snyk
+title: 84% of all websites are impacted by jQuery XSS vulnerabilities
 description: >-
   This article is from Snyk’s State of JavaScript frameworks security report
-  2019. In this blog post we’ll review security vulnerabilities…
+  1.    In this blog post we’ll review security vulnerabilities…
 date: '2019-10-30T00:01:26.000Z'
 categories: []
 keywords: []
@@ -11,9 +11,10 @@ slug: >-
   84-of-all-websites-are-impacted-by-jquery-xss-vulnerabilities-snyk-4c73a935ab11
 pubDate: '2019-10-30T00:01:26.000Z'
 image: ~/assets/images/blog/2cb70ed5b1b503992216c3b92cbc796f.jpeg
+canonical: https://snyk.io/blog/84-percent-of-all-websites-impacted-by-jquery-xss-vulnerabilities/
 ---
 
-This article is from [Snyk’s State of JavaScript frameworks security report](https://snyk.io/blog/javascript-frameworks-security-report-2019/) 2019\. In this blog post we’ll review security vulnerabilities found in other frontend ecosystem projects.
+In this blog post we’ll review security vulnerabilities found in other frontend ecosystem projects.
 
 After reviewing Angular and React as major JavaScript frameworks, we’ll take a brief review of selected JavaScript and CSS frameworks: Vue.js, jQuery and Bootstrap.
 
@@ -52,5 +53,3 @@ I **highly recommend** **to download** the [full version of the report](https://
 *   [Angular vs React: The Security Risk of Indirect Dependencies](https://snyk.io/blog/angular-vs-react-the-security-risk-of-indirect-dependencies)
 *   [Comparing React and Angular Secure Coding Practices](https://snyk.io/blog/comparing-react-and-angular-secure-coding-practices/)
 *   [84% of all websites are impacted by jQuery XSS vulnerabilities](https://snyk.io/blog/84-percent-of-all-websites-impacted-by-jquery-xss-vulnerabilities/)
-
-_Originally published at_ [_https://snyk.io_](https://snyk.io/blog/84-percent-of-all-websites-impacted-by-jquery-xss-vulnerabilities/) _on October 30, 2019._
