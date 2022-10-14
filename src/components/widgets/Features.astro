@@ -95,7 +95,7 @@ const columnsSplit = Math.ceil(items.length / 3);
 				</p>
 			</div>
 
-				<div class="justify-center grid overflow-hidden grid-cols-1 gap-2 mx-auto md:grid-cols-3 lg:grid-cols-3 items-start my-12 dark:text-white">
+				<div class="lg:mx-32 justify-center grid overflow-hidden gap-2 md:grid-cols-3 lg:grid-cols-3 items-baseline my-12 dark:text-white">
 
 
 				<ul class="space-y-8">
@@ -103,9 +103,9 @@ const columnsSplit = Math.ceil(items.length / 3);
 				items.slice(0, columnsSplit).map((item) => {
 					return (
 						<>	
-						<li class="text-sm leading-6">
+						<li class="text-sm">
 							<div class="flex flex-col justify-center items-center">
-								<div class="block p-4 max-w-md bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+								<div class="block p-4 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 									<figcaption class="mb-2 p-2 w-full flex justify-left items-center space-x-3">
 										<img class="w-9 h-9 rounded-full" src={item.avatar} alt="profile picture">
 										<div class="space-y-0.5 font-bold leading-tighter tracking-tighter font-heading text-left">
@@ -134,9 +134,9 @@ const columnsSplit = Math.ceil(items.length / 3);
 				items.slice(columnsSplit, columnsSplit*2).map((item) => {
 					return (
 						<>	
-						<li class="text-sm leading-6">
+						<li class="text-sm">
 							<div class="flex flex-col justify-center items-center">
-								<div class="block p-4 max-w-md bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+								<div class="block p-4 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 									<figcaption class="mb-2 p-2 w-full flex justify-left items-center space-x-3">
 										<img class="w-9 h-9 rounded-full" src={item.avatar} alt="profile picture">
 										<div class="space-y-0.5 font-bold leading-tighter tracking-tighter font-heading text-left">
@@ -165,9 +165,9 @@ const columnsSplit = Math.ceil(items.length / 3);
 				items.slice(columnsSplit*2).map((item) => {
 					return (
 						<>	
-						<li class="text-sm leading-6">
+						<li class="text-sm">
 							<div class="flex flex-col justify-center items-center">
-								<div class="block p-4 max-w-md bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+								<div class="block p-4 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 									<figcaption class="mb-2 p-2 w-full flex justify-left items-center space-x-3">
 										<img class="w-9 h-9 rounded-full" src={item.avatar} alt="profile picture">
 										<div class="space-y-0.5 font-bold leading-tighter tracking-tighter font-heading text-left">
