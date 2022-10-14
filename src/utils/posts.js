@@ -1,5 +1,3 @@
-import getReadingTime from 'reading-time';
-
 const getNormalizedPost = async (post) => {
 	const { frontmatter, compiledContent, rawContent, file } = post;
 	const ID = file.split('/').pop().split('.').shift();
@@ -15,19 +13,21 @@ const getNormalizedPost = async (post) => {
 
 		title: frontmatter.title,
 		description: frontmatter.description,
-		body: compiledContent(),
 		image: frontmatter.image,
+		// body: compiledContent(),
+		// body: Content,
+		Content: post.Content,
 
 		excerpt: frontmatter.excerpt,
 		authors: frontmatter.authors,
 		category: frontmatter.category,
 		tags: frontmatter.tags,
-		readingTime: Math.ceil(getReadingTime(rawContent()).minutes),
+		readingTime: frontmatter.readingTime,
 	};
 };
 
 const load = async function () {
-	const posts = import.meta.glob('~/../data/blog/**/*.md', {
+	const posts = import.meta.glob(['~/../data/blog/**/*.md', '~/../data/blog/**/*.mdx'], {
 		eager: true,
 	});
 
