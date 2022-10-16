@@ -1,5 +1,5 @@
 const getNormalizedPost = async (post) => {
-	const { frontmatter, compiledContent, rawContent, file } = post;
+	const { frontmatter, Content, file } = post;
 	const ID = file.split('/').pop().split('.').shift();
 
 	return {
@@ -15,7 +15,7 @@ const getNormalizedPost = async (post) => {
 		description: frontmatter.description,
 		image: frontmatter.image,
 		// body: compiledContent(),
-		// body: Content,
+		Content: Content,
 		Content: post.Content,
 
 		excerpt: frontmatter.excerpt,
