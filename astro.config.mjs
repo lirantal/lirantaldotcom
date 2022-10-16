@@ -23,7 +23,9 @@ export default defineConfig({
     config: {
       applyBaseStyles: false
     }
-  }), sitemap(), image(),
+  }), sitemap(), image({
+    serviceEntryPoint: '@astrojs/image/sharp'
+  }),
   /* Disable this integration if you don't use Google Analytics (or other external script). */
   partytown({
     config: {
