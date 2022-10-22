@@ -1,10 +1,12 @@
 ---
 import Picture from '~/components/core/Picture.astro';
 import PostTags from '~/components/atoms/Tags.astro';
+import { Icon } from 'astro-icon';
 
 import { getFormattedDate } from '~/utils/utils';
 
 const { post } = Astro.props;
+const url = Astro.url;
 ---
 
 <section class="py-8 sm:py-16 lg:py-20 mx-auto">
@@ -14,10 +16,35 @@ const { post } = Astro.props;
 				<time datetime={post.pubDate}>{getFormattedDate(post.pubDate)}</time> ~ {post.readingTime}
 			</p>
 			<h1
-				class="px-4 sm:px-6 max-w-3xl mx-auto text-center text-4xl md:text-5xl font-bold leading-tighter tracking-tighter mb-8 font-heading"
+				class="px-4 sm:px-6 max-w-3xl mx-auto text-center text-4xl md:text-5xl font-bold leading-tighter tracking-tighter mb-4 font-heading"
 			>
 				{post.title}
 			</h1>
+
+
+			<div class="mx-auto text-center">
+				<div class="">
+					<a
+						class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+						href={`https://twitter.com/share?url=${url}&text="${post.title}"&via=liran_tal`}
+					>
+						<Icon name="logos:twitter" class="h-3" />
+					</a>
+					<a
+						href={`https://www.facebook.com/sharer.php?u=${url}`}
+						class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+					>
+						<Icon name="logos:facebook" class="h-3" />
+					</a>
+					<a
+						href={`https://www.linkedin.com/shareArticle?url=${url}&title=${post.title}`}
+						class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+					>
+						<Icon name="logos:linkedin" class="h-3" />
+					</a>
+				</div>
+			</div>
+
 			{
 				post.image && (
 					<Picture
@@ -30,6 +57,7 @@ const { post } = Astro.props;
 					/>
 				)
 			}
+
 		</header>
 		<div
 			class="container mx-auto px-6 sm:px-6 max-w-3xl prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-md prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-img:rounded-md prose-img:shadow-lg mt-8"
