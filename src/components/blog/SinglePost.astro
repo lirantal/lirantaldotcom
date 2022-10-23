@@ -1,12 +1,12 @@
 ---
 import Picture from '~/components/core/Picture.astro';
 import PostTags from '~/components/atoms/Tags.astro';
+import SocialShare from '~/components/atoms/SocialShare.astro';
 import { Icon } from 'astro-icon';
 
 import { getFormattedDate } from '~/utils/utils';
 
 const { post } = Astro.props;
-const url = Astro.url;
 ---
 
 <section class="py-8 sm:py-16 lg:py-20 mx-auto">
@@ -21,29 +21,7 @@ const url = Astro.url;
 				{post.title}
 			</h1>
 
-
-			<div class="mx-auto text-center">
-				<div class="">
-					<a
-						class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-						href={`https://twitter.com/share?url=${url}&text="${post.title}"&via=liran_tal`}
-					>
-						<Icon name="logos:twitter" class="h-3" />
-					</a>
-					<a
-						href={`https://www.facebook.com/sharer.php?u=${url}`}
-						class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-					>
-						<Icon name="logos:facebook" class="h-3" />
-					</a>
-					<a
-						href={`https://www.linkedin.com/shareArticle?url=${url}&title=${post.title}`}
-						class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-					>
-						<Icon name="logos:linkedin" class="h-3" />
-					</a>
-				</div>
-			</div>
+			<SocialShare {...post} />
 
 			{
 				post.image && (

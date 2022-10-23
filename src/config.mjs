@@ -1,6 +1,7 @@
 export const PROFILE = {
 	githubURL: 'https://github.com/lirantal',
 	twitterURL: 'https://twitter.com/liran_tal',
+	twitterHandle: 'liran_tal',
 	linkedinURL: 'https://www.linkedin.com/in/lirantal'
 }
 
