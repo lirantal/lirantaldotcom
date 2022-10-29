@@ -24,33 +24,32 @@ import { getHomePermalink } from '~/utils/permalinks';
 				</div>
 			</div>
 
-
-			{FOOTER.columns.map(column => {
-				return (
-					<>
-					<div class="col-span-3 md:col-span-3 lg:col-span-3">
-						<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">{column.title}</div>
-						<ul class="text-sm">
-						{
-							column.items.map(item => {
-								return (
-								<li class="mb-2">
-									<a class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 	ease-in-out" href={item.link}>
-										{ item.icon ? 
-										<Icon name={item.icon} class="inline-flex w-5 h-5" /> : ''
-										}
-										{item.title}
-									</a>
-								</li>
-								)
-							})
-						}
-						</ul>
-					</div>
-					</>	
-				)})
+			{
+				FOOTER.columns.map((column) => {
+					return (
+						<>
+							<div class="col-span-3 md:col-span-3 lg:col-span-3">
+								<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">{column.title}</div>
+								<ul class="text-sm">
+									{column.items.map((item) => {
+										return (
+											<li class="mb-2">
+												<a
+													class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 	ease-in-out"
+													href={item.link}
+												>
+													{item.icon ? <Icon name={item.icon} class="inline-flex w-5 h-5" /> : ''}
+													{item.title}
+												</a>
+											</li>
+										);
+									})}
+								</ul>
+							</div>
+						</>
+					);
+				})
 			}
-
 		</div>
 		<div class="md:flex md:items-center md:justify-between py-6 md:py-8">
 			<ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0">
@@ -93,20 +92,18 @@ import { getHomePermalink } from '~/utils/permalinks';
 			</ul>
 
 			<div class="text-xs text-gray-700 mr-4 dark:text-slate-400">
-				<div class="mb-2">
-					© 2022 Liran Tal
-				</div>
+				<div class="mb-2">© 2022 Liran Tal</div>
 
 				<div>
-				<!--
+					<!--
 					@TODO logo distracting, moving out for now
 					<span 
 					class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 float-left rounded-sm bg-[url(https://onwidget.com/favicon/favicon-32x32.png)]"
 					</span>
 				> -->
-				
-				Made by <a class="text-blue-600 hover:underline dark:text-gray-200" href="https://onwidget.com/"> onWidget</a> ·
-				All rights reserved.
+
+					Made by <a class="text-blue-600 hover:underline dark:text-gray-200" href="https://onwidget.com/"> onWidget</a>
+					· All rights reserved.
 				</div>
 			</div>
 		</div>

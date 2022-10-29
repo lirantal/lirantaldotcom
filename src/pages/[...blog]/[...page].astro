@@ -26,14 +26,14 @@ const meta = {
 	title: `Blog ${currentPage > 1 ? `— Page ${currentPage} ` : ''}— ${SITE.name}`,
 	description: SITE.description,
 	canonical: getCanonical(getPermalink(page.url.current)),
-	ogType: "blog",
-	noindex: currentPage > 1
+	ogType: 'blog',
+	noindex: currentPage > 1,
 };
 ---
 
 <Layout {meta}>
 	<Fragment slot="title">
-		The 
+		The
 		<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">Blog</span>
 	</Fragment>
 	<BlogList posts={page.data} />

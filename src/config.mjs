@@ -2,9 +2,8 @@ export const PROFILE = {
 	githubURL: 'https://github.com/lirantal',
 	twitterURL: 'https://twitter.com/liran_tal',
 	twitterHandle: 'liran_tal',
-	linkedinURL: 'https://www.linkedin.com/in/lirantal'
-}
-
+	linkedinURL: 'https://www.linkedin.com/in/lirantal',
+};
 
 export const FOOTER = {
 	columns: [
@@ -33,9 +32,9 @@ export const FOOTER = {
 				},
 				{
 					title: 'awesome-nodejs-security',
-					link: 'https://github.com/lirantal/awesome-nodejs-security'
-				}
-			]
+					link: 'https://github.com/lirantal/awesome-nodejs-security',
+				},
+			],
 		},
 		{
 			title: 'Published Author',
@@ -45,7 +44,7 @@ export const FOOTER = {
 					link: 'https://leanpub.com/nodejssecurity',
 				},
 				{
-					title: 'O\'Reilly Serverless Security',
+					title: "O'Reilly Serverless Security",
 					link: 'https://www.oreilly.com/library/view/serverless-security/9781492082538/',
 				},
 				// {
@@ -61,17 +60,17 @@ export const FOOTER = {
 				{
 					title: 'GitHub Star',
 					link: 'https://stars.github.com/profiles/lirantal/',
-					icon: 'emojione:glowing-star'
+					icon: 'emojione:glowing-star',
 				},
 				{
 					title: 'Pathfinder Award for Security',
 					link: 'https://openjsf.org/announcement/2022/06/07/',
-					icon: 'logos:openjs-foundation-icon'
-				}
-			]
-		}
-	]
-}
+					icon: 'logos:openjs-foundation-icon',
+				},
+			],
+		},
+	],
+};
 
 export const SITE = {
 	name: 'Liran Tal',
@@ -89,7 +88,7 @@ export const SITE = {
 		enabled: true,
 		doNotTrack: true,
 		noCookieMode: false,
-	}
+	},
 };
 
 export const BLOG = {
@@ -103,7 +102,7 @@ export const BLOG = {
 
 	post: {
 		disabled: false,
-		pathname: 'blog', // empty for /some-post, value for /pathname/some-post 
+		pathname: 'blog', // empty for /some-post, value for /pathname/some-post
 	},
 
 	category: {
