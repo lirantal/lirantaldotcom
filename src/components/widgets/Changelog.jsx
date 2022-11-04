@@ -1,10 +1,10 @@
 import { createSignal, For } from 'solid-js';
-import itemsSeed from '~/data/recognitions.json'
+import itemsSeed from '~/data/recognitions.json';
 
 export default function Changelog() {
-	const [items, setItems] = createSignal(itemsSeed); 
+	const [items, setItems] = createSignal(itemsSeed);
 	const filterItems = (type, e) => {
-		const shouldBeListed = !!e.target.checked;	
+		const shouldBeListed = !!e.target.checked;
 		setItems((itemsCurrent) => {
 			if (shouldBeListed) {
 				const list = itemsCurrent.concat(itemsSeed.filter((item) => item.type === type));
@@ -13,9 +13,8 @@ export default function Changelog() {
 				const list = itemsCurrent.filter((item) => item.type !== type);
 				return list;
 			}
-		})
-
-	}
+		});
+	};
 	return (
 		<>
 			<section>
@@ -70,62 +69,61 @@ export default function Changelog() {
 							<div class="flex flex-wrap md:-mx-8">
 								<div class="w-full lg:w-1/2 px-0 sm:px-8">
 									<ol class="relative border-l border-gray-200 dark:border-gray-700">
+										<For each={items()}>
+											{(item, i) => (
+												<li class="mb-10 ml-6">
+													<span class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-white rounded-full ring-6 ring-white dark:ring-white-900 dark:bg-white-900">
+														🙌
+													</span>
 
+													<figure class="max-w-screen-md">
+														<blockquote>
+															<p class="text-lg font-semibold text-gray-900 dark:text-white">"{item.description}"</p>
+														</blockquote>
 
-									<For each={items()}>{(item, i) =>
+														<a href={item.href}>
+															<span class="mt-2 inline-flex items-center text-xs font-normal text-gray-500 dark:text-gray-400">
+																<svg
+																	class="mr-2 w-4 h-4"
+																	aria-hidden="true"
+																	focusable="false"
+																	data-prefix="fab"
+																	data-icon="twitter"
+																	role="img"
+																	xmlns="http://www.w3.org/2000/svg"
+																	viewBox="0 0 512 512"
+																>
+																	<path
+																		fill="currentColor"
+																		d="M459.4 151.7c.325 4.548 .325 9.097 .325 13.65 0 138.7-105.6 298.6-298.6 298.6-59.45 0-114.7-17.22-161.1-47.11 8.447 .974 16.57 1.299 25.34 1.299 49.06 0 94.21-16.57 130.3-44.83-46.13-.975-84.79-31.19-98.11-72.77 6.498 .974 12.99 1.624 19.82 1.624 9.421 0 18.84-1.3 27.61-3.573-48.08-9.747-84.14-51.98-84.14-102.1v-1.299c13.97 7.797 30.21 12.67 47.43 13.32-28.26-18.84-46.78-51.01-46.78-87.39 0-19.49 5.197-37.36 14.29-52.95 51.65 63.67 129.3 105.3 216.4 109.8-1.624-7.797-2.599-15.92-2.599-24.04 0-57.83 46.78-104.9 104.9-104.9 30.21 0 57.5 12.67 76.67 33.14 23.72-4.548 46.46-13.32 66.6-25.34-7.798 24.37-24.37 44.83-46.13 57.83 21.12-2.273 41.58-8.122 60.43-16.24-14.29 20.79-32.16 39.31-52.63 54.25z"
+																	></path>
+																</svg>
+																{item.date}
+															</span>
+														</a>
 
-										<li class="mb-10 ml-6">
-											<span class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-												<svg
-													aria-hidden="true"
-													class="w-3 h-3 text-blue-600 dark:text-blue-400"
-													fill="currentColor"
-													viewBox="0 0 20 20"
-													xmlns="http://www.w3.org/2000/svg"
-												>
-													<path
-														fill-rule="evenodd"
-														d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-														clip-rule="evenodd"
-													></path>
-												</svg>
-											</span>
-											<h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
-												{item.title}
-												{item.badge ? <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
-													{item.badge}
-												</span> : ''}
-											</h3>
-											<time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-												{item.subtitle}
-											</time>
-											<p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-												{item.description}
-											</p>
-											<a
-												href="#"
-												class="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-											>
-												<svg
-													class="mr-2 w-4 h-4"
-													fill="currentColor"
-													viewBox="0 0 20 20"
-													xmlns="http://www.w3.org/2000/svg"
-												>
-													<path
-														fill-rule="evenodd"
-														d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
-														clip-rule="evenodd"
-													></path>
-												</svg>{' '}
-												Download ZIP
-											</a>
-										</li>
+														<figcaption class="flex items-center mt-6 space-x-3">
+															{item.medium === 'twitter' && item.username ? (
+																<img
+																	class="w-6 h-6 rounded-full"
+																	src={`https://unavatar.io/twitter/${item.username}`}
+																	alt="profile picture"
+																/>
+															) : (
+																<img class="w-6 h-6 rounded-full" src={item.profile_image} alt="profile picture" />
+															)}
 
-									}</For>
-
-
-
+															<div class="flex items-center divide-x-2 divide-gray-300 dark:divide-gray-700">
+																<span class="pr-3 font-medium text-gray-900 dark:text-white">{item.name}</span>
+																<cite class="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">
+																	{item.role}
+																</cite>
+															</div>
+														</figcaption>
+													</figure>
+												</li>
+											)}
+										</For>
 									</ol>
 								</div>
 							</div>

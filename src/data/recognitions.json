@@ -1,16 +1,66 @@
 [
-	{
-		"title": "Flowbite App",
-		"subtitle": "Released on January 13",
-		"description": "Flowbite is a new app that helps you manage your finances and keep track of your spending.",
-		"badge": "New",
-		"type": "recognition"
-	},
-    {
-		"title": "Flowbite App",
-		"subtitle": "Released on January 13",
-		"description": "Flowbite is a new app that helps you manage your finances and keep track of your spending.",
-		"badge": "",
-		"type": "award"
-	}
+  {
+    "type": "praise",
+    "tags": ["security", "owasp"],
+    "badge": "",
+    "medium": "twitter",
+    "href": "https://twitter.com/manicode/status/1326929685553451008",
+    "name": "Jim Manico",
+    "date": "2020-11-12",
+    "role": "OWASP Leader",
+    "contact": "https://twitter.com/manicode",
+    "username": "manicode",
+    "profile_image": "https://unavatar.io/twitter/manicode",
+    "description": "What an honor. Thank you Liran. Some people talk about AppSec (me) and some people really dig in and do the work (you). I'm a big fan. 🤙🏻"
+  },
+  {
+    "type": "praise",
+    "medium": "twitter",
+    "tags": ["advocacy", "containers", "nodejs"],
+    "href": "https://twitter.com/0xjjpa/status/1349368415014825989",
+    "date": "2021-01-13",
+    "name": "Jose Aguinaga",
+    "role": "Head of Engineering at @hoprnet",
+    "contact": "https://twitter.com/0xjjpa",
+    "username": "0xjjpa",
+    "profile_image": "https://unavatar.io/twitter/0xjjpa",
+    "description": "This is one of the best guides I've seen on this topic, really cool stuff. Definitely going to take a look at @snyksec's @github action to add it in our @hoprnet project."
+  },
+  {
+    "type": "praise",
+    "tags": ["advocacy", "containers", "nodejs", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/cryptus_neoxys/status/1393221416175034369",
+    "date": "2021-05-14",
+    "name": "Dev Sharma",
+    "title": "Software Developer",
+    "contact": "https://twitter.com/cryptus_neoxys",
+    "username": "cryptus_neoxys",
+    "profile_image": "https://unavatar.io/twitter/cryptus_neoxys",
+    "description": "This has become my primary source for learning docker with node. Thanks for sharing these 💝"
+  },
+  {
+    "type": "praise",
+    "tags": ["advocacy", "talk", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/fcarrascosa_dev/status/1543694130940870659",
+    "date": "2022-07-03",
+    "name": "Fernando Carrascosa",
+    "role": "Tech Lead",
+    "contact": "https://twitter.com/fcarrascosa_dev",
+    "username": "fcarrascosa_dev",
+    "description": "After being in a workshop by @liran_tal and realizing that RegExps can be exploited fairly easily, I decided to use a validation library. I even contributed to the @DefinitelyTyped definition of it :D"
+  },
+  {
+    "type": "award",
+    "tags": ["javascript", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/openjsf/status/1537197087481155584?s=20&t=oiJKv5-SMjpa1XfwYnGWEA",
+    "name": "OpenJS Foundation",
+    "date": "2022-06-16",
+    "role": "",
+    "contact": "https://twitter.com/openjsf/status/1537197087481155584",
+    "username": "openjsf",
+    "description": "JavaScriptLandia Pathfinder Security Award to Liran Tal"
+  }
 ]
