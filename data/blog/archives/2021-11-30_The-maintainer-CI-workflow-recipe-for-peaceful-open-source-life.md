@@ -162,7 +162,7 @@ jobs:
 
 And make sure that you have the accompanying configuration file for it as such:
 
-```yml
+```yaml
 # Default state for all rules
 default: true
 
