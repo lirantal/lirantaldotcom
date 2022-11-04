@@ -7,6 +7,7 @@ import image from '@astrojs/image';
 import partytown from '@astrojs/partytown';
 import { SITE } from './src/config.mjs';
 import mdx from '@astrojs/mdx';
+import solid from '@astrojs/solid-js';
 
 import remarkToc from 'remark-toc';
 import { remarkReadingTime } from './src/utils/remark-frontmatter-extensions.mjs';
@@ -38,6 +39,7 @@ export default defineConfig({
 		mdx({
 			remarkPlugins: [remarkReadingTime],
 		}),
+		solid(),
 	],
 	vite: {
 		resolve: {
