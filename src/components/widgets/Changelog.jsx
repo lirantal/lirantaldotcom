@@ -1,21 +1,5 @@
 import { createSignal, For } from 'solid-js';
-
-const itemsSeed = [
-	{
-		title: 'Flowbite App',
-		subtitle: 'Released on January 13',
-		description: 'Flowbite is a new app that helps you manage your finances and keep track of your spending.',
-		badge: 'New',
-		type: 'recognition',
-	},
-	{
-		title: 'Flowbite App 2',
-		subtitle: 'Released on January 12',
-		description: 'Flowbite is a new app that helps you manage your finances and keep track of your spending.',
-		badge: '',
-		type: 'award',
-	}
-]
+import itemsSeed from '~/data/recognitions.json'
 
 export default function Changelog() {
 	const [items, setItems] = createSignal(itemsSeed); 
