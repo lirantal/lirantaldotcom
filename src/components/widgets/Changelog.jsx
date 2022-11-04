@@ -95,9 +95,21 @@ export default function Changelog() {
 													)}
 
 													<figure class="max-w-screen-md">
-														<blockquote>
-															<p class="text-lg font-semibold text-gray-900 dark:text-white">"{item.description}"</p>
+														{item.type === 'award' && (
+															<blockquote>
+															<p class="text-lg font-semibold text-gray-900 dark:text-white">
+																{item.description}
+															</p>
 														</blockquote>
+														)}
+														{item.type === 'praise' && (
+														
+														<blockquote>
+															<p class="text-lg font-semibold text-gray-900 dark:text-white">
+																"{item.description}"
+															</p>
+														</blockquote>
+														)}
 
 														<a href={item.href}>
 															<span class="mt-2 inline-flex items-center text-xs font-normal text-gray-500 dark:text-gray-400">
@@ -132,7 +144,7 @@ export default function Changelog() {
 															)}
 
 															<div class="flex items-center divide-x-2 divide-gray-300 dark:divide-gray-700">
-																<span class="pr-3 font-medium text-gray-900 dark:text-white">{item.name}</span>
+																<span class="pr-3 font-sm text-gray-900 dark:text-slate-300">{item.name}</span>
 																<cite class="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">
 																	{item.role}
 																</cite>
