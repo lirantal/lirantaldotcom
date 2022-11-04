@@ -61,6 +61,32 @@
     "role": "",
     "contact": "https://twitter.com/openjsf/status/1537197087481155584",
     "username": "openjsf",
-    "description": "JavaScriptLandia Pathfinder Security Award to Liran Tal"
+    "title": "JavaScriptLandia Pathfinder Security Award to Liran Tal",
+    "description": "Congratulations again to the recipients of our first ever JavaScriptLandia awards last week at #openjsworld22! ⭐️ @BethGriggs_⭐️@matteocollina ⭐️Darshan Sen ⭐️@TzviyaSiegman ⭐️@liran_tal ⭐️ @wesbos"
+  },
+  {
+    "type": "award",
+    "tags": ["opensource", "github"],
+    "medium": "twitter",
+    "href": "https://twitter.com/github/status/1405191446232289287?s=20&t=B6445yu9owcKtBEnSFB2rA",
+    "name": "GitHub",
+    "date": "2021-06-16",
+    "role": "",
+    "contact": "https://twitter.com/openjsf/status/1537197087481155584",
+    "username": "github",
+    "title": "GitHub Star",
+    "description": "Congratulations to @liran_tal, on becoming a GitHub Star ⭐. Liran ❤️s making security accessible to all. He's a maintainer, speaker, author, and mentor. Check out his GitHub Star profile."
+  },
+  {
+    "type": "shoutout",
+    "tags": ["advocacy", "opensource", "javascript", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/changelog/status/1181420710826250240?s=20&t=eb6Ag_vuOAx631AwXtuuAA",
+    "date": "2019-10-08",
+    "name": "Changelog",
+    "role": "Tech Lead",
+    "contact": "https://twitter.com/changelog",
+    "username": "changelog",
+    "description": "Quickly find publicly known security vulnerabilities in a website's JS libs 🖋 by @liran_tal 💭 #cli #javascript #security https://changelog.com/news/83PM "
   }
 ]

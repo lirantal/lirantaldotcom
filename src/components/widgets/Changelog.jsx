@@ -78,6 +78,12 @@ export default function Changelog() {
 														</span>
 													)}
 
+													{item.type === 'shoutout' && (
+														<span class="flex absolute -left-3 justify-center items-center w-6 h-6  rounded-full ring-6 ring-white dark:ring-white-900 dark:bg-white-900">
+															🎉
+														</span>
+													)}
+
 													{item.type === 'award' && (
 														<span class="flex absolute -left-3 justify-center items-center w-6 h-6  rounded-full ring-6 ring-white dark:ring-white-900 dark:bg-white-900">
 															<div class="flex items-center text-yellow-300">
@@ -96,19 +102,18 @@ export default function Changelog() {
 
 													<figure class="max-w-screen-md">
 														{item.type === 'award' && (
-															<blockquote>
-															<p class="text-lg font-semibold text-gray-900 dark:text-white">
-																{item.description}
-															</p>
-														</blockquote>
+															<>
+																<h1 class="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h1>
+																<blockquote>
+																	<p class="text-sm font-base text-gray-900 dark:text-white">{item.description}</p>
+																</blockquote>
+															</>
 														)}
-														{item.type === 'praise' && (
-														
-														<blockquote>
-															<p class="text-lg font-semibold text-gray-900 dark:text-white">
-																"{item.description}"
-															</p>
-														</blockquote>
+
+														{(item.type === 'praise' || item.type === 'shoutout') && (
+															<blockquote>
+																<p class="text-lg font-semibold text-gray-900 dark:text-white">"{item.description}"</p>
+															</blockquote>
 														)}
 
 														<a href={item.href}>
