@@ -31,7 +31,7 @@ export default function Changelog() {
 											value=""
 											checked
 											class="w-4 h-4 text-red-600 bg-gray-100 rounded border-gray-300 focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-											onChange={(e) => filterItems('recognition', e)}
+											onChange={(e) => filterItems('praise', e)}
 										/>
 										<label
 											for="vue-checkbox-list"
@@ -72,9 +72,27 @@ export default function Changelog() {
 										<For each={items()}>
 											{(item, i) => (
 												<li class="mb-10 ml-6">
-													<span class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-white rounded-full ring-6 ring-white dark:ring-white-900 dark:bg-white-900">
-														🙌
-													</span>
+													{item.type === 'praise' && (
+														<span class="flex absolute -left-3 justify-center items-center w-6 h-6  rounded-full ring-6 ring-white dark:ring-white-900 dark:bg-white-900">
+															🙌
+														</span>
+													)}
+
+													{item.type === 'award' && (
+														<span class="flex absolute -left-3 justify-center items-center w-6 h-6  rounded-full ring-6 ring-white dark:ring-white-900 dark:bg-white-900">
+															<div class="flex items-center text-yellow-300">
+																<svg
+																	aria-hidden="true"
+																	class="w-7 h-7"
+																	fill="currentColor"
+																	viewBox="0 0 20 20"
+																	xmlns="http://www.w3.org/2000/svg"
+																>
+																	<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+																</svg>
+															</div>
+														</span>
+													)}
 
 													<figure class="max-w-screen-md">
 														<blockquote>
