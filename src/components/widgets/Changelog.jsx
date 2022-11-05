@@ -26,7 +26,7 @@ export default function Changelog() {
 								<li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
 									<div class="flex items-center pl-3">
 										<input
-											id="vue-checkbox-list"
+											id="praise-checkbox-list"
 											type="checkbox"
 											value=""
 											checked
@@ -35,7 +35,7 @@ export default function Changelog() {
 										/>
 										<label
 											for="vue-checkbox-list"
-											class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+											class="py-3 ml-2 w-full text-sm font-medium text-red-900 dark:text-red-300"
 										>
 											Recognitions
 										</label>
@@ -44,7 +44,7 @@ export default function Changelog() {
 								<li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
 									<div class="flex items-center pl-3">
 										<input
-											id="react-checkbox-list"
+											id="award"
 											type="checkbox"
 											value=""
 											checked
@@ -53,6 +53,21 @@ export default function Changelog() {
 										/>
 										<label for="react-checkbox-list" class="text-green-400 py-3 ml-2 w-full text-sm font-medium">
 											Awards
+										</label>
+									</div>
+								</li>
+								<li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+									<div class="flex items-center pl-3">
+										<input
+											id="shoutout"
+											type="checkbox"
+											value=""
+											checked
+											class="w-4 h-4 text-purple-400 bg-gray-100 rounded border-gray-300 focus:ring-purple-400 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+											onChange={(e) => filterItems('shoutout', e)}
+										/>
+										<label for="react-checkbox-list" class="text-purple-400 py-3 ml-2 w-full text-sm font-medium">
+											Shoutout
 										</label>
 									</div>
 								</li>
