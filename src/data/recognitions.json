@@ -55,11 +55,11 @@
     "type": "award",
     "tags": ["javascript", "advocacy", "security"],
     "medium": "twitter",
-    "href": "https://twitter.com/openjsf/status/1537197087481155584?s=20&t=oiJKv5-SMjpa1XfwYnGWEA",
+    "href": "https://twitter.com/openjsf/status/1537197087481155584",
     "name": "OpenJS Foundation",
     "date": "2022-06-16",
     "role": "",
-    "contact": "https://twitter.com/openjsf/status/1537197087481155584",
+    "contact": "https://twitter.com/openjsf/",
     "username": "openjsf",
     "title": "JavaScriptLandia Pathfinder Security Award to Liran Tal",
     "description": "Congratulations again to the recipients of our first ever JavaScriptLandia awards last week at #openjsworld22! ⭐️ @BethGriggs_⭐️@matteocollina ⭐️Darshan Sen ⭐️@TzviyaSiegman ⭐️@liran_tal ⭐️ @wesbos"
@@ -72,7 +72,7 @@
     "name": "GitHub",
     "date": "2021-06-16",
     "role": "",
-    "contact": "https://twitter.com/openjsf/status/1537197087481155584",
+    "contact": "https://twitter.com/github",
     "username": "github",
     "title": "GitHub Star",
     "description": "Congratulations to @liran_tal, on becoming a GitHub Star ⭐. Liran ❤️s making security accessible to all. He's a maintainer, speaker, author, and mentor. Check out his GitHub Star profile."
@@ -88,5 +88,180 @@
     "contact": "https://twitter.com/changelog",
     "username": "changelog",
     "description": "Quickly find publicly known security vulnerabilities in a website's JS libs 🖋 by @liran_tal 💭 #cli #javascript #security https://changelog.com/news/83PM "
+  },
+  {
+    "type": "award",
+    "tags": ["javascript", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/liran_tal/status/1549046391053303808?s=20&t=Ks8JR5uZBO77ELJMzehHEQ",
+    "name": "Liran Tal",
+    "date": "2022-07-18",
+    "role": "Director of Developer Advocacy, Snyk",
+    "contact": "https://twitter.com/liran_tal",
+    "username": "liran_tal",
+    "title": "JavaScriptLandia Pathfinder Security Award to Liran Tal",
+    "description": "Flattered and deeply honored to be awarded the @OpenJSF JavaScriptLandia Pathfinder Security Award for 2022, announced on OpenJS World 2022 in Austin 🥰. Many thanks to everyone who have nominated me. I'm passionate to educate and help improve developer security for us all."
+  },
+  {
+    "type": "praise",
+    "tags": ["javascript", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/codebrainr/status/1580689908607242240?s=20&t=Ks8JR5uZBO77ELJMzehHEQ",
+    "name": "Manuel S. Martone",
+    "date": "2022-10-14",
+    "role": "Senior Engineering Manager @TrustLayerIO",
+    "contact": "https://twitter.com/codebrainr",
+    "username": "codebrainr",
+    "description": "I really love the cheat sheets you made on this. I can't do anything with #NodeJS and #Docker without considering your suggestions/insights"
+  },
+  {
+    "type": "praise",
+    "tags": ["javascript", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/organicdelight/status/1577222734459080705?s=20&t=Ks8JR5uZBO77ELJMzehHEQ",
+    "name": "Duncan Healy",
+    "date": "2022-10-14",
+    "role": "Software Engineer",
+    "contact": "https://twitter.com/organicdelight",
+    "username": "organicdelight",
+    "description": "path traversal - may the path be with you, @liran_tal warning about dangers in vscode extensions dotdotpwn'ing /etc/hosts @  #NodeConfEU r%2d%u"
+  },
+  {
+    "type": "praise",
+    "tags": ["javascript", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/organicdelight/status/1577222734459080705?s=20&t=Ks8JR5uZBO77ELJMzehHEQ",
+    "name": "Duncan Healy",
+    "date": "2022-10-14",
+    "role": "Software Engineer",
+    "contact": "https://twitter.com/organicdelight",
+    "username": "organicdelight",
+    "description": "path traversal - may the path be with you, @liran_tal warning about dangers in vscode extensions dotdotpwn'ing /etc/hosts @  #NodeConfEU r%2d%u"
+  },
+  {
+    "type": "praise",
+    "tags": ["web", "javascript", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/snyksec/status/1576672117315305472?s=20&t=Ks8JR5uZBO77ELJMzehHEQ",
+    "name": "Snyk",
+    "date": "2022-10-02",
+    "role": "",
+    "contact": "https://twitter.com/snyksec",
+    "username": "snyksec",
+    "description": "🛡 In @HTTPArchive's Web Almanac security chapter, @Saptak013, @liran_tal& @_clarkio share correlations between security adoption measures. They also discuss Web Application Security Working Group's standards & drafts."
+  },
+  {
+    "type": "shoutout",
+    "tags": ["research", "javascript", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/shuding_/status/1580914106881970177?s=20&t=Ks8JR5uZBO77ELJMzehHEQ",
+    "name": "Shu",
+    "date": "2022-10-14",
+    "role": "Software Engineer at Vercel",
+    "contact": "https://twitter.com/shuding_",
+    "username": "shuding_",
+    "description": "https://github.com/lirantal/lockfile-lint is a great tool to help reduce that risk"
+  },
+  {
+    "type": "shoutout",
+    "tags": ["testing", "software", "consumer driven contracts"],
+    "medium": "twitter",
+    "href": "https://twitter.com/gbrlmngr/status/1581955776360632320?s=20&t=Ks8JR5uZBO77ELJMzehHEQ",
+    "name": "Gabriel Mangiurea",
+    "date": "2022-10-17",
+    "role": "Software Engineer at Vercel",
+    "contact": "https://twitter.com/gbrlmngr",
+    "username": "gbrlmngr",
+    "description": "This should be a standard for any back-end-to-front-end integration! Thank you @liran_tal!"
+  },
+  {
+    "type": "shoutout",
+    "tags": ["testing", "software", "consumer driven contracts"],
+    "medium": "twitter",
+    "href": "https://twitter.com/gbrlmngr/status/1581955776360632320?s=20&t=Ks8JR5uZBO77ELJMzehHEQ",
+    "name": "Gabriel Mangiurea",
+    "date": "2022-10-17",
+    "role": "Software Engineer at Vercel",
+    "contact": "https://twitter.com/gbrlmngr",
+    "username": "gbrlmngr",
+    "description": "This should be a standard for any back-end-to-front-end integration! Thank you @liran_tal!"
+  },
+  {
+    "type": "praise",
+    "tags": ["nodejs", "container", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/tdp_org/status/1583506382300454920?s=20&t=S3d-COKIhE7wpjBIUz20Nw",
+    "name": "Neil Craig",
+    "date": "2022-10-21",
+    "role": "Lead Technical Architect at @BBC.",
+    "contact": "https://twitter.com/tdp_org",
+    "username": "tdp_org",
+    "description": "This re-prompted me to test Debian (Bullseye + Node 18.11 vs Alpine) images on Cloud Run. I ran a quick experiment for a couple of hours. Debian is ~: 30% lower CPU, 30% lower startup latency, 30% lower billable time ($), ~10% more RAM Thanks so much, as always, @liran_tal!"
+  },
+  {
+    "type": "praise",
+    "tags": ["nodejs", "talk", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/JSifalda/status/1583531665413918720",
+    "name": "George Sifalda",
+    "date": "2022-10-21",
+    "role": "Early startups dev advisor",
+    "contact": "https://twitter.com/JSifalda",
+    "username": "JSifalda",
+    "description": "All @nordicjs talks are finally online, thanks a lot! here are my favs: ES2025 news, Interviews for developers, hacking react apps by @liran_tal, Leveraging types to make UI by @bloodyowl, security risks in your node_modules by @feross, web perf boost by @vitalyf"
+  },
+  {
+    "type": "praise",
+    "tags": ["nodejs", "talk", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/mrkosima/status/1537380873842065408?s=20&t=S3d-COKIhE7wpjBIUz20Nw",
+    "name": "Konstantin Klimashevich",
+    "date": "2022-06-16",
+    "role": "Program Committee member  | @thejsnation @reactsummit @ReactAdvanced @reactdayberlin ❤ JS",
+    "contact": "https://twitter.com/mrkosima",
+    "username": "mrkosima",
+    "description": "Thanks to @liran_tal, now I have a better understanding why you should always use “—ignore-scripts” within your 'npm install' calls 😈 #JSNation #gitnation"
+  },
+  {
+    "type": "praise",
+    "tags": ["nodejs", "talk", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/FloorDrees/status/1537377621742321664?s=20&t=8WC6uhF4SAAWYxj1vVN88A",
+    "name": "Floor",
+    "date": "2022-06-161",
+    "role": "Early startups dev advisor",
+    "contact": "https://twitter.com/FloorDrees",
+    "username": "FloorDrees",
+    "description": "I know I'm not allowed to call favsies but REALLY enjoyed @TauriApps' and @liran_tal sessions at #jsnation on, respectively, shipping code with a smaller footprint using open source, and OSS supply chain security 🔒"
+  },
+  {
+    "type": "praise",
+    "tags": ["drupal", "talk", "php", "hebrew"],
+    "medium": "twitter",
+    "href": "https://twitter.com/barzik/status/387842619650629633?s=20&t=Vk82PLpX6wQESmes7LxffQ",
+    "name": "Ran Bar Zik",
+    "date": "2013-10-09",
+    "role": "Senior Architect at Cyberark",
+    "contact": "https://twitter.com/barzik",
+    "username": "barzik",
+    "description": "בהרצאה של לירן טל, אחד המתכנתים הטובים שאני מכיר :-)  #drupalcampisrael2013"
+  },
+  {
+    "type": "praise",
+    "tags": ["nodejs", "container", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/tdp_org/status/1585670958785957888?s=20&t=S3d-COKIhE7wpjBIUz20Nw",
+    "name": "Neil Craig",
+    "date": "2022-10-27",
+    "role": "Lead Technical Architect at @BBC.",
+    "contact": "https://twitter.com/tdp_org",
+    "username": "tdp_org",
+    "description": "Thanks to @liran_tal, we're now running Node 18 Debian (slim) in prod & I measured the improvements vs Alpine w/ same workload: ✓ -16.3% CPU, ❌+8.6% RAM, ✓ -3.7% exec time, ✓ -14.5% start latency, ✓ -17.6% billable time (& thus $ saved), 5 lines of config changed. Anyone know why?"
   }
+  
+
+  
+  
+
+
 ]
