@@ -257,11 +257,257 @@
     "contact": "https://twitter.com/tdp_org",
     "username": "tdp_org",
     "description": "Thanks to @liran_tal, we're now running Node 18 Debian (slim) in prod & I measured the improvements vs Alpine w/ same workload: ✓ -16.3% CPU, ❌+8.6% RAM, ✓ -3.7% exec time, ✓ -14.5% start latency, ✓ -17.6% billable time (& thus $ saved), 5 lines of config changed. Anyone know why?"
+  },
+  {
+    "type": "praise",
+    "tags": ["javascript", "openjsf", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/WaleedAshraf01/status/1534216733149614086?s=20&t=F9ihrYB8lNz-iPsLX8LESA",
+    "name": "Waleed Ashraf",
+    "date": "2022-06-07",
+    "role": "Member @Node.js",
+    "contact": "https://twitter.com/WaleedAshraf01",
+    "username": "WaleedAshraf01",
+    "description": "JavascriptLandia Security pathfinder award @liran_tal #openjsworld22"
+  },
+  {
+    "type": "praise",
+    "tags": ["javascript", "openjsf", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/erickwendel_/status/1534216994899238913?s=20&t=k4BsDi1cMF7b1VrQYu5NcA",
+    "name": "Erick Wendel",
+    "date": "2022-06-07",
+    "role": "GitHub Star, Node.js collaborator",
+    "contact": "https://twitter.com/erickwendel_",
+    "username": "erickwendel_",
+    "description": "uuhuuuuuu congrats @liran_tal for the Pathfinder award for security 🤩🤩 #openjsworld22 #openjsworld"
+  },
+  {
+    "type": "praise",
+    "tags": ["javascript", "talk", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/agammore/status/1531275415968485376?s=20&t=yIpGR6eEYe37YfXdXVd-rw",
+    "name": "Agam More",
+    "date": "2022-05-30",
+    "role": "Dev Growth - Remote Dev - Creator of http://Unzip.dev",
+    "contact": "https://twitter.com/agammore",
+    "username": "agammore",
+    "description": "Thanks @liran_tal, you had great insights and it was a pleasure to pick your brain."
+  },
+  {
+    "type": "praise",
+    "tags": ["react", "talk", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/fcarrascosa_dev/status/1522894648968101888?s=20&t=W-PkBSPwCvMAoYOUUf1SlQ",
+    "name": "Fernando Carrascosa",
+    "date": "2022-05-07",
+    "role": "Tech Lead and Senior Front End Engineer @INGnl Web",
+    "contact": "https://twitter.com/fcarrascosa_dev",
+    "username": "fcarrascosa_dev",
+    "description": "Did you already hack a React App? We are doing it with @liran_tal #JSDayCAN2022"
+  },
+  {
+    "type": "praise",
+    "tags": ["react", "talk", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/goyoregalado/status/1522254938373603332?s=20&t=TZUultVDBKnPYj1mIZFhzg",
+    "name": "Goyo Regalado",
+    "date": "2022-05-05",
+    "role": "Software Engineer",
+    "contact": "https://twitter.com/goyoregalado",
+    "username": "goyoregalado",
+    "description": "Being part of @canariasjs staff gives me the privilege to attend and record @liran_tal workshop. Wonderful professional and better person. #JSDayCAN2022"
+  },
+  {
+    "type": "praise",
+    "tags": ["react", "talk", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/goyoregalado/status/1522254938373603332?s=20&t=TZUultVDBKnPYj1mIZFhzg",
+    "name": "Goyo Regalado",
+    "date": "2022-05-05",
+    "role": "Software Engineer",
+    "contact": "https://twitter.com/goyoregalado",
+    "username": "goyoregalado",
+    "description": "Being part of @canariasjs staff gives me the privilege to attend and record @liran_tal workshop. Wonderful professional and better person. #JSDayCAN2022"
+  },
+  {
+    "type": "praise",
+    "tags": ["react", "talk", "advocacy", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/goyoregalado/status/1522254938373603332?s=20&t=TZUultVDBKnPYj1mIZFhzg",
+    "name": "Goyo Regalado",
+    "date": "2022-05-05",
+    "role": "Software Engineer",
+    "contact": "https://twitter.com/goyoregalado",
+    "username": "goyoregalado",
+    "description": "Being part of @canariasjs staff gives me the privilege to attend and record @liran_tal workshop. Wonderful professional and better person. #JSDayCAN2022"
+  },
+  {
+    "type": "praise",
+    "tags": ["opensource", "volunteer"],
+    "medium": "twitter",
+    "href": "https://twitter.com/OrManor3/status/1508865619252453380?s=20&t=wcQoWWMcXNOsBRAJS7EH4A",
+    "name": "Or Manor",
+    "date": "2022-03-29",
+    "role": "DataGeek & Google Developers Women Techmaker Ambassador(WTM)",
+    "contact": "https://twitter.com/OrManor3",
+    "username": "OrManor3",
+    "description": "'Ready, Code, Push'- Fascinating Advancing open source course, lead by @liran_tal"
+  },
+  {
+    "type": "praise",
+    "tags": ["talk", "security", "advocacy"],
+    "medium": "twitter",
+    "href": "https://twitter.com/sebastiangood/status/1523063592740077568?s=20&t=65FSTY4xgeIV5ZTdYvqd0w",
+    "name": "Sebastian Good",
+    "date": "2022-05-08",
+    "role": "Co-founder of @experoinc",
+    "contact": "https://twitter.com/sebastiangood",
+    "username": "sebastiangood",
+    "description": "Thanks Liran! The island tech community is wonderful and we're proud to be part of it. Your presentation was fantastic and spurred discussion at our firm about how to be more deliberate about web security."
+  },
+  {
+    "type": "praise",
+    "tags": ["devrel", "hebrew", "advocacy"],
+    "medium": "twitter",
+    "href": "https://twitter.com/liadyosef/status/1503634530854440961?s=20&t=pXlz5XOYCCI8MIADdBCzRg",
+    "name": "Liad Yosef",
+    "date": "2022-03-15",
+    "role": "Head of Frontend at Duda",
+    "contact": "https://twitter.com/liadyosef",
+    "username": "liadyosef",
+    "description": "תפקיד הDeveloper Relations הוא אחד המאתגרים שיש. אנשי DevRel טובים צריכים לשמור על איזון לא פשוט בין רמה טכנית גבוהה, יכולות תקשורת והעברת מסרים, ויצירה מתמשכת של תוכן בעל ערך. ממש כיף לראות נציגות משלנו, @liran_tal, ברשימת 100 אנשי הDevRel המשפיעים בעולם https://ecairn.com/blog/top-100-influencers-devrel"
+  },
+  {
+    "type": "praise",
+    "tags": ["security", "research", "advocacy"],
+    "medium": "twitter",
+    "href": "https://twitter.com/NusratSwarna/status/1493648308291526657?s=20&t=nmb9xDmgqvdhC1dgAqYmrw",
+    "name": "Nusrat Zahan",
+    "date": "2022-02-15",
+    "role": "PhD Candidate@NCSU CS || Former Research Intern @Microsoft",
+    "contact": "https://twitter.com/liadyosef",
+    "username": "liadyosef",
+    "description": "We would like to thank 470 npm practitioners who participated in our research and provided valuable feedback. The paper is available in arXiv: https://lnkd.in/gwGt989T. @liran_tal"
+  },
+  {
+    "type": "praise",
+    "tags": ["security", "research", "advocacy"],
+    "medium": "twitter",
+    "href": "https://twitter.com/NusratSwarna/status/1493648308291526657?s=20&t=nmb9xDmgqvdhC1dgAqYmrw",
+    "name": "Nusrat Zahan",
+    "date": "2022-02-15",
+    "role": "PhD Candidate@NCSU CS || Former Research Intern @Microsoft",
+    "contact": "https://twitter.com/liadyosef",
+    "username": "liadyosef",
+    "description": "We would like to thank 470 npm practitioners who participated in our research and provided valuable feedback. The paper is available in arXiv: https://lnkd.in/gwGt989T. @liran_tal"
+  },
+  {
+    "type": "shoutout",
+    "tags": ["tooling", "research", "security", "eslint", "trojan source"],
+    "medium": "twitter",
+    "href": "https://twitter.com/JSPartyFM/status/1462844328011780107?s=20&t=ZuUSsgvoQDhF_k1ZUfx58g",
+    "name": "JS Party",
+    "date": "2021-11-21",
+    "role": "",
+    "contact": "https://twitter.com/JSPartyFM",
+    "username": "JSPartyFM",
+    "description": "An ESLint plugin to detect and stop Trojan Source attacks #infosec #javascript"
+  },
+  {
+    "type": "shoutout",
+    "tags": ["tooling", "container", "dockly"],
+    "medium": "twitter",
+    "href": "https://twitter.com/learnk8s/status/1075677503782563840?s=20&t=_zC7skWp11Cxb3o13e6VzQ",
+    "name": "learnk8s",
+    "date": "2018-12-20",
+    "role": "",
+    "contact": "https://twitter.com/learnk8s",
+    "username": "learnk8s",
+    "description": "dockly is an immersive terminal interface for managing docker containers and services https://buff.ly/2IHF1gg"
+  },
+  {
+    "type": "shoutout",
+    "tags": ["tooling", "container", "dockly"],
+    "medium": "twitter",
+    "href": "https://twitter.com/binarymist/status/993219107347664897?s=20&t=UjljB89LN4f4p4uCaSSXSg",
+    "name": "Kim Carter",
+    "date": "2018-05-06",
+    "role": "Founder of http://binarymist.io, creator of @purpleteamlabs",
+    "contact": "https://twitter.com/learnk8s",
+    "username": "learnk8s",
+    "description": "If you're working with #Docker, do yourself a favour and checkout @liran_tal dockly https://github.com/lirantal/dockly"
+  },
+  {
+    "type": "shoutout",
+    "tags": ["tooling", "container", "dockly"],
+    "medium": "twitter",
+    "href": "https://twitter.com/cypresstwist/status/1193669147445645312?s=20&t=7g0jjfapweuiG8I8QNQXdg",
+    "name": "Razvan T. Coloja",
+    "date": "2019-11-11",
+    "role": "Linux admin and SBC enthusiast",
+    "contact": "https://twitter.com/cypresstwist",
+    "username": "cypresstwist",
+    "description": "Dockly is a lightweight CLI Docker management tool. Limited but useful when using SSH."
+  },
+  {
+    "type": "shoutout",
+    "tags": ["tooling", "container", "dockly"],
+    "medium": "twitter",
+    "href": "https://twitter.com/ostechnix/status/1131198599478611968?s=20&t=yu7H7I1cm9TrmFDVss1Hmg",
+    "name": "OSTechNix",
+    "date": "2019-05-22",
+    "role": "",
+    "contact": "https://twitter.com/ostechnix",
+    "username": "ostechnix",
+    "description": "Dockly - Manage Docker Containers From Terminal #Dockly #Docker #Virtualization #ManageDockers #LinuxContainers #Nodejs #Opensource #CLI https://ostechnix.com/dockly-manage-docker-containers-from-terminal/"
+  },
+  {
+    "type": "shoutout",
+    "tags": ["tooling", "container", "dockly"],
+    "medium": "twitter",
+    "href": "https://twitter.com/waxzce/status/1123886351924043777?s=20&t=e5bES9HUGVUAGUC9ZniFlQ",
+    "name": "Quentin Adam",
+    "date": "2019-05-02",
+    "role": "CEO @clever_cloud, co-founder @_icilundi, Chairman @OpenInternetPro, co-founder @Makair_fr",
+    "contact": "https://twitter.com/waxzce",
+    "username": "waxzce",
+    "description": "🐳 lirantal/dockly Immersive terminal interface for managing #docker containers and services https://github.com/lirantal/dockly"
+  },
+  {
+    "type": "shoutout",
+    "tags": ["tooling", "container", "dockly"],
+    "medium": "twitter",
+    "href": "https://twitter.com/jsoverson/status/1487094674779160578?s=20&t=ukNgsdA0H7oIuuGgHBbkVA",
+    "name": "Jarrod Overson",
+    "date": "2022-01-28",
+    "role": "CTO & Founder of @candle_corp",
+    "contact": "https://twitter.com/jsoverson",
+    "username": "jsoverson",
+    "description": "Just want to give a shout out to @liran_tal for writing this cheatsheet for dockerizing nodejs apps: https://snyk.io/wp-content/uploads/10-best-practices-to-containerize-Node.js-web-applications-with-Docker.pdf I don't know how many times I've pointed people to it."
+  },
+  {
+    "type": "praise",
+    "tags": ["security", "research", "advocacy"],
+    "medium": "twitter",
+    "href": "https://twitter.com/goldbergyoni/status/1485986577251803140?s=20&t=3sIH1duw-OV1Qts5YxLYBA",
+    "name": "Yoni Goldberg",
+    "date": "2022-01-25",
+    "role": "Node.js consultant",
+    "contact": "https://twitter.com/goldbergyoni",
+    "username": "goldbergyoni",
+    "description": "Highly recommend this beyond-the-basics Node.js talk by Liran Tal 'Mastering Node.js best practices for Docker-based applications' https://youtu.be/VSEx8gV51lY"
+  },
+  {
+    "type": "praise",
+    "tags": ["security", "research", "advocacy"],
+    "medium": "twitter",
+    "href": "https://twitter.com/goldbergyoni/status/1485986577251803140?s=20&t=3sIH1duw-OV1Qts5YxLYBA",
+    "name": "Yoni Goldberg",
+    "date": "2022-01-25",
+    "role": "Node.js consultant",
+    "contact": "https://twitter.com/goldbergyoni",
+    "username": "goldbergyoni",
+    "description": "Highly recommend this beyond-the-basics Node.js talk by Liran Tal 'Mastering Node.js best practices for Docker-based applications' https://youtu.be/VSEx8gV51lY"
   }
-  
-
-  
-  
-
-
 ]
