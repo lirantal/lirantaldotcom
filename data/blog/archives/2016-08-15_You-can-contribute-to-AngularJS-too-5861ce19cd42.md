@@ -1,11 +1,11 @@
 ---
-title: You can contribute to AngularJS too
+title: You too can contribute to AngularJS
 description: What if I told you that you can contribute to AngularJS?
 date: '2016-08-15T08:45:36.410Z'
 categories: []
 keywords: []
 tags: []
-slug: you-can-contribute-to-angularjs-too-5861ce19cd42
+slug: you-too-can-contribute-to-angularjs-5861ce19cd42
 pubDate: '2016-08-15T08:45:36.410Z'
 image: ~/assets/images/blog/860fa91d02ea853af1cff9573bacd8a0.jpeg
 ---
