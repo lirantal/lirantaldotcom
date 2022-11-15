@@ -4,9 +4,13 @@ import { Icon } from 'astro-icon';
 
 const { title } = Astro.props;
 const url = Astro.url;
+
+const className = 'inline-block'
+const text = 'facebook'
 ---
 
 <div class="mx-auto text-center">
+	<span class="align-super font-normal">share this story on</span> 
 	<div class="">
 		<a
 			class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
@@ -24,7 +28,13 @@ const url = Astro.url;
 			href={`https://www.linkedin.com/shareArticle?url=${url}&title=${title}`}
 			class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
 		>
-			<Icon name="logos:linkedin" class="h-3" />
+			<Icon name="logos:linkedin-icon" class="h-3" />
+		</a>
+		<a
+			href={`https://wa.me/?text=${title}%20${url}`}
+			class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+		>
+			<Icon name="logos:whatsapp" class="h-3" />
 		</a>
 	</div>
 </div>
