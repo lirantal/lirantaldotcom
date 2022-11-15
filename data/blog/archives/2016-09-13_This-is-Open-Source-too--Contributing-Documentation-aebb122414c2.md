@@ -18,7 +18,7 @@ Contributing documentation — yes that’s an open source thing too.Not eve
 
 ![](/images/blog/0__eM5Yke1nrV46ASv7.png)
 
-Two weeks ago I started working on a [NodeJS API client](https://github.com/lirantal/operations-orchestration-api) for [HPE’s Operations Orchestration](https://hpln.hpe.com/group/operations-orchestration) product, and this software I’m building provides a console CLI for users to interact with the OO product.
+Two weeks ago I started working on a [Node.js API client](https://github.com/lirantal/operations-orchestration-api) for [HPE’s Operations Orchestration](https://hpln.hpe.com/group/operations-orchestration) product, and this software I’m building provides a console CLI for users to interact with the OO product.
 
 Obviously to interact with the console there is going to be some library that someone else wrote for me to use, which can parse all the arguments and display a nice command usage output. Something like this:
 

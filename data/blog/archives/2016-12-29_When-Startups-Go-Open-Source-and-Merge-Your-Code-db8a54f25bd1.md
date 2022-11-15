@@ -22,7 +22,7 @@ Well doesn’t that sound like an interesting hack for the weekend? Sure does!
 
 Curious as I am, taking a dive in their documentation shows they are very tightly built on open source solutions, and further sniffing around reveals they also share much of this as open source, including their programming SDK bundles, on Github. Where else?
 
-Being me, I just had to take a look at their NodeJS module. It’s quite simple, but examining the code immediately shows some issues. Minor stuff, but left un-attended. Fixing it up is so trivial and simple, so why not? why not?
+Being me, I just had to take a look at their Node.js module. It’s quite simple, but examining the code immediately shows some issues. Minor stuff, but left un-attended. Fixing it up is so trivial and simple, so why not? why not?
 
 There goes that Pull-Request thing which magically merges my fixes with that repository:
 

@@ -28,7 +28,7 @@ or:
 
 That’s fine, but it’s not enough.
 
-If you use cookies, then you probably use one of the most popular middlewares **_express-session_** which will has a default cookie name of **_connect.sid_**.
+If you use cookies, then you probably use one of the most popular middleware `_express-session_` which will has a default cookie name of `_connect.sid_`.
 
 If you’re using some framework that wraps your whole application structure then you probably didn’t even dive deep there to review all the configurations and update this default setting.
 

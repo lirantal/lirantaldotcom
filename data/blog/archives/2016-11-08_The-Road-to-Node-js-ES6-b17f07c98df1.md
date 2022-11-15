@@ -12,7 +12,7 @@ pubDate: '2016-11-08T13:22:41.288Z'
 image: ~/assets/images/blog/328c48f45037d38c16429fc2e93d9562.jpeg
 ---
 
-So you’re interested in writing up some ES6 on your server-side NodeJS project? awesome! you’re in the right place.
+So you’re interested in writing up some ES6 on your server-side Node.js project? awesome! you’re in the right place.
 
 ### Node.js ES6 Support
 
@@ -46,6 +46,7 @@ Next up is to create the Gulp configuration which we will invoke in order to com
 
 **_gulpfile.js_**:
 
+```js
 var gulp = require('gulp');  
 var babel = require('gulp-babel');  
   
@@ -54,15 +55,16 @@ gulp.task('compile', function() {
         .pipe(babel({ presets: \['es2015'\] }))  
         .pipe(gulp.dest('build'));  
 });
+```
 
-The gulp configuration is pretty straightfoward, we defined a task called **compile** that when run it will:
+The gulp configuration is pretty straightfoward, we defined a task called `compile` that when run it will:
 
-*   process all the **_.js_** files in the **_lib_** directory
+*   process all the `_.js_` files in the `_lib_` directory
 *   pipe all the javascript files to babel and tell babel to compile it with the ES6 support
-*   save all the files in the **_build_** directory
+*   save all the files in the `_build_` directory
 
 ### That’s it!
 
-You can now write ES6 in all of your source code files in the **_lib_** directory, and once you run **_gulp compile_** outside in the main project directory everything will be compiled into **_build_**.
+You can now write ES6 in all of your source code files in the `_lib_` directory, and once you run `_gulp compile_` outside in the main project directory everything will be compiled into `_build_`.
 
-You might want to change the gulp configuration to accomodate your project’s sources, directories, etc. Might also want to add gulp into your **_package.json_** scripts and build process.
+You might want to change the gulp configuration to accommodate your project’s sources, directories, etc. Might also want to add gulp into your `_package.json_` scripts and build process.
