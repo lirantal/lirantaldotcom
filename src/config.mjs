@@ -79,7 +79,7 @@ export const SITE = {
 	basePathname: '/',
 
 	title: 'Liran Tal',
-	description: 'Open Source developer, author, speaker.',
+	description: 'Developer Advocate | GitHub Star | OpenJS Security Pathfinder Award',
 
 	deprecated_googleAnalyticsId: false, // or "G-XXXXXXXXXX",
 	deprecated_googleSiteVerificationId: 'orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M',
