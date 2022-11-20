@@ -3,6 +3,7 @@ export const PROFILE = {
 	twitterURL: 'https://twitter.com/liran_tal',
 	twitterHandle: 'liran_tal',
 	linkedinURL: 'https://www.linkedin.com/in/lirantal',
+	mastodonURL: 'https://infosec.exchange/@lirantal',
 };
 
 export const FOOTER = {
