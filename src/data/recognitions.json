@@ -509,5 +509,29 @@
     "contact": "https://twitter.com/goldbergyoni",
     "username": "goldbergyoni",
     "description": "Highly recommend this beyond-the-basics Node.js talk by Liran Tal 'Mastering Node.js best practices for Docker-based applications' https://youtu.be/VSEx8gV51lY"
+  },
+  {
+    "type": "praise",
+    "tags": ["advocacy"],
+    "medium": "twitter",
+    "href": "https://twitter.com/AnfibiaCreativa/status/1594397671141285888?s=20&t=bUwQuWPBgHZFNwgr9uQ51Q",
+    "name": "Natalia Venditto",
+    "date": "2022-11-22",
+    "role": "Developer Experience at Microsoft",
+    "contact": "https://twitter.com/AnfibiaCreativa",
+    "username": "AnfibiaCreativa",
+    "description": "This guy is the best!!! I hugged him tight! ❤️❤️❤️"
+  },
+  {
+    "type": "shoutout",
+    "tags": ["tooling", "javascript", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/loige/status/1590274196436680704?s=20&t=gOKy-VQ_fuo22oa5ii-o5w",
+    "name": "Luciano Mammino",
+    "date": "2022-11-09",
+    "role": "Senior Architect @fourTheorem",
+    "contact": "https://twitter.com/loige",
+    "username": "loige",
+    "description": "This morning I learned how to author an ESLint plugin! Pretty cool 😍 Thanks @simonesanfradev and @liran_tal"
   }
 ]
