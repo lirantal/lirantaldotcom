@@ -6,7 +6,7 @@ date: '2008-04-23'
 pubDate: '2008-04-23'
 categories: []
 keywords: []
-tags: []
+tags: ['wifi', 'linksys', 'x-wrt', 'openwrt', 'embedded']
 image: ~/assets/images/blog/photo-1485860209903-01b62c988847.jpg
 canonical: http://fsmsh.com/2846
 ---
@@ -35,3 +35,6 @@ As [posted on FreeSoftware Magazine](http://fsmsh.com/2846)
 -   4/23/2008
 -   [PERMALINK](http://fsmsh.com/2846)
 -   TAGS:  [DEVELOPMENT-OPEN-SOURCE-XWRT-OPENWRT-LINKSYS-WRT54G](http://freesoftwaremagazine.com/tags/development-open-source-xwrt-openwrt-linksys-wrt54g)
+
+> License
+> Verbatim copying and distribution of this entire article are permitted worldwide, without royalty, in any medium, provided this notice is preserved.
