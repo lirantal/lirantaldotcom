@@ -22,6 +22,17 @@ I've been doing active public speaking for about 5 years now so some
 of this feels very natural to me already and I have developed my own
 mechanics of applying to conferences and submitting CFPs
 
+## A CFP template
+
+How to structure your CFP application is a very important aspect of 
+submitting a proposal. It's not just about the content, but also about
+how you structure it and how you present it.
+
+[CFP Template](https://cfptemplate.com) by Colby Fayock is a way to
+organize and DRY up submitting your conference proposals. Another
+reference to is the following [open source GitHub repository](https://github.com/colbyfayock/cfptemplate.com)
+it lives on if you want to contribute or customize even further.
+
 ## Conference tracking websites
 
 There are dedicated websites that track events world-wide, as well
