@@ -533,5 +533,17 @@
     "contact": "https://twitter.com/loige",
     "username": "loige",
     "description": "This morning I learned how to author an ESLint plugin! Pretty cool 😍 Thanks @simonesanfradev and @liran_tal"
+  },
+  {
+    "type": "shoutout",
+    "tags": ["tooling", "javascript", "security"],
+    "medium": "twitter",
+    "href": "https://twitter.com/loige/status/1601229030304407553?s=20&t=I-eZF_7FlrA2Z361b7yK8w",
+    "name": "Luciano Mammino",
+    "date": "2022-12-09",
+    "role": "Senior Architect @fourTheorem",
+    "contact": "https://twitter.com/loige",
+    "username": "loige",
+    "description": "Open Source is awesome! I have been learning a lot about ESLint, ASTs, and security working on this PR: https://github.com/eslint-community/eslint-plugin-security/pull/95 - A huge thank you to @simonesanfradev for involving me in this, to @liran_tal for inspiring this work, and to @slicknet for the awesome review session!"
   }
 ]
