@@ -21,4 +21,4 @@ I give you- The Paris Linux
 ![http://www.bbspot.com/Images/News_Features/2006/08/paris_hilton_tux.jpg](https://web.archive.org/web/20140703174153im_/http://www.bbspot.com/Images/News_Features/2006/08/paris_hilton_tux.jpg "http://www.bbspot.com/Images/News_Features/2006/08/paris_hilton_tux.jpg")
 
 Still can’t believe it?  
-Source:  [http://www.bbspot.com/News/2006/08/paris-hilton-tinkerbell-linux.html](https://web.archive.org/web/20140703174153/http://www.bbspot.com/News/2006/08/paris-hilton-tinkerbell-linux.html "paris hilton linux")
+Source:  [http://www.bbspot.com/News/2006/08/paris-hilton-tinkerbell-linux.html](http://www.bbspot.com/News/2006/08/paris-hilton-tinkerbell-linux.html "paris hilton linux")
