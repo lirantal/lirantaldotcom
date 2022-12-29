@@ -7,6 +7,7 @@ import Pagination from '~/components/atoms/Pagination.astro';
 
 import { fetchPosts } from '~/utils/posts';
 import { getCanonical, getPermalink, BLOG_BASE } from '~/utils/permalinks';
+import PageFindSearch from '~/components/widgets/PageFindSearch.astro';
 
 export async function getStaticPaths({ paginate }) {
 	if (BLOG?.disabled || BLOG?.blog?.disabled) return [];
@@ -36,24 +37,8 @@ const meta = {
 		The
 		<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">Blog</span>
 	</Fragment>
-	<div id="search" class="ml-3 p-4 -mt-8"></div>
+	<PageFindSearch />
 	<br/>
 	<BlogList posts={page.data} />
 	<Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
 </Layout>
-
-<script>
-	window.addEventListener('DOMContentLoaded', (event) => {
-	  new PagefindUI({ element: '#search', resetStyles: false});
-	});
-</script>
-
-<style is:global>
-	.dark {
-		--pagefind-ui-primary: #eeeeee;
-		--pagefind-ui-text: #eeeeee;
-		--pagefind-ui-background: #152028;
-		--pagefind-ui-border: #152028;
-		--pagefind-ui-tag: #152028;
-	}
-</style>
