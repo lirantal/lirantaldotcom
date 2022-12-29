@@ -6,6 +6,12 @@
 	  new PagefindUI({ element: '#search', resetStyles: false});
 	});
 
+	window.addEventListener('keydown', (event) => {
+		if (event.key === '/' || event.key === '.') {
+			event.preventDefault();
+			document.querySelector('div#search input').focus();
+		}
+	});
 </script>
 
 <style is:global>
