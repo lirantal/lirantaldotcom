@@ -546,4 +546,16 @@
     "username": "loige",
     "description": "Open Source is awesome! I have been learning a lot about ESLint, ASTs, and security working on this PR: https://github.com/eslint-community/eslint-plugin-security/pull/95 - A huge thank you to @simonesanfradev for involving me in this, to @liran_tal for inspiring this work, and to @slicknet for the awesome review session!"
   }
+  {
+    "type": "shoutout",
+    "tags": ["devrel", "talks", "security", "advocacy"],
+    "medium": "twitter",
+    "href": "https://twitter.com/liran_tal/status/1607406069818474499?s=20",
+    "name": "Student",
+    "date": "2022-12-26",
+    "role": "A university student",
+    "contact": "",
+    "username": "",
+    "description": "היי לירן, יצא לי לצפות בהרצאה שהעברת  לטכניון בנושא חבילות זדוניות ורק רציתי להגיד שההרצאה הייתה מרתקת וגם העברת אותה בצורה ממש ברורה (אם במקרה יש לך עוד הרצאות פומביות שהעברת או שתעביר, אשמח לשמוע על כך)."
+  }
 ]
