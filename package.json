@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "astro build && npm run postbuild && astro preview",
-    "start": "npm run dev",
+    "dev": "astro dev start",
+    "start": "astro build && npm run postbuild && astro preview",
     "build": "astro build",
     "postbuild": "pagefind --source dist/",
     "preview": "astro preview",
