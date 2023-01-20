@@ -18,7 +18,7 @@ Doom skill levels: (easiest first)
 
 ## Database indexes and SQL queries
 
-[![drupal_perf-1](/images/blog/drupal_perf-1.png)](http://enginx.com/wp-content/uploads/2014/11/drupal_perf-1.png)
+![drupal_perf-1](/images/blog/drupal_perf-1.png)
 
 **This post is rated “I’m too young too die” difficulty level**.
 
@@ -26,7 +26,7 @@ Doom skill levels: (easiest first)
 
 Some modules, whether on Drupal 6, or those on Drupal 7 that simply upgraded but didn’t quite review all of their code, might ship with queries like  [SELECT COUNT() which if you have migrated your tables to InnoDB (or simply using Drupal 7) then this will hinder on database performance](http://www.percona.com/blog/2006/12/01/count-for-innodb-tables/). That’s mainly because InnoDB and MyISAM work differently, and where-as this proved as quite a fast responding query being executed on a MyISAM database which uses the main index to store this information, for InnoDB the situation is different and will result in doing a full table scan for the count. Obviously, on an InnoDB configuration running such queries on large tables will result in very poor performance
 
-[![drupal_perf-5](/images/blog/drupal_perf-5.png)](http://enginx.com/wp-content/uploads/2014/11/drupal_perf-5.png)
+![drupal_perf-5](/images/blog/drupal_perf-5.png)
 
 Note to ponder upon – what about the Views module which uses similar type of COUNT() queries to create the pagination for its views?
 
@@ -36,14 +36,13 @@ If you’re using a  [Drupal](http://drupal.org/) [distribution](https://www.dru
 
 Remember to  **review your installed modules base on Drupal**  and remove any un-used functionality:
 
-[![drupal_perf-2](https://web.archive.org/web/20150206054454im_/http://enginx.com/wp-content/uploads/2014/11/drupal_perf-2.png)](http://enginx.com/wp-content/uploads/2014/11/drupal_perf-2.png)[  
-](http://enginx.com/wp-content/uploads/2014/11/drupal_perf-1.png)
+![drupal_perf-2](/images/blog/drupal_perf-2.png)
 
 ## Replace views blocks with vanilla blocks
 
 When we start out building  [Drupal](https://www.drupal.org/) websites, we gradually build functionality and a common use case is creating a view, then you might want to create some blocks, very much related to the view, so you create a block view using the  [Views](https://www.drupal.org/project/views) module. Then you maybe combine it with  [Panels](https://www.drupal.org/project/panels) or  [Context](https://www.drupal.org/project/context), it doesn’t really matter, but essentially you’ve been using the UI tools which are for ease of use, and the overhead for that lies in quite a bit of abstraction layer which later may cost in performance. Replacing the quicklinks and help and support blocks that were used in our theme’s sidebar from being a view based block to a simple programmatiaclly created block implementation proved to reduce a sizzling amount of ~200ms to ~2ms of server time spent on doing the same operation. That accounted for about ~200ms of page load time redduction for each page load, as this item was featured in many pages consistently on our theme.
 
-[![drupal_perf-3](https://web.archive.org/web/20150206054517im_/http://enginx.com/wp-content/uploads/2014/11/drupal_perf-3.png)](http://enginx.com/wp-content/uploads/2014/11/drupal_perf-3.png)
+![drupal_perf-3](/images/blog/drupal_perf-3.png)
 
 ## know your DB engines
 
@@ -51,7 +50,7 @@ When we start out building  [Drupal](https://www.drupal.org/) websites, we gradu
 
 Some modules, whether on Drupal 6, or those on Drupal 7 that simply upgraded but didn’t quite review all of their code, might ship with queries like  [SELECT COUNT() which if you have migrated your tables to InnoDB (or simply using Drupal 7) then this will hinder on database performance](http://www.percona.com/blog/2006/12/01/count-for-innodb-tables/). That’s mainly because InnoDB and MyISAM work differently, and where-as this proved as quite a fast responding query being executed on a MyISAM database which uses the main index to store this information, for InnoDB the situation is different and will result in doing a full table scan for the count. Obviously, on an InnoDB configuration running such queries on large tables will result in very poor performance
 
-[![drupal_perf-5](https://web.archive.org/web/20150206054445im_/http://enginx.com/wp-content/uploads/2014/11/drupal_perf-5.png)](http://enginx.com/wp-content/uploads/2014/11/drupal_perf-5.png)
+![drupal_perf-5](/images/blog/drupal_perf-5.png)
 
 Note to ponder upon – what about the Views module which uses similar type of COUNT() queries to create the pagination for its views?
 
@@ -63,4 +62,4 @@ Note to ponder upon – what about the Views module which uses similar type of C
 
 There is another perspective for it of course, maybe things do need to take place on every page load, but their implementation in the code might be faulty. Imagine you’re doing some expensive IO on every page load, like calling an API, or querying a heavy table. Maybe you can re-factor to cache this information?
 
-[![drupal_perf-4](https://web.archive.org/web/20150206054438im_/http://enginx.com/wp-content/uploads/2014/11/drupal_perf-4.png)](http://enginx.com/wp-content/uploads/2014/11/drupal_perf-4.png)
+![drupal_perf-5](/images/blog/drupal_perf-4.png)

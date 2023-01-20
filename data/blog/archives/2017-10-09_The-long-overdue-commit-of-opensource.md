@@ -16,11 +16,11 @@ The framework is very cool and mature, the creators of freeboard even have a Saa
 So [here’s my Pull-Request](https://github.com/Freeboard/freeboard/pull/129) to fix that, and ease new-comers to the project.
 Yes, you’re reading right, this PR is from last year! 7 months ago...
 
-![](/images/blog/1760/0*GHZRJDJRseq6v8n5.png)
+![](/images/blog/0*GHZRJDJRseq6v8n5.png)
 
 Some people commented on the PR, but only months later this was reviewed and merged to freeboard’s mainstream branch:
 
-![](/images/blog/1760/0*HQFFIkttsMtRvhE0.png)
+![](/images/blog/0*HQFFIkttsMtRvhE0.png)
 
 So don’t give up. Do your best to improve software wherever it is.
 
