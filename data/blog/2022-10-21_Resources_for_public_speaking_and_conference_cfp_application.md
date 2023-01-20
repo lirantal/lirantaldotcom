@@ -70,7 +70,7 @@ that you can watch for updates:
 - [https://github.com/frontendfront/front-end-conferences](https://github.com/frontendfront/front-end-conferences)
 
 
-![GitHub repository of scraly/developers-conferences-agenda](/images/blog/scral-github-repository-of-conferences.png)
+![GitHub repository of scraly/developers-conferences-agenda](/images/blog/scral-github-repository-of-conferences.webp)
 
 ## CFP Twitter
 
