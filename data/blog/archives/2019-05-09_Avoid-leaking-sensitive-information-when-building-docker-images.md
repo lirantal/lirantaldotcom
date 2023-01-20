@@ -1,10 +1,12 @@
 ---
 title: Are you building Docker images? here's how to avoid leaking sensitive information into Docker images
 description: >-
-    Sometimes, when building an application inside a Docker image, you need secrets such as an SSH private key to pull code from a private repository but you may be going about it the wrong way by leaking secrets into the image. Here is how to avoid it.
+    Sometimes, when building an application inside a Docker
+    image, you need secrets such as an SSH private key to pull
+    code from a private repository but you may be going about it
+    the wrong way by leaking secrets into the image. Here is how to avoid it.
 date: '2019-05-09'
 pubDate: '2019-05-09'
-description:
 image: ~/assets/images/blog/photo-1486467589601-77e4ca1314b6.jpeg
 tags: docker, secrets, leak, image
 ---
