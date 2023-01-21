@@ -20,6 +20,7 @@ export default defineConfig({
 	site: SITE.origin,
 	base: SITE.basePathname,
 	output: 'static',
+	trailingSlash: 'ignore',
 	integrations: [
 		tailwind({
 			config: {

@@ -23,7 +23,10 @@ export const CATEGORY_BASE = cleanSlug(BLOG?.category?.pathname);
 export const TAG_BASE = cleanSlug(BLOG?.tag?.pathname);
 
 /** */
-export const getCanonical = (path = '') => new URL(path, SITE.origin);
+export const getCanonical = (path = '') => {
+	path = path.endsWith('/') ? '' : path + '/';
+	return new URL(path, SITE.origin);
+};
 
 /** */
 export const getPermalink = (slug = '', type = 'page') => {
