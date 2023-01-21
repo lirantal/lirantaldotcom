@@ -2,9 +2,12 @@
 import Layout from '~/layouts/PageLayout.astro';
 import Changelog from '~/components/widgets/Changelog';
 
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+
 const meta = {
 	title: "Liran Tal recognitions and achievements from the community",
-	description: "A changelog of assorted community appreciation and recognition as well as personal and professional milestones and achievements for Liran Tal."
+	description: "A changelog of assorted community appreciation and recognition as well as personal and professional milestones and achievements for Liran Tal.",
+	canonical: getCanonical(getPermalink(Astro.url.pathname))
 };
 ---
 
