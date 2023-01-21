@@ -26,7 +26,10 @@ export default defineConfig({
 				applyBaseStyles: false,
 			},
 		}),
-		sitemap(),
+		sitemap({
+			changefreq: 'daily',
+			lastmod: new Date(),
+		}),
 		image({
 			serviceEntryPoint: '@astrojs/image/sharp',
 		}),
