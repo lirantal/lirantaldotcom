@@ -557,5 +557,29 @@
     "contact": "",
     "username": "",
     "description": "היי לירן, יצא לי לצפות בהרצאה שהעברת  לטכניון בנושא חבילות זדוניות ורק רציתי להגיד שההרצאה הייתה מרתקת וגם העברת אותה בצורה ממש ברורה (אם במקרה יש לך עוד הרצאות פומביות שהעברת או שתעביר, אשמח לשמוע על כך)."
+  },
+  {
+    "type": "praise",
+    "tags": ["opensource"],
+    "medium": "twitter",
+    "href": "https://twitter.com/MohammadShaadsk/status/1616426111755513856",
+    "name": "Mohammad Shaad Shaikh",
+    "date": "2023-01-20",
+    "role": "Full Stack Web Developer",
+    "contact": "https://twitter.com/MohammadShaadsk",
+    "username": "MohammadShaadsk",
+    "description": "Thank you so much. You are my inspiration 😌"
+  },
+  {
+    "type": "praise",
+    "tags": ["opensource"],
+    "medium": "twitter",
+    "href": "https://twitter.com/manorinfinity/status/1616481086103769088",
+    "name": "ManOrInfinity",
+    "date": "2023-01-20",
+    "role": "Engineer",
+    "contact": "https://twitter.com/manorinfinity",
+    "username": "manorinfinity",
+    "description": "Thanks for your contribution. You make world a better place mate"
   }
 ]
