@@ -159,4 +159,6 @@ Now you can build your Astro project and see the search box in action. You can a
 
 Here is a video of how it looks like on my website:
 
-![PageFind on Astro](/images/blog/pagefind-on-astro.mp4)
+<video width="100%" controls>
+  <source src="/images/blog/pagefind-on-astro.mp4" type="video/mp4">
+</video>
