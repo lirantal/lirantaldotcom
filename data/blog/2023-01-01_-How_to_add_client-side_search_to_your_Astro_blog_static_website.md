@@ -10,7 +10,7 @@ pubDate: '2023-01-24'
 categories: []
 keywords: []
 tags: ["astro", "search", "static website", "pagefind", "blog"]
-image: ~/assets/images/blog/2022-12-29-01-10-57.png
+image: ~/assets/images/blog/photo-1589002615196-a7dc3df5bed3.jpg
 ---
 
 [PageFind](https://pagefind.app) is a client-side search tool that can be used to add search to your static website. It's a great tool for adding search to your Astro blog, as it's a client-side tool that doesn't require any server-side processing.
