@@ -9,6 +9,7 @@ date: '2023-01-15'
 pubDate: '2023-01-15'
 categories: []
 keywords: []
+slug: 'advanced-usage-patterns-for-taking-page-element-screenshots-with-playwright'
 tags: ["playwright", "testing", "screenshots", "crawling"]
 image: ~/assets/images/blog/2022-12-29-01-10-57.png
 ---

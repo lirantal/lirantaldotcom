@@ -1,19 +1,19 @@
 ---
 import Picture from '~/components/core/Picture.astro';
 
-import { findPostsByIds } from '~/utils/posts';
+import { findPostsBySlugs } from '~/utils/posts';
 import { findImage } from '~/utils/images';
 import { getPermalink } from '~/utils/permalinks';
 
-const ids = [
-	'2019-03-28_A-Comprehensive-Guide-to-Contract-Testing-APIs-in-a-Service-Oriented-Architecture-5695ccf9ac5a',
-	'2018-12-06_A-Snyk-s-Post-Mortem-of-the-Malicious-event-stream-npm-package-backdoor-40be813022bb',
-	'2018-06-28_Reasons-to-Love-Jest--The-Developer-Experience-b00ec93df7bb',
-	'2019-10-30_Angular-vs-React--the-security-risk-of-indirect-dependencies---Snyk-af83b24d429e',
+const slugs = [
+	'celebrating-community-my-journey-to-receiving-the-github-stars-2023-award',
+	'a-comprehensive-guide-to-contract-testing-apis-in-a-service-oriented-architecture-5695ccf9ac5a',
+	'advanced-usage-patterns-for-taking-page-element-screenshots-with-playwright',
+	'reasons-to-love-jest-the-developer-experience-b00ec93df7bb',
 ];
 
 const items = await Promise.all(
-	(await findPostsByIds(ids)).map(async (item) => ({ ...item, image: await findImage(item.image) }))
+	(await findPostsBySlugs(slugs)).map(async (item) => ({ ...item, image: await findImage(item.image) }))
 );
 ---
 

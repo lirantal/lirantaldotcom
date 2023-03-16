@@ -64,3 +64,16 @@ export const findPostsByIds = async (ids) => {
 		return r;
 	}, []);
 };
+
+export const findPostsBySlugs = async (slugs) => {
+	if (!Array.isArray(slugs)) return [];
+
+	const posts = await fetchPosts();
+
+	return slugs.reduce(function (r, slug) {
+		posts.some(function (post) {
+			return slug === post.slug && r.push(post);
+		});
+		return r;
+	}, []);
+};
