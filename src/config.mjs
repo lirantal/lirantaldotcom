@@ -59,7 +59,7 @@ export const FOOTER = {
 			title: 'Awards',
 			items: [
 				{
-					title: 'GitHub Star',
+					title: 'GitHub Star 2023',
 					link: 'https://stars.github.com/profiles/lirantal/',
 					icon: 'emojione:glowing-star',
 				},
@@ -67,6 +67,16 @@ export const FOOTER = {
 					title: 'Pathfinder Award for Security',
 					link: 'https://openjsf.org/announcement/2022/06/07/',
 					icon: 'logos:openjs-foundation-icon',
+				},
+				{
+					title: 'GitHub Star 2022',
+					link: 'https://stars.github.com/profiles/lirantal/',
+					icon: 'emojione:glowing-star',
+				},
+				{
+					title: 'GitHub Star 2021',
+					link: 'https://stars.github.com/profiles/lirantal/',
+					icon: 'emojione:glowing-star',
 				},
 			],
 		},
