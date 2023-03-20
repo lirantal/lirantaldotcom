@@ -1,13 +1,48 @@
 ---
 import { Icon } from 'astro-icon';
-import { FOOTER, PROFILE } from '~/config.mjs';
+import { PROFILE } from '~/config.mjs';
 import { getHomePermalink } from '~/utils/permalinks';
+
+export const FOOTER = {
+	published_author_links: [
+		{
+			title: 'Published Author',
+			items: [
+				{
+					// @TODO update data
+					title: '🌶️ Node.js Secure Coding: Defending Against Command Injection Vulnerabilities',
+					link: 'https://nodejs-secure-coding.lemonsqueezy.com/checkout?cart=500f9b52-0197-475e-a0f2-17de92d009b2',
+				},
+				{
+					title: 'Essential Node.js Security',
+					link: 'https://leanpub.com/nodejssecurity',
+				},
+				{
+					title: "O'Reilly Serverless Security",
+					link: 'https://www.oreilly.com/library/view/serverless-security/9781492082538/',
+				},
+			],
+		},
+	],
+	author_profile_links: [
+		{
+			title: 'GitHub Star 2023',
+			link: 'https://stars.github.com/profiles/lirantal/',
+			icon: 'emojione:glowing-star',
+		},
+		{
+			title: 'Pathfinder Award for Security',
+			link: 'https://openjsf.org/announcement/2022/06/07/',
+			icon: 'logos:openjs-foundation-icon',
+		},
+	],
+};
 ---
 
 <footer class="border-t border-gray-200 dark:border-slate-800">
 	<div class="max-w-6xl mx-auto px-4 sm:px-6">
 		<div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
-			<div class="col-span-3 lg:col-span-3">
+			<div class="col-span-6 lg:col-span-6">
 				<div class="mb-2">
 					<a class="inline-block font-bold text-xl" href={getHomePermalink()}>Liran Tal</a>
 
@@ -17,9 +52,26 @@ import { getHomePermalink } from '~/utils/permalinks';
 								class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out"
 								href="/recognitions"
 							>
-								Recognitions
+								Award-winning security champion, open source advocate, and self-published author.
 							</a>
 						</li>
+					</ul>
+					<ul class="text-sm">
+						{
+							FOOTER.author_profile_links.map((item) => {
+								return (
+									<li class="mb-2">
+										<a
+											class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 	ease-in-out"
+											href={item.link}
+										>
+											{item.icon ? <Icon name={item.icon} class="inline-flex w-5 h-5" /> : ''}
+											{item.title}
+										</a>
+									</li>
+								);
+							})
+						}
 					</ul>
 				</div>
 				<div class="text-sm text-gray-600">
@@ -36,10 +88,10 @@ import { getHomePermalink } from '~/utils/permalinks';
 			</div>
 
 			{
-				FOOTER.columns.map((column) => {
+				FOOTER.published_author_links.map((column) => {
 					return (
 						<>
-							<div class="col-span-3 md:col-span-3 lg:col-span-3">
+							<div class="col-span-6 md:col-span-6 lg:col-span-6">
 								<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">{column.title}</div>
 								<ul class="text-sm">
 									{column.items.map((item) => {
