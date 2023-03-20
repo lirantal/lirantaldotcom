@@ -42,7 +42,7 @@ export const FOOTER = {
 <footer class="border-t border-gray-200 dark:border-slate-800">
 	<div class="max-w-6xl mx-auto px-4 sm:px-6">
 		<div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
-			<div class="col-span-6 lg:col-span-6">
+			<div class="col-start-3 col-end-6">
 				<div class="mb-2">
 					<a class="inline-block font-bold text-xl" href={getHomePermalink()}>Liran Tal</a>
 
@@ -91,7 +91,7 @@ export const FOOTER = {
 				FOOTER.published_author_links.map((column) => {
 					return (
 						<>
-							<div class="col-span-6 md:col-span-6 lg:col-span-6">
+							<div class="col-start-8 col-end-12">
 								<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">{column.title}</div>
 								<ul class="text-sm">
 									{column.items.map((item) => {
