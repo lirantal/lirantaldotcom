@@ -10,7 +10,8 @@ export const FOOTER = {
 			items: [
 				{
 					// @TODO update data
-					title: '🌶️ Node.js Secure Coding: Defending Against Command Injection Vulnerabilities',
+					title: 'Node.js Secure Coding: Defending Against Command Injection Vulnerabilities',
+					icon: 'emojione:hot-pepper',
 					link: 'https://nodejs-secure-coding.lemonsqueezy.com/checkout?cart=500f9b52-0197-475e-a0f2-17de92d009b2',
 				},
 				{
@@ -61,11 +62,11 @@ export const FOOTER = {
 							FOOTER.author_profile_links.map((item) => {
 								return (
 									<li class="mb-2">
+										{item.icon ? <Icon name={item.icon} class="inline-flex w-5 h-5" /> : ''}
 										<a
-											class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 	ease-in-out"
+											class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out"
 											href={item.link}
 										>
-											{item.icon ? <Icon name={item.icon} class="inline-flex w-5 h-5" /> : ''}
 											{item.title}
 										</a>
 									</li>
@@ -97,13 +98,14 @@ export const FOOTER = {
 									{column.items.map((item) => {
 										return (
 											<li class="mb-2">
-												<a
-													class="text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 	ease-in-out"
-													href={item.link}
-												>
-													{item.icon ? <Icon name={item.icon} class="inline-flex w-5 h-5" /> : ''}
-													{item.title}
-												</a>
+												<div class="flex">
+													<div class="none">{item.icon ? <Icon name={item.icon} class="w-5 h-5" /> : ''}</div>
+													<div class={`none ml-${item.icon ? '3' : '8'}`}>
+														<a class=" text-gray-600 hover:text-gray-700 dark:text-gray-400" href={item.link}>
+															{item.title}
+														</a>
+													</div>
+												</div>
 											</li>
 										);
 									})}
