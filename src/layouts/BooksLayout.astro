@@ -1,0 +1,15 @@
+---
+import Layout from '~/layouts/BaseLayout.astro';
+import BooksHeader from '~/components/widgets/BooksHeader.astro';
+import BooksFooter from '~/components/widgets/BooksFooter.astro';
+
+const { meta } = Astro.props;
+---
+
+<Layout {meta}>
+	<BooksHeader />
+	<main>
+		<slot />
+	</main>
+	<BooksFooter />
+</Layout>
