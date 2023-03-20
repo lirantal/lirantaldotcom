@@ -99,8 +99,10 @@ export const FOOTER = {
 										return (
 											<li class="mb-2">
 												<div class="flex">
-													<div class="none">{item.icon ? <Icon name={item.icon} class="w-5 h-5" /> : ''}</div>
-													<div class={`none ml-${item.icon ? '3' : '8'}`}>
+													<div class="flex items-center">
+														{item.icon ? <Icon name={item.icon} class="w-5 h-5" /> : ''}
+													</div>
+													<div class={`flex ml-${item.icon ? '3' : '8'}`}>
 														<a class=" text-gray-600 hover:text-gray-700 dark:text-gray-400" href={item.link}>
 															{item.title}
 														</a>
