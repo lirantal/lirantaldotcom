@@ -93,21 +93,18 @@ const {
 				</div>
 				{content && <Fragment set:html={content} />}
 			</div>
-			<div class="basis-1/2">
+			<div class="basis-1/2 px-28">
 				{
 					image && (
-						<div class="relative m-auto max-w-5xl">
+						<div class="relative mb-8 m-auto max-w-3xl">
 							{typeof image === 'string' ? (
 								<Fragment set:html={image} />
 							) : (
 								<Picture
-									class="mx-auto rounded-md w-full"
+									class="mx-auto rounded-full shadow-lg"
 									widths={[400, 768, 1024, 2040]}
 									sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-									aspectRatio={600 / 600}
 									loading="eager"
-									width={600}
-									height={600}
 									{...image}
 								/>
 							)}
