@@ -17,8 +17,9 @@ export interface Props {
 }
 
 const {
-	title = await Astro.slots.render('title'),
-	subtitle = await Astro.slots.render('subtitle'),
+	title,
+	subtitle,
+	description = await Astro.slots.render('description'),
 	content = await Astro.slots.render('content'),
 	callToAction = await Astro.slots.render('callToAction'),
 	callToAction2 = await Astro.slots.render('callToAction2'),
@@ -34,14 +35,18 @@ const {
 			<div class="basis-1/2 text-center lg:text-left pb-10 md:pb-16 mx-auto">
 				{
 					title && (
-						<h1
-							class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200"
-							set:html={title}
-						/>
+						<div class="mb-12">
+							<h1 class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200">
+								<span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-secondary-500">
+									{title}
+								</span>
+							</h1>
+							<h2 class="my-auto text-4xl font-bold">{subtitle}</h2>
+						</div>
 					)
 				}
 				<div class="max-w-3xl mx-auto lg:max-w-none">
-					{subtitle && <p class="text-xl text-muted mb-6 dark:text-slate-300" set:html={subtitle} />}
+					{description && <p class="text-xl text-muted mb-6 dark:text-slate-300" set:html={description} />}
 					<div
 						class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 lg:justify-start lg:m-0 lg:max-w-7xl"
 					>
