@@ -54,8 +54,10 @@ works well together.
 
 Here are those that I found very useful and am using myself for my own
 books:
-* [Color Thief](https://lokeshdhakar.com/projects/color-thief/)
-* [Coolors](https://coolors.co/)
+* [Color Thief](https://lokeshdhakar.com/projects/color-thief/) - A tool that extracts the dominant color or a representative color palette from an image.
+* [Coolors](https://coolors.co/) - A super fast color schemes generator.
+* [Tints.dev](https://www.tints.dev/brand/2522FC) - A tool that helps you generate a color palette based on a single color, and aims at `TailwindCSS` users.
+* [UI Colors](https://uicolors.app/create) - A tool that helps you generate a color palette based on a single color and provides a CSS snippet for you to use with the `TailwindCSS` framework.
 
 ## Publishing content
 
