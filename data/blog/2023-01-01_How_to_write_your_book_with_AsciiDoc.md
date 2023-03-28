@@ -2,13 +2,13 @@
 title: How to write your book with AsciiDoc
 description: >-
   If you are looking for a way to write your book in a format that is easy to read and write, and that can be easily converted to other formats such as PDF, ePUB and HTML, then AsciiDoc is a great choice. Let me show you how to get started with AsciiDoc Book Starter GitHub repository and an automated setup.
-date: '2023-01-01'
-pubDate: '2023-01-01'
+date: '2023-03-28'
+pubDate: '2023-03-28'
 categories: []
 keywords: []
-draft: true
-tags: ["writing", "content", "book", "author", "asciidoc", "asciidoctor"]
-image: ~/assets/images/blog/2022-12-29-01-10-57.png
+tags: ["writing", "content", "book", "author", "asciidoc", "selfpublishing", "asciidoctor"]
+slug: how-to-write-your-book-with-asciidoc
+image: ~/assets/images/blog/photo-1611716524065-622312678d68.jpeg
 ---
 
 This article is based on the [AsciiDoc Book Starter](https://github.com/lirantal/asciidoc-book-starter) template repository on GitHub for authoring books using AsciiDoc.
@@ -23,7 +23,11 @@ An important observation to get started when authoring a book with AsciiDoc is t
 
 Get up to date with the latest AsciiDoc syntax and features by reading the [AsciiDoc User Guide](https://asciidoctor.org/docs/asciidoc-writers-guide/).
 
-## Features
+## Features of my Asciidoc Book Starter
+
+My [AsciiDoc Book Starter](https://github.com/lirantal/asciidoc-book-starter) GitHub repository features the following advantages to help you get started quickly with your book authoring journey.
+
+## Asciidoc book authoring 
 
 Book authoring experience provides the following features with this repository:
 - Table of Contents (TOC) generation.
@@ -33,7 +37,9 @@ Book authoring experience provides the following features with this repository:
 - A PDF output that uses a theme, and can be customized.
 - A PDF output that uses custom fonts (Google's open fonts family). Specifically, an [Open Sans](https://fonts.google.com/specimen/Open+Sans) font for the body text, and a [Source Code Pro](https://fonts.google.com/specimen/Source+Code+Pro?query=source+code+pro) font for source code snippets and inline code.
 
-Book generation:
+### Asciidoc book generation
+
+Batteries-included book generation features:
 - No need for a local installation of Asciidoctor, as the book generation is done via Docker.
 - No need for special CI setup, as the book generation is done via Docker.
 - Docker-based scripts to generate the book in various formats, including PDF, HTML and ePUB.
@@ -96,3 +102,8 @@ Static assets for the book are stored in the `book` directory, and include the f
 - The `images` directory is where you can store images that are used in the book. Inside this directory is a `cover.jpeg` image used for the book's cover, and a `space.jpeg` used as an example for an image in the book.
 - The `fonts` directory is where you can store fonts that are used in the book. It currently houses the [Open Sans](https://fonts.google.com/specimen/Open+Sans) and [Source Code Pro](https://fonts.google.com/specimen/Source+Code+Pro?query=source+code+pro) fonts, both with their original `.zip` file archived as downloaded from the Google Fonts website as well as extracted each to its own directory.
 
+## Summary
+
+In conclusion, I found Asciidoc to be a bit overwhelming and a steep learning curve to begin with, but once you conquer that hill, I'm sure you'll find Asciidoc a great format for authoring books.
+
+I hope you'll find the [AsciiDoc Book Starter](https://github.com/lirantal/asciidoc-book-starter) repository useful for your own book authoring journey.
