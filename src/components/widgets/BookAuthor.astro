@@ -1,0 +1,126 @@
+---
+import { Icon } from 'astro-icon';
+import { PROFILE } from '~/config.mjs';
+import Picture from '~/components/core/Picture.astro';
+
+const items = [
+	[
+		{
+			title: 'Integration with Tailwind CSS',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.',
+		},
+		{
+			title: 'Ready-to-use Components',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.',
+		},
+		{
+			title: 'Best Practices',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.',
+		},
+	],
+	[
+		{
+			title: 'Excellent Page Speed',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.',
+		},
+		{
+			title: 'Frequently updated',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.',
+		},
+		{
+			title: 'Open to new ideas and contributions',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.',
+		},
+	],
+];
+---
+
+<section class="scroll-mt-16" id="features">
+	<div class="px-4 py-16 mx-auto max-w-6xl lg:px-8 lg:py-20 bg-primary-50 dark:bg-slate-800">
+		<div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+			<div class="text-center">
+				<div>
+					<div class="relative mb-8 m-auto max-w-3xl">
+						<Picture
+							src="https://github.com/lirantal.png"
+							class="mx-auto rounded-full shadow-lg"
+							widths={[100, 200]}
+							alt="Liran Tal"
+							deprecated-src={import('~/assets/images/hero.jpg')}
+							deprecated-class="mx-auto rounded-md shadow-lg bg-gray-400 dark:bg-slate-700 w-full"
+							deprecated-widths={[400, 768]}
+							deprecated-sizes=" (max-width: 767px) 400px, 768px"
+							deprecated-aspectRatio="16:9"
+						/>
+					</div>
+				</div>
+			</div>
+
+			<h2 class="text-4xl md:text-5xl font-bold leading-tighter tracking-tighter mb-4 font-heading">
+				<span
+					class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 whitespace-nowrap"
+				>
+					Liran Tal</span
+				>
+			</h2>
+			<p class="max-w-3xl mx-auto sm:text-center text-xl text-gray-600 dark:text-slate-400">
+				What makes Liran qualified to teach you about secure coding in Node.js?
+			</p>
+		</div>
+		<div class="grid mx-auto space-y-6 md:grid-cols-2 md:space-y-0">
+			{
+				items.map((subitems) => (
+					<div class="space-y-8 sm:px-8">
+						{subitems.map(({ title, description }) => (
+							<div class="flex flex-row max-w-md">
+								<div class="mb-4 mr-4">
+									<div class="flex items-center justify-center w-12 h-12 rounded-full bg-pink-500">
+										<svg class="w-12 h-12 p-0.5" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+											<g fill="none" fill-rule="evenodd">
+												<rect class="fill-current text-pink-600" width="64" height="64" rx="32" />
+												<g stroke-linecap="square" stroke-width="2">
+													<path class="stroke-current text-white" d="M20.571 20.571h13.714v17.143H20.571z" />
+													<path
+														class="stroke-current text-pink-300"
+														d="M38.858 26.993l6.397 1.73-4.473 16.549-13.24-3.58"
+													/>
+												</g>
+											</g>
+										</svg>
+									</div>
+								</div>
+								<div>
+									<h3 class="mb-3 text-xl font-bold">{title}</h3>
+									<p>{description}</p>
+								</div>
+							</div>
+						))}
+					</div>
+				))
+			}
+		</div>
+		<div class="text-center mt-24">
+			<h1 class="text-5xl md:text-[3.50rem] font-bold leading-tighter tracking-tighter mb-4 font-heading">
+				About
+				<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">Liran Tal</span>
+			</h1>
+			<div class="max-w-3xl mx-auto">
+				<p class="text-l mb-8">
+					Known for his open source and JavaScript security initiatives, Liran Tal is an award-winning software
+					developer, security researcher, and open source champion in the JavaScript community. He's an internationally
+					recognized GitHub Star, acknowledged for his open source advocacy, and has received the OpenJS Foundation's
+					Pathfinder for Security for his work on Node.js security. His contributions to developer security education
+					include leading OWASP projects, building supply chain security tools, participation in CNCF and OpenSSF
+					initiatives, and authoring books such as O'Reilly's Serverless Security. He leads the developer advocacy team
+					at Snyk.io and is on a mission to empower developers with better application security skills.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>

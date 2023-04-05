@@ -1,0 +1,89 @@
+---
+import { Icon } from 'astro-icon';
+import Picture from '~/components/core/Picture.astro';
+---
+
+<section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-6xl">
+	<div class="grid gap-6 row-gap-10 md:grid-cols-2">
+		<div class="md:pb-6 md:pr-16">
+			<h2 class="mb-8 text-3xl lg:text-4xl font-bold font-heading">
+				How does this book help me improve my security skills?
+			</h2>
+			<div class="flex">
+				<div class="flex flex-col items-center mr-4">
+					<div>
+						<div class="flex items-center justify-center w-10 h-10 rounded-full border-secondary-500 border-2">
+							<Icon name="tabler:arrow-down" class="w-6 h-6 text-gray-600 dark:text-slate-200 icon-bold" />
+						</div>
+					</div>
+					<div class="w-px h-full bg-gray-300 dark:bg-slate-500"></div>
+				</div>
+				<div class="pt-1 pb-8">
+					<p class="mb-2 text-xl font-bold text-gray-900 dark:text-slate-300">Holistic Approach</p>
+					<p>
+						The book doesn't make assumption about your current skill level or your familiarity with either JavaScript
+						or security concepts. It starts from the very basics and builds up to more advanced topics and vulnerability
+						types for Command Injection.
+					</p>
+				</div>
+			</div>
+			<div class="flex">
+				<div class="flex flex-col items-center mr-4">
+					<div>
+						<div class="flex items-center justify-center w-10 h-10 rounded-full border-secondary-500 border-2">
+							<Icon name="tabler:arrow-down" class="w-6 h-6 text-gray-600 dark:text-slate-200 icon-bold" />
+						</div>
+					</div>
+					<div class="w-px h-full bg-gray-300 dark:bg-slate-500"></div>
+				</div>
+				<div class="pt-1 pb-8">
+					<p class="mb-2 text-xl font-bold text-gray-900 dark:text-slate-300">Real-world vulnerable code</p>
+					<p>
+						This books takes a whole new approach to teaching JavaScript developers about code security. Instead of
+						using theoretical examples and "just talking about security", this book is fundamentally based on real-world
+						vulnerable code that was found in npm packages that impacted thousands to millions of developers. You will
+						code review vulnerable open source projects written by other maintainers, use exploit code to understand the
+						implication of these security vulnerabilities and learn how to fix them.
+					</p>
+				</div>
+			</div>
+			<div class="flex">
+				<div class="flex flex-col items-center mr-4">
+					<div>
+						<div class="flex items-center justify-center w-10 h-10 rounded-full border-secondary-500 border-2">
+							<Icon name="tabler:arrow-down" class="w-6 h-6 text-gray-600 dark:text-slate-200 icon-bold" />
+						</div>
+					</div>
+					<div class="w-px h-full bg-gray-300 dark:bg-slate-500"></div>
+				</div>
+				<div class="pt-1 pb-8">
+					<p class="mb-2 text-xl font-bold text-gray-900 dark:text-slate-300">Best Practices</p>
+					<p>Each chapter includes lessons learned summary section</p>
+				</div>
+			</div>
+			<div class="flex">
+				<div class="flex flex-col items-center mr-4">
+					<div>
+						<div class="flex items-center justify-center w-10 h-10 rounded-full border-primary-600 border-2">
+							<Icon name="tabler:check" class="w-6 h-6 text-gray-600 dark:text-slate-200 icon-bold" />
+						</div>
+					</div>
+				</div>
+				<div class="pt-1">
+					<p class="mb-2 text-xl font-bold text-gray-900 dark:text-slate-300">Secure Coding: Achieved</p>
+					<p class="text-gray-700"></p>
+				</div>
+			</div>
+		</div>
+		<div class="relative">
+			<Picture
+				class="rounded-md object-cover h-full shadow-lg bg-gray-400 dark:bg-slate-700"
+				src={import('~/assets/images/nodejs-secure-coding-book-features-1-pager.png')}
+				widths={[400, 2480]}
+				_sizes="(max-width: 768px) 100vw, 432px"
+				alt="Astronaut"
+				aspectRatio="2480:3507"
+			/>
+		</div>
+	</div>
+</section>

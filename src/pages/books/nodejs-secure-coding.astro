@@ -1,16 +1,19 @@
 ---
 // import { SITE } from '~/config.mjs';
 import { getCanonical, getHomePermalink } from '~/utils/permalinks';
-import Layout from '~/layouts/BooksLayout.astro';
+// import Layout from '~/layouts/BooksLayout.astro';
+import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/BooksHero.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
+import BookFeatures from '~/components/widgets/BookFeatures.astro';
 import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import BookAuthor from '~/components/widgets/BookAuthor.astro';
 import Steps from '~/components/widgets/Steps.astro';
+import ScaleUpSecurity from '~/components/widgets/ScaleUpSecurity.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import HighlightedPosts from '~/components/blog/HighlightedPosts.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
+import FAQ from '~/components/widgets/FAQ.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import ProfileHero from '~/components/widgets/ProfileHero.astro';
@@ -31,33 +34,44 @@ const meta = {
 		title="Node.js Secure Coding:"
 		subtitle="Defending Against Command Injection Vulnerabilities"
 		CTA2={{
-			text: 'Defend Your Code',
-			href: 'https://nodejs-secure-coding.lemonsqueezy.com/checkout?cart=e2206cc8-4d6d-406b-8e54-c70b26dc6292&coupon=LAUNCHYAY25OFF',
-			priceOld: '$57.60',
-			priceNew: '$43.20',
+			text: 'More on this Node.js Secure Coding book',
+			href: 'https://nodejs-security.com',
+			priceOld: '',
+			priceNew: '',
 		}}
 		SKIP_CTA1={{ text: 'Learn more', href: '#features' }}
-		SKIP_CTA3={{ text: 'Learn more', href: '#features' }}
+		CTA3={{
+			text: 'Buy now',
+			href: 'https://nodejs-secure-coding.lemonsqueezy.com/checkout?cart=8b2ef211-87a5-41e8-bd74-33a33290728d',
+		}}
 		image={{
-			src: import('~/assets/images/command-injection-book-cover-light.png'),
+			src: import('~/assets/images/nodejs-secure-coding-book-3d-style.png'),
 			alt: 'Node.js Secure Coding: Defending Against Command Injection Vulnerabilities',
 		}}
 	>
 		<Fragment slot="description">
 			<span class="hidden sm:inline">
-				Don't settle for generic security guides, experience them.
-				<br /><br />Learn secure coding conventions in Node.js by executing command injection attacks on real-world NPM
-				packages and analyzing vulnerable code.
+				Master secure coding in Node.js with real-world examples.
+				<br />
+				<br />
+				execute command injection attacks, analyze vulnerable code, and build practical skills.
 			</span>
 		</Fragment>
 	</Hero>
 
-	<Pricing />
+	<!-- <ScaleUpSecurity /> -->
 
-	<!-- <Steps />
+	<!-- <BookFeatures /> -->
 
-	<Features3 />
-	<FAQs />
-	<Stats />
-	<CallToAction /> -->
+	<!-- <Pricing /> -->
+
+	<!-- <Steps /> -->
+
+	<!-- <Features /> -->
+	<!-- <BookAuthor /> -->
+	<!-- <Features3 /> -->
+
+	<!-- <FAQ /> -->
+	<!-- <Stats /> -->
+	<!-- <CallToAction /> -->
 </Layout>

@@ -5,7 +5,7 @@ import Logo from '~/components/atoms/Logo.astro';
 import ToggleTheme from '~/components/core/ToggleTheme.astro';
 import ToggleMenu from '~/components/core/ToggleMenu.astro';
 
-import { getPermalink, getBlogPermalink, getHomePermalink } from '~/utils/permalinks';
+import { getBlogPermalink, getHomePermalink } from '~/utils/permalinks';
 ---
 
 <header
@@ -44,7 +44,7 @@ import { getPermalink, getBlogPermalink, getHomePermalink } from '~/utils/permal
 				<li>
 					<a
 						class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-						href={getPermalink('nodejs-secure-coding')}>🦄 Node.js Secure Coding</a
+						href={'/books/nodejs-secure-coding'}>🦄 Node.js Secure Coding</a
 					>
 				</li>
 				<li>

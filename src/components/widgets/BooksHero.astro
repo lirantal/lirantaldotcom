@@ -104,15 +104,19 @@ const {
 						{
 							CTA2 && (
 								<a
-									class="w-full sm:w-auto bg-pink-500 hover:bg-pink-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-pink-500 dark:hover:bg-pink-700 dark:focus:ring-gray-700"
+									class="w-full sm:w-auto bg-gray-900 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5  dark:focus:ring-gray-700"
 									href={CTA2?.href}
 									target="_blank"
 									rel="noopener"
 								>
 									<div class="font-bold">{CTA2?.text}</div>
-									<div class="text-xs ml-2 text-purple-200">|</div>
-									<div class="line-through pl-2 text-lg">{CTA2?.priceOld}</div>
-									<div class="pl-2 font-bold text-md">{CTA2?.priceNew}</div>
+									{CTA2?.priceOld && CTA2?.priceNew && (
+										<div class="flex flex-col">
+											<div class="text-xs ml-2 text-purple-200">|</div>
+											<div class="line-through pl-2 text-lg">{CTA2?.priceOld}</div>
+											<div class="pl-2 font-bold text-md">{CTA2?.priceNew}</div>
+										</div>
+									)}
 								</a>
 							)
 						}
@@ -124,7 +128,7 @@ const {
 										<Fragment set:html={CTA3} />
 									) : (
 										<a
-											class="btn text-white bg-gray-900 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-800 w-full"
+											class="btn text-white bg-pink-500 hover:bg-pink-700 dark:bg-pink-500 dark:hover:bg-pink-700 rounded-lg inline-flex items-center justify-center px-4 py-2.5 w-full"
 											href={CTA3?.href}
 										>
 											{CTA3?.icon && (
