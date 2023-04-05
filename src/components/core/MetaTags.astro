@@ -9,7 +9,7 @@ import defaultImageSrc from '~/assets/images/default.png';
 import { SITE } from '~/config.mjs';
 import Fonts from '../atoms/Fonts.astro';
 import ExtraMetaTags from '../atoms/ExtraMetaTags.astro';
-import SplitbeeAnalytics from './SplitbeeAnalytics.astro';
+import VercelAnalytics from './VercelAnalytics.astro';
 
 const { src: defaultImage } = await getImage({
 	src: defaultImageSrc,
@@ -78,6 +78,6 @@ const image =
 <!-- Google Analytics -->
 {SITE.googleAnalyticsId && <GoogleAnalytics id={String(SITE.googleAnalyticsId)} partytown={true} />}
 
-{SITE.splitbeeAnalytics?.enabled && <SplitbeeAnalytics {...SITE.splitbeeAnalytics} />}
+<VercelAnalytics />
 
 <ExtraMetaTags />

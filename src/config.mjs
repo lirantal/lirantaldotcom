@@ -92,14 +92,14 @@ export const SITE = {
 	title: 'Liran Tal',
 	description: 'Developer Advocate | GitHub Star | OpenJS Security Pathfinder Award',
 
-	deprecated_googleAnalyticsId: false, // or "G-XXXXXXXXXX",
-	deprecated_googleSiteVerificationId: 'orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M',
+	// deprecated_googleAnalyticsId: false, // or "G-XXXXXXXXXX",
+	// deprecated_googleSiteVerificationId: 'orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M',
 
-	splitbeeAnalytics: {
-		enabled: true,
-		doNotTrack: true,
-		noCookieMode: false,
-	},
+	// splitbeeAnalytics: {
+	// 	enabled: true,
+	// 	doNotTrack: true,
+	// 	noCookieMode: false,
+	// },
 };
 
 export const BLOG = {
