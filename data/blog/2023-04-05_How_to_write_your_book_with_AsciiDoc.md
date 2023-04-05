@@ -2,8 +2,8 @@
 title: How to write your book with AsciiDoc
 description: >-
   If you are looking for a way to write your book in a format that is easy to read and write, and that can be easily converted to other formats such as PDF, ePUB and HTML, then AsciiDoc is a great choice. Let me show you how to get started with AsciiDoc Book Starter GitHub repository and an automated setup.
-date: '2023-03-28'
-pubDate: '2023-03-28'
+date: '2023-04-05'
+pubDate: '2023-04-05'
 categories: []
 keywords: []
 tags: ["writing", "content", "book", "author", "asciidoc", "selfpublishing", "asciidoctor"]
