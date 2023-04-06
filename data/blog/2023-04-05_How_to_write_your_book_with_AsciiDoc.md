@@ -13,6 +13,8 @@ image: ~/assets/images/blog/photo-1611716524065-622312678d68.jpeg
 
 This article is based on the [AsciiDoc Book Starter](https://github.com/lirantal/asciidoc-book-starter) template repository on GitHub for authoring books using AsciiDoc.
 
+> huge shout out to [Dan Allen](https://twitter.com/mojavelinux) who's the co-lead of Asciidoctor project and open-source [asciidoctor-pdf](https://github.com/asciidoctor/asciidoctor-pdf) extension for generating PDFs from AsciiDoc. Dan's work has been instrumental to the success of self-published authors such as myself, and I'm incredibly grateful for his work ❤️ Thank you Dan!
+
 I've briefly explored other formats such as Markdown, Latex, and Pandoc but I've found AsciiDoc to be the most flexible and powerful format for authoring books. It is easily readable and writable to a human, has a lax syntax and good set of defaults for authoring books, and it can be easily converted to other formats such as PDF, ePUB and HTML.
 
 AsciiDoc is also a very powerful format for authoring technical documentation, and is widely used in the media and content publishing industry, such as in O'Reilly's books.
