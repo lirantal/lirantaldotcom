@@ -110,4 +110,4 @@ In conclusion, I found AsciiDoc to be a bit overwhelming and a steep learning cu
 
 I hope you'll find the [AsciiDoc Book Starter](https://github.com/lirantal/asciidoc-book-starter) repository useful for your own book authoring journey.
 
-> Another shout out to [Alex DeBrie](https://twitter.com/alexbdebrie) who's the author of [The DynamoDB Book](https://dynamodbbook.com/) and who helped me get started with my own self-published AsciiDoc book using his repository as a starting point for the AsciiDoc setup.
+> Another shout out to [Alex DeBrie](https://twitter.com/alexbdebrie) 🤗 who's the author of [The DynamoDB Book](https://dynamodbbook.com/) and who helped me get started with my own self-published AsciiDoc book using his repository as a starting point for the AsciiDoc setup.
