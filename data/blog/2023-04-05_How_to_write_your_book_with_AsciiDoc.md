@@ -25,11 +25,11 @@ An important observation to get started when authoring a book with AsciiDoc is t
 
 Get up to date with the latest AsciiDoc syntax and features by reading the [AsciiDoc User Guide](https://asciidoctor.org/docs/asciidoc-writers-guide/).
 
-## Features of my Asciidoc Book Starter
+## Features of my AsciiDoc Book Starter
 
 My [AsciiDoc Book Starter](https://github.com/lirantal/asciidoc-book-starter) GitHub repository features the following advantages to help you get started quickly with your book authoring journey.
 
-## Asciidoc book authoring 
+## AsciiDoc book authoring 
 
 Book authoring experience provides the following features with this repository:
 - Table of Contents (TOC) generation.
@@ -39,7 +39,7 @@ Book authoring experience provides the following features with this repository:
 - A PDF output that uses a theme, and can be customized.
 - A PDF output that uses custom fonts (Google's open fonts family). Specifically, an [Open Sans](https://fonts.google.com/specimen/Open+Sans) font for the body text, and a [Source Code Pro](https://fonts.google.com/specimen/Source+Code+Pro?query=source+code+pro) font for source code snippets and inline code.
 
-### Asciidoc book generation
+### AsciiDoc book generation
 
 Batteries-included book generation features:
 - No need for a local installation of Asciidoctor, as the book generation is done via Docker.
@@ -106,6 +106,8 @@ Static assets for the book are stored in the `book` directory, and include the f
 
 ## Summary
 
-In conclusion, I found Asciidoc to be a bit overwhelming and a steep learning curve to begin with, but once you conquer that hill, I'm sure you'll find Asciidoc a great format for authoring books.
+In conclusion, I found AsciiDoc to be a bit overwhelming and a steep learning curve to begin with, but once you conquer that hill, I'm sure you'll find AsciiDoc a great format for authoring books.
 
 I hope you'll find the [AsciiDoc Book Starter](https://github.com/lirantal/asciidoc-book-starter) repository useful for your own book authoring journey.
+
+> Another shout out to [Alex DeBrie](https://twitter.com/alexbdebrie) who's the author of [The DynamoDB Book](https://dynamodbbook.com/) and who helped me get started with my own self-published AsciiDoc book using his repository as a starting point for the AsciiDoc setup.
