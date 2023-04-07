@@ -42,17 +42,17 @@ export const FOOTER = {
 			items: [
 				{
 					title: 'Essential Node.js Security',
-					link: 'https://leanpub.com/nodejssecurity',
+					link: 'https://nodejs-security.lemonsqueezy.com/checkout/buy/5d5975e1-4481-40a5-b180-de154cc865b0',
 				},
+
 				{
 					title: "O'Reilly Serverless Security",
 					link: 'https://www.oreilly.com/library/view/serverless-security/9781492082538/',
 				},
-				// {
-				// 	// @TODO update data
-				// 	title: 'HTTP Security Headers',
-				// 	link: ''
-				// }
+				{
+					title: 'Web Security: Learning HTTP Security Headers',
+					link: 'https://nodejs-security.lemonsqueezy.com/checkout/buy/3e91088f-cbb8-41a0-9c3a-5d60233f6f7b',
+				},
 			],
 		},
 		{
