@@ -8,7 +8,7 @@ categories: []
 keywords: []
 tags: ["writing", "content", "book", "author", "asciidoc", "selfpublishing", "asciidoctor"]
 slug: how-to-write-your-book-with-asciidoc
-image: ~/assets/images/blog/photo-1611716524065-622312678d68.jpeg
+image: ~/assets/images/blog/photo-1436891620584-47fd0e565afb.jpeg
 ---
 
 This article is based on the [AsciiDoc Book Starter](https://github.com/lirantal/asciidoc-book-starter) template repository on GitHub for authoring books using AsciiDoc.

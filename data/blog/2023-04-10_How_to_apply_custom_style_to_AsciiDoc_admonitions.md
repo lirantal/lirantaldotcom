@@ -9,7 +9,7 @@ keywords: []
 draft: false
 tags: ["writing", "content", "book", "author", "asciidoc", "selfpublishing", "asciidoctor"]
 slug: how-to-apply-custom-admonition-styles-to-asciidoc
-image: ~/assets/images/blog/
+image: ~/assets/images/blog/photo-1611716524065-622312678d68.jpeg
 ---
 
 ## What are AsciiDoc admonitions?
