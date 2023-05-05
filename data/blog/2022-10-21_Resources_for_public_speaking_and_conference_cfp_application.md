@@ -51,6 +51,7 @@ The following are events and conference CFP listings you can track:
 - [.NET Conferences](https://github.com/kristofferjalen/dotnetconferences)
 - [CFP Time](https://www.cfptime.org/home)
 - [Conf42](https://www.conf42.com)
+- [developers.events](https://developers.events)
 
 Some of the above are also available to consume as a newsletter,
 such as SeeCFP, which makes it easier to receive new upcoming events
