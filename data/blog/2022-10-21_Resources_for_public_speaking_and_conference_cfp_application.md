@@ -52,6 +52,7 @@ The following are events and conference CFP listings you can track:
 - [CFP Time](https://www.cfptime.org/home)
 - [Conf42](https://www.conf42.com)
 - [developers.events](https://developers.events)
+- [CFP.watch](https://cfp.watch/)
 
 Some of the above are also available to consume as a newsletter,
 such as SeeCFP, which makes it easier to receive new upcoming events
