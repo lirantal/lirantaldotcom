@@ -594,16 +594,28 @@
     "username": "AtilaFassina",
     "description": "Security is such an overseen topic on FE development. The @snyksec team is doing a great job in sharing knowledge and @liran_tal is producing content left and right!!"
   },
-    {
+  {
     "type": "praise",
     "tags": ["security", "book", "nodejs"],
     "medium": "twitter",
     "href": "https://twitter.com/EwertonAzeved_/status/1454479192825942016",
     "name": "Ewerton Azevedo",
-    "date": "2021-10-29",
+    "date": "2021-10-30",
     "role": "Engineer",
     "contact": "https://twitter.com/EwertonAzeved_",
     "username": "EwertonAzeved_",
     "description": "Holiday it is coming to an end. I was almost entirely absent from social media but did not code for two weeks! 🤯 I did watch the whole start wars movies instead & finished reading @liran_tal book “Essential Node.js Security for Express Web Applications” which I totally recommend"
+  },
+  {
+    "type": "praise",
+    "tags": ["security", "advocacy", "nodejs"],
+    "medium": "twitter",
+    "href": "https://twitter.com/autiomaa/status/1464684215245672455",
+    "name": "Daniel Schildt",
+    "date": "2021-11-27",
+    "role": "Engineer",
+    "contact": "https://twitter.com/autiomaa",
+    "username": "autiomaa",
+    "description": "Highly recommending you to follow @liran_tal as he has been doing a lot of work on improving security of JavaScript & Node.js projects. https://github.com/lirantal has some of the past tools etc. listed, and he does a good amount of writing about the topic."
   }
 ]
