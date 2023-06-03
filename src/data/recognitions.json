@@ -581,5 +581,17 @@
     "contact": "https://twitter.com/manorinfinity",
     "username": "manorinfinity",
     "description": "Thanks for your contribution. You make world a better place mate"
+  },
+  {
+    "type": "praise",
+    "tags": ["security", "advocacy", "react", "talks"],
+    "medium": "twitter",
+    "href": "https://twitter.com/AtilaFassina/status/1454020253747384322?s=20",
+    "name": "Atila Fassina",
+    "date": "2021-10-29",
+    "role": "Engineer",
+    "contact": "https://twitter.com/AtilaFassina",
+    "username": "AtilaFassina",
+    "description": "Security is such an overseen topic on FE development. The @snyksec team is doing a great job in sharing knowledge and @liran_tal is producing content left and right!!"
   }
 ]
