@@ -617,5 +617,29 @@
     "contact": "https://twitter.com/autiomaa",
     "username": "autiomaa",
     "description": "Highly recommending you to follow @liran_tal as he has been doing a lot of work on improving security of JavaScript & Node.js projects. https://github.com/lirantal has some of the past tools etc. listed, and he does a good amount of writing about the topic."
+  },
+  {
+    "type": "praise",
+    "tags": ["security", "advocacy", "docker"],
+    "medium": "twitter",
+    "href": "https://twitter.com/kennwhite/status/1394640878527041536",
+    "name": "Kenn White",
+    "date": "2021-05-18",
+    "role": "Engineer",
+    "contact": "https://twitter.com/kennwhite",
+    "username": "kennwhite",
+    "description": "Bumping from January. Great resource from @liran_tal and the Snyk team."
+  },
+  {
+    "type": "praise",
+    "tags": ["manager"],
+    "medium": "twitter",
+    "href": "https://twitter.com/Idan_Co/status/1399354898014167049",
+    "name": "Idan Cohen",
+    "date": "2021-05-31",
+    "role": "Software Developer",
+    "contact": "https://twitter.com/Idan_Co",
+    "username": "Idan_Co",
+    "description": "Good managers push you forward. Amazing ones keep doing it long after you left. Thank you @liran_tal ❤️"
   }
 ]
