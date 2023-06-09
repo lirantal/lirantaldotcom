@@ -713,5 +713,17 @@
     "contact": "https://twitter.com/kom_256",
     "username": "kom_256",
     "description": "I want to publicly thank the amazing work that @snyksec is doing for help us to understand what is going on in the #OpenSource ecosystem regarding #Security.This awesome talk from @liran_tal is one of the keys to understand the big picture. 👏👏👏"
+  },
+  {
+    "type": "praise",
+    "tags": ["open source", "security", "advocacy", "research"],
+    "medium": "twitter",
+    "href": "https://twitter.com/chrislaughlin/status/1178955716184424448",
+    "name": "Chris Laughlin",
+    "date": "2019-10-01",
+    "role": "Software Engineer",
+    "contact": "https://twitter.com/chrislaughlin",
+    "username": "chrislaughlin",
+    "description": "Remember when I said use a lock file and you will be safe? Turns out it's not that that simple! Great read from @liran_tal Why npm lockfiles can be a security blindspot for injecting malicious modules | Snyk https://buff.ly/2mDI5on"
   }
 ]
