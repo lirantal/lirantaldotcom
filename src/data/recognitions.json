@@ -677,5 +677,29 @@
     "contact": "https://twitter.com/ethan_sec",
     "username": "ethan_sec",
     "description": "Excellent talk by @liran_tal at @devseccon TLV. We know that open source packages are dangerous - containers contain lots of them and are VERY dangerous!"
+  },
+  {
+    "type": "praise",
+    "tags": ["open source"],
+    "medium": "twitter",
+    "href": "https://twitter.com/boyney123/status/1119908611902386176",
+    "name": "David Boyne",
+    "date": "2019-04-21",
+    "role": "Engineer",
+    "contact": "https://twitter.com/boyney123",
+    "username": "boyney123",
+    "description": "Thanks to @liran_tal, @HugoLocurcio and Hongarc for the contributions to MockIt yesterday 🙇‍♂️ 🎉 👍 I found https://allcontributors.org through @kentcdodds open source work, and I think it's such a great tool!"
+  },
+  {
+    "type": "praise",
+    "tags": ["open source"],
+    "medium": "twitter",
+    "href": "https://twitter.com/ThisIsSingleton/status/1237247574647525376",
+    "name": "James Singleton",
+    "date": "2010-03-10",
+    "role": "Senior Software Engineer, Zendesk",
+    "contact": "https://twitter.com/ThisIsSingleton",
+    "username": "ThisIsSingleton",
+    "description": "The change that I made in @liran_tal's lockfile-lint just saved me from committing "version": "file:" in my package-lock.json 👌🏻👍🏻"
   }
 ]
