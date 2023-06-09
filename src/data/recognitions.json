@@ -641,5 +641,41 @@
     "contact": "https://twitter.com/Idan_Co",
     "username": "Idan_Co",
     "description": "Good managers push you forward. Amazing ones keep doing it long after you left. Thank you @liran_tal ❤️"
+  },
+  {
+    "type": "praise",
+    "tags": ["advocacy", "security", "snyk"],
+    "medium": "twitter",
+    "href": "https://twitter.com/durnea/status/1131181340882292737",
+    "name": "Vlad Durnea",
+    "date": "2019-05-22",
+    "role": "CEO @madapes",
+    "contact": "https://twitter.com/durnea",
+    "username": "durnea",
+    "description": "Convinced I gotta get @snyksec into my projects after seeing @liran_tal's talk on security. @VoxxedFrontend"
+  },
+  {
+    "type": "praise",
+    "tags": ["advocacy", "security", "snyk", "author", "javascript"],
+    "medium": "twitter",
+    "href": "https://twitter.com/sec_tigger/status/1192446277184884741",
+    "name": "Avi Douglen",
+    "date": "2019-11-07",
+    "role": "Founder and CEO Bounce Security",
+    "contact": "https://twitter.com/sec_tigger",
+    "username": "sec_tigger",
+    "description": "Look what I picked up at #OReillySACon. Kudos @liran_tal @guypod and @snyksec!"
+  },
+  {
+    "type": "praise",
+    "tags": ["advocacy", "security", "snyk", "talk", "devseccon", "container"],
+    "medium": "twitter",
+    "href": "https://twitter.com/ethan_sec/status/1191723303565766656",
+    "name": "Ethan Schorer",
+    "date": "2019-11-05",
+    "role": "AppSec Team Leader, Monday.com",
+    "contact": "https://twitter.com/ethan_sec",
+    "username": "ethan_sec",
+    "description": "Excellent talk by @liran_tal at @devseccon TLV. We know that open source packages are dangerous - containers contain lots of them and are VERY dangerous!"
   }
 ]
