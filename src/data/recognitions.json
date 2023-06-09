@@ -696,10 +696,22 @@
     "medium": "twitter",
     "href": "https://twitter.com/ThisIsSingleton/status/1237247574647525376",
     "name": "James Singleton",
-    "date": "2010-03-10",
+    "date": "2019-03-10",
     "role": "Senior Software Engineer, Zendesk",
     "contact": "https://twitter.com/ThisIsSingleton",
     "username": "ThisIsSingleton",
-    "description": "The change that I made in @liran_tal's lockfile-lint just saved me from committing "version": "file:" in my package-lock.json 👌🏻👍🏻"
+    "description": "The change that I made in @liran_tal's lockfile-lint just saved me from committing \"version\": \"file:\" in my package-lock.json 👌🏻👍🏻"
+  },
+  {
+    "type": "praise",
+    "tags": ["open source", "security", "advocacy"],
+    "medium": "twitter",
+    "href": "https://twitter.com/kom_256/status/1215267987860656128",
+    "name": "Ulises Gascon",
+    "date": "2020-01-09",
+    "role": "Senior Software Engineer",
+    "contact": "https://twitter.com/kom_256",
+    "username": "kom_256",
+    "description": "I want to publicly thank the amazing work that @snyksec is doing for help us to understand what is going on in the #OpenSource ecosystem regarding #Security.This awesome talk from @liran_tal is one of the keys to understand the big picture. 👏👏👏"
   }
 ]
