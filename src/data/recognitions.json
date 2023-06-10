@@ -725,5 +725,17 @@
     "contact": "https://twitter.com/chrislaughlin",
     "username": "chrislaughlin",
     "description": "Remember when I said use a lock file and you will be safe? Turns out it's not that that simple! Great read from @liran_tal Why npm lockfiles can be a security blindspot for injecting malicious modules | Snyk https://buff.ly/2mDI5on"
+  },
+  {
+    "type": "praise",
+    "tags": ["open source", "security", "advocacy", "research"],
+    "medium": "twitter",
+    "href": "https://twitter.com/naugtur/status/1461419189235765253",
+    "name": "Zbyszek Tenerowicz",
+    "date": "2021-11-18",
+    "role": "Software Engineer",
+    "contact": "https://twitter.com/naugtur",
+    "username": "naugtur",
+    "description": "Some of the things I'm teaching I know from you 😁"
   }
 ]
