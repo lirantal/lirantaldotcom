@@ -5,6 +5,29 @@ module.exports = {
 	content: ['./src/**/*.{astro,html,js,jsx,md,svelte,ts,tsx,vue}', './node_modules/flowbite/**/*.js'],
 	theme: {
 		extend: {
+			typography(theme) {
+				return {
+					DEFAULT: {
+						css: {
+							'code::before': {
+								content: 'none',
+							},
+							'code::after': {
+								content: 'none',
+							},
+							code: {
+								color: theme('colors.slate.300'),
+								backgroundColor: theme('colors.blue.900'),
+								borderRadius: theme('borderRadius.DEFAULT'),
+								paddingLeft: theme('spacing[1.5]'),
+								paddingRight: theme('spacing[1.5]'),
+								paddingTop: theme('spacing.1'),
+								paddingBottom: theme('spacing.1'),
+							},
+						},
+					},
+				};
+			},
 			colors: {
 				primary: colors.blue,
 				secondary: colors.pink,
