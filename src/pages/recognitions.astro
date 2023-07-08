@@ -1,18 +1,22 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Changelog from '~/components/widgets/Changelog';
+import RecognitionAwards from '~/components/widgets/RecognitionAwards.astro';
 
 import { getCanonical, getPermalink } from '~/utils/permalinks';
 
 const meta = {
-	title: "Liran Tal recognitions and achievements from the community",
-	description: "A changelog of assorted community appreciation and recognition as well as personal and professional milestones and achievements for Liran Tal.",
-	canonical: getCanonical(getPermalink(Astro.url.pathname))
+	title: 'Liran Tal recognitions and achievements from the community',
+	description:
+		'A changelog of assorted community appreciation and recognition as well as personal and professional milestones and achievements for Liran Tal.',
+	canonical: getCanonical(getPermalink(Astro.url.pathname)),
 };
 ---
 
 <Layout {meta}>
 	<section>
+		<RecognitionAwards />
+
 		<div class="max-w-6xl mx-auto px-4 sm:px-6">
 			<div class="py-4 md:pt-20">
 				<div class="text-center pb-4 md:pb-4">
