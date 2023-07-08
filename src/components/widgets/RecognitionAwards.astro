@@ -26,7 +26,7 @@ import { Picture } from '@astrojs/image/components';
 					loading="eager"
 					aspectRatio={'1:1'}
 					alt="Liran Tal GitHub Stars Award"
-					src="/src/assets/images/lirantal-github-stars-award.jpg"
+					src={import('~/assets/images/lirantal-github-stars-award.jpg')}
 				/>
 
 				<div class="flex-grow mt-2">
@@ -59,7 +59,7 @@ import { Picture } from '@astrojs/image/components';
 					loading="eager"
 					aspectRatio={'1:1'}
 					alt="Liran Tal Schrodinger Award"
-					src="/src/assets/images/lirantal-schrodinger-award.jpg"
+					src={import('~/assets/images/lirantal-schrodinger-award.jpg')}
 				/>
 
 				<div class="flex-grow mt-2">
@@ -91,7 +91,7 @@ import { Picture } from '@astrojs/image/components';
 					loading="eager"
 					aspectRatio={'1:1'}
 					alt="Liran Tal OpenJS Foundation Security Award"
-					src="/src/assets/images/lirantal-openjs-foundation-security-award.jpg"
+					src={import('~/assets/images/lirantal-openjs-foundation-security-award.jpg')}
 				/>
 				<div class="flex-grow mt-2">
 					<h2 class="text-base title-font font-medium mb-3">OpenJS Foundation Pathfinder award for Security</h2>
