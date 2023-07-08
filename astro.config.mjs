@@ -9,7 +9,6 @@ import { SITE } from './src/config.mjs';
 import mdx from '@astrojs/mdx';
 import solid from '@astrojs/solid-js';
 
-import remarkToc from 'remark-toc';
 import { remarkReadingTime } from './src/utils/remark-frontmatter-extensions.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -53,7 +52,6 @@ export default defineConfig({
 		},
 	},
 	markdown: {
-		// remarkPlugins: [remarkToc, remarkReadingTime],
 		// extendDefaultPlugins: true,
 		shikiConfig: {
 			// Choose from Shiki's built-in themes (or add your own)
