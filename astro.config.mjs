@@ -39,9 +39,7 @@ export default defineConfig({
 				forward: ['dataLayer.push'],
 			},
 		}),
-		mdx({
-			remarkPlugins: [remarkReadingTime],
-		}),
+		mdx(),
 		solid(),
 	],
 	vite: {
@@ -52,7 +50,8 @@ export default defineConfig({
 		},
 	},
 	markdown: {
-		// extendDefaultPlugins: true,
+		remarkPlugins: [remarkReadingTime],
+		extendDefaultPlugins: true,
 		shikiConfig: {
 			// Choose from Shiki's built-in themes (or add your own)
 			// https://github.com/shikijs/shiki/blob/main/docs/themes.md
