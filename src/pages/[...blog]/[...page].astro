@@ -8,6 +8,7 @@ import Pagination from '~/components/atoms/Pagination.astro';
 import { fetchPosts } from '~/utils/posts';
 import { getCanonical, getPermalink, BLOG_BASE } from '~/utils/permalinks';
 import PageFindSearch from '~/components/widgets/PageFindSearch.astro';
+import KeyboardControls from 'astro-keyboard-controls';
 
 export async function getStaticPaths({ paginate }) {
 	if (BLOG?.disabled || BLOG?.blog?.disabled) return [];
@@ -33,12 +34,14 @@ const meta = {
 ---
 
 <Layout {meta}>
+	<KeyboardControls selector="div#search input" key="/" />
+	<KeyboardControls selector="div#search input" key="." />
 	<Fragment slot="title">
 		The
 		<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">Blog</span>
 	</Fragment>
 	<PageFindSearch />
-	<br/>
+	<br />
 	<BlogList posts={page.data} />
 	<Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
 </Layout>

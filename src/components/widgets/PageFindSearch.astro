@@ -1,16 +1,8 @@
-
 <div id="search" class="ml-3 p-4 -mt-8"></div>
 
 <script>
 	window.addEventListener('DOMContentLoaded', (event) => {
-	  new PagefindUI({ element: '#search', resetStyles: false});
-	});
-
-	window.addEventListener('keydown', (event) => {
-		if (event.key === '/' || event.key === '.') {
-			event.preventDefault();
-			document.querySelector('div#search input').focus();
-		}
+		new PagefindUI({ element: '#search', resetStyles: false });
 	});
 </script>
 
