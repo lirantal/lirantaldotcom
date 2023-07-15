@@ -1,6 +1,7 @@
 ---
 import { SITE, BLOG } from '~/config.mjs';
 
+import BooksHeroEmbed from '~/components/widgets/BooksHeroEmbed.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import SinglePost from '~/components/blog/SinglePost.astro';
 
@@ -36,4 +37,5 @@ const meta = {
 
 <Layout {meta}>
 	<SinglePost post={{ ...post, image: meta.image }} />
+	<BooksHeroEmbed />
 </Layout>
