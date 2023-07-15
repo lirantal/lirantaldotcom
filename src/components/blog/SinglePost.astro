@@ -9,7 +9,7 @@ import { getFormattedDate } from '~/utils/utils';
 const { post } = Astro.props;
 ---
 
-<section class="py-8 sm:py-16 lg:py-20 mx-auto">
+<section class="py-4 sm:py-4 lg:py-4 mx-auto">
 	<article>
 		<header>
 			<p class="max-w-5xl mx-auto text-center">
@@ -21,6 +21,9 @@ const { post } = Astro.props;
 				{post.title}
 			</h1>
 
+			<div class="container mx-auto px-6 sm:px-6 text-center mt-2 mb-2">
+				<PostTags tags={post.tags} />
+			</div>
 			<SocialShare {...post} class="mt-5 sm:mt-1 align-middle text-gray-400 dark:text-slate-600" />
 
 			{
@@ -41,9 +44,10 @@ const { post } = Astro.props;
 		>
 			{post.Content ? <post.Content /> : <Fragment set:html={post.body} />}
 		</div>
-		<div class="container mx-auto px-6 sm:px-6 max-w-3xl mt-8 flex justify-between flex-col sm:flex-row">
-			<PostTags tags={post.tags} />
+		<div class="container mx-auto px-6 sm:px-6 max-w-5xl mt-8 flex justify-between flex-col sm:flex-row">
+			<!-- Skip the social sharing component for now
 			<SocialShare {...post} class="mt-5 sm:mt-1 align-middle text-gray-400 dark:text-slate-600" />
+			 -->
 		</div>
 	</article>
 </section>
