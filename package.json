@@ -18,7 +18,7 @@
     "@astrojs/image": "^0.10.0",
     "@astrojs/mdx": "^0.11.4",
     "@astrojs/partytown": "^1.0.1",
-    "@astrojs/rss": "^1.0.2",
+    "@astrojs/rss": "^1.2.1",
     "@astrojs/sitemap": "^1.0.0",
     "@astrojs/tailwind": "^2.1.0",
     "@astrolib/analytics": "^0.2.4",
@@ -27,7 +27,7 @@
     "@tailwindcss/typography": "^0.5.7",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
-    "astro": "^1.5.0",
+    "astro": "^1.9.2",
     "astro-embed": "^0.1.1",
     "astro-icon": "^0.7.3",
     "astro-keyboard-controls": "^1.0.0",
@@ -52,6 +52,7 @@
   "dependencies": {
     "@astrojs/solid-js": "^1.2.2",
     "@vercel/analytics": "^0.1.11",
-    "solid-js": "^1.6.0"
+    "solid-js": "^1.6.0",
+    "upgrade": "^1.1.0"
   }
 }
