@@ -53,6 +53,7 @@ The following are events and conference CFP listings you can track:
 - [Conf42](https://www.conf42.com)
 - [developers.events](https://developers.events)
 - [CFP.watch](https://cfp.watch/)
+- [CFP Tracker](https://www.adatosystems.com/cfp-tracker/)
 
 Some of the above are also available to consume as a newsletter,
 such as SeeCFP, which makes it easier to receive new upcoming events
