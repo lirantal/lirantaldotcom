@@ -737,5 +737,17 @@
     "contact": "https://twitter.com/naugtur",
     "username": "naugtur",
     "description": "Some of the things I'm teaching I know from you 😁"
+  },
+  {
+    "type": "praise",
+    "tags": ["open source", "security", "advocacy", "research"],
+    "medium": "twitter",
+    "href": "https://twitter.com/spences10/status/1706334672253267997",
+    "name": "Scott Spence",
+    "date": "2023-09-25",
+    "role": "Application Team Lead @XtendOps",
+    "contact": "https://twitter.com/naugtur",
+    "username": "spences10",
+    "description": "Hey man! Your content on has helped me a ton 😊"
   }
 ]
