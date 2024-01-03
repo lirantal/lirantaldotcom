@@ -2,6 +2,8 @@
 import { Icon } from 'astro-icon';
 import { FOOTER, PROFILE } from '~/config.mjs';
 import { getHomePermalink } from '~/utils/permalinks';
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="border-t border-gray-200 dark:border-slate-800">
@@ -113,7 +115,7 @@ import { getHomePermalink } from '~/utils/permalinks';
 			</ul>
 
 			<div class="text-xs text-gray-700 mr-4 dark:text-slate-400">
-				<div class="mb-2">© 2023 Liran Tal</div>
+				<div class="mb-2">© {currentYear} Liran Tal</div>
 
 				<div>
 					<!--
