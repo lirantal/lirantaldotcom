@@ -78,7 +78,7 @@ A lot of custom styling can be applied which is great, however, if you want to a
 
 The `asciidcotor-pdf` GitHub repository has an [examples directory](https://github.com/asciidoctor/asciidoctor-pdf/tree/main/docs/modules/extend/examples) with a lot of examples of how to customize the PDF output of your AsciiDoc documents using Ruby extensions. 
 
-The repository also includes the Ruby code file [pdf-converter-admonition-theme-per-type.rb](./pdf-converter-admonition-theme-per-type.rb) to allow you to theme admonitions per type, such as:
+The repository also includes the Ruby code file [pdf-converter-admonition-theme-per-type.rb](https://github.com/asciidoctor/asciidoctor-pdf/blob/bf13e8be20fa2c5038c8f86394f19beba99d2b9f/docs/modules/extend/examples/pdf-converter-admonition-theme-per-type.rb) to allow you to theme admonitions per type, such as:
 
 ```yaml
 admonition:
