@@ -1,6 +1,8 @@
 ---
 import { getPicture } from '@astrojs/image';
 
+// import { Picture } from 'astro:assets';
+
 const {
 	src,
 	alt,
@@ -33,6 +35,17 @@ const { image = {}, sources = [] } = picture || {};
 
 {
 	src && image?.src && (
+		// <Picture
+		// 	{...image}
+		// 	{loading}
+		// 	{decoding}
+		// 	{alt}
+		// 	class={className}
+		// 	densities={[1.5, 2]}
+		// 	formats={['avif', 'webp']}
+		// 	fallbackFormat={'jpeg'}
+		// 	fetchpriority="high"
+		// />
 		<picture {...attrs}>
 			{sources.map((attrs) => (
 				<source {...attrs} sizes={sizes} />
