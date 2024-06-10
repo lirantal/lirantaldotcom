@@ -9,6 +9,14 @@ module.exports = {
 				return {
 					DEFAULT: {
 						css: {
+							// target Dark mode where code blocks are inline in text
+							// and not full code blocks:
+							'.dark code:not(pre > code)': {
+								// 	// Use dark prefix for older Tailwind versions
+								color: theme('colors.gray.100'),
+								backgroundColor: theme('colors.slate.800'),
+							},
+
 							'code::before': {
 								content: 'none',
 							},
@@ -16,8 +24,8 @@ module.exports = {
 								content: 'none',
 							},
 							code: {
-								color: theme('colors.slate.300'),
-								backgroundColor: theme('colors.blue.900'),
+								color: theme('colors.slate.800'),
+								backgroundColor: theme('colors.gray.200'),
 								borderRadius: theme('borderRadius.DEFAULT'),
 								paddingLeft: theme('spacing[1.5]'),
 								paddingRight: theme('spacing[1.5]'),
