@@ -29,6 +29,7 @@ export const get = async () => {
 		title: `${SITE.name}'s Blog`,
 		description: SITE.description,
 		site: import.meta.env.SITE,
+		trailingSlash: false,
 		items,
 	});
 };

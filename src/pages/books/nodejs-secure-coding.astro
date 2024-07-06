@@ -1,6 +1,6 @@
 ---
 // import { SITE } from '~/config.mjs';
-import { getCanonical, getHomePermalink } from '~/utils/permalinks';
+import { getCanonical } from '~/utils/permalinks';
 // import Layout from '~/layouts/BooksLayout.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
@@ -21,7 +21,7 @@ import ProfileHero from '~/components/widgets/ProfileHero.astro';
 const meta = {
 	title: 'Node.js Secure Coding: Defending Against Command Injection Vulnerabilities',
 	description: `Don't settle for generic security guides, experience them. Learn secure coding conventions in Node.js by executing command injection attacks on real-world NPM packages and analyzing vulnerable code.`,
-	canonical: getCanonical(getHomePermalink()),
+	canonical: getCanonical(Astro.url.pathname),
 };
 
 import { Image } from '@astrojs/image/components';

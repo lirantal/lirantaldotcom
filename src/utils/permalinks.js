@@ -24,9 +24,14 @@ export const TAG_BASE = cleanSlug(BLOG?.tag?.pathname);
 
 /** */
 export const getCanonical = (path = '') => {
-	path = path.endsWith('/') ? '' : path + '/';
-	return new URL(path, SITE.origin);
+	path = removeTrailingSlash(path);
+	const canonicalPath = new URL(path, SITE.origin);
+	return canonicalPath;
 };
+
+function removeTrailingSlash(path) {
+	return path.endsWith('/') ? path.slice(0, -1) : path;
+}
 
 /** */
 export const getPermalink = (slug = '', type = 'page') => {

@@ -18,8 +18,11 @@ export default defineConfig({
 	// Astro uses this full URL to generate your sitemap and canonical URLs in your final build
 	site: SITE.origin,
 	base: SITE.basePathname,
+	server: {
+		port: 3001,
+	},
 	output: 'static',
-	trailingSlash: 'ignore',
+	trailingSlash: 'never',
 	integrations: [
 		tailwind({
 			config: {
