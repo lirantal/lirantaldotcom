@@ -2,8 +2,8 @@
 title: "Gamifying the Future of Skill Development: From Open-Source Security to LLM Prompt Injection"
 description: >-
     Gamified learning is a great way to engage developers and teach them new skills. I share my experience building a game to teach developers about open-source security, playing Lakera's LLM prompt injection game and cheering for Israeli gamified learning startup Wilco.
-date: '2024-06-27'
-pubDate: '2024-06-27'
+date: '2025-12-12'
+pubDate: '2025-12-12'
 categories: []
 keywords: []
 draft: true

@@ -2,8 +2,8 @@
 title: "Component auto import in Astro framework"
 description: >-
   Can Astro automatically import components in markdown files? Yes, it can! Here's how to do it thanks to Chris Swithinbank and his Astro Auto Import package.
-date: '2024-07-08'
-pubDate: '2024-07-08'
+date: '2025-12-12'
+pubDate: '2025-12-12'
 categories: []
 keywords: []
 draft: true

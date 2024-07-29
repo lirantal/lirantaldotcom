@@ -1,0 +1,64 @@
+---
+title: "CORS, SameSite and CSRF: The 3 Dimensions of Cookie based Authentication"
+description: >-
+  
+date: '2025-12-12'
+pubDate: '2025-12-12'
+categories: []
+keywords: []
+draft: true
+tags: []
+slug: ""
+image: ~/assets/images/blog/
+---
+
+Web developers are frustrated on a regular basis by the complexity of cookie-based authentication, specifically when it comes to Cross-Origin Resource Sharing (CORS). How CORS relate to SameSite, and Cross-Site Request Forgery (CSRF) can even further introduce complexity to the mix but in this article we'll flesh out the 3 dimensions of cookie-based authentication and how they relate to CORS, SameSite, and CSRF.
+
+The complexity arises from the fact that cookies are used for multiple purposes, including authentication, session management, and tracking. This complexity is further compounded by the fact that cookies are subject to a variety of security vulnerabilities, such as Cross-Site Request Forgery (CSRF) and Cross-Site Scripting (XSS), which developers must be aware of when building cookie-based authentication systems and do want to take mitigation measures to prevent these vulnerabilities.
+
+CORS, SameSite and CSRF are 3 dimensions of cookie-based authentication are crucial to understand when you are building cookie-based authentication systems.
+
+## What is CORS ?
+
+**CORS**: Cross-Origin Resource Sharing (CORS) is a security feature that restricts how resources on a web page can be requested from another domain. This is important because it prevents malicious websites from making requests to your website and stealing sensitive information. CORS is enforced by the browser, but the server plays an active role and it is important to configure your server correctly to allow or deny requests sent by browsers from other domains.
+
+CORS is directly related to the concept of an `Origin` and the Same-Origin Policy (SOP). While sometimes confused with Cookies and their `domain` attributes, CORS and its `Origin` definition is a separate concept that is used to determine if a request is allowed to be made from one domain to another.
+
+## What is SameSite ?
+
+**SameSite**: The SameSite attribute of a cookie is used to prevent the browser from sending the cookie along with cross-site requests. This helps to mitigate Cross-Site Request Forgery (CSRF) attacks, where an attacker tricks a user into making a request to a website that the user is already authenticated with. By setting the SameSite attribute to `Strict`, the cookie will only be sent in what's called a first-party context.
+
+A `Lax` value for the SameSite attribute allows the cookie to be sent with cross-site requests that are top-level *navigations* initiated by the user, such as clicking on a link. This is the default value for cookies that don't have the SameSite attribute set. Is the `Lax` value helpful in mitigating CSRF attacks? Yes, to an extent, but it's not as strong as the `Strict` value.
+
+Knowing when to set a cookie's SameSite attribute to `Strict` or `Lax` is important for preventing CSRF attacks, but it's also important with regards to how applications are built and how they interact with each other. A good example is an oAuth flow that is based on an authorization code. In such oAuth flows, if you set the `SameSite` attribute to `Strict` and use the oAuth's *state* parameter to maintain state between the authorization request and the authorization response, then upon redirection from the authorization server back to your application, the state parameter will be lost because the cookie will not be sent with the request. This is because the request is considered a cross-site request. The result of this is that the authorization flow will fail. In such cases, you would set the `SameSite` attribute to `Lax` to allow the cookie to be sent with the request.
+
+## What is the Cookie's Domain Attribute ?
+
+**Domain**: The domain attribute of a cookie is used to specify the domain that the cookie is associated with. This is important because it determines which requests outgoing from the browser the cookie will be sent with. If the domain attribute is not set, the cookie will only be sent with requests to the domain that initially set the cookie. If the domain attribute is set, the cookie will be sent with requests to the domain that set the cookie and all subdomains of that domain.
+
+Only the domain that set the cookie can read the cookie. This is important for security reasons, as it prevents malicious websites from reading cookies set by other websites. However, it also means that if you want to share cookies across subdomains, you need to set the domain attribute of the cookie to the root domain.
+
+## Cookie Domain Gotcha
+
+While setting the domain attribute for cookies can be beneficial, there are a few things to keep in mind:
+
+- **Subdomain Sharing**: A cookie set with a domain like `.example.com` will be accessible across all subdomains. This can be useful for keeping user logged in across different parts of your website, but be aware that it also means any subdomain can potentially access that cookie data.
+
+- **Security Concerns with Top-Level Domains**: For security reasons, browsers often restrict setting cookies with a domain attribute that includes a top-level domain (TLD) like `.com` or `.org`. This is to prevent malicious scripts on one website from accessing cookies set by completely different domains. For example, an app hosted on `myapp.herokuapp.com` cannot set a cookie with domain set to  `*.herokuapp.com` because it would be accessible by any website on the .`herokuapp.com` domain. See Heroku's write-up on [Cookies and the Public Suffix List](https://devcenter.heroku.com/articles/cookies-and-herokuapp-com).
+  
+This can be a challenge for developers deploying to platforms like Heroku or GitHub Pages that assign subdomains to their hosted apps. If you need cookie sharing across multiple Heroku apps, you'll need to explore alternative solutions like.
+
+## The notion of 'Domain' and how it relates to CORS, SameSite and CSRF
+
+Key foundational elements:
+- Cookie's domain attribute
+- Cookie's SameSite attribute
+- CORS server configuration
+
+1. `SameSite` cookie attribute set to `strict` will only be sent in a first-party context, which means that the cookie will only be sent if the request is coming from the same domain that set the cookie, or the request is being made from a subdomain of the domain that set the cookie. For the purpose of `SameSite` cookie configuration, the `domain` is the root domain of the website, and all subdomains are considered to be part of the same domain. Yes, even for `strict` SameSite value.
+
+2. For `CORS`, the notion of `domain` doesn't exist in the same way as it does for cookies and `SameSite`. Instead, we need to think in terms of the definition of an `Origin` which is a combination of the protocol, domain, and port of a URL. For example, the `Origin` of `https://example.com:443` is `https://example.com`. The `Origin` of `http://example.com:80` is `http://example.com`. The `Origin` of `https://sub.example.com:443` is `https://sub.example.com`. The `Origin` of `http://sub.example.com:80` is `http://sub.example.com`.
+
+3. Lastly, a Cookie's `domain` attribute is used to specify the domain that the cookie is associated with. This is important because it determines which requests outgoing from the browser the cookie will be sent with. If the `domain` attribute is not set, the cookie will only be sent with requests to the domain that initially set the cookie. If the `domain` attribute is set, the cookie will be sent with requests to the domain that set the cookie and all subdomains of that domain.
+
+Following on the above, `SameSite` applies to a domain as a whole and has nothing specifically to do with a CORS `Origin` definition. Moreover, the `SameSite` definition has one more aspect: it treats subdomains of the effective Top-Level Domain (eTLD) as the same site. This directly relates to the `domain` attribute of a cookie and the above 'gotcha' of deploying on platforms like Heroku or GitHub Pages which are part of a Public Suffix List.

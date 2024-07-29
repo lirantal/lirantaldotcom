@@ -2,8 +2,8 @@
 title: "The CJS module system, globals and other hardships with maintainable code in Node.js"
 description: >-
    What are some common anti patterns and signs of tight coupling in a Node.js codebase and the challenges they present? Let's unfold some messy code and learn how the CJS module system and the use of globals has to do with it.
-date: '2023-09-28'
-pubDate: '2023-09-28'
+date: '2025-12-12'
+pubDate: '2025-12-12'
 categories: []
 keywords: []
 draft: true

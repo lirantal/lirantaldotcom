@@ -1,0 +1,112 @@
+---
+title: "Dependency-free Command-Line Apps powered by Node.js core modules"
+description: >-
+  
+date: '2025-12-12'
+pubDate: '2025-12-12'
+categories: []
+keywords: []
+draft: true
+tags: []
+slug: ""
+image: ~/assets/images/blog/
+---
+
+As a Node.js developer, I've often grappled with the notorious "node_modules black hole" that seems to swallow up gigabytes of disk space. But what if I told you that we could build powerful command-line apps without a single third-party dependency? Let's dive into the world of **dependency-free Node.js applications** using only core modules.
+
+## The Dependency Dilemma
+
+Ever found yourself wondering why your simple Node.js project suddenly weighs more than your operating system? You're not alone. The JavaScript ecosystem's love affair with npm packages has led to some pretty hefty `node_modules` directories. But here's the kicker: Node.js has been quietly beefing up its core modules, giving us the tools to break free from this dependency cycle.
+
+## Colorful Console Output: No Extra Packages Required
+
+Remember the days when we'd reach for `chalk` or `colors` to add a splash of color to our console output? Well, those days are behind us now. Node.js core has got our backs with some nifty built-in features.
+
+### Red Alerts and Yellow Warnings
+
+Did you know that Node.js automatically colors the output of `console.error()` in red and `console.warn()` in yellow? It's like having a traffic light system for your console!
+
+```javascript
+console.error('Oops! Something went wrong!');
+console.warn('Heads up! This might cause issues later.');
+```
+
+Run this, and you'll see the error message in bold red and the warning in yellow. No extra imports, no additional dependencies. It's just Node.js doing its thing.
+Custom Color Palettes with `styleText()`
+
+However, not everyone are happy with this change:
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">i missed that node now makes console.error() text red and console.warn() text yellow by default<br><br>kind of shocked that such a bad change landed at all, let alone as a non-breaking change</p>&mdash; ًColin Ihrig (@cjihrig) <a href="https://twitter.com/cjihrig/status/1807776066896838843?ref_src=twsrc%5Etfw">July 1, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+But what if you want more control over your colors? Say hello to the `styleText()` API. Here's how you can use it to add some purple prose to your console:
+
+```js
+const { styleText } = require('util');
+
+console.log(styleText('purple', 'Learn Node.js Security!'));
+```
+
+This will output the text "Learn Node.js Security!" in a lovely shade of purple. It's like having a mini design studio right in your terminal!
+
+## Parsing Command-Line Arguments: Goodbye, Commander.js?
+
+Now, let's talk about parsing command-line arguments. In the past, we might have reached for packages like Commander.js (which, by the way, is downloaded a staggering 135 million times a week). But guess what? Node.js now has a built-in solution: `util.parseArgs()`.
+
+Here's a quick example of how you might use it:
+
+```js
+const { parseArgs } = require('util');
+
+const options = {
+  name: { type: 'string', short: 'n' },
+  verbose: { type: 'boolean', short: 'v' }
+};
+
+const { values, positionals } = parseArgs({ options });
+
+console.log(`Hello, ${values.name || 'Anonymous'}!`);
+if (values.verbose) {
+  console.log('Verbose mode activated!');
+}
+```
+
+Now you can run your script with arguments like this:
+
+```bash
+node script.js -n Alice -v
+```
+
+And it'll parse those arguments without breaking a sweat. No extra dependencies required!
+
+## Debugging Made Easy: `util.debuglog()`
+
+Last but not least, let's talk about debugging. The `debug` npm package is insanely popular, with over 240 million weekly downloads. But did you know that Node.js has a built-in alternative? Meet `util.debuglog()`.
+
+Here's how you can use it to add conditional debug output to your app:
+
+```js
+const util = require('util');
+const debugLog = util.debuglog('myapp');
+
+function doSomethingComplex() {
+  debugLog('Starting complex operation...');
+  // ... complex code here ...
+  debugLog('Complex operation completed.');
+}
+
+doSomethingComplex();
+```
+
+By default, this won't output anything. But if you run your script with the `NODE_DEBUG` environment variable set to `myapp`, you'll see the debug messages:
+
+```bash
+NODE_DEBUG=myapp node script.js
+```
+
+It's like having a secret debug mode that you can activate whenever you need it!
+
+## Wrapping Up
+
+So there you have it! We've covered colorful console output, command-line argument parsing, and conditional debugging - all without a single `npm install`. By leveraging these core Node.js modules, we can create powerful, lightweight command-line apps that don't need an entire `node_modules` directory to function.
+
+Next time you start a new Node.js project, take a moment to explore what the core modules have to offer. You might be surprised at how far you can get without reaching for third-party packages. Who knows? You might just find yourself building dependency-free command-line apps powered by Node.js core modules more often than you think!
