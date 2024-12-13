@@ -1,15 +1,15 @@
 ---
 title: "Dependency-free Command-Line Apps powered by Node.js core modules"
 description: >-
-  
+  Learn how to build powerful command-line apps without a single third-party dependency using Node.js core modules.
 date: '2025-12-12'
 pubDate: '2025-12-12'
 categories: []
 keywords: []
 draft: true
-tags: []
-slug: ""
-image: ~/assets/images/blog/
+tags: ["node.js core", "node.js runtime", "rich runtime", "dependency-free"]
+slug: "dependency-free-command-line-apps-powered-by-node-js-core-modules"
+image: ~/assets/images/blog/dependency-free-command-line-apps.jpg
 ---
 
 As a Node.js developer, I've often grappled with the notorious "node_modules black hole" that seems to swallow up gigabytes of disk space. But what if I told you that we could build powerful command-line apps without a single third-party dependency? Let's dive into the world of **dependency-free Node.js applications** using only core modules.
@@ -20,28 +20,33 @@ Ever found yourself wondering why your simple Node.js project suddenly weighs mo
 
 ## Colorful Console Output: No Extra Packages Required
 
-Remember the days when we'd reach for `chalk` or `colors` to add a splash of color to our console output? Well, those days are behind us now. Node.js core has got our backs with some nifty built-in features.
+Remember the days when we'd reach for `chalk` or `colors` to add a splash of color to our console output? Well, those days are behind us now. Node.js core has got our back with some nifty built-in features.
 
 ### Red Alerts and Yellow Warnings
 
-Did you know that Node.js automatically colors the output of `console.error()` in red and `console.warn()` in yellow? It's like having a traffic light system for your console!
+Did you stumble on to one of the Node.js releases where it automatically colored the output of `console.error()` in red and `console.warn()` in yellow? It's like having a traffic light system for your console!
 
 ```javascript
 console.error('Oops! Something went wrong!');
 console.warn('Heads up! This might cause issues later.');
 ```
 
-Run this, and you'll see the error message in bold red and the warning in yellow. No extra imports, no additional dependencies. It's just Node.js doing its thing.
-Custom Color Palettes with `styleText()`
+If you ran this code, you'd see the error message in bold red and the warning in yellow. No extra imports, no additional dependencies. It's just Node.js doing its thing. 
 
 However, not everyone are happy with this change:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">i missed that node now makes console.error() text red and console.warn() text yellow by default<br><br>kind of shocked that such a bad change landed at all, let alone as a non-breaking change</p>&mdash; ًColin Ihrig (@cjihrig) <a href="https://twitter.com/cjihrig/status/1807776066896838843?ref_src=twsrc%5Etfw">July 1, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-But what if you want more control over your colors? Say hello to the `styleText()` API. Here's how you can use it to add some purple prose to your console:
+So indeed that change was reverted in a later Node.js release.
+
+Still, what if you want more control over your colors?
+
+### Custom Colors with `styleText()`
+
+Say hello to the `styleText()` API. Here's how you can use it to add some purple prose to your console:
 
 ```js
-const { styleText } = require('util');
+const { styleText } = require('node:util');
 
 console.log(styleText('purple', 'Learn Node.js Security!'));
 ```
@@ -55,7 +60,7 @@ Now, let's talk about parsing command-line arguments. In the past, we might have
 Here's a quick example of how you might use it:
 
 ```js
-const { parseArgs } = require('util');
+const { parseArgs } = require('node:util');
 
 const options = {
   name: { type: 'string', short: 'n' },
@@ -85,7 +90,7 @@ Last but not least, let's talk about debugging. The `debug` npm package is insan
 Here's how you can use it to add conditional debug output to your app:
 
 ```js
-const util = require('util');
+const util = require('node:util');
 const debugLog = util.debuglog('myapp');
 
 function doSomethingComplex() {

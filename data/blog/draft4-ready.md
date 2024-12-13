@@ -7,7 +7,7 @@ pubDate: '2025-12-12'
 categories: []
 keywords: []
 draft: true
-tags: []
+tags: ["gamification", "LLM", "educational"]
 slug: "gamifying-future-skill-development-open-source-security-llm-prompt-injection"
 image: ~/assets/images/blog/gamified-learning.png
 ---

@@ -8,7 +8,7 @@ categories: []
 keywords: []
 draft: true
 tags: ["commonjs", "modules", "nodejs", "software design"]
-slug: 
+slug: "cjs-module-system-globals-hardships-maintainable-code-nodejs"
 image: ~/assets/images/blog/nasa-_SFJhRPzJHs-unsplash.jpg
 ---
 

@@ -1,15 +1,15 @@
 ---
 title: "CORS, SameSite and CSRF: The 3 Dimensions of Cookie based Authentication"
 description: >-
-  
+    Demystifying the 3 dimensions of cookie-based authentication: CORS, SameSite, and CSRF.
 date: '2025-12-12'
 pubDate: '2025-12-12'
 categories: []
 keywords: []
 draft: true
-tags: []
-slug: ""
-image: ~/assets/images/blog/
+tags: ["cors", "samesite", "csrf", "cookie", "authentication"]
+slug: "cors-samesite-csrf-3-dimensions-cookie-authentication"
+image: ~/assets/images/blog/ors-samesite-csrf-cookie-based-authentication.jpg
 ---
 
 Web developers are frustrated on a regular basis by the complexity of cookie-based authentication, specifically when it comes to Cross-Origin Resource Sharing (CORS). How CORS relate to SameSite, and Cross-Site Request Forgery (CSRF) can even further introduce complexity to the mix but in this article we'll flesh out the 3 dimensions of cookie-based authentication and how they relate to CORS, SameSite, and CSRF.

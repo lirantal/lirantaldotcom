@@ -11,7 +11,7 @@ keywords: []
 draft: true
 tags: ["author", "self-published", "writing"]
 slug: "tools-for-self-published-authors"
-image: ~/assets/images/blog/
+image: ~/assets/images/blog/tools-for-self-published-authors.jpg
 ---
 
 Writing is a lot of fun and a great way to express yourself, share knowledge,
