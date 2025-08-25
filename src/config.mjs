@@ -87,6 +87,10 @@ export const FOOTER = {
 					title: 'ChatGPT Security Models',
 					link: '/games/chatgpt-security-models-ui',
 				},
+				{
+					title: "ChatGPT Chat Meme Generator",
+					link: "/games/chatgpt-chat-meme-generator",
+				}
 			],
 		},
 	],

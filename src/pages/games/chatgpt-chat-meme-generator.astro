@@ -1,0 +1,29 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+
+const meta = {
+	title: 'ChatGPT Chat Meme Generator',
+	description: 'Generate ChatGPT memes with ease using this fun and interactive meme generator.',
+	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+};
+---
+
+<Layout {meta}>
+	<section>
+		<div class="px-5 py-4 mx-auto">
+			<div class="mx-auto max-w-screen-2xl text-center mb-8">
+				<h1 class="text-2xl tracking-tight mb-4">ChatGPT Security Models</h1>
+				<div class="flex flex-col items-center mr-4 mt-8">
+					<iframe
+						src="https://v0-chat-gpt-meme-generator.vercel.app"
+						allow="cross-origin-isolated"
+						class="w-full h-screen"
+						title="ChatGPT Security Models UI"
+					>
+					</iframe>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>
