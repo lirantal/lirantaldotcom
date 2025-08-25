@@ -80,6 +80,15 @@ export const FOOTER = {
 				},
 			],
 		},
+		{
+			title: 'Games and Fun Tools',
+			items: [
+				{
+					title: 'ChatGPT Security Models',
+					link: '/games/chatgpt-security-models-ui',
+				},
+			],
+		},
 	],
 };
 
