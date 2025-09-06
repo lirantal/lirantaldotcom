@@ -8,4 +8,4 @@ if [ -z "$1" ]; then
 fi
 
 curl -L "https://picsum.photos/640/420?random=1" --output "$1"
-mv "$1" ../src/assets/images/blog/$1
+mv "$1" src/assets/images/blog/$1
