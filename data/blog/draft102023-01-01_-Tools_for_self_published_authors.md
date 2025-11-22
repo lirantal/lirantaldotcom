@@ -4,11 +4,11 @@ description: >-
   If you're starting out as a new author, you're going to need all 
   the help you can get. I curated a list of tools that can help
   you get started with publishing content and books.
-date: '2025-12-12'
-pubDate: '2025-12-12'
+date: '2025-11-22'
+pubDate: '2025-11-22'
 categories: []
 keywords: []
-draft: true
+draft: false
 tags: ["author", "self-published", "writing"]
 slug: "tools-for-self-published-authors"
 image: ~/assets/images/blog/tools-for-self-published-authors.jpg
