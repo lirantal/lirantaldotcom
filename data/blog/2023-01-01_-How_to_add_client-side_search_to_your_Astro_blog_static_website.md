@@ -99,7 +99,7 @@ You specifically need to add the following two head-level meta tags:
 
 ```html
 		<link href="/_pagefind/pagefind-ui.css" rel="stylesheet" />
-		<script src="/_pagefind/pagefind-ui.js" type="text/javascript"></script>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
 ```
 
 You can do that by adding the following lines to your `src/layouts/BaseLayout.astro` file, or any other page that you want to include the search box on and update the layout as shown in the next example:
@@ -108,9 +108,8 @@ You can do that by adding the following lines to your `src/layouts/BaseLayout.as
 <!DOCTYPE html>
 <html lang="en" class="motion-safe:scroll-smooth 2xl:text-[20px]">
 	<head>
-		<MetaTags {...meta} />
-		<link href="/_pagefind/pagefind-ui.css" rel="stylesheet" />
-		<script src="/_pagefind/pagefind-ui.js" type="text/javascript"></script>		
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>		
 	</head>
 ```
 
@@ -125,7 +124,7 @@ You can do that by making the following updates to your `package.json` file's `s
     "dev": "astro build && npm run postbuild && astro preview",
     "start": "npm run dev",
     "build": "astro build",
-    "postbuild": "pagefind --source dist/",
+    "postbuild": "pagefind --site dist/",
     ...
   }
 ```
