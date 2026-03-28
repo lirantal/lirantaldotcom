@@ -1,0 +1,13 @@
+lockfile_version: '1'
+generated_at: '2026-03-28T18:21:03.170933+00:00'
+apm_version: 0.8.4
+dependencies:
+- repo_url: lirantal/skill-creator-extra
+  host: github.com
+  resolved_commit: e8b56e327c02da611be0bc8895ffa3e64882d2c0
+  virtual_path: skills/skill-creator-extra
+  is_virtual: true
+  package_type: claude_skill
+  deployed_files:
+  - .github/skills/skill-creator-extra
+  content_hash: sha256:7bda5cf2d26825530de5d852d3bbfc18ec1ad3626594374d17cf48a8b1d35fab
