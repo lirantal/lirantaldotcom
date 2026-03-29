@@ -1,0 +1,20 @@
+---
+description: >
+  When creating or editing lirantal.com Astro blog posts (markdown under data/blog/,
+  cover images under src/assets/images/blog/), follow the dedicated skill at
+  .agents/skills/create-lirantal-blog-post/SKILL.md for frontmatter, Gemini CLI
+  (Nano Banana) cover images, and build verification.
+globs:
+  - data/blog/**/*
+  - src/assets/images/blog/**/*
+alwaysApply: false
+---
+
+# lirantal.com blog posts
+
+For new drafts, publishing workflow, Gemini-generated OG covers (1200x630), slug and image naming,
+and `npm run build` verification, open and follow:
+
+`.agents/skills/create-lirantal-blog-post/SKILL.md`
+
+Site-wide context remains in `AGENTS.md` at the repository root.

@@ -1,0 +1,63 @@
+# lirantal.com blog conventions (reference)
+
+Read this when filling frontmatter or validating paths. Authoritative site behavior lives
+in [AGENTS.md](../../../../AGENTS.md) at the repository root.
+
+## Checklist (new post)
+
+1. Add `data/blog/YYYY-MM-DD.md` (or `YYYY-MM-DD_short-title.md` if the date collides).
+2. Complete frontmatter; set `draft: false` to publish (drafts are excluded from the
+   public site, RSS, and listings).
+3. Add cover image under `src/assets/images/blog/`; frontmatter `image` must be the
+   full path under `~/assets/images/blog/` with the same basename as `slug` (e.g.
+   `.jpg` or `.png`; required by `src/utils/images.js` → `findImage`). AI-generated
+   covers from the Gemini Nano Banana flow are often `.png`.
+4. Use **lowercase** `tags` so `/tag/...` archives match reliably.
+5. Inline article images (not cover): put files in `public/images/blog/` and reference
+   as `/images/blog/filename.png` in markdown.
+6. Run `npm run build` before considering the task done.
+7. Optional: add the post **slug** to `src/components/blog/HighlightedPosts.astro` for
+   the homepage “From the blog” section.
+
+## Frontmatter template
+
+Copy and replace placeholders. Mirror a published 2026 post shape
+(e.g. `data/blog/2026-03-28.md`).
+
+```yaml
+---
+title: "Your Title Here"
+description: >-
+  One or two sentences for SEO and social cards. Keep them accurate to the article.
+date: 'YYYY-MM-DD'
+pubDate: 'YYYY-MM-DD'
+categories: []
+keywords: []
+draft: false
+tags: ["tag-one", "tag-two", "tag-three"]
+slug: "your-url-slug-kebab-case"
+image: ~/assets/images/blog/your-url-slug-kebab-case.jpg
+---
+```
+
+Use `.png` instead of `.jpg` when the cover comes from the Gemini Nano Banana generator
+and outputs PNG.
+
+## Field notes
+
+| Field | Rule |
+| --- | --- |
+| `title` | Plain string; quote if it contains special characters. |
+| `description` | Use `>-` fold for multi-line YAML strings. |
+| `date` / `pubDate` | Same calendar day as the filename date unless intentionally different. |
+| `slug` | Stable after publish; URL is `/blog/{slug}`. |
+| `image` | Must start with `~/assets`; filename stem should match `slug`. |
+| `tags` | Lowercase strings in a YAML array. |
+| `category` | Optional singular string for category archives (some posts use it); recent
+  samples use `categories: []` instead—stay consistent with neighboring posts. |
+| `readingTime` | Do not set; injected by remark. |
+
+## Post identity
+
+- **id** = markdown filename without extension (from `src/utils/posts.js`).
+- **slug** = frontmatter `slug` if set, else same as id.
