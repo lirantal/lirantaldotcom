@@ -10,6 +10,7 @@ import mdx from '@astrojs/mdx';
 import solid from '@astrojs/solid-js';
 
 import { remarkReadingTime } from './src/utils/remark-frontmatter-extensions.mjs';
+import { remarkPreserveMermaidCodeBlocks } from './src/utils/remark-preserve-mermaid.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -53,7 +54,7 @@ export default defineConfig({
 		},
 	},
 	markdown: {
-		remarkPlugins: [remarkReadingTime],
+		remarkPlugins: [remarkReadingTime, remarkPreserveMermaidCodeBlocks],
 		extendDefaultPlugins: true,
 		shikiConfig: {
 			// Choose from Shiki's built-in themes (or add your own)
