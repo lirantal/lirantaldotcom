@@ -12,6 +12,7 @@
     "astro": "astro",
     "format": "prettier -w .",
     "lint:eslint": "eslint . --ext .js,.ts,.astro",
+    "blog:cover": "node scripts/generate-blog-cover.js",
     "subfont": "subfont -ir --no-fallbacks --silent --root dist"
   },
   "devDependencies": {

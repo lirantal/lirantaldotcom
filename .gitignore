@@ -16,6 +16,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# tooling cache (e.g. blog cover last preset)
+.cache/
+
 # macOS-specific files
 .DS_Store
 
