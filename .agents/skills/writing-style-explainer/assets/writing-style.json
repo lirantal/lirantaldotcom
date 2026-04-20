@@ -1,0 +1,360 @@
+{
+    "summary": "Evidence-driven, deep technical explainer that synthesizes context, mechanisms, trade-offs, and practical guidance for experienced JS/Node engineers.",
+    "audience": {
+      "persona": "Senior JavaScript/Node.js engineers, OSS maintainers, security-minded developers, and tech leads evaluating approaches.",
+      "assumed_knowledge": "Modern JS/TS, Node.js LTS, package managers (npm/pnpm), Git/GitHub, CI basics, reading RFCs/docs.",
+      "pain_points": "Superficial walkthroughs without rationale, missing trade-offs, unclear verification/measurement, outdated stack examples."
+    },
+    "goals": [
+      "educate",
+      "influence architecture",
+      "establish best practices",
+      "inform decision-making"
+    ],
+    "tone_of_voice": {
+      "labels": [
+        "professional",
+        "analytical",
+        "curious",
+        "pragmatic",
+        "trustworthy"
+      ],
+      "intensity": {
+        "formality": 0.55,
+        "playfulness": 0.15,
+        "assertiveness": 0.7
+      }
+    },
+    "narrative_voice": {
+      "person": "2nd/3rd",
+      "tense": "present"
+    },
+    "reading_level": {
+      "flesch_kincaid": 11.2,
+      "avg_sentence_words": 20,
+      "passive_voice_pct": 6,
+      "paragraph_median_words": 60
+    },
+    "pacing": "Moderate-to-deliberate: concept first, then mechanism, then applied guidance with verification.",
+    "structure_pattern": "Thesis → Background & prior art → How it works (mechanism) → Trade-offs & alternatives → Applications & examples → Validation & measurement → Limitations & future work → FAQ → References & further reading → CTA.",
+    "section_templates": [
+      {
+        "name": "Deep Technical Explainer",
+        "outline": [
+          "Title (outcome or claim)",
+          "Abstract (2-3 sentences: what/why/outcome)",
+          "Background & Prior Art",
+          "How It Works (Mechanism)",
+          "Trade-offs & Alternatives",
+          "Applications & Examples",
+          "Validation & Measurement",
+          "Security & Performance Considerations",
+          "Limitations & Future Work",
+          "Troubleshooting (if actionable)",
+          "FAQ",
+          "Next Steps & CTA",
+          "References"
+        ],
+        "heading_style": {
+          "case": "Title Case",
+          "pattern": "descriptive statements; avoid clickbait"
+        }
+      }
+    ],
+    "formatting_conventions": {
+      "lists": "Bullets for concept enumeration; numbered lists for procedures or sequences.",
+      "callouts": [
+        "Note",
+        "Tip",
+        "Warning"
+      ],
+      "tables": "Use for comparison matrices and result summaries.",
+      "emoji_usage": "never"
+    },
+    "code_conventions": {
+      "languages_top": [
+        { "lang": "js", "pct": 45 },
+        { "lang": "bash", "pct": 30 },
+        { "lang": "yaml", "pct": 15 },
+        { "lang": "json", "pct": 10 }
+      ],
+      "snippet_length_lines_avg": 12,
+      "inline_code_rules": "Use inline backticks for identifiers, CLI flags, environment variables, filenames.",
+      "comments_style": "Explain intent and constraints above the snippet; inline comments only for non-obvious lines.",
+      "error_handling_demo": "When behavior differs across options, show a failing case and recovery; include expected output or exit code."
+    },
+    "linking_style": {
+      "when_to_link": "On first mention of external tools/specs; prefer deep links to canonical docs or relevant sections.",
+      "preferred_domains": [
+        "lirantal.com",
+        "nodejs-security.com",
+        "github.com"
+      ],
+      "anchor_text": "Descriptive and specific; avoid 'click here'."
+    },
+    "visuals_usage": {
+      "frequency": "sometimes",
+      "types": [
+        "architecture/sequence diagrams",
+        "comparison tables",
+        "flowcharts"
+      ],
+      "alt_text_style": "Explain what the reader learns or the flow depicted."
+    },
+    "lexicon": {
+      "preferred_terms": [
+        "CI/CD",
+        "supply chain security",
+        "lockfile",
+        "semver",
+        "trade-off",
+        "baseline",
+        "observability",
+        "verification"
+      ],
+      "avoid_terms": [
+        "simply",
+        "just",
+        "obviously",
+        "magic"
+      ],
+      "stock_phrases": [
+        "At a high level,",
+        "In practice,",
+        "The key trade-off is",
+        "To validate this,"
+      ]
+    },
+    "cta_patterns": [
+      {
+        "stage": "end",
+        "pattern": "Actionable next steps aligned to the example stack",
+        "placement": "final section",
+        "example": "Try the reference implementation, benchmark with your workload, and report findings."
+      }
+    ],
+    "seo_patterns": {
+      "title_length_chars": "55-65",
+      "keywords_in_h2": true,
+      "slug_style": "kebab-case"
+    },
+    "style_fingerprints": [
+      "Opens with a clear thesis and scope guardrails.",
+      "Balances concept explanation with small, runnable examples.",
+      "Uses comparison tables for alternatives and trade-offs.",
+      "Includes explicit measurement/verification guidance."
+    ],
+    "do": [
+      "Lead with a clear thesis and who benefits.",
+      "Explain mechanisms with diagrams or concise code/pseudo-code.",
+      "Present trade-offs and when to choose each option.",
+      "Provide commands/metrics for readers to verify results."
+    ],
+    "dont": [
+      "Do not rely on unexplained jargon.",
+      "Do not present only one approach where meaningful alternatives exist.",
+      "Avoid long code dumps without commentary or verification."
+    ],
+    "calibration_examples": {
+      "good_intro": "Why dependency pinning strategies impact build determinism and incident recovery for Node.js services.",
+      "bad_intro": "Software supply chain security is important for many reasons across the industry.",
+      "good_snippet": "```bash\nnpm ci --ignore-scripts\n# Quick check: lockfile integrity is enforced\n```"
+    },
+    "metrics": {
+      "docs_analyzed": 0,
+      "token_coverage_estimate": "~0%",
+      "code_to_prose_ratio_pct": 30,
+      "top_ngrams": [
+        { "ngram": "how it works", "freq": 0 },
+        { "ngram": "trade-offs", "freq": 0 }
+      ],
+      "heading_depth_distribution": { "h1": 1, "h2": 10, "h3": 12, "h4": 4 },
+      "link_domains_top": [
+        { "domain": "lirantal.com", "count": 0 },
+        { "domain": "github.com", "count": 0 }
+      ]
+    },
+    "deviations": "Template profile for deep technical explainers; not derived from a specific corpus.",
+    "quality_checklist": [
+      "Intro states thesis, audience, and scope within 2 sentences.",
+      "Background/primer includes ≥2 paragraphs and mentions prior art.",
+      "If public options exist, include a 'Trade-offs & Alternatives' section with a comparison table.",
+      "How It Works section explains mechanism with code or diagram.",
+      "Validation & Measurement includes commands/metrics to reproduce results.",
+      "Security & Performance considerations included where applicable.",
+      "Troubleshooting present if actionable; otherwise Limitations & Future Work present.",
+      "FAQ section exists with ≥3 Q&A entries; each answer is specific and may include a command/link.",
+      "References section contains ≥3 descriptive anchors to canonical sources.",
+      "Conclusion contains 3-5 next actions plus X/Twitter and GitHub CTAs.",
+      "No one-liner sections; H2 ≥5 sentences or equivalent content density.",
+      "No soft-avoid tools appear unless explicitly substituted via policy."
+    ],
+    "red_flags": [
+      "Claims without measurement or references.",
+      "Alternatives presented without trade-offs.",
+      "Code samples that cannot be run or verified.",
+      "Hand-wavy security/performance statements."
+    ],
+    "rewrite_rules": [
+      { "if": "long, nested sentences", "then": "split into ≤20 words; keep one idea per sentence" },
+      { "if": "passive voice", "then": "prefer active voice unless actor is irrelevant" },
+      { "if": "unbalanced section (concepts only)", "then": "add mechanism example or diagram" },
+      { "if": "unsubstantiated claim", "then": "add citation or measurement plan" }
+    ],
+    "confidence": 0.95,
+    "article_length": {
+      "target_words_min": 2400,
+      "target_words_max": 3800
+    },
+    "section_density": {
+      "min_sentences_h2": 5,
+      "min_sentences_h3": 3,
+      "min_words_per_paragraph": 40,
+      "allow_one_liner_sections": false,
+      "code_block_supports_section_if": "code_block_present AND (≥2 sentences total around it)"
+    },
+    "step_anatomy": {
+      "require_why": false,
+      "require_how": false,
+      "require_verify": true,
+      "require_pitfalls_every_n_steps": 0,
+      "require_alternatives_or_perf_every_n_steps": 0,
+      "verify_patterns": [
+        "Expected output:",
+        "Quick check:",
+        "Validate:"
+      ]
+    },
+    "content_depth": {
+      "exposition_to_procedure_ratio_target": "65:35",
+      "examples_policy": "concrete, runnable, ≤15 lines; prefer minimal deps",
+      "include_common_errors": true,
+      "include_performance_notes": "when relevant; show measurement commands"
+    },
+    "conclusion_requirements": {
+      "min_action_items": 4,
+      "action_item_patterns": [
+        "Run the reference example and compare metrics",
+        "Adopt recommended defaults/flags",
+        "Evaluate alternatives using the trade-off table",
+        "Open an issue or share findings"
+      ],
+      "social_cta": {
+        "enabled": true,
+        "twitter_handle": "@liran_tal",
+        "phrasing": "Follow on X/Twitter for updates and new guides."
+      },
+      "github_cta": {
+        "enabled": true,
+        "url": "https://github.com/lirantal",
+        "phrasing": "Explore more code examples and related work on GitHub."
+      }
+    },
+    "self_checks": [
+      "Includes Background & Prior Art before 'How It Works'",
+      "Includes Trade-offs & Alternatives with a comparison device",
+      "Includes Validation & Measurement with commands/metrics",
+      "FAQ ≥3 items and References ≥3 links",
+      "Conclusion includes ≥3 actions + X/Twitter + GitHub CTAs",
+      "No excluded technologies appear: /(jenkins|travis)/i"
+    ],
+    "content_policies": {
+      "preferred_ci": ["GitHub Actions"],
+      "excluded_ci": ["Jenkins"],
+      "hard_exclusions": ["Jenkins pipelines/examples", "Non-JS stacks unless unavoidable"],
+      "preferred_hosting": ["Vercel", "Netlify"],
+      "preferred_package_managers": ["npm", "pnpm"],
+      "preferred_runtimes": ["Node.js current LTS"]
+    },
+    "cta_defaults": {
+      "twitter": "@liran_tal",
+      "github": "https://github.com/lirantal",
+      "patterns": [
+        "Follow on X/Twitter for updates",
+        "Explore related examples on GitHub"
+      ]
+    },
+    "required_sections": {
+      "introduction": { "required": true, "min_paragraphs": 2, "purpose": "Frame thesis, audience, and why-now in ≤120 words." },
+      "background_or_primer": { "required": true, "min_paragraphs": 2, "include": ["prior art", "definitions", "assumptions"] },
+      "architecture_or_flow": { "required": true, "allow_mermaid": true, "textual_fallback": true, "note": "Diagram or narrative of mechanism." },
+      "step_by_step_guide": { "required": false, "enforce_step_anatomy": false },
+      "validation_and_measurement": { "required": true, "min_items": 2 },
+      "security_and_performance_considerations": { "required": true },
+      "tradeoffs_and_alternatives": { "required": true, "min_items": 3 },
+      "applications_and_examples": { "required": true, "min_items": 2 },
+      "troubleshooting_and_pitfalls": { "required": false, "min_items": 3, "style": "symptom → cause → fix" },
+      "limitations_and_future_work": { "required": true, "min_items": 3 },
+      "faq": { "required": true, "min_qna": 3, "format": "Q: … / A: …", "placement": "after limitations" },
+      "references_and_related_links": { "required": true, "min_links": 3, "anchor_text": "descriptive" }
+    },
+    "background_requirements": {
+      "must_answer": [
+        "What problem is addressed?",
+        "Why now/why this approach?",
+        "Who benefits and in which scenarios?"
+      ],
+      "avoid": [
+        "marketing clichés",
+        "vendor fluff"
+      ]
+    },
+    "faq_requirements": {
+      "min_qna": 3,
+      "max_qna": 7,
+      "selection_heuristics": [
+        "From trade-offs and alternatives likely to confuse readers",
+        "From validation and measurement steps",
+        "From migration/adoption concerns and version compatibility",
+        "From SEO intent and related queries"
+      ],
+      "seed_questions": [
+        "Which Node.js versions are recommended (current LTS vs latest)?",
+        "How do I measure impact with minimal setup?",
+        "What changes when using pnpm instead of npm?",
+        "How do I integrate this with GitHub Actions securely (secrets, permissions)?",
+        "What are the main failure modes and how can I detect them?"
+      ],
+      "answer_style": "Short, specific, includes command/metric or deep link where applicable"
+    },
+    "toc_preferences": {
+      "include_toc_if_words_over": 1800,
+      "exclude_sections": ["References", "FAQ"]
+    },
+    "dominant_archetype": "Explainer",
+    "secondary_archetypes": ["Best Practices"],
+    "corpus_archetype_distribution": { "Explainer": 1.0 },
+    "archetype_profiles": {
+      "Explainer": {
+        "enforce_step_anatomy": false,
+        "argument_pattern": "Thesis → Background → Mechanism → Trade-offs → Applications → Validation → Limitations",
+        "evidence_requirements": [
+          "diagram or textual flow",
+          "minimal runnable example or pseudo-code",
+          "realistic scenario comparison"
+        ],
+        "required_sections": [
+          "Introduction",
+          "Background & Prior Art",
+          "How It Works",
+          "Trade-offs & Alternatives",
+          "Applications & Examples",
+          "Validation & Measurement",
+          "Security & Performance Considerations",
+          "Limitations & Future Work",
+          "FAQ",
+          "Next Steps & CTA",
+          "References"
+        ],
+        "section_density_overrides": { "min_sentences_h2": 5, "min_sentences_h3": 3 }
+      }
+    },
+    "generation_contract": {
+      "use_archetype_profile": true,
+      "outline_from": "archetype_profiles[dominant_archetype].required_sections",
+      "enforce_step_anatomy_if": "dominant_archetype === 'Tutorial'",
+      "argument_or_narrative_pattern": "resolve from archetype_profiles",
+      "toc_policy": { "include_toc_if_words_over": 1800 }
+    }
+  }
+  
