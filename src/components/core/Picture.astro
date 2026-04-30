@@ -8,7 +8,10 @@ const {
 	alt,
 	sizes,
 	widths,
-	aspectRatio = 1,
+	aspectRatio,
+	fit,
+	position,
+	background,
 	formats = ['avif', 'webp'],
 	loading = 'lazy',
 	decoding = 'async',
@@ -25,6 +28,9 @@ try {
 			widths,
 			formats,
 			aspectRatio,
+			fit,
+			position,
+			background,
 		}));
 } catch (e) {
 	// continue regardless of error
