@@ -10,15 +10,35 @@
             "shellautocompletion": true
         }
     },
-    // forwardPorts: VS Code / Cursor Ports UI, auto-forward, portsAttributes (spec “forwarding”).
-    "forwardPorts": [
-        5959
+
+    // Ask the editor to forward the container port.
+    // Do NOT publish it with Docker appPort.
+    "forwardPorts": [6969],
+
+    "portsAttributes": {
+        "6969": {
+            "label": "Web dev server",
+            "protocol": "http",
+            "onAutoForward": "notify",
+            "requireLocalPort": false
+        }
+    },
+
+    "otherPortsAttributes": {
+        "onAutoForward": "notify",
+        "requireLocalPort": false
+    },
+
+    // once up, you can discover the locally forwarded port with:
+    // docker port <container-name-or-id> 6969/tcp
+    // or
+    // docker ps --format "{{.Names}}\t{{.Ports}}" | grep 6969
+    "runArgs": [
+        "-p",
+        "127.0.0.1::6969"
     ],
-    // appPort: Docker publish (127.0.0.1:port:port) for @devcontainers/cli — e.g. .devcontainer/start.sh.
-    // Editors still apply appPort when they create the container; keep this list aligned with forwardPorts.
-    "appPort": [
-        5959
-    ],
+    
+
     "mounts": [
         "source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached",
         // mount host user home directories for agents:
@@ -34,12 +54,12 @@
 	// ],
     // --
     "postCreateCommand": {
-        "pnpm-install": "[ -f package.json ] && pnpm install || true",
+        "pnpm-install": "[ -f package.json ] && npm install || true",
         "post-create": "bash .devcontainer/post-create.sh"
     },
     "postStartCommand": {
         // "rm-env-file": "if [ -n './.env.development' ]; then rm -f './.env.development'; fi;",
-        "start-dev": "[ -f package.json ] && pnpm run dev || true"
+        "start-dev": "[ -f package.json ] && npm run dev || true"
     },
     "remoteUser": "node",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
