@@ -5,5 +5,6 @@ author: Liran Tal
 dependencies:
   apm:
   - lirantal/skill-creator-extra/skills/skill-creator-extra
+  - blader/humanizer
   mcp: []
 scripts: {}
