@@ -128,6 +128,7 @@ Normative references: [RFC 8288](https://www.rfc-editor.org/rfc/rfc8288) (Web Li
 - **Catalog body (linkset).** The JSON must contain a top-level **`linkset`** array. Each listed “API” for this site is modeled in [RFC 9727 Appendix A.1](https://www.rfc-editor.org/rfc/rfc9727#appendix-A) style: an **`anchor`** URL (here the public **RSS** feed), **`service-desc`** (machine-oriented description of that surface; we use the RSS URL and `application/rss+xml`), **`service-doc`** (human-oriented docs; we use `/docs/agents.md`), and **`status`** (health / liveness; we use **`/health.json`** with `application/json`). Validators such as [isitagentready.com — API catalog skill](https://isitagentready.com/.well-known/agent-skills/api-catalog/SKILL.md) expect this shape for automated discovery checks.
 - **Health endpoint.** **`public/health.json`** must remain deployed at **`/health.json`** so the catalog’s **`status`** link resolves (minimal JSON body, e.g. `{"status":"ok"}`).
 - **`describedby` and `service-doc` targets.** **`public/.well-known/site-for-agents.json`** and **`public/docs/agents.md`** must stay consistent with the homepage **`Link`** header targets and with what the catalog describes.
+- **robots.txt and Content Signals.** **`GET /robots.txt`** must be served from **`public/robots.txt`** (static copy to **`dist/`**). Under **`User-agent: *`**, include a **`Content-Signal:`** line that declares **`ai-train`**, **`search`**, and **`ai-input`** explicitly ([Content Signals](https://contentsignals.org/), [IETF draft](https://datatracker.ietf.org/doc/draft-romm-aipref-contentsignals/)). Current site-wide policy: **`Content-Signal: ai-train=no, search=yes, ai-input=no`** (classic search indexing allowed; no permission for model training or for AI input such as RAG / grounding / generative search answers). Do not drop this line when editing crawl rules or the sitemap URL. Validator reference: [isitagentready.com — Content Signals skill](https://isitagentready.com/.well-known/agent-skills/content-signals/SKILL.md).
 
 ### How this site implements it
 
@@ -139,12 +140,13 @@ Normative references: [RFC 8288](https://www.rfc-editor.org/rfc/rfc8288) (Web Li
 | **`public/health.json`** | **Status** target for the catalog entry (`GET /health.json` → static liveness JSON). |
 | **`public/.well-known/site-for-agents.json`** | **`describedby`** target: short JSON with site name, RSS, sitemap, repo, and pointers to this file and the catalog. |
 | **`public/docs/agents.md`** | **`service-doc`** target: human-readable stub that points agents at **this `AGENTS.md`** in the repo. |
+| **`public/robots.txt`** | **`robots.txt`**: **`Allow`**, **`Sitemap`**, and **`Content-Signal`** under **`User-agent: *`** for crawler and AI-usage preferences. |
 
 The **`Link`** header currently advertises: **`api-catalog`** → `/.well-known/api-catalog`, **`describedby`** → `/.well-known/site-for-agents.json`, **`service-desc`** → `/rss.xml`, **`service-doc`** → `/docs/agents.md`.
 
 ### Expectations
 
-- **After a Vercel deploy**, third-party scans (e.g. `POST https://isitagentready.com/api/scan` with `{"url":"https://lirantal.com"}`) should report **`checks.discoverability.linkHeaders`** as **pass** (homepage **`Link`** relations present) and **`checks.discovery.apiCatalog`** as **pass** (catalog URL, content-type, and **`linkset`** structure).
+- **After a Vercel deploy**, third-party scans (e.g. `POST https://isitagentready.com/api/scan` with `{"url":"https://lirantal.com"}`) should report **`checks.discoverability.linkHeaders`** as **pass** (homepage **`Link`** relations present), **`checks.discovery.apiCatalog`** as **pass** (catalog URL, content-type, and **`linkset`** structure), and **`checks.botAccessControl.contentSignals`** as **pass** (**`Content-Signal`** declares **`ai-train`**, **`search`**, and **`ai-input`** on **`robots.txt`**).
 - **`GET /health.json`** in production should return **200** and **`application/json`** with a small JSON body suitable for liveness checks.
 - **Local dev** (`npm run dev`, `astro preview`) does **not** apply **`vercel.json`** headers; to verify **`Link`** on `/` or **`Content-Type`** on `/.well-known/api-catalog`, use **`vercel dev`** or hit production.
 - If **`SITE.origin`** in **`src/config.mjs`** ever changes, update **absolute `https://` URLs** inside **`public/.well-known/api-catalog`** (and any other hardcoded origin strings in **`site-for-agents.json`**) so anchors and `href` values stay aligned with production.
