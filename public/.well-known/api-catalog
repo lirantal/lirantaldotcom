@@ -1,10 +1,6 @@
 {
   "linkset": [
     {
-      "anchor": "https://lirantal.com/.well-known/api-catalog",
-      "item": [{ "href": "https://lirantal.com/rss.xml" }]
-    },
-    {
       "anchor": "https://lirantal.com/rss.xml",
       "service-desc": [
         {
@@ -16,6 +12,12 @@
         {
           "href": "https://lirantal.com/docs/agents.md",
           "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://lirantal.com/health.json",
+          "type": "application/json"
         }
       ]
     }
