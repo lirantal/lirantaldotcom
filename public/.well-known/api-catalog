@@ -1,0 +1,23 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://lirantal.com/.well-known/api-catalog",
+      "item": [{ "href": "https://lirantal.com/rss.xml" }]
+    },
+    {
+      "anchor": "https://lirantal.com/rss.xml",
+      "service-desc": [
+        {
+          "href": "https://lirantal.com/rss.xml",
+          "type": "application/rss+xml"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://lirantal.com/docs/agents.md",
+          "type": "text/markdown"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "site": "https://lirantal.com",
+  "name": "lirantal.com",
+  "description": "Personal website and technical blog of Liran Tal (Astro static site).",
+  "rss": "https://lirantal.com/rss.xml",
+  "sitemap": "https://lirantal.com/sitemap-index.xml",
+  "repository": "https://github.com/lirantal/lirantaldotcom",
+  "agentRepositoryGuide": "https://github.com/lirantal/lirantaldotcom/blob/main/AGENTS.md",
+  "apiCatalog": "https://lirantal.com/.well-known/api-catalog"
+}
