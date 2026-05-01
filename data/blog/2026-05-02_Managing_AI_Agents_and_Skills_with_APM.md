@@ -301,7 +301,7 @@ Auth goes through `git-credential-fill` or per-org `GITHUB_APM_PAT_<ORG>`. A cla
 
 ### What `apm audit` does (and does not)
 
-Today it hunts hidden Unicode in installed trees, which matters for [Trojan Source](https://trojansource.codes/)-style games. It does not catch clever prompt injection, weird tool behavior, or "this maintainer went rogue." Treat it as one signal next to human review, not a green badge.
+Today it hunts hidden Unicode in installed trees, which matters for [Trojan Source](https://github.com/lirantal/anti-trojan-source/)-style games. It does not catch clever prompt injection, weird tool behavior, or "this maintainer went rogue." Treat it as one signal next to human review, not a green badge.
 
 ### Lockfile hashes are not signatures
 
