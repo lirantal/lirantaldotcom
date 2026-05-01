@@ -285,7 +285,7 @@ Skip `#tag` or `#sha` and you float on the default branch. `--verbose` may warn 
 
 ### SKILL.md as prompt-injection surface
 
-A skill is mostly markdown the agent reads as instructions. A hostile `SKILL.md` can steer the model toward exfiltrating env vars, writing attacker-controlled code, or walking past guardrails. That is not the same threat as shipping malicious JavaScript in `postinstall`: the dependency body is instructions to a stochastic system. Eyeballing the file yourself does not equal what the model does with it. Read [Anthropic on Skills security](https://www.anthropic.com/engineering/skills) if you only read one external link from this section.
+A skill is mostly markdown the agent reads as instructions. A hostile `SKILL.md` can steer the model toward exfiltrating env vars, writing attacker-controlled code, or walking past guardrails. That is not the same threat as shipping malicious JavaScript in `postinstall`: the dependency body is instructions to a stochastic system. Eyeballing the file yourself does not equal what the model does with it. Evaluate [Snyk's Agent Scan](https://github.com/snyk/agent-scan) if you want a Skills security tool that audits for more than just a RegEx matching dull denylist rules.
 
 ### MCP servers run code
 
