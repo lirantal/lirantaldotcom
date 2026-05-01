@@ -115,6 +115,32 @@ Adding a **new top-level page**: create `src/pages/<name>.astro` (or a folder wi
 
 - **`src/data/recognitions.json`** — used by recognition-related UI where imported.
 
+## Agents readiness (HTTP discovery)
+
+This overlaps with what some call **agentic SEO**: signals that help automated clients (agents, scanners) find machine-readable and human-oriented documentation without scraping HTML. It is separate from traditional HTML meta and sitemaps.
+
+### Requirement
+
+The **production homepage** response (`GET /` on `SITE.origin`) should expose at least one HTTP **`Link`** header ([RFC 8288](https://www.rfc-editor.org/rfc/rfc8288)) whose targets use **registered link relation types** where applicable—for example `api-catalog`, `describedby`, `service-desc`, and `service-doc` ([RFC 9727 §3](https://www.rfc-editor.org/rfc/rfc9727#section-3), [IANA link relations](https://www.iana.org/assignments/link-relations/)).
+
+### How this site implements it
+
+| Piece | Role |
+|--------|------|
+| **`vercel.json`** → `headers` for `"/"` | Injects a single comma-separated **`Link`** header on the homepage only (Vercel edge). |
+| **`vercel.json`** → `headers` for `"/.well-known/api-catalog"` | Sets **`Content-Type: application/linkset+json`** with the RFC 9727 **profile** so the catalog document matches [RFC 9727 §4.2](https://www.rfc-editor.org/rfc/rfc9727#section-4.2). |
+| **`public/.well-known/api-catalog`** | **API catalog** (linkset JSON): lists the public **RSS** URL as the main machine-oriented surface and ties **`service-desc`** / **`service-doc`** to that anchor. Copied to **`dist/`** at build time. |
+| **`public/.well-known/site-for-agents.json`** | **`describedby`** target: short JSON with site name, RSS, sitemap, repo, and pointers to this file and the catalog. |
+| **`public/docs/agents.md`** | **`service-doc`** target: human-readable stub that points agents at **this `AGENTS.md`** in the repo. |
+
+The **`Link`** header currently advertises: **`api-catalog`** → `/.well-known/api-catalog`, **`describedby`** → `/.well-known/site-for-agents.json`, **`service-desc`** → `/rss.xml`, **`service-doc`** → `/docs/agents.md`.
+
+### Expected results
+
+- Third-party **discoverability** checks that look for homepage **`Link`** headers (for example [isitagentready.com](https://isitagentready.com/) → `POST /api/scan` with `{"url":"https://lirantal.com"}`) should report **`checks.discoverability.linkHeaders`** (or equivalent) as **pass** after a successful **Vercel** deploy. Those headers are **not** emitted by `npm run dev` or `astro preview`; use **`vercel dev`** or production to verify response headers.
+- **`GET /.well-known/api-catalog`** should return **200** with **`Content-Type: application/linkset+json`** (including the RFC 9727 profile parameter) and a parseable **linkset** body.
+- If **`SITE.origin`** in **`src/config.mjs`** ever changes, update **absolute `https://` URLs** inside **`public/.well-known/api-catalog`** (and any other hardcoded origin strings in **`site-for-agents.json`**) so they stay aligned with production.
+
 ## Checklist: new blog post
 
 1. Add **`data/blog/YYYY-MM-DD.md`** (or `YYYY-MM-DD_short-title.md`).
