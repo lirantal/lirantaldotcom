@@ -17,7 +17,7 @@ compatibility: >
   (data/blog, src/assets/images/blog, AGENTS.md).
 metadata:
   author: lirantal
-  version: 1.1.0
+  version: 1.2.0
 ---
 
 # Create lirantal.com blog posts
@@ -55,8 +55,12 @@ for site-wide blog rules (routes, drafts, tags, HighlightedPosts).
 3. Do **not** set `readingTime` (injected at build).
 4. Write the post body after the frontmatter. If `draft: true`, say so in a short
    intro so expectations match AGENTS (drafts do not appear on the site).
-5. **Optional:** One short line in the body that the cover is AI-generated is fine;
-   no stock-photo attribution is required.
+5. **Body voice (opening and throughout):** Do **not** mention the cover/OG/hero image or
+   how it was produced (Gemini, Sharp script, etc.). Do **not** use the opening to
+   enumerate “intended audience,” reader personas, or meta scope aimed at “who should
+   read this”—start with thesis and substance. When using the writing-style-explainer
+   profile, follow its **lirantal.com overrides**: no terminal `## References` section;
+   use descriptive **inline** links in the body instead.
 
 ### Step 3: Cover image via Gemini CLI (Nano Banana)
 

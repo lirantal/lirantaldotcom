@@ -1,5 +1,19 @@
 {
     "summary": "Evidence-driven, deep technical explainer that synthesizes context, mechanisms, trade-offs, and practical guidance for experienced JS/Node engineers.",
+    "lirantal_com_blog": {
+      "no_terminal_references_section": true,
+      "canonical_links": "Place at least three descriptive inline links to authoritative sources in the body where each topic warrants it. Do not add a terminal ## References, bibliography, or link-dump section.",
+      "introduction": {
+        "forbidden": [
+          "Mentioning the cover, hero, OG, Open Graph imagery, or how the image was produced",
+          "Opening paragraphs framed as 'intended audience', reader personas, or 'who should read this' lists"
+        ],
+        "preferred": [
+          "Thesis and the problem addressed in the first sentences",
+          "Why the topic matters now (stakes, change, or failure mode)"
+        ]
+      }
+    },
     "audience": {
       "persona": "Senior JavaScript/Node.js engineers, OSS maintainers, security-minded developers, and tech leads evaluating approaches.",
       "assumed_knowledge": "Modern JS/TS, Node.js LTS, package managers (npm/pnpm), Git/GitHub, CI basics, reading RFCs/docs.",
@@ -36,7 +50,7 @@
       "paragraph_median_words": 60
     },
     "pacing": "Moderate-to-deliberate: concept first, then mechanism, then applied guidance with verification.",
-    "structure_pattern": "Thesis → Background & prior art → How it works (mechanism) → Trade-offs & alternatives → Applications & examples → Validation & measurement → Limitations & future work → FAQ → References & further reading → CTA.",
+    "structure_pattern": "Thesis → Background & prior art → How it works (mechanism) → Trade-offs & alternatives → Applications & examples → Validation & measurement → Limitations & future work → FAQ → Next steps & CTA. (On lirantal.com: no terminal References section—inline links only; see lirantal_com_blog.)",
     "section_templates": [
       {
         "name": "Deep Technical Explainer",
@@ -52,8 +66,7 @@
           "Limitations & Future Work",
           "Troubleshooting (if actionable)",
           "FAQ",
-          "Next Steps & CTA",
-          "References"
+          "Next Steps & CTA"
         ],
         "heading_style": {
           "case": "Title Case",
@@ -139,13 +152,13 @@
       "slug_style": "kebab-case"
     },
     "style_fingerprints": [
-      "Opens with a clear thesis and scope guardrails.",
+      "Opens with a clear thesis and problem framing (on lirantal.com: no audience-inventory or cover-image preamble).",
       "Balances concept explanation with small, runnable examples.",
       "Uses comparison tables for alternatives and trade-offs.",
       "Includes explicit measurement/verification guidance."
     ],
     "do": [
-      "Lead with a clear thesis and who benefits.",
+      "Lead with a clear thesis and stakes; weave who benefits into Background or Applications, not as a standalone opening audience list (lirantal.com).",
       "Explain mechanisms with diagrams or concise code/pseudo-code.",
       "Present trade-offs and when to choose each option.",
       "Provide commands/metrics for readers to verify results."
@@ -176,7 +189,7 @@
     },
     "deviations": "Template profile for deep technical explainers; not derived from a specific corpus.",
     "quality_checklist": [
-      "Intro states thesis, audience, and scope within 2 sentences.",
+      "Intro states thesis and why the topic matters within the first short stretch; on lirantal.com do not use the opening for audience inventory or cover/OG image meta.",
       "Background/primer includes ≥2 paragraphs and mentions prior art.",
       "If public options exist, include a 'Trade-offs & Alternatives' section with a comparison table.",
       "How It Works section explains mechanism with code or diagram.",
@@ -184,13 +197,13 @@
       "Security & Performance considerations included where applicable.",
       "Troubleshooting present if actionable; otherwise Limitations & Future Work present.",
       "FAQ section exists with ≥3 Q&A entries; each answer is specific and may include a command/link.",
-      "References section contains ≥3 descriptive anchors to canonical sources.",
+      "At least three descriptive inline links to canonical docs, specs, or repos appear in the body; on lirantal.com never add a terminal ## References or bibliography block.",
       "Conclusion contains 3-5 next actions plus X/Twitter and GitHub CTAs.",
       "No one-liner sections; H2 ≥5 sentences or equivalent content density.",
       "No soft-avoid tools appear unless explicitly substituted via policy."
     ],
     "red_flags": [
-      "Claims without measurement or references.",
+      "Claims without measurement or authoritative inline citations.",
       "Alternatives presented without trade-offs.",
       "Code samples that cannot be run or verified.",
       "Hand-wavy security/performance statements."
@@ -254,7 +267,7 @@
       "Includes Background & Prior Art before 'How It Works'",
       "Includes Trade-offs & Alternatives with a comparison device",
       "Includes Validation & Measurement with commands/metrics",
-      "FAQ ≥3 items and References ≥3 links",
+      "FAQ ≥3 items; ≥3 descriptive inline canonical links in the body (lirantal.com: no terminal References section)",
       "Conclusion includes ≥3 actions + X/Twitter + GitHub CTAs",
       "No excluded technologies appear: /(jenkins|travis)/i"
     ],
@@ -275,7 +288,7 @@
       ]
     },
     "required_sections": {
-      "introduction": { "required": true, "min_paragraphs": 2, "purpose": "Frame thesis, audience, and why-now in ≤120 words." },
+      "introduction": { "required": true, "min_paragraphs": 2, "purpose": "Frame thesis and why-now; on lirantal.com omit audience callouts and cover-image meta from the opening." },
       "background_or_primer": { "required": true, "min_paragraphs": 2, "include": ["prior art", "definitions", "assumptions"] },
       "architecture_or_flow": { "required": true, "allow_mermaid": true, "textual_fallback": true, "note": "Diagram or narrative of mechanism." },
       "step_by_step_guide": { "required": false, "enforce_step_anatomy": false },
@@ -286,13 +299,13 @@
       "troubleshooting_and_pitfalls": { "required": false, "min_items": 3, "style": "symptom → cause → fix" },
       "limitations_and_future_work": { "required": true, "min_items": 3 },
       "faq": { "required": true, "min_qna": 3, "format": "Q: … / A: …", "placement": "after limitations" },
-      "references_and_related_links": { "required": true, "min_links": 3, "anchor_text": "descriptive" }
+      "references_and_related_links": { "required": false, "min_links": 3, "anchor_text": "descriptive", "lirantal_com": "Satisfy min_links as inline prose links only; no terminal References section on lirantal.com." }
     },
     "background_requirements": {
       "must_answer": [
         "What problem is addressed?",
         "Why now/why this approach?",
-        "Who benefits and in which scenarios?"
+        "Where relevant, who benefits—address inside Background or Applications, not as a dedicated opening audience list (lirantal.com)."
       ],
       "avoid": [
         "marketing clichés",
@@ -319,7 +332,7 @@
     },
     "toc_preferences": {
       "include_toc_if_words_over": 1800,
-      "exclude_sections": ["References", "FAQ"]
+      "exclude_sections": ["FAQ"]
     },
     "dominant_archetype": "Explainer",
     "secondary_archetypes": ["Best Practices"],
@@ -343,8 +356,7 @@
           "Security & Performance Considerations",
           "Limitations & Future Work",
           "FAQ",
-          "Next Steps & CTA",
-          "References"
+          "Next Steps & CTA"
         ],
         "section_density_overrides": { "min_sentences_h2": 5, "min_sentences_h3": 3 }
       }

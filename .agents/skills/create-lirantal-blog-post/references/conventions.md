@@ -18,6 +18,9 @@ in [AGENTS.md](../../../../AGENTS.md) at the repository root.
 6. Run `npm run build` before considering the task done.
 7. Optional: add the post **slug** to `src/components/blog/HighlightedPosts.astro` for
    the homepage “From the blog” section.
+8. **Prose (lirantal.com):** Do not add a terminal `## References` section—cite with
+   descriptive inline links in the body. Do not open with audience-inventory paragraphs
+   or cover/OG image meta; see `writing-style-explainer` skill **lirantal.com overrides**.
 
 ## Frontmatter template
 
