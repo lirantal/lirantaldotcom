@@ -41,7 +41,7 @@ module.exports = {
 				secondary: colors.pink,
 			},
 			fontFamily: {
-				sans: ["'InterVariable'", ...defaultTheme.fontFamily.sans],
+				sans: ["'Inter'", ...defaultTheme.fontFamily.sans],
 			},
 		},
 	},

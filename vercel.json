@@ -1,8 +1,21 @@
 {
+  "build": {
+    "env": {
+      "NODE_VERSION": "24.x"
+    }
+  },
   "cleanUrls": true,
   "redirects": [
-    { "source": "/games-chatgpt-chat-meme-generator", "destination": "/games/chatgpt-chat-meme-generator", "permanent": true },
-    { "source": "/games-chatgpt-security-models-ui", "destination": "/games/chatgpt-security-models-ui", "permanent": true }
+    {
+      "source": "/games-chatgpt-chat-meme-generator",
+      "destination": "/games/chatgpt-chat-meme-generator",
+      "permanent": true
+    },
+    {
+      "source": "/games-chatgpt-security-models-ui",
+      "destination": "/games/chatgpt-security-models-ui",
+      "permanent": true
+    }
   ],
   "headers": [
     {

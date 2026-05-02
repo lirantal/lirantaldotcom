@@ -5,18 +5,6 @@ import { getCanonical } from '~/utils/permalinks';
 import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/BooksHero.astro';
-import Pricing from '~/components/widgets/Pricing.astro';
-import BookFeatures from '~/components/widgets/BookFeatures.astro';
-import Features from '~/components/widgets/Features.astro';
-import BookAuthor from '~/components/widgets/BookAuthor.astro';
-import Steps from '~/components/widgets/Steps.astro';
-import ScaleUpSecurity from '~/components/widgets/ScaleUpSecurity.astro';
-import Features3 from '~/components/widgets/Features3.astro';
-import HighlightedPosts from '~/components/blog/HighlightedPosts.astro';
-import FAQ from '~/components/widgets/FAQ.astro';
-import Stats from '~/components/widgets/Stats.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
-import ProfileHero from '~/components/widgets/ProfileHero.astro';
 
 const meta = {
 	title: 'Node.js Secure Coding: Defending Against Command Injection Vulnerabilities',
@@ -24,11 +12,11 @@ const meta = {
 	canonical: getCanonical(Astro.url.pathname),
 };
 
-import { Image } from '@astrojs/image/components';
-import Picture from '~/components/core/Picture.astro';
+import { Image } from 'astro:assets';
 import BookCover1 from '~/assets/images/book-cover-essential-nodejs-security.jpg';
 import BookCover2 from '~/assets/images/book-cover-serverless-security.jpeg';
 import BookCover3 from '~/assets/images/book-cover-web-security-learning-http-security-headers.png';
+import heroBook3d from '~/assets/images/nodejs-secure-coding-book-3d-style.png';
 
 const OtherBooksItems = [
 	{
@@ -81,7 +69,7 @@ const OtherBooksItems = [
 			href: 'https://nodejs-security.lemonsqueezy.com/checkout/buy/6ee5f646-a6fc-4d6e-bda4-7ebbe26aea41',
 		}}
 		image={{
-			src: import('~/assets/images/nodejs-secure-coding-book-3d-style.png'),
+			src: heroBook3d,
 			alt: 'Node.js Secure Coding: Defending Against Command Injection Vulnerabilities',
 		}}
 	>
@@ -130,8 +118,7 @@ const OtherBooksItems = [
 									<Image
 										src={bookItem.cover}
 										alt={bookItem.title}
-										height="420"
-										format="avif"
+										height={420}
 										class="rounded-lg h-72 object-contain mb-4 mx-auto"
 									/>
 									<div class="w-full">

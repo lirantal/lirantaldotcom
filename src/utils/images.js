@@ -2,7 +2,7 @@ const load = async function () {
 	let images = [];
 	try {
 		images = import.meta.glob('~/assets/images/**');
-	} catch (e) {
+	} catch {
 		// continue regardless of error
 	}
 	return images;

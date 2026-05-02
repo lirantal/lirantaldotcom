@@ -1,5 +1,6 @@
 ---
-import { Picture } from '@astrojs/image/components';
+import { Picture } from 'astro:assets';
+import nodejsBookCover from '~/assets/images/nodejs-secure-coding-book-3d-style.png';
 ---
 
 <section class="body-font">
@@ -35,7 +36,7 @@ import { Picture } from '@astrojs/image/components';
 					sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
 					loading="eager"
 					alt="The book: Node.js Secure Coding: Defending Against Command Injection Vulnerabilities"
-					src={import('~/assets/images/nodejs-secure-coding-book-3d-style.png')}
+					src={nodejsBookCover}
 				/>
 			</a>
 		</div>

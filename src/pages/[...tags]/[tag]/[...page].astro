@@ -14,19 +14,25 @@ export async function getStaticPaths({ paginate }) {
 	const posts = await fetchPosts();
 
 	const tags = new Set();
-	posts.map((post) => {
-		Array.isArray(post.tags) && post.tags.map((tag) => tags.add(tag.toLowerCase()));
-	});
+	for (const post of posts) {
+		if (!Array.isArray(post.tags)) continue;
+		for (const tag of post.tags) {
+			tags.add(String(tag).toLowerCase());
+		}
+	}
 
-	return Array.from(tags).map((tag) =>
+	return Array.from(tags).flatMap((tag) =>
 		paginate(
-			posts.filter((post) => Array.isArray(post.tags) && post.tags.includes(tag)),
+			posts.filter(
+				(post) =>
+					Array.isArray(post.tags) && post.tags.some((t) => String(t).toLowerCase() === tag),
+			),
 			{
 				params: { tag: cleanSlug(tag), tags: TAG_BASE || undefined },
 				pageSize: BLOG.postsPerPage,
 				props: { tag },
-			}
-		)
+			},
+		),
 	);
 }
 

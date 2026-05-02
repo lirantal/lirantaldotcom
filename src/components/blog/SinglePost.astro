@@ -2,11 +2,11 @@
 import Picture from '~/components/core/Picture.astro';
 import PostTags from '~/components/atoms/Tags.astro';
 import SocialShare from '~/components/atoms/SocialShare.astro';
-import { Icon } from 'astro-icon';
 
 import { getFormattedDate } from '~/utils/utils';
 
 const { post } = Astro.props;
+const Content = post.Content;
 ---
 
 <section class="py-4 sm:py-4 lg:py-4 mx-auto">
@@ -42,7 +42,7 @@ const { post } = Astro.props;
 		<div
 			class="container mx-auto px-6 sm:px-6 max-w-5xl prose prose-lg lg:prose-lg dark:prose-invert dark:prose-headings:text-slate-300 prose-md prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-img:rounded-md prose-img:shadow-lg mt-8"
 		>
-			{post.Content ? <post.Content /> : <Fragment set:html={post.body} />}
+			{Content ? <Content /> : <Fragment set:html={post.body} />}
 		</div>
 		<div class="container mx-auto px-6 sm:px-6 max-w-5xl mt-8 flex justify-between flex-col sm:flex-row">
 			<!-- Skip the social sharing component for now
@@ -52,6 +52,6 @@ const { post } = Astro.props;
 	</article>
 </section>
 
-<script hoist type="module">
+<script>
 	import '~/scripts/mermaid-post-client';
 </script>

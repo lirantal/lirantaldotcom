@@ -14,7 +14,10 @@ function parseAcceptTypes(accept: string | null): Map<string, number> {
 	const weights = new Map<string, number>();
 	if (!accept) return weights;
 	for (const segment of accept.split(',')) {
-		const parts = segment.trim().split(';').map((s) => s.trim());
+		const parts = segment
+			.trim()
+			.split(';')
+			.map((s) => s.trim());
 		const type = parts[0]?.toLowerCase();
 		if (!type) continue;
 		let q = 1;
@@ -60,7 +63,7 @@ function estimateMarkdownTokens(markdown: string): number {
 
 function buildMarkdownResponse(
 	init: { status: number; statusText?: string; markdown: string; tokenEstimate: number },
-	isHead: boolean,
+	isHead: boolean
 ): Response {
 	const headers = new Headers();
 	headers.set('Content-Type', 'text/markdown; charset=utf-8');
@@ -133,6 +136,6 @@ export default async function middleware(request: Request): Promise<Response> {
 			markdown,
 			tokenEstimate: tokens,
 		},
-		method === 'HEAD',
+		method === 'HEAD'
 	);
 }

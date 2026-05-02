@@ -1,6 +1,10 @@
-const getNormalizedPost = async (post) => {
-	const { frontmatter, file } = post;
-	const ID = file.split('/').pop().split('.').shift();
+const getNormalizedPost = (mod, filePath) => {
+	const frontmatter = mod.frontmatter ?? {};
+	const Content = mod.Content;
+	const ID = filePath
+		.split('/')
+		.pop()
+		.replace(/\.(md|mdx)$/i, '');
 
 	return {
 		id: ID,
@@ -14,9 +18,7 @@ const getNormalizedPost = async (post) => {
 		title: frontmatter.title,
 		description: frontmatter.description,
 		image: frontmatter.image,
-		// body: compiledContent(),
-		// Content: Content,
-		Content: post.Content,
+		Content,
 
 		excerpt: frontmatter.excerpt,
 		authors: frontmatter.authors,
@@ -27,16 +29,13 @@ const getNormalizedPost = async (post) => {
 };
 
 const load = async function () {
-	const posts = import.meta.glob(['~/../data/blog/**/*.md', '~/../data/blog/**/*.mdx'], {
+	const posts = import.meta.glob('../../data/blog/**/*.{md,mdx}', {
 		eager: true,
 	});
 
-	const normalizedPosts = Object.keys(posts).map(async (key) => {
-		const post = await posts[key];
-		return await getNormalizedPost(post);
-	});
+	const normalizedPosts = Object.entries(posts).map(([key, mod]) => getNormalizedPost(mod, key));
 
-	const results = (await Promise.all(normalizedPosts))
+	const results = normalizedPosts
 		.sort((a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf())
 		.filter((post) => !post.draft);
 	return results;

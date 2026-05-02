@@ -1,62 +1,46 @@
 ---
-import { getPicture } from '@astrojs/image';
-
-// import { Picture } from 'astro:assets';
+import { Picture } from 'astro:assets';
 
 const {
 	src,
 	alt,
 	sizes,
-	widths,
-	aspectRatio,
-	fit,
-	position,
-	background,
-	formats = ['avif', 'webp'],
+	widths = [400, 900, 1200],
 	loading = 'lazy',
 	decoding = 'async',
 	class: className = '',
-	...attrs
+	formats = ['avif', 'webp'],
+	...rest
 } = Astro.props;
-
-let picture = null;
-try {
-	picture =
-		src &&
-		(await getPicture({
-			src,
-			widths,
-			formats,
-			aspectRatio,
-			fit,
-			position,
-			background,
-		}));
-} catch (e) {
-	// continue regardless of error
-}
-
-const { image = {}, sources = [] } = picture || {};
 ---
 
 {
-	src && image?.src && (
-		// <Picture
-		// 	{...image}
-		// 	{loading}
-		// 	{decoding}
-		// 	{alt}
-		// 	class={className}
-		// 	densities={[1.5, 2]}
-		// 	formats={['avif', 'webp']}
-		// 	fallbackFormat={'jpeg'}
-		// 	fetchpriority="high"
-		// />
-		<picture {...attrs}>
-			{sources.map((attrs) => (
-				<source {...attrs} sizes={sizes} />
-			))}
-			<img {...image} {loading} {decoding} {alt} class={className} />
-		</picture>
+	src && typeof src === 'string' && (
+		<img
+			src={src}
+			alt={alt}
+			class={className}
+			loading={loading}
+			decoding={decoding}
+			{...Object.fromEntries(
+				Object.entries(rest).filter(
+					([k]) => !['aspectRatio', 'fit', 'position', 'background'].includes(k),
+				),
+			)}
+		/>
+	)
+}
+{
+	src && typeof src !== 'string' && (
+		<Picture
+			src={src}
+			widths={widths}
+			sizes={sizes}
+			formats={formats}
+			alt={alt}
+			class={className}
+			loading={loading}
+			decoding={decoding}
+		/>
 	)
 }

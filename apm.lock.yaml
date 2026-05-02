@@ -2,19 +2,19 @@ lockfile_version: '1'
 generated_at: '2026-05-01T08:25:48.018692+00:00'
 apm_version: 0.9.2
 dependencies:
-- repo_url: blader/humanizer
-  host: github.com
-  resolved_commit: 8b3a17889fbf12bedae20974a3c9f9de746ed754
-  package_type: claude_skill
-  deployed_files:
-  - .agents/skills/humanizer
-  content_hash: sha256:b813857f183da05d08d5a80adac671df94c139f855809bd47ab8b7bb245546a2
-- repo_url: lirantal/skill-creator-extra
-  host: github.com
-  resolved_commit: e8b56e327c02da611be0bc8895ffa3e64882d2c0
-  virtual_path: skills/skill-creator-extra
-  is_virtual: true
-  package_type: claude_skill
-  deployed_files:
-  - .agents/skills/skill-creator-extra
-  content_hash: sha256:7bda5cf2d26825530de5d852d3bbfc18ec1ad3626594374d17cf48a8b1d35fab
+  - repo_url: blader/humanizer
+    host: github.com
+    resolved_commit: 8b3a17889fbf12bedae20974a3c9f9de746ed754
+    package_type: claude_skill
+    deployed_files:
+      - .agents/skills/humanizer
+    content_hash: sha256:b813857f183da05d08d5a80adac671df94c139f855809bd47ab8b7bb245546a2
+  - repo_url: lirantal/skill-creator-extra
+    host: github.com
+    resolved_commit: e8b56e327c02da611be0bc8895ffa3e64882d2c0
+    virtual_path: skills/skill-creator-extra
+    is_virtual: true
+    package_type: claude_skill
+    deployed_files:
+      - .agents/skills/skill-creator-extra
+    content_hash: sha256:7bda5cf2d26825530de5d852d3bbfc18ec1ad3626594374d17cf48a8b1d35fab

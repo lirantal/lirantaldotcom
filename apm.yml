@@ -4,7 +4,7 @@ description: APM project for lirantaldotcom
 author: Liran Tal
 dependencies:
   apm:
-  - lirantal/skill-creator-extra/skills/skill-creator-extra
-  - blader/humanizer
+    - lirantal/skill-creator-extra/skills/skill-creator-extra
+    - blader/humanizer
   mcp: []
 scripts: {}

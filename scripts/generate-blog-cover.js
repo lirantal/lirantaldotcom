@@ -91,11 +91,7 @@ function parseArgs(argv) {
 }
 
 function escapeXml(text) {
-	return String(text)
-		.replace(/&/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;')
-		.replace(/"/g, '&quot;');
+	return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 /** Greedy word-wrap to lines of at most maxLen characters. */
@@ -152,9 +148,7 @@ function buildSvg(opts, theme) {
 	} = opts;
 
 	const titleLines = wrapLines(title, titleMaxChars, 3);
-	const subtitleLines = subtitle
-		? wrapLines(subtitle, subtitleMaxChars, 2)
-		: [];
+	const subtitleLines = subtitle ? wrapLines(subtitle, subtitleMaxChars, 2) : [];
 
 	const titleLineHeight = titleSize * 1.12;
 	const subtitleLineHeight = subtitleSize * 1.2;
@@ -205,7 +199,7 @@ function buildSvg(opts, theme) {
     fill="${theme.subtitleFill}"
   >${subtitleTspans}</text>`
 			: ''
-  }
+	}
 </svg>`;
 }
 

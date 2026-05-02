@@ -4,22 +4,26 @@ This file is for **coding agents** (Cursor, Copilot, etc.): project facts, conve
 
 ## What this repo is
 
-Static **Astro 1.x** site for **Liran Tal** — personal homepage plus blog. Production URL: `https://lirantal.com` (`SITE.origin` in `src/config.mjs`).
+Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Production URL: `https://lirantal.com` (`SITE.origin` in `src/config.mjs`). **Node.js 24+** is required (`package.json` `engines`); Vercel uses `NODE_VERSION` in `vercel.json`.
 
 ## Tech stack
 
 | Area | Choice |
 |------|--------|
-| Framework | Astro 1.9, `output: 'static'`, `trailingSlash: 'never'` |
-| Styling | Tailwind 3, `@tailwindcss/typography`, Flowbite |
+| Framework | Astro 6, Vite 7, `output: 'static'`, `trailingSlash: 'never'` |
+| Styling | Tailwind 3, `@tailwindcss/typography`, Flowbite 2 |
 | Content | Markdown/MDX under `data/blog/` |
-| Images (build pipeline) | `@astrojs/image` + Sharp, `Picture.astro` wrapper |
+| Images (build pipeline) | Built-in **`astro:assets`** (Sharp via `image.service` in `astro.config.mjs`), `Picture.astro` wrapper |
 | Search | Pagefind (`npm run postbuild` indexes `dist/`) |
 | Optional islands | Solid (`@astrojs/solid-js`), e.g. recognitions changelog |
-| Analytics | Vercel Analytics (+ legacy hooks in MetaTags) |
+| Analytics | Vercel Analytics (`@vercel/analytics/astro` in `VercelAnalytics.astro`) + GA via `@astrolib/analytics` in `MetaTags` |
+| Icons | `astro-icon` v1 + Iconify (`@iconify-json/*`); import `{ Icon } from 'astro-icon/components'` |
+| MDX embeds | `astro-embed` integration in `astro.config.mjs` (`embed()` before `mdx()`) |
 | Aliases | `~` → `src/` (see `astro.config.mjs` → `vite.resolve.alias`) |
 
-**Commands:** `npm run dev` (dev server **port 3001**), `npm run build`, `npm run preview`. Format: `npm run format`. Lint: `npm run lint:eslint`.
+**Commands:** `npm run dev` (dev server **port 3001**), `npm run build`, `npm run preview`. Format: `npm run format`. Lint: `npm run lint:eslint` (**ESLint 9** flat config: `eslint.config.mjs`).
+
+**npm:** `.npmrc` sets `legacy-peer-deps=true` because `@astrojs/tailwind@6` peer range does not yet list Astro 6; installs are still valid. Prefer Node 24 locally (devcontainer image is `typescript-node:24`).
 
 ## Global configuration
 
@@ -32,14 +36,14 @@ Static **Astro 1.x** site for **Liran Tal** — personal homepage plus blog. Pro
 2. **`src/layouts/PageLayout.astro`** — BaseLayout + `Header` + `<main>` + `Footer`. Use for most marketing pages and blog **posts**.
 3. **`src/layouts/BlogLayout.astro`** — PageLayout + centered page title slot (`<slot name="title" />`). Used for blog index, tag, and category listing pages.
 
-**Design tokens:** Tailwind `primary` (blue) and `secondary` (pink), dark mode via `class` on `<html>`, heading font `font-heading` / Inter (see `Fonts.astro`, `tailwind.config.cjs`).
+**Design tokens:** Tailwind `primary` (blue) and `secondary` (pink), dark mode via `class` on `<html>`, heading font `font-heading` / **Inter** from `@fontsource/inter` (see `Fonts.astro`, `tailwind.config.cjs`).
 
 ## Blog: how it works
 
 ### Source location and loading
 
 - Posts live in **`data/blog/**/*.md`** and **`data/blog/**/*.mdx`** (including `data/blog/archives/` for older imports).
-- **`src/utils/posts.js`** loads them with `import.meta.glob`, sorts by **`pubDate`** descending, and **drops posts with `draft: true`** from the public site, RSS, and listings.
+- **`src/utils/posts.js`** loads them with `import.meta.glob('../../data/blog/**/*.{md,mdx}', { eager: true })` (paths relative to that file under `src/utils/`), sorts by **`pubDate`** descending, and **drops posts with `draft: true`** from the public site, RSS, and listings. Each module exposes **`frontmatter`** and **`Content`** (use `<Content />` in `.astro` after assigning to a capitalized variable).
 
 ### Post identity and URLs
 
@@ -80,7 +84,7 @@ Remote URLs in frontmatter `image` are supported if they start with `http://` or
 | Single post | `src/pages/[...blog]/[slug].astro` |
 | Tag archive | `src/pages/[...tags]/[tag]/[...page].astro` |
 | Category archive | `src/pages/[...categories]/[category]/[...page].astro` |
-| RSS | `src/pages/rss.xml.js` |
+| RSS | `src/pages/rss.xml.js` — **`export async function GET`**, `@astrojs/rss` v4; items use title/description/pubDate (full HTML body not inlined) |
 
 Post page layout: **`SinglePost.astro`** (title, tags, share, cover `Picture`, MDX/Markdown body with `prose` classes). Book promo: `BooksHeroEmbed` below the post.
 
@@ -109,7 +113,7 @@ Adding a **new top-level page**: create `src/pages/<name>.astro` (or a folder wi
 
 - Shiki theme: **github-dark**, wrap enabled (`astro.config.mjs`).
 - MDX enabled for `.mdx` posts.
-- Embeds: `astro-embed` is a dependency (use where already patterned in posts).
+- Embeds: `astro-embed` is installed and wired via **`embed()`** in `astro.config.mjs` (must run **before** `mdx()`). Use patterns from archive MDX (e.g. `Tweet` from `astro-embed`).
 
 ## Data files
 

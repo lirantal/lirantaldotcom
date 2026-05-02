@@ -1,0 +1,29 @@
+---
+/** Focus search inputs when typing shortcut keys outside of editable fields (replaces astro-keyboard-controls). */
+interface Props {
+	selector: string;
+	keys: string[];
+}
+
+const { selector, keys } = Astro.props;
+---
+
+<script define:vars={{ selector, keys: keys ?? [] }}>
+	document.addEventListener(
+		'keydown',
+		(e) => {
+			const key = e.key;
+			if (!keys.includes(key)) return;
+			const t = e.target;
+			if (t instanceof HTMLElement) {
+				if (t.closest('input, textarea, select, [contenteditable="true"]')) return;
+			}
+			const el = document.querySelector(selector);
+			if (el instanceof HTMLElement) {
+				e.preventDefault();
+				el.focus();
+			}
+		},
+		{ capture: true },
+	);
+</script>

@@ -1,71 +1,67 @@
 {
-    "name": "Project Devcontainer",
-    "image": "mcr.microsoft.com/devcontainers/typescript-node:24-trixie",
-    "features": {
-        "ghcr.io/devcontainers/features/python:1": {
-            "version": "3.12",
-            "installPythonDevDependencies": true
-        },
-        "ghcr.io/devcontainer-community/devcontainer-features/astral.sh-uv:1": {
-            "shellautocompletion": true
-        }
+  "name": "Project Devcontainer",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:24-trixie",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12",
+      "installPythonDevDependencies": true
     },
-
-    // Ask the editor to forward the container port.
-    // Do NOT publish it with Docker appPort.
-    "forwardPorts": [6969],
-
-    "portsAttributes": {
-        "6969": {
-            "label": "Web dev server",
-            "protocol": "http",
-            "onAutoForward": "notify",
-            "requireLocalPort": false
-        }
-    },
-
-    "otherPortsAttributes": {
-        "onAutoForward": "notify",
-        "requireLocalPort": false
-    },
-
-    // once up, you can discover the locally forwarded port with:
-    // docker port <container-name-or-id> 6969/tcp
-    // or
-    // docker ps --format "{{.Names}}\t{{.Ports}}" | grep 6969
-    "runArgs": [
-        "-p",
-        "127.0.0.1::6969"
-    ],
-    
-
-    "mounts": [
-        "source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached",
-        // mount host user home directories for agents:
-        // "source=${localEnv:HOME}/.claude,target=/home/node/.claude,type=bind,consistency=cached",
-        // "source=${localEnv:HOME}/.gemini,target=/home/node/.claude,type=bind,consistency=cached",
-        // "source=${localEnv:HOME}/.codex,target=/home/node/.codex,type=bind,consistency=cached"
-    ],
-    // Initialize access to 1Password CLI in the container
-	// "initializeCommand": "echo OP_SERVICE_ACCOUNT_TOKEN=$(op read 'op://Private/1Password op CLI Service Account for DevContainers/password') > .env.development",
-	// "runArgs": [
-	// 	"--env-file",
-	// 	"${localWorkspaceFolder}/.env.development"
-	// ],
-    // --
-    "postCreateCommand": {
-        "pnpm-install": "[ -f package.json ] && npm install || true",
-        "post-create": "bash .devcontainer/post-create.sh"
-    },
-    "postStartCommand": {
-        // "rm-env-file": "if [ -n './.env.development' ]; then rm -f './.env.development'; fi;",
-        "start-dev": "[ -f package.json ] && npm run dev || true"
-    },
-    "remoteUser": "node",
-    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-    "containerEnv": {
-        "NODE_ENV": "development",
-        "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}",
-        "SNYK_TOKEN": "${localEnv:SNYK_TOKEN}"
+    "ghcr.io/devcontainer-community/devcontainer-features/astral.sh-uv:1": {
+      "shellautocompletion": true
     }
+  },
+
+  // Ask the editor to forward the container port.
+  // Do NOT publish it with Docker appPort.
+  "forwardPorts": [6969],
+
+  "portsAttributes": {
+    "6969": {
+      "label": "Web dev server",
+      "protocol": "http",
+      "onAutoForward": "notify",
+      "requireLocalPort": false
+    }
+  },
+
+  "otherPortsAttributes": {
+    "onAutoForward": "notify",
+    "requireLocalPort": false
+  },
+
+  // once up, you can discover the locally forwarded port with:
+  // docker port <container-name-or-id> 6969/tcp
+  // or
+  // docker ps --format "{{.Names}}\t{{.Ports}}" | grep 6969
+  "runArgs": ["-p", "127.0.0.1::6969"],
+
+  "mounts": [
+    "source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached"
+    // mount host user home directories for agents:
+    // "source=${localEnv:HOME}/.claude,target=/home/node/.claude,type=bind,consistency=cached",
+    // "source=${localEnv:HOME}/.gemini,target=/home/node/.claude,type=bind,consistency=cached",
+    // "source=${localEnv:HOME}/.codex,target=/home/node/.codex,type=bind,consistency=cached"
+  ],
+  // Initialize access to 1Password CLI in the container
+  // "initializeCommand": "echo OP_SERVICE_ACCOUNT_TOKEN=$(op read 'op://Private/1Password op CLI Service Account for DevContainers/password') > .env.development",
+  // "runArgs": [
+  // 	"--env-file",
+  // 	"${localWorkspaceFolder}/.env.development"
+  // ],
+  // --
+  "postCreateCommand": {
+    "pnpm-install": "[ -f package.json ] && npm install || true",
+    "post-create": "bash .devcontainer/post-create.sh"
+  },
+  "postStartCommand": {
+    // "rm-env-file": "if [ -n './.env.development' ]; then rm -f './.env.development'; fi;",
+    "start-dev": "[ -f package.json ] && npm run dev || true"
+  },
+  "remoteUser": "node",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "containerEnv": {
+    "NODE_ENV": "development",
+    "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}",
+    "SNYK_TOKEN": "${localEnv:SNYK_TOKEN}"
+  }
 }

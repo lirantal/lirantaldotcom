@@ -765,7 +765,9 @@ function buildPresetLayers(uid, width, height, preset) {
 	}
 
 	if (preset.band) {
-		const pts = preset.band.points.map(([fx, fy]) => `${(fx * width).toFixed(2)},${(fy * height).toFixed(2)}`).join(' ');
+		const pts = preset.band.points
+			.map(([fx, fy]) => `${(fx * width).toFixed(2)},${(fy * height).toFixed(2)}`)
+			.join(' ');
 		bodyParts.push(`<polygon points="${pts}" fill="${preset.band.fill}" opacity="${preset.band.opacity}"/>`);
 	}
 

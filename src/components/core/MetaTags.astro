@@ -1,8 +1,7 @@
 ---
 import { AstroSeo } from '@astrolib/seo';
 import { GoogleAnalytics } from '@astrolib/analytics';
-import { getImage } from '@astrojs/image';
-import { getRelativeUrlByFilePath } from '~/utils/directories';
+import { getImage } from 'astro:assets';
 
 import defaultImageSrc from '~/assets/images/default.png';
 
@@ -11,7 +10,7 @@ import Fonts from '../atoms/Fonts.astro';
 import ExtraMetaTags from '../atoms/ExtraMetaTags.astro';
 import VercelAnalytics from './VercelAnalytics.astro';
 
-const { src: defaultImage } = await getImage({
+const defaultOg = await getImage({
 	src: defaultImageSrc,
 	width: 1200,
 	height: 628,
@@ -20,7 +19,7 @@ const { src: defaultImage } = await getImage({
 const {
 	title = SITE.name,
 	description = '',
-	image: _image = defaultImage,
+	image: _image = defaultOg,
 
 	canonical,
 	noindex = false,
@@ -30,12 +29,20 @@ const {
 	ogType = 'website',
 } = Astro.props;
 
-const image =
-	typeof _image === 'string'
-		? new URL(_image, Astro.site)
-		: _image && typeof _image['src'] !== 'undefined'
-		? new URL(getRelativeUrlByFilePath(_image.src), Astro.site)
-		: null;
+function resolveOgImageUrl(img, site) {
+	if (!img) return null;
+	if (typeof img === 'string') {
+		return new URL(img, site);
+	}
+	const raw = typeof img === 'object' && img && 'src' in img ? String(img.src) : null;
+	if (!raw) return null;
+	if (raw.startsWith('http://') || raw.startsWith('https://')) {
+		return new URL(raw);
+	}
+	return new URL(raw, site);
+}
+
+const image = resolveOgImageUrl(_image, Astro.site);
 ---
 
 <meta charset="UTF-8" />
@@ -59,23 +66,20 @@ const image =
 						url: image.toString(),
 						alt: ogTitle,
 					},
-			  ]
+				]
 			: undefined,
 		site_name: 'Liran Tal',
 	}}
 	twitter={{
 		handle: '@liran_tal',
-		// site: '@site',
 		cardType: image ? 'summary_large_image' : undefined,
 	}}
 />
 
 <Fonts />
 
-<!-- Google Site Verification -->
 {SITE.googleSiteVerificationId && <meta name="google-site-verification" content={SITE.googleSiteVerificationId} />}
 
-<!-- Google Analytics -->
 {SITE.googleAnalyticsId && <GoogleAnalytics id={String(SITE.googleAnalyticsId)} partytown={true} />}
 
 <VercelAnalytics />

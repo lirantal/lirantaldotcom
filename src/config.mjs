@@ -88,9 +88,9 @@ export const FOOTER = {
 					link: 'https://lirantal.com/games/chatgpt-security-models-ui',
 				},
 				{
-					title: "ChatGPT Chat Meme Generator",
-					link: "https://lirantal.com/games/chatgpt-chat-meme-generator",
-				}
+					title: 'ChatGPT Chat Meme Generator',
+					link: 'https://lirantal.com/games/chatgpt-chat-meme-generator',
+				},
 			],
 		},
 	],

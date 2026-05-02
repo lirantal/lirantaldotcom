@@ -1,9 +1,9 @@
-import { SITE, BLOG } from '~/config.mjs';
 import rss from '@astrojs/rss';
+import { SITE, BLOG } from '~/config.mjs';
 import { fetchPosts } from '~/utils/posts';
 import { getPermalink } from '~/utils/permalinks';
 
-export const get = async () => {
+export async function GET(context) {
 	if (BLOG.disabled) {
 		return new Response(null, {
 			status: 404,
@@ -13,23 +13,22 @@ export const get = async () => {
 
 	const posts = await fetchPosts();
 
-	const items = [];
-	for (const [index, post] of posts.entries()) {
-		const content = await post.Content();
-		items.push({
-			link: getPermalink(post.slug, 'post'),
-			title: post.title,
-			description: post.description,
-			pubDate: post.pubDate,
-			content: String(content.props.children),
-		});
-	}
+	const toPubDate = (d) => {
+		if (!d) return undefined;
+		const date = d instanceof Date ? d : new Date(d);
+		return Number.isNaN(date.getTime()) ? undefined : date;
+	};
 
 	return rss({
 		title: `${SITE.name}'s Blog`,
 		description: SITE.description,
-		site: import.meta.env.SITE,
+		site: context.site ?? SITE.origin,
 		trailingSlash: false,
-		items,
+		items: posts.map((post) => ({
+			link: getPermalink(post.slug, 'post'),
+			title: post.title,
+			description: post.description,
+			pubDate: toPubDate(post.pubDate),
+		})),
 	});
-};
+}
