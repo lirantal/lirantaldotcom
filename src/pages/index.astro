@@ -1,7 +1,4 @@
 ---
-/** Vercel + `middlewareMode: 'edge'`: edge middleware does not run for prerendered pages; keep `/` on-demand so `Accept: text/markdown` negotiation in `src/middleware.ts` applies (withastro/astro#10536). */
-export const prerender = false;
-
 import { SITE } from '~/config.mjs';
 import { getCanonical, getHomePermalink } from '~/utils/permalinks';
 import Layout from '~/layouts/PageLayout.astro';

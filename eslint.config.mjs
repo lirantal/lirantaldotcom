@@ -11,7 +11,7 @@ export default tseslint.config(
 		ignores: ['dist/**', 'node_modules/**', '.astro/**', 'public/**', '.github/**'],
 	},
 	{
-		files: ['**/*.js', '**/*.mjs', 'middleware.ts'],
+		files: ['**/*.js', '**/*.mjs'],
 		languageOptions: {
 			globals: {
 				...globals.node,
