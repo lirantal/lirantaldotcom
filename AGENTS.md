@@ -10,7 +10,7 @@ Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Pro
 
 | Area | Choice |
 |------|--------|
-| Framework | Astro 6, Vite 7, `output: 'static'`, `trailingSlash: 'never'` |
+| Framework | Astro 6, Vite 7, `output: 'hybrid'` (pages prerender by default; see **`_vercel_ssr_build_flag.txt.ts`**), `trailingSlash: 'never'` |
 | Styling | Tailwind 3, `@tailwindcss/typography`, Flowbite 2 |
 | Content | Markdown/MDX under `data/blog/` |
 | Images (build pipeline) | Built-in **`astro:assets`** (Sharp via `image.service` in `astro.config.mjs`), `Picture.astro` wrapper |
@@ -146,7 +146,7 @@ Normative references: [RFC 8288](https://www.rfc-editor.org/rfc/rfc8288) (Web Li
 | **`public/.well-known/site-for-agents.json`** | **`describedby`** target: short JSON with site name, RSS, sitemap, repo, and pointers to this file and the catalog. |
 | **`public/docs/agents.md`** | **`service-doc`** target: human-readable stub that points agents at **this `AGENTS.md`** in the repo. |
 | **`public/robots.txt`** | **`robots.txt`**: **`Allow`**, **`Sitemap`**, and **`Content-Signal`** under **`User-agent: *`** for crawler and AI-usage preferences. |
-| **`src/middleware.ts`** + **`@astrojs/vercel`** | **Astro middleware on the Vercel Edge** (`adapter: vercel({ middlewareMode: 'edge' })` in **`astro.config.mjs`**): static HTML alone does not ship root **`middleware.ts`** to the edge; this setup runs **`onRequest`** on each request (including **`/`**). If **`Accept`** negotiates **`text/markdown`**, performs an internal HTML **`GET`** (**`cache: 'no-store'`**) with an HTML-only **`Accept`**, converts with **[Turndown](https://github.com/mixmark-io/turndown)** (browser build), returns **`text/markdown`**, **`Vary: Accept`**, **`Cache-Control` / `CDN-Cache-Control: private`**, **`x-markdown-tokens`**, optional YAML **`title`** from **`<title>`**. Skips **`/_astro/`**, **`/_vercel/`**, **`/pagefind/`**, **`favicon.ico`**, **`robots.txt`**, and common static **extensions**. Depends on **`turndown`** (**`package.json`**). |
+| **`src/middleware.ts`** + **`@astrojs/vercel`** | **Astro middleware on the Vercel Edge** (`adapter: vercel({ middlewareMode: 'edge' })`, **`output: 'hybrid'`** in **`astro.config.mjs`**): the adapter only bundles edge middleware when the build is **server**-output; **`output: 'static'`** skips that step entirely. **`src/pages/_vercel_ssr_build_flag.txt.ts`** sets **`export const prerender = false`** so the build flips to server output while **every other route stays prerendered** by default. **`onRequest`** then runs on each request (including **`/`**). If **`Accept`** negotiates **`text/markdown`**, performs an internal HTML **`GET`** (**`cache: 'no-store'`**) with an HTML-only **`Accept`**, converts with **[Turndown](https://github.com/mixmark-io/turndown)** (browser build), returns **`text/markdown`**, **`Vary: Accept`**, **`Cache-Control` / `CDN-Cache-Control: private`**, **`x-markdown-tokens`**, optional YAML **`title`** from **`<title>`**. Skips **`/_astro/`**, **`/_vercel/`**, **`/pagefind/`**, **`favicon.ico`**, **`robots.txt`**, and common static **extensions**. Depends on **`turndown`** (**`package.json`**). |
 
 The **`Link`** header currently advertises: **`api-catalog`** → `/.well-known/api-catalog`, **`describedby`** → `/.well-known/site-for-agents.json`, **`service-desc`** → `/rss.xml`, **`service-doc`** → `/docs/agents.md`.
 

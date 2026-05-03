@@ -23,7 +23,10 @@ export default defineConfig({
 	server: {
 		port: 3001,
 	},
-	output: 'static',
+	// Hybrid + one `prerender: false` route forces server build output so @astrojs/vercel
+	// emits edge middleware (`buildMiddlewareFolder` only runs when buildOutput === "server").
+	// All other routes stay prerendered by default.
+	output: 'hybrid',
 	adapter: vercel({ middlewareMode: 'edge' }),
 	trailingSlash: 'never',
 	integrations: [
