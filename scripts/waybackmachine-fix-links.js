@@ -19,7 +19,7 @@ const path = require('path');
 const rootDir = path.join(process.cwd(), process.argv[2]);
 
 function replaceUrl(input) {
-	const regex = /https:\/\/web\.archive\.org\/web\/\d+\/(https?:\/\/.+?)[\)\s\]]/gi;
+	const regex = /https:\/\/web\.archive\.org\/web\/\d+\/(https?:\/\/.+?)[)\s\]]/gi;
 	const output = input.replaceAll(regex, '$1');
 	return output;
 }

@@ -8,7 +8,14 @@ export default tseslint.config(
 	...tseslint.configs.recommended,
 	...eslintPluginAstro.configs.recommended,
 	{
-		ignores: ['dist/**', 'node_modules/**', '.astro/**', 'public/**', '.github/**'],
+		ignores: [
+			'dist/**',
+			'node_modules/**',
+			'.astro/**',
+			'.vercel/**',
+			'public/**',
+			'.github/**',
+		],
 	},
 	{
 		files: ['**/*.js', '**/*.mjs'],
@@ -17,5 +24,25 @@ export default tseslint.config(
 				...globals.node,
 			},
 		},
-	}
+	},
+	/* CommonJS: require() + Node globals for .cjs (e.g. tailwind.config.cjs). */
+	{
+		files: ['**/*.cjs'],
+		languageOptions: {
+			globals: {
+				...globals.node,
+			},
+			sourceType: 'commonjs',
+		},
+		rules: {
+			'@typescript-eslint/no-require-imports': 'off',
+		},
+	},
+	/* Ad-hoc Node scripts stay on require(). */
+	{
+		files: ['scripts/**/*.js'],
+		rules: {
+			'@typescript-eslint/no-require-imports': 'off',
+		},
+	},
 );

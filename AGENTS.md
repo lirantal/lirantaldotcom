@@ -20,8 +20,9 @@ Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Pro
 | Icons | `astro-icon` v1 + Iconify (`@iconify-json/*`); import `{ Icon } from 'astro-icon/components'` |
 | MDX embeds | `astro-embed` integration in `astro.config.mjs` (`embed()` before `mdx()`) |
 | Aliases | `~` → `src/` (see `astro.config.mjs` → `vite.resolve.alias`) |
+| TypeScript / lint | **TypeScript 6**, **ESLint 10** flat config (`eslint.config.mjs`; ignores `dist/`, `.vercel/`, `.astro/`, etc.) |
 
-**Commands:** `npm run dev` (dev server **port 3001**), `npm run build`, `npm run preview`. Format: `npm run format`. Lint: `npm run lint:eslint` (**ESLint 9** flat config: `eslint.config.mjs`).
+**Commands:** `npm run dev` (dev server **port 3001**), `npm run build`, `npm run postbuild` (Pagefind), `npm run preview`. Format: `npm run format`. Lint: `npm run lint` (same as `npm run lint:eslint`).
 
 **npm:** `.npmrc` sets `legacy-peer-deps=true` because `@astrojs/tailwind@6` peer range does not yet list Astro 6; installs are still valid. Prefer Node 24 locally (devcontainer image is `typescript-node:24`).
 
