@@ -68,6 +68,8 @@ function buildMarkdownResponse(
 	const headers = new Headers();
 	headers.set('Content-Type', 'text/markdown; charset=utf-8');
 	headers.set('Vary', 'Accept');
+	headers.set('Cache-Control', 'private, max-age=0, must-revalidate');
+	headers.set('CDN-Cache-Control', 'private');
 	headers.set('x-markdown-tokens', String(init.tokenEstimate));
 	const byteLength = new TextEncoder().encode(init.markdown).byteLength;
 	headers.set('Content-Length', String(byteLength));
@@ -78,8 +80,11 @@ function buildMarkdownResponse(
 	});
 }
 
+// Include `'/'` explicitly: patterns like `/((?!…).*)` often do not match the bare
+// homepage on Vercel/Next-style matchers, which breaks Markdown negotiation audits.
 export const config = {
 	matcher: [
+		'/',
 		'/((?!_astro/|favicon\\.ico|robots\\.txt|.*\\.(?:ico|png|jpg|jpeg|gif|webp|avif|svg|css|js|mjs|map|woff2?|ttf|eot|json|xml|txt|pdf|webmanifest)$).*)',
 	],
 };
@@ -102,6 +107,7 @@ export default async function middleware(request: Request): Promise<Response> {
 		method: 'GET',
 		headers: internalHeaders,
 		redirect: 'follow',
+		cache: 'no-store',
 	});
 
 	const htmlRes = await fetch(htmlRequest);
