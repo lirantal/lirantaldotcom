@@ -25,7 +25,7 @@ export default defineConfig({
 	},
 	// `output: "hybrid"` was removed in Astro 6; `static` is the default and supports the same
 	// mix of prerendered pages + on-demand routes. One `prerender: false` route forces server
-	// build output so @astrojs/vercel emits edge middleware (see `_vercel_ssr_build_flag.txt.ts`).
+	// build output so @astrojs/vercel emits edge middleware (see `vercel-ssr-build-flag.txt.ts`).
 	output: 'static',
 	adapter: vercel({ middlewareMode: 'edge' }),
 	trailingSlash: 'never',
