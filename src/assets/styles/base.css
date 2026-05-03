@@ -1,6 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import 'flowbite/src/themes/default';
+
+@config '../../../tailwind.config.mjs';
+
+@plugin '@tailwindcss/typography';
+@plugin 'flowbite/plugin';
+@source '../../../node_modules/flowbite';
+
+@variant dark (&:where(.dark, .dark *));
 
 @layer components {
 	.btn {

@@ -2,7 +2,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import partytown from '@astrojs/partytown';
 import { SITE } from './src/config.mjs';
@@ -27,11 +27,6 @@ export default defineConfig({
 	adapter: vercel(),
 	trailingSlash: 'never',
 	integrations: [
-		tailwind({
-			config: {
-				applyBaseStyles: false,
-			},
-		}),
 		sitemap({
 			changefreq: 'daily',
 			lastmod: new Date(),
@@ -47,6 +42,7 @@ export default defineConfig({
 		icon(),
 	],
 	vite: {
+		plugins: [tailwindcss()],
 		resolve: {
 			alias: {
 				'~': path.resolve(__dirname, './src'),
