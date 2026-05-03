@@ -11,7 +11,7 @@ Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Pro
 | Area | Choice |
 |------|--------|
 | Framework | Astro 6, Vite 7, `output: 'static'`, **`@astrojs/vercel`** (default adapter; no `middlewareMode: 'edge'`), `trailingSlash: 'never'` (**`_` prefix segments under `pages/` are not public routes**) |
-| Styling | Tailwind 3, `@tailwindcss/typography`, Flowbite 2 |
+| Styling | **Tailwind CSS 4** via **`@tailwindcss/vite`** in `astro.config.mjs` (no `@astrojs/tailwind`), **`@tailwindcss/typography`**, **Flowbite 4** (`@import "flowbite/src/themes/default"`, `@plugin "flowbite/plugin"`, `@source` in `src/assets/styles/base.css`) |
 | Content | Markdown/MDX under `data/blog/` |
 | Images (build pipeline) | Built-in **`astro:assets`** (Sharp via `image.service` in `astro.config.mjs`), `Picture.astro` wrapper |
 | Search | Pagefind (`npm run postbuild`: **`dist/client/`** when the build is server-like, else **`dist/`**) |
@@ -24,7 +24,9 @@ Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Pro
 
 **Commands:** `npm run dev` (dev server **port 3001**), `npm run build`, `npm run postbuild` (Pagefind), `npm run preview`. Format: `npm run format`. Lint: `npm run lint` (same as `npm run lint:eslint`).
 
-**npm:** `.npmrc` sets `legacy-peer-deps=true` because `@astrojs/tailwind@6` peer range does not yet list Astro 6; installs are still valid. Prefer Node 24 locally (devcontainer image is `typescript-node:24`).
+**npm:** `.npmrc` sets `legacy-peer-deps=true` because **`@astrolib/analytics`** peer range does not yet list Astro 6; installs are still valid. Prefer Node 24 locally (devcontainer image is `typescript-node:24`).
+
+**Tailwind theme:** `tailwind.config.mjs` at repo root extends `primary` / `secondary` palettes, Inter `fontFamily`, and prose `typography()` tweaks. Global entry CSS is **`src/assets/styles/base.css`** (imported from `BaseLayout.astro`).
 
 ## Global configuration
 
