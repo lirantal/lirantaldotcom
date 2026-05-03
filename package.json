@@ -7,13 +7,13 @@
     "dev": "astro dev --port 3001",
     "start": "astro build && npm run postbuild && astro preview",
     "build": "astro build",
-    "postbuild": "pagefind --site dist/client/",
+    "postbuild": "if [ -d dist/client ]; then pagefind --site dist/client/; else pagefind --site dist/; fi",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier -w .",
     "lint:eslint": "eslint .",
     "blog:cover": "node scripts/generate-blog-cover.js",
-    "subfont": "subfont -ir --no-fallbacks --silent --root dist/client"
+    "subfont": "if [ -d dist/client ]; then subfont -ir --no-fallbacks --silent --root dist/client; else subfont -ir --no-fallbacks --silent --root dist; fi"
   },
   "devDependencies": {
     "@astrojs/mdx": "^5.0.4",

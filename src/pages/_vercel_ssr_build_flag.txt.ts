@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-/** Not user-facing: exists so the Vercel adapter emits edge middleware (see astro.config.mjs). */
+/** Not user-facing: `prerender: false` forces server build output so @astrojs/vercel bundles edge middleware (see astro.config.mjs). */
 export const prerender = false;
 
 export const GET: APIRoute = () =>
