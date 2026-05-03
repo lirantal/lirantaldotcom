@@ -1,6 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { defineConfig } from 'astro/config';
+import vercel from '@astrojs/vercel';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import partytown from '@astrojs/partytown';
@@ -23,6 +24,7 @@ export default defineConfig({
 		port: 3001,
 	},
 	output: 'static',
+	adapter: vercel({ middlewareMode: 'edge' }),
 	trailingSlash: 'never',
 	integrations: [
 		tailwind({

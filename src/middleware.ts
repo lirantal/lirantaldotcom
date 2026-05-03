@@ -1,4 +1,4 @@
-import { next } from '@vercel/functions';
+import { defineMiddleware } from 'astro:middleware';
 // Browser build avoids Node-only @mixmark-io/domino (required for Vercel Edge).
 import TurndownService from 'turndown/lib/turndown.browser.es.js';
 
@@ -33,9 +33,6 @@ function parseAcceptTypes(accept: string | null): Map<string, number> {
 	return weights;
 }
 
-/**
- * True when the client negotiates markdown and does not prefer HTML more strongly.
- */
 function prefersMarkdown(accept: string | null): boolean {
 	const w = parseAcceptTypes(accept);
 	const mdQ = w.get('text/markdown');
@@ -55,7 +52,6 @@ function yamlTitleBlock(title: string): string {
 	return `---\ntitle: ${JSON.stringify(title)}\n---\n\n`;
 }
 
-/** Rough token estimate for x-markdown-tokens (chars / 4, min 1 when non-empty). */
 function estimateMarkdownTokens(markdown: string): number {
 	if (!markdown) return 0;
 	return Math.max(1, Math.ceil(markdown.length / 4));
@@ -63,7 +59,7 @@ function estimateMarkdownTokens(markdown: string): number {
 
 function buildMarkdownResponse(
 	init: { status: number; statusText?: string; markdown: string; tokenEstimate: number },
-	isHead: boolean
+	isHead: boolean,
 ): Response {
 	const headers = new Headers();
 	headers.set('Content-Type', 'text/markdown; charset=utf-8');
@@ -80,37 +76,44 @@ function buildMarkdownResponse(
 	});
 }
 
-// Include `'/'` explicitly: patterns like `/((?!…).*)` often do not match the bare
-// homepage on Vercel/Next-style matchers, which breaks Markdown negotiation audits.
-export const config = {
-	matcher: [
-		'/',
-		'/((?!_astro/|favicon\\.ico|robots\\.txt|.*\\.(?:ico|png|jpg|jpeg|gif|webp|avif|svg|css|js|mjs|map|woff2?|ttf|eot|json|xml|txt|pdf|webmanifest)$).*)',
-	],
-};
+/** Skip negotiation for hashed bundles, search UI, images, etc. */
+function shouldSkipPath(pathname: string): boolean {
+	if (pathname.startsWith('/_astro/')) return true;
+	if (pathname.startsWith('/_vercel/')) return true;
+	if (pathname.startsWith('/pagefind/')) return true;
+	if (pathname === '/favicon.ico' || pathname === '/robots.txt') return true;
+	return /\.(?:ico|png|jpg|jpeg|gif|webp|avif|svg|css|js|mjs|map|woff2?|ttf|eot|json|xml|txt|pdf|webmanifest)$/i.test(
+		pathname,
+	);
+}
 
-export default async function middleware(request: Request): Promise<Response> {
+export const onRequest = defineMiddleware(async (context, next) => {
+	const request = context.request;
+	const url = new URL(request.url);
+
+	if (shouldSkipPath(url.pathname)) {
+		return next();
+	}
+
 	const method = request.method;
 	if (method !== 'GET' && method !== 'HEAD') {
-		return next({ headers: { Vary: 'Accept' } });
+		return next();
 	}
 
 	if (!prefersMarkdown(request.headers.get('accept'))) {
-		return next({ headers: { Vary: 'Accept' } });
+		return next();
 	}
 
-	const url = request.url;
 	const internalHeaders = new Headers(request.headers);
 	internalHeaders.set('accept', 'text/html,application/xhtml+xml;q=0.9,*/*;q=0.8');
 
-	const htmlRequest = new Request(url, {
+	const htmlRes = await fetch(request.url, {
 		method: 'GET',
 		headers: internalHeaders,
 		redirect: 'follow',
 		cache: 'no-store',
 	});
 
-	const htmlRes = await fetch(htmlRequest);
 	if (!htmlRes.ok) {
 		return htmlRes;
 	}
@@ -122,7 +125,7 @@ export default async function middleware(request: Request): Promise<Response> {
 
 	const htmlText = await htmlRes.text();
 	if (htmlText.length > MAX_HTML_BYTES) {
-		return next({ headers: { Vary: 'Accept' } });
+		return next();
 	}
 
 	let markdown: string;
@@ -131,7 +134,7 @@ export default async function middleware(request: Request): Promise<Response> {
 		const title = extractTitle(htmlText);
 		markdown = title ? `${yamlTitleBlock(title)}${core}` : core;
 	} catch {
-		return next({ headers: { Vary: 'Accept' } });
+		return next();
 	}
 
 	const tokens = estimateMarkdownTokens(markdown);
@@ -142,6 +145,6 @@ export default async function middleware(request: Request): Promise<Response> {
 			markdown,
 			tokenEstimate: tokens,
 		},
-		method === 'HEAD'
+		method === 'HEAD',
 	);
-}
+});
