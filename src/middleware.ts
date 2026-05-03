@@ -135,7 +135,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
 		const title = extractTitle(htmlText);
 		markdown = title ? `${yamlTitleBlock(title)}${core}` : core;
 	} catch {
-		return next();
+		const title = extractTitle(htmlText);
+		markdown = title
+			? `${yamlTitleBlock(title)}_(HTML could not be converted to Markdown on this edge runtime.)_\n`
+			: '_HTML could not be converted to Markdown on this edge runtime._\n';
 	}
 
 	const tokens = estimateMarkdownTokens(markdown);
