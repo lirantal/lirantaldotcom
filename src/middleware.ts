@@ -82,6 +82,7 @@ function shouldSkipPath(pathname: string): boolean {
 	if (pathname.startsWith('/_vercel/')) return true;
 	if (pathname.startsWith('/pagefind/')) return true;
 	if (pathname === '/favicon.ico' || pathname === '/robots.txt') return true;
+	if (pathname === '/api/vercel-ssr-build-flag') return true;
 	return /\.(?:ico|png|jpg|jpeg|gif|webp|avif|svg|css|js|mjs|map|woff2?|ttf|eot|json|xml|txt|pdf|webmanifest)$/i.test(
 		pathname,
 	);
