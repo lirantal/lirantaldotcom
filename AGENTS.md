@@ -11,7 +11,7 @@ Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Pro
 | Area | Choice |
 |------|--------|
 | Framework | Astro 6, Vite 7, `output: 'static'`, **`@astrojs/vercel`** (default adapter; no `middlewareMode: 'edge'`), `trailingSlash: 'never'` (**`_` prefix segments under `pages/` are not public routes**) |
-| Styling | **Tailwind CSS 4** via **`@tailwindcss/vite`** in `astro.config.mjs` (no `@astrojs/tailwind`), **`@tailwindcss/typography`**, **Flowbite 4** (`@import "flowbite/src/themes/default"`, `@plugin "flowbite/plugin"`, `@source` in `src/assets/styles/base.css`) |
+| Styling | **Tailwind CSS 4** via **`@tailwindcss/vite`** in `astro.config.mjs` (no `@astrojs/tailwind`); **`@config`** in `base.css` loads **`tailwind.config.mjs`** (theme colors, fonts, typography overrides); **`@tailwindcss/typography`** and **Flowbite 4** loaded via `@plugin` directives (`@import "flowbite/src/themes/default"`, `@plugin "flowbite/plugin"`, `@source` in `src/assets/styles/base.css`) |
 | Content | Markdown/MDX under `data/blog/` |
 | Images (build pipeline) | Built-in **`astro:assets`** (Sharp via `image.service` in `astro.config.mjs`), `Picture.astro` wrapper |
 | Search | Pagefind (`npm run postbuild`: **`dist/client/`** when the build is server-like, else **`dist/`**) |
