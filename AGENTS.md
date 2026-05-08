@@ -75,6 +75,8 @@ Use a published post such as `data/blog/2025-10-15.md` as a template. Commonly:
 | **Cover / OG / list / hero** on post (frontmatter `image`) | **`src/assets/images/blog/`** | `image: ~/assets/images/blog/your-file.jpg` (must start with `~/assets` — required by **`src/utils/images.js`** → `findImage()`) |
 | **Inline markdown** (body screenshots, diagrams) | **`public/images/blog/`** | `![alt](/images/blog/your-file.png)` |
 
+**Large raster files:** run **`npm run blog:compress-images`** (Sharp: JPEG/PNG/WebP/GIF, resize + quality; tune with env vars in **`scripts/compress-large-blog-images.mjs`**). Ahrefs CSV exports are often **UTF-16**; pass the path as the first argument to only process **`/images/blog/*`** URLs from the file (sources under **`public/images/blog/`**). **`/_astro/*`** image URLs in reports are **built** assets from **`src/assets/images/blog/`**—compress sources, then **`npm run build`** so new hashed files deploy.
+
 Remote URLs in frontmatter `image` are supported if they start with `http://` or `https://`.
 
 **Homepage “From the blog” cards:** `src/components/blog/HighlightedPosts.astro` lists explicit **`slug`s**; update that file if you want different featured posts.
