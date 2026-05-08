@@ -5,20 +5,20 @@
   "private": true,
   "scripts": {
     "dev": "astro dev --port 3001",
-    "start": "astro build && npm run postbuild && astro preview",
-    "build": "astro build",
-    "postbuild": "if [ -d dist/client ]; then pagefind --site dist/client/; else pagefind --site dist/; fi",
+    "start": "npm run build && astro preview",
+    "build": "astro build && sh scripts/postbuild.sh",
+    "postbuild": "sh scripts/postbuild.sh",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier -w .",
     "lint": "eslint .",
     "lint:eslint": "eslint .",
     "blog:cover": "node scripts/generate-blog-cover.js",
+    "blog:compress-images": "node scripts/compress-large-blog-images.mjs",
     "subfont": "if [ -d dist/client ]; then subfont -ir --no-fallbacks --silent --root dist/client; else subfont -ir --no-fallbacks --silent --root dist; fi"
   },
   "devDependencies": {
     "@astrojs/mdx": "^5.0.4",
-    "@astrojs/partytown": "^2.1.7",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
     "@astrojs/vercel": "^10.0.6",
@@ -44,7 +44,6 @@
     "globals": "^17.6.0",
     "limax": "^4.2.3",
     "mdast-util-to-string": "^4.0.0",
-    "pagefind": "^1.5.2",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "reading-time": "^1.5.0",
@@ -62,6 +61,7 @@
     "@astrojs/solid-js": "^6.0.1",
     "@vercel/analytics": "^2.0.1",
     "mermaid": "^11.14.0",
-    "solid-js": "^1.9.10"
+    "solid-js": "^1.9.10",
+    "pagefind": "^1.5.2"
   }
 }

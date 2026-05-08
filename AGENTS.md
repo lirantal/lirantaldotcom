@@ -14,15 +14,15 @@ Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Pro
 | Styling | **Tailwind CSS 4** via **`@tailwindcss/vite`** in `astro.config.mjs` (no `@astrojs/tailwind`); **`@config`** in `base.css` loads **`tailwind.config.mjs`** (theme colors, fonts, typography overrides); **`@tailwindcss/typography`** and **Flowbite 4** loaded via `@plugin` directives (`@import "flowbite/src/themes/default"`, `@plugin "flowbite/plugin"`, `@source` in `src/assets/styles/base.css`) |
 | Content | Markdown/MDX under `data/blog/` |
 | Images (build pipeline) | Built-in **`astro:assets`** (Sharp via `image.service` in `astro.config.mjs`), `Picture.astro` wrapper |
-| Search | Pagefind (`npm run postbuild`: **`dist/client/`** when the build is server-like, else **`dist/`**) |
+| Search | Pagefind: **`npm run build`** runs **`scripts/postbuild.sh`**, which indexes **`dist/client/`** or **`dist/`** then copies **`pagefind/`** into **`.vercel/output/static/`** when that folder exists (the Vercel adapter copies **`dist/`** before Pagefind runs, so this sync is required for live **`/pagefind/*`**). |
 | Optional islands | Solid (`@astrojs/solid-js`), e.g. recognitions changelog |
-| Analytics | Vercel Analytics (`@vercel/analytics/astro` in `VercelAnalytics.astro`) + GA via `@astrolib/analytics` in `MetaTags` |
+| Analytics | Vercel Analytics (`@vercel/analytics/astro` in `VercelAnalytics.astro`) + optional GA via `@astrolib/analytics` in `MetaTags` when `SITE.googleAnalyticsId` is set (**no** `@astrojs/partytown`: it injected `~partytown/` URLs that crawlers requested as pages and saw **404** for virtual `partytown-sandbox-sw` scopes). Re-add Partytown only if you enable GA and want worker offload. |
 | Icons | `astro-icon` v1 + Iconify (`@iconify-json/*`); import `{ Icon } from 'astro-icon/components'` |
 | MDX embeds | `astro-embed` integration in `astro.config.mjs` (`embed()` before `mdx()`) |
 | Aliases | `~` → `src/` (see `astro.config.mjs` → `vite.resolve.alias`) |
 | TypeScript / lint | **TypeScript 6**, **ESLint 10** flat config (`eslint.config.mjs`; ignores `dist/`, `.vercel/`, `.astro/`, etc.) |
 
-**Commands:** `npm run dev` (dev server **port 3001**), `npm run build`, `npm run postbuild` (Pagefind), `npm run preview`. Format: `npm run format`. Lint: `npm run lint` (same as `npm run lint:eslint`).
+**Commands:** `npm run dev` (dev server **port 3001**), `npm run build` (runs **`astro build`** then **`scripts/postbuild.sh`** in one step—do not use bare **`astro build`** for production), `npm run postbuild` (Pagefind only, after a standalone **`astro build`**), `npm run preview`. **`vercel.json`** sets **`buildCommand`** to **`npm run build`**. Format: `npm run format`. Lint: `npm run lint` (same as `npm run lint:eslint`).
 
 **npm:** `.npmrc` sets `legacy-peer-deps=true` because **`@astrolib/analytics`** peer range does not yet list Astro 6; installs are still valid. Prefer Node 24 locally (devcontainer image is `typescript-node:24`).
 
@@ -74,6 +74,8 @@ Use a published post such as `data/blog/2025-10-15.md` as a template. Commonly:
 |----------|------------------------|------------------|
 | **Cover / OG / list / hero** on post (frontmatter `image`) | **`src/assets/images/blog/`** | `image: ~/assets/images/blog/your-file.jpg` (must start with `~/assets` — required by **`src/utils/images.js`** → `findImage()`) |
 | **Inline markdown** (body screenshots, diagrams) | **`public/images/blog/`** | `![alt](/images/blog/your-file.png)` |
+
+**Large raster files:** run **`npm run blog:compress-images`** (Sharp: JPEG/PNG/WebP/GIF, resize + quality; tune with env vars in **`scripts/compress-large-blog-images.mjs`**). Ahrefs CSV exports are often **UTF-16**; pass the path as the first argument to only process **`/images/blog/*`** URLs from the file (sources under **`public/images/blog/`**). **`/_astro/*`** image URLs in reports are **built** assets from **`src/assets/images/blog/`**—compress sources, then **`npm run build`** so new hashed files deploy.
 
 Remote URLs in frontmatter `image` are supported if they start with `http://` or `https://`.
 
@@ -157,6 +159,7 @@ The **`Link`** header currently advertises: **`api-catalog`** → `/.well-known/
 - **After a Vercel deploy**, third-party scans (e.g. `POST https://isitagentready.com/api/scan` with `{"url":"https://lirantal.com"}`) should report **`checks.discoverability.linkHeaders`** as **pass** (homepage **`Link`** relations present), **`checks.discovery.apiCatalog`** as **pass** (catalog URL, content-type, and **`linkset`** structure), and **`checks.botAccessControl.contentSignals`** as **pass** (**`Content-Signal`** declares **`ai-train`**, **`search`**, and **`ai-input`** on **`robots.txt`**). **`checks.contentAccessibility.markdownNegotiation`** may **fail** or **warn**: Markdown negotiation is **not** implemented on this stack (see requirement bullet above).
 - **`GET /health.json`** in production should return **200** and **`application/json`** with a small JSON body suitable for liveness checks.
 - **Local dev** (`npm run dev`, `astro preview`) does **not** apply **`vercel.json`** headers; use **`vercel dev`** or production for an environment that matches deployed edge headers.
+- SEO crawlers may flag **broken JavaScript** and **broken CSS** on many pages for the same reason: **`/pagefind/pagefind-ui.js`** and **`/pagefind/pagefind-ui.css`** (from [BaseLayout.astro](src/layouts/BaseLayout.astro)) are emitted together by Pagefind into **`pagefind/`**; if either **404**s, the whole bundle is missing from the deploy output. **`www`** vs apex are duplicate reports for the same assets.
 - If **`SITE.origin`** in **`src/config.mjs`** ever changes, update **absolute `https://` URLs** inside **`public/.well-known/api-catalog`** (and any other hardcoded origin strings in **`site-for-agents.json`**) so anchors and `href` values stay aligned with production.
 
 ## Checklist: new blog post
@@ -165,7 +168,7 @@ The **`Link`** header currently advertises: **`api-catalog`** → `/.well-known/
 2. Fill frontmatter; set **`draft: false`** to publish.
 3. Add cover asset under **`src/assets/images/blog/`** and set **`image: ~/assets/images/blog/...`**.
 4. Add inline images to **`public/images/blog/`**; reference as **`/images/blog/filename.png`**.
-5. Run **`npm run build`** locally to confirm Pagefind (**`postbuild`** uses **`dist/client/`** or **`dist/`** automatically) and paths (optional: `npm run dev`).
+5. Run **`npm run build`** locally to confirm **`dist/.../pagefind/`** (and **`.vercel/output/static/pagefind/`** after a Vercel adapter build) and paths (optional: `npm run dev`).
 6. Optionally update **`HighlightedPosts.astro`** slugs for the homepage.
 
 ## Conventions for agents

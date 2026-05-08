@@ -1,4 +1,5 @@
 {
+  "buildCommand": "npm run build",
   "build": {
     "env": {
       "NODE_VERSION": "24.x"
@@ -6,6 +7,18 @@
   },
   "cleanUrls": true,
   "redirects": [
+    {
+      "source": "/",
+      "destination": "https://lirantal.com/books/nodejs-secure-coding",
+      "permanent": true,
+      "has": [{ "type": "host", "value": "nodejs-secure-coding.lirantal.com" }]
+    },
+    {
+      "source": "/checkout/:path*",
+      "destination": "https://lirantal.com/books/nodejs-secure-coding",
+      "permanent": true,
+      "has": [{ "type": "host", "value": "nodejs-secure-coding.lirantal.com" }]
+    },
     {
       "source": "/games-chatgpt-chat-meme-generator",
       "destination": "/games/chatgpt-chat-meme-generator",

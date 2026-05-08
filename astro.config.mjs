@@ -4,7 +4,6 @@ import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
-import partytown from '@astrojs/partytown';
 import { SITE } from './src/config.mjs';
 import mdx from '@astrojs/mdx';
 import solid from '@astrojs/solid-js';
@@ -30,11 +29,6 @@ export default defineConfig({
 		sitemap({
 			changefreq: 'daily',
 			lastmod: new Date(),
-		}),
-		partytown({
-			config: {
-				forward: ['dataLayer.push'],
-			},
 		}),
 		embed(),
 		mdx(),
