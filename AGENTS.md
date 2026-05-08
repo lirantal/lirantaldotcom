@@ -16,7 +16,7 @@ Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Pro
 | Images (build pipeline) | Built-in **`astro:assets`** (Sharp via `image.service` in `astro.config.mjs`), `Picture.astro` wrapper |
 | Search | Pagefind: **`npm run build`** runs **`scripts/postbuild.sh`**, which indexes **`dist/client/`** or **`dist/`** then copies **`pagefind/`** into **`.vercel/output/static/`** when that folder exists (the Vercel adapter copies **`dist/`** before Pagefind runs, so this sync is required for live **`/pagefind/*`**). |
 | Optional islands | Solid (`@astrojs/solid-js`), e.g. recognitions changelog |
-| Analytics | Vercel Analytics (`@vercel/analytics/astro` in `VercelAnalytics.astro`) + GA via `@astrolib/analytics` in `MetaTags` |
+| Analytics | Vercel Analytics (`@vercel/analytics/astro` in `VercelAnalytics.astro`) + optional GA via `@astrolib/analytics` in `MetaTags` when `SITE.googleAnalyticsId` is set (**no** `@astrojs/partytown`: it injected `~partytown/` URLs that crawlers requested as pages and saw **404** for virtual `partytown-sandbox-sw` scopes). Re-add Partytown only if you enable GA and want worker offload. |
 | Icons | `astro-icon` v1 + Iconify (`@iconify-json/*`); import `{ Icon } from 'astro-icon/components'` |
 | MDX embeds | `astro-embed` integration in `astro.config.mjs` (`embed()` before `mdx()`) |
 | Aliases | `~` → `src/` (see `astro.config.mjs` → `vite.resolve.alias`) |

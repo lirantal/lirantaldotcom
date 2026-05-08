@@ -80,7 +80,9 @@ const image = resolveOgImageUrl(_image, Astro.site);
 
 {SITE.googleSiteVerificationId && <meta name="google-site-verification" content={SITE.googleSiteVerificationId} />}
 
-{SITE.googleAnalyticsId && <GoogleAnalytics id={String(SITE.googleAnalyticsId)} partytown={true} />}
+{SITE.googleAnalyticsId && (
+		<GoogleAnalytics id={String(SITE.googleAnalyticsId)} partytown={false} />
+	)}
 
 <VercelAnalytics />
 
