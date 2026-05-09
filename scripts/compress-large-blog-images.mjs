@@ -26,9 +26,13 @@ const maxWidth = Number(process.env.MAX_WIDTH ?? 1920);
 const jpegQuality = Number(process.env.JPEG_QUALITY ?? 82);
 const webpQuality = Number(process.env.WEBP_QUALITY ?? 82);
 const gifMaxColors = Number(process.env.GIF_MAX_COLORS ?? 200);
+const gifDither = Number(process.env.GIF_DITHER ?? 1);
+const gifInterFrameMaxError = Number(process.env.GIF_INTERFRAME_MAX_ERROR ?? 6);
+const gifInterPaletteMaxError = Number(process.env.GIF_INTERPALETTE_MAX_ERROR ?? 3);
 
 const defaultRoots = [
 	path.join(repoRoot, 'src/assets/images/blog'),
+	path.join(repoRoot, 'src/assets/images'),
 	path.join(repoRoot, 'public/images/blog'),
 ];
 
@@ -108,8 +112,9 @@ async function compressRaster(file, st) {
 				colours: gifMaxColors,
 				effort: 10,
 				reuse: true,
-				dither: 1,
-				interFrameMaxError: 6,
+				dither: gifDither,
+				interFrameMaxError: gifInterFrameMaxError,
+				interPaletteMaxError: gifInterPaletteMaxError,
 			})
 			.toBuffer();
 	} else {
