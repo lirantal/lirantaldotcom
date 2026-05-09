@@ -1,11 +1,11 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { getCanonical } from '~/utils/permalinks';
 
 const meta = {
 	title: 'ChatGPT Chat Meme Generator',
 	description: 'Generate ChatGPT memes with ease using this fun and interactive meme generator.',
-	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+	canonical: getCanonical(Astro.url.pathname),
 };
 ---
 

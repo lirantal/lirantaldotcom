@@ -1,11 +1,11 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { getCanonical } from '~/utils/permalinks';
 
 const meta = {
 	title: 'ChatGPT Security Models UI',
 	description: 'ChatGPT with AI Security is so easy, just choose the right model version for your needs.',
-	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+	canonical: getCanonical(Astro.url.pathname),
 };
 ---
 
