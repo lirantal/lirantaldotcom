@@ -33,7 +33,7 @@ Say you’re building a music app and you want to validate song titles.
 We need to match words, numbers, and spaces.  
 So you give the regex a few tries and come up with the following:
 
-![](/images/blog/1__vWVy62j__IBc4uIk6Ai__xkw.png)
+![Regex101 showing a regular expression with “1 match, 20 steps” on a short test string.](/images/blog/1__vWVy62j__IBc4uIk6Ai__xkw.png)
 
 Maybe it’s not the perfect regex (**_hint_**: it isn’t).  
 But hey, it works.
@@ -42,20 +42,20 @@ I tested a few song titles and yeah, **ready to push to production, woohoo!** �
 
 Until a Britney Spears fan plays a joke on your app and enters the following song title as input:
 
-![](/images/blog/1__HNdzrGsLzrebjEEN5a5F0w.png)
+![Regex101 showing a regular expression flagged for “catastrophic backtracking” with a long test string.](/images/blog/1__HNdzrGsLzrebjEEN5a5F0w.png)
 
 **Catastrophic backtracking.**  
 Even if you have no clue what that is, sure sounds scary. And it’s in red too!
 
 Curious to see what it means when you have this little RegEx gem in your Node.js code?
 
-![](/images/blog/1__dgthVybmyyiYDKgNjXGTzA.gif)
+![Terminal running Node.js to time a regex test against a long input (slow execution / ReDoS).](/images/blog/1__dgthVybmyyiYDKgNjXGTzA.gif)
 
 A relatively small input string was able to block the Node.js event-loop for about 6 seconds, during which time it consumed 99% cpu power.
 
 Not exactly what you want to do on a single-threaded web application server.
 
-![](/images/blog/1____McPazIiq62BxOpnJNYsgA.gif)
+![Reaction GIF: smiling and nodding in approval.](/images/blog/1____McPazIiq62BxOpnJNYsgA.gif)
 
 > tip: try that RegEx pattern on regex101.com and use their regex debugger to see what’s going on.
 
@@ -92,7 +92,7 @@ _vuln-regex-detector - Detect vulnerable regexes in your project. REDOS, catastr
 
 **You followed so far? Britney Approves!**
 
-![](/images/blog/1__35511BqSY__V__b2JxkUWGJA.gif)
+![Reaction GIF: clapping enthusiastically.](/images/blog/1__35511BqSY__V__b2JxkUWGJA.gif)
 
 ### Further Reading
 
