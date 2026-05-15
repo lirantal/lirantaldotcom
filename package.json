@@ -50,6 +50,7 @@
     "sharp": "^0.34.5",
     "subfont": "^7.2.3",
     "tailwindcss": "^4.2.4",
+    "turndown": "^7.2.4",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.1",
     "unist-util-visit": "^5.1.0"
