@@ -35,6 +35,10 @@ if [ -d "$VERCEL_STATIC" ]; then
 	fi
 	rm -rf "$VERCEL_STATIC/pagefind"
 	cp -R "$SITE/pagefind" "$VERCEL_STATIC/pagefind"
+	if [ ! -d "$SITE/_markdown" ]; then
+		echo "postbuild: markdown output missing under $SITE/_markdown" >&2
+		exit 1
+	fi
 	rm -rf "$VERCEL_STATIC/_markdown"
 	cp -R "$SITE/_markdown" "$VERCEL_STATIC/_markdown"
 fi
