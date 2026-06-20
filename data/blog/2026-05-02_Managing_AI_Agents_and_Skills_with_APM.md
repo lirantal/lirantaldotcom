@@ -240,6 +240,32 @@ apm install --dry-run
 
 This resolves the dep graph and reports what would be installed, without writing the lockfile or runtime files. Useful when reviewing a manifest change in a pull request.
 
+### Recipe 7: Install global user skills for coding agents
+
+Project-local installs are great when the skills belong to one repo. Some skills are personal muscle memory: GitHub maintenance helpers, repo bootstrap routines, writing tools, review workflows. Those should live at the user level so every coding-agent session can see them.
+
+APM can install directly into the global agent-skills target:
+
+```bash
+apm install -g --target agent-skills lirantal/skills \
+  --skill gh-bulk-repo-edit \
+  --skill gh-repo-init-context \
+  --refresh
+```
+
+That adds the selected skills under `~/.agents/skills`, which the Codex app discovers as global skills. Other coding agents can use the same convention if they look for user-level agent skills there, so this becomes a clean way to keep shared personal tooling outside any single project checkout.
+
+Use `--refresh` when you want to reconcile the global install from the current resolved state. If you need APM to force the recorded commit hash forward, replace it with `--update`:
+
+```bash
+apm install -g --target agent-skills lirantal/skills \
+  --skill gh-bulk-repo-edit \
+  --skill gh-repo-init-context \
+  --update
+```
+
+The practical difference is intent: refresh says "make my installed files match what I already resolved"; update says "advance the resolved Git commit and then install that." For personal agent workstations, this is the closest thing to `npm update -g` for skills.
+
 ## Validation and measurement
 
 Reproducibility is why the lockfile exists. APM exposes a few commands worth knowing:
