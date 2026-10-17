@@ -30,7 +30,7 @@ const testimonials = [
 			)
 			.map((r) => [r.href, r])
 	).values(),
-].slice(0, 3);
+].sort((a, b) => b.date.localeCompare(a.date));
 
 const meta = {
 	title: 'Speaking: talks, workshops and podcasts by Liran Tal',
@@ -233,7 +233,7 @@ const meta = {
 					link="/recognitions"
 					linkLabel="More recognitions"
 				/>
-				<ul class="grid md:grid-cols-3 gap-4">
+				<ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
 					{testimonials.map((t) => (
 						<li class="flex flex-col rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6">
 							<blockquote class="text-gray-800 dark:text-slate-200">“{t.description}”</blockquote>

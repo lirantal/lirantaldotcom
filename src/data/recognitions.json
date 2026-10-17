@@ -644,7 +644,7 @@
   },
   {
     "type": "praise",
-    "tags": ["advocacy", "security", "snyk"],
+    "tags": ["advocacy", "security", "snyk", "talk"],
     "medium": "twitter",
     "href": "https://twitter.com/durnea/status/1131181340882292737",
     "name": "Vlad Durnea",
