@@ -13,6 +13,13 @@ import snapshot from '~/data/speaking.json';
 
 export const SPEAKING_BASE = '/speaking';
 
+/** The year organizers are booking for: whichever year it is six months after the build. */
+export const BOOKING_YEAR = (() => {
+	const date = new Date();
+	date.setMonth(date.getMonth() + 6);
+	return date.getFullYear();
+})();
+
 /** Item types that count as a "talk" in the talk catalogue (podcasts and articles are media appearances). */
 const TALK_TYPES = new Set(['conference', 'meetup', 'webinar', 'workshop']);
 

@@ -10,7 +10,7 @@ import recognitions from '~/data/recognitions.json';
 
 import { SPEAKING } from '~/config.mjs';
 import { getCanonical, getPermalink } from '~/utils/permalinks';
-import { SPEAKING_BASE, getSpeaking } from '~/utils/speaking';
+import { BOOKING_YEAR, SPEAKING_BASE, getSpeaking } from '~/utils/speaking';
 
 const { stats, upcoming, past, topics, videos, types, years, countries } = await getSpeaking();
 
@@ -44,7 +44,7 @@ const meta = {
 	<section class="max-w-6xl mx-auto px-4 sm:px-6 pt-10 md:pt-16 pb-12 grid md:grid-cols-2 gap-10 items-center">
 		<div>
 			<p class="text-xs font-semibold tracking-[0.2em] uppercase text-primary-600 dark:text-primary-400">
-				Speaking · Booking 2027
+				Speaking · Booking {BOOKING_YEAR}
 			</p>
 			<h1 class="mt-3 text-5xl md:text-6xl font-bold leading-tighter tracking-tighter font-heading">
 				Security talks,
