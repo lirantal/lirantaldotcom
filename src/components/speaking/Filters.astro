@@ -1,0 +1,140 @@
+---
+/**
+ * Client-side filters for a list on the page.
+ *
+ * groups = [{ name, label, kind: 'chips' | 'select' | 'toggle', options?: [{ value, label, count? }] }]
+ * Items opt in with `data-filter-item` and one `data-<name>` attribute per group.
+ * Wrappers marked `data-filter-section` hide when none of their items match.
+ * State is mirrored in the query string (e.g. ?type=workshop) so filtered views can be linked.
+ */
+const { groups, total } = Astro.props;
+---
+
+<div data-filters class="flex flex-col gap-3 mb-6">
+	{
+		groups.map((group) =>
+			group.kind === 'chips' ? (
+				<div class="flex flex-wrap items-center gap-2" role="group" aria-label={group.label}>
+					<span class="w-14 text-xs font-semibold tracking-widest uppercase text-gray-400 dark:text-slate-500">
+						{group.label}
+					</span>
+					{[{ value: '', label: 'All', count: total }, ...group.options].map((option) => (
+						<button
+							type="button"
+							data-filter={group.name}
+							data-value={option.value}
+							aria-pressed={option.value === '' ? 'true' : 'false'}
+							class="rounded-full border border-gray-200 dark:border-slate-700 px-3 py-1 text-sm text-gray-700 dark:text-slate-300 hover:border-primary-400 aria-pressed:bg-gray-900 aria-pressed:text-white aria-pressed:border-gray-900 dark:aria-pressed:bg-white dark:aria-pressed:text-gray-900 dark:aria-pressed:border-white"
+						>
+							{option.label}
+							{option.count !== undefined && <span class="ml-1 opacity-60 tabular-nums">{option.count}</span>}
+						</button>
+					))}
+				</div>
+			) : null
+		)
+	}
+	<div class="flex flex-wrap items-center gap-3">
+		{
+			groups.map((group) =>
+				group.kind === 'select' ? (
+					<label class="text-sm text-gray-600 dark:text-slate-400">
+						<span class="sr-only">{group.label}</span>
+						<select
+							data-filter={group.name}
+							class="rounded-lg border-gray-200 dark:border-slate-700 dark:bg-slate-900 text-sm py-1.5 pr-8"
+						>
+							<option value="">{group.label}</option>
+							{group.options.map((option) => (
+								<option value={option.value}>
+									{option.label}
+									{option.count !== undefined ? ` (${option.count})` : ''}
+								</option>
+							))}
+						</select>
+					</label>
+				) : group.kind === 'toggle' ? (
+					<label class="inline-flex items-center gap-2 text-sm text-gray-700 dark:text-slate-300">
+						<input
+							type="checkbox"
+							data-filter={group.name}
+							value="yes"
+							class="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+						/>
+						{group.label}
+					</label>
+				) : null
+			)
+		}
+		<p class="ml-auto text-sm text-gray-500 dark:text-slate-400" aria-live="polite">
+			Showing <span data-filter-count class="font-semibold tabular-nums">{total}</span> of {total}
+		</p>
+	</div>
+</div>
+
+<script>
+	function initFilters() {
+		const root = document.querySelector('[data-filters]');
+		if (!root) return;
+
+		const controls = [...root.querySelectorAll<HTMLElement>('[data-filter]')];
+		const items = [...document.querySelectorAll<HTMLElement>('[data-filter-item]')];
+		const sections = [...document.querySelectorAll<HTMLElement>('[data-filter-section]')];
+		const empty = document.querySelector<HTMLElement>('[data-filter-empty]');
+		const state: Record<string, string> = {};
+
+		const render = () => {
+			let visible = 0;
+			for (const item of items) {
+				const show = Object.entries(state).every(([name, value]) => !value || item.dataset[name] === value);
+				item.hidden = !show;
+				if (show) visible++;
+			}
+			for (const section of sections) {
+				section.hidden = !section.querySelector('[data-filter-item]:not([hidden])');
+			}
+			root.querySelectorAll('[data-filter-count]').forEach((el) => (el.textContent = String(visible)));
+			if (empty) empty.hidden = visible > 0;
+
+			for (const control of controls) {
+				const name = control.dataset.filter!;
+				const value = state[name] ?? '';
+				if (control instanceof HTMLButtonElement)
+					control.setAttribute('aria-pressed', String(control.dataset.value === value));
+				else if (control instanceof HTMLSelectElement) control.value = value;
+				else if (control instanceof HTMLInputElement) control.checked = value === 'yes';
+			}
+
+			const params = new URLSearchParams(location.search);
+			for (const control of controls) params.delete(control.dataset.filter!);
+			for (const [name, value] of Object.entries(state)) if (value) params.set(name, value);
+			const query = params.toString();
+			history.replaceState(null, '', query ? `?${query}` : location.pathname);
+		};
+
+		for (const control of controls) {
+			const name = control.dataset.filter!;
+			if (control instanceof HTMLButtonElement) {
+				control.addEventListener('click', () => {
+					state[name] = control.dataset.value ?? '';
+					render();
+				});
+			} else {
+				control.addEventListener('change', () => {
+					state[name] =
+						control instanceof HTMLInputElement ? (control.checked ? 'yes' : '') : (control as HTMLSelectElement).value;
+					render();
+				});
+			}
+		}
+
+		const params = new URLSearchParams(location.search);
+		for (const control of controls) {
+			const name = control.dataset.filter!;
+			if (params.has(name)) state[name] = params.get(name)!;
+		}
+		render();
+	}
+
+	initFilters();
+</script>

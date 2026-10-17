@@ -1,0 +1,9 @@
+---
+import { TYPES } from '~/utils/speaking';
+
+const { type } = Astro.props;
+---
+
+<span class:list={['inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium', TYPES[type].badge]}
+	>{TYPES[type].label}</span
+>

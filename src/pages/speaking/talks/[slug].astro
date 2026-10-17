@@ -1,0 +1,182 @@
+---
+import { Icon } from 'astro-icon/components';
+import { YouTube } from 'astro-embed';
+import Layout from '~/layouts/SpeakingLayout.astro';
+import EventRow from '~/components/speaking/EventRow.astro';
+import PhotoGallery from '~/components/speaking/PhotoGallery.astro';
+
+import { SPEAKING } from '~/config.mjs';
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { SPEAKING_BASE, TYPES, countryFlag, formatDate, getSpeaking } from '~/utils/speaking';
+
+export async function getStaticPaths() {
+	const { talks } = await getSpeaking();
+	return talks.map((talk) => ({ params: { slug: talk.slug }, props: { talk } }));
+}
+
+const { talk } = Astro.props;
+const recording = talk.recording;
+const years = talk.firstYear === talk.lastYear ? `${talk.firstYear}` : `${talk.firstYear}–${talk.lastYear}`;
+
+const facts = [
+	['Delivered', talk.past.length === 1 ? 'Once' : `${talk.past.length} times`],
+	talk.upcoming.length > 0 && [
+		'Coming up',
+		`${talk.upcoming.length} ${talk.upcoming.length === 1 ? 'event' : 'events'}`,
+	],
+	['Given', years],
+	['Formats', talk.formats.map((type) => TYPES[type].label).join(', ')],
+	['Languages', talk.languages.join(', ')],
+	talk.countries.length > 0 && ['Countries', talk.countries.map(countryFlag).join(' ')],
+].filter(Boolean);
+
+const meta = {
+	title: `${talk.title} | Talk by Liran Tal`,
+	description: `${talk.topic.label} talk by Liran Tal, delivered ${talk.count === 1 ? 'once' : `${talk.count} times`} (${years}).${
+		recording ? ' Recording available.' : ''
+	}`,
+	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+};
+---
+
+<Layout {meta}>
+	<article class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 md:pt-16 pb-8">
+		<p class="text-xs font-semibold tracking-[0.2em] uppercase text-primary-600 dark:text-primary-400">
+			<a href={`${SPEAKING_BASE}/talks`} class="hover:underline">Talks</a> ·
+			<a href={`${SPEAKING_BASE}/talks?topic=${talk.topic.id}`} class="hover:underline">{talk.topic.label}</a>
+			· {years}
+		</p>
+		<h1 dir="auto" class="mt-3 text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading max-w-4xl">
+			{talk.title}
+		</h1>
+
+		<div class="mt-12 grid lg:grid-cols-[2fr_1fr] gap-12">
+			<div class="min-w-0 space-y-12">
+				{
+					recording && (
+						<section>
+							{recording.videoIds.length > 0 ? (
+								<YouTube id={recording.videoIds[0]} title={talk.title} />
+							) : (
+								<a
+									href={recording.recordings[0]}
+									target="_blank"
+									rel="noopener"
+									class="btn text-white bg-gray-900 hover:bg-gray-700 dark:bg-slate-700"
+								>
+									<Icon name="tabler:player-play" class="w-5 h-5 mr-2" /> Watch the recording
+								</a>
+							)}
+							<p class="mt-3 text-sm text-gray-500 dark:text-slate-400">
+								Recorded at{' '}
+								<a href={recording.href} class="text-primary-700 dark:text-primary-300 hover:underline">
+									{recording.name}
+								</a>
+								{`, ${formatDate(recording.date, 'monthYear')}`}
+								{talk.recordingsCount > 1 && <> · {talk.recordingsCount} recordings in total, listed below</>}
+							</p>
+						</section>
+					)
+				}
+
+				<section>
+					<h2 class="text-2xl font-bold font-heading mb-3">The topic</h2>
+					<p class="text-lg text-gray-700 dark:text-slate-300">{talk.topic.description}</p>
+				</section>
+
+				{
+					talk.titleVariants.length > 1 && (
+						<section>
+							<h2 class="text-2xl font-bold font-heading mb-4">How this talk evolved</h2>
+							<ol class="relative border-l-2 border-primary-200 dark:border-primary-900 ml-2 space-y-6">
+								{talk.titleVariants.map((variant, index) => (
+									<li class="pl-6 relative">
+										<span
+											class="absolute -left-[0.4rem] top-1.5 h-3 w-3 rounded-full bg-primary-500"
+											aria-hidden="true"
+										/>
+										<p class="text-sm text-gray-500 dark:text-slate-400">
+											{variant.firstYear === variant.lastYear
+												? variant.firstYear
+												: `${variant.firstYear}–${variant.lastYear}`}{' '}
+											· {variant.count === 1 ? '1 delivery' : `${variant.count} deliveries`}
+											{index === 0 && <> · current title</>}
+										</p>
+										<p class="font-semibold">{variant.title}</p>
+									</li>
+								))}
+							</ol>
+						</section>
+					)
+				}
+
+				<section>
+					<h2 class="text-2xl font-bold font-heading mb-2">Where it's been given, and where it's next</h2>
+					<ol class="divide-y divide-gray-100 dark:divide-slate-800/60">
+						{talk.deliveries.map((event) => <EventRow event={event} dateStyle="monthYear" talkTitle={talk.title} />)}
+					</ol>
+					<p class="mt-3 text-sm text-gray-500 dark:text-slate-400">
+						{talk.past.length} delivered{talk.upcoming.length > 0 && `, ${talk.upcoming.length} coming up`}.
+					</p>
+				</section>
+
+				{
+					talk.images.length > 0 && (
+						<section>
+							<h2 class="text-2xl font-bold font-heading mb-4">From the stage</h2>
+							<PhotoGallery photos={talk.images.slice(0, 9).map(({ src, event }) => ({ src, caption: event.name }))} />
+						</section>
+					)
+				}
+			</div>
+
+			<aside class="space-y-8">
+				<section class="rounded-xl bg-gray-50 dark:bg-slate-800/50 p-6">
+					<h2 class="font-semibold mb-4">Book this talk</h2>
+					<dl class="space-y-3 text-sm">
+						{
+							facts.map(([label, value]) => (
+								<div class="flex justify-between gap-4">
+									<dt class="text-gray-500 dark:text-slate-400">{label}</dt>
+									<dd class="font-semibold text-right">{value}</dd>
+								</div>
+							))
+						}
+					</dl>
+					<a class="btn mt-6 w-full text-white bg-primary-600 hover:bg-primary-800" href={SPEAKING.inviteURL}
+						>Invite me to give this talk</a
+					>
+					<a
+						class="mt-3 flex items-center justify-center gap-1.5 text-sm text-gray-600 dark:text-slate-400 hover:text-primary-600"
+						href={SPEAKING.inviteXURL}
+					>
+						or message me on <Icon name="tabler:brand-x" class="w-4 h-4" /><span class="sr-only">X</span>
+					</a>
+				</section>
+
+				{
+					talk.slides.length > 0 && (
+						<section>
+							<h2 class="font-semibold mb-3">Slides</h2>
+							<ul class="space-y-2 text-sm">
+								{talk.slides.map((event) => (
+									<li>
+										<a
+											href={event.slidesUrl}
+											target="_blank"
+											rel="noopener"
+											class="inline-flex items-center gap-2 text-primary-700 dark:text-primary-300 hover:underline"
+										>
+											<Icon name="tabler:presentation" class="w-4 h-4" />
+											{event.name}
+										</a>
+									</li>
+								))}
+							</ul>
+						</section>
+					)
+				}
+			</aside>
+		</div>
+	</article>
+</Layout>

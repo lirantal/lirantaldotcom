@@ -1,0 +1,90 @@
+---
+import Layout from '~/layouts/SpeakingLayout.astro';
+import PageIntro from '~/components/speaking/PageIntro.astro';
+import EventRow from '~/components/speaking/EventRow.astro';
+import Filters from '~/components/speaking/Filters.astro';
+
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { TYPES, getSpeaking } from '~/utils/speaking';
+
+const { media } = await getSpeaking();
+
+const years = [...new Set(media.map((e) => e.year))];
+const count = (predicate) => media.filter(predicate).length;
+const languages = [...new Set(media.map((e) => e.language))];
+
+const meta = {
+	title: 'Podcasts and guest articles | Liran Tal',
+	description: `${count((e) => e.type === 'podcast')} podcast episodes and guest articles featuring Liran Tal on application security, open source and developer relations.`,
+	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+};
+---
+
+<Layout {meta}>
+	<PageIntro
+		eyebrow="Speaking · Podcasts & articles"
+		title="On the mic,"
+		highlight="and on the page."
+		description="Guest appearances on developer and security podcasts, in English and Hebrew, plus guest articles written for partner blogs."
+	>
+		<dl class="mt-8 flex flex-wrap gap-x-10 gap-y-4">
+			{
+				[
+					[count((e) => e.type === 'podcast'), 'Podcast episodes'],
+					[count((e) => e.type === 'article'), 'Guest articles'],
+					[languages.length, 'Languages'],
+				].map(([value, label]) => (
+					<div class="flex flex-col-reverse">
+						<dt class="text-sm text-gray-500 dark:text-slate-400">{label}</dt>
+						<dd class="text-4xl font-bold font-heading">{value}</dd>
+					</div>
+				))
+			}
+		</dl>
+	</PageIntro>
+
+	<section class="max-w-6xl mx-auto px-4 sm:px-6 pb-8">
+		<Filters
+			total={media.length}
+			groups={[
+				{
+					name: 'type',
+					label: 'Type',
+					kind: 'chips',
+					options: ['podcast', 'article'].map((type) => ({
+						value: type,
+						label: TYPES[type].label,
+						count: count((e) => e.type === type),
+					})),
+				},
+				{
+					name: 'language',
+					label: 'All languages',
+					kind: 'select',
+					options: languages.map((language) => ({
+						value: language,
+						label: language,
+						count: count((e) => e.language === language),
+					})),
+				},
+			]}
+		/>
+		{
+			years.map((year) => (
+				<div data-filter-section class="mt-10">
+					<h2 class="text-2xl font-bold font-heading border-b border-gray-200 dark:border-slate-800 pb-2">{year}</h2>
+					<ol class="divide-y divide-gray-100 dark:divide-slate-800/60">
+						{media
+							.filter((e) => e.year === year)
+							.map((event) => (
+								<EventRow event={event} data-filter-item data-type={event.type} data-language={event.language} />
+							))}
+					</ol>
+				</div>
+			))
+		}
+		<p data-filter-empty hidden class="py-16 text-center text-gray-500 dark:text-slate-400">
+			Nothing matches these filters.
+		</p>
+	</section>
+</Layout>

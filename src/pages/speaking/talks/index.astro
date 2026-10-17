@@ -1,0 +1,117 @@
+---
+import Layout from '~/layouts/SpeakingLayout.astro';
+import PageIntro from '~/components/speaking/PageIntro.astro';
+import StatsBand from '~/components/speaking/StatsBand.astro';
+import TalkItem from '~/components/speaking/TalkItem.astro';
+import Filters from '~/components/speaking/Filters.astro';
+
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { SPEAKING_BASE, formatDate, getSpeaking } from '~/utils/speaking';
+
+const { talks, topics, stats, upcoming, countries } = await getSpeaking();
+const mostDelivered = [...talks].sort((a, b) => b.past.length - a.past.length)[0];
+
+const meta = {
+	title: 'Talk catalogue: security talks by Liran Tal',
+	description: `${stats.uniqueTalks} talks on AI security, software supply chain security, Node.js and web security, delivered ${stats.talksDelivered} times in ${stats.countries} countries.`,
+	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+};
+---
+
+<Layout {meta}>
+	<PageIntro
+		eyebrow="Speaking · Talk catalogue"
+		title={`${stats.uniqueTalks} talks,`}
+		highlight={`given ${stats.talksDelivered} times.`}
+		description="Every talk I've given, newest first, with where it was delivered and a recording when there is one. Each one is adapted to your slot and your audience, and most include a live hacking demo."
+	/>
+
+	<StatsBand
+		items={[
+			{ value: stats.talksDelivered, label: 'talks delivered', note: `since ${stats.firstYear}` },
+			{ value: stats.countries, label: 'countries', note: `${stats.cities} cities` },
+			{ value: stats.uniqueTalks, label: 'talks in the catalogue', note: `${topics.length} topics` },
+			{ value: `${mostDelivered.past.length}×`, label: mostDelivered.title },
+		]}
+	/>
+
+	<section class="max-w-6xl mx-auto px-4 sm:px-6 py-12 grid lg:grid-cols-[1fr_18rem] gap-12">
+		<div class="min-w-0">
+			<Filters
+				total={talks.length}
+				groups={[
+					{
+						name: 'topic',
+						label: 'Topic',
+						kind: 'chips',
+						options: topics.map((t) => ({ value: t.id, label: t.label, count: t.talks.length })),
+					},
+					{ name: 'video', label: 'Has recording', kind: 'toggle' },
+				]}
+			/>
+			<ul class="border-y border-gray-200 dark:border-slate-800">
+				{
+					talks.map((talk) => (
+						<TalkItem
+							talk={talk}
+							data-filter-item
+							data-topic={talk.topic.id}
+							data-video={talk.recording ? 'yes' : 'no'}
+						/>
+					))
+				}
+			</ul>
+			<p data-filter-empty hidden class="py-16 text-center text-gray-500 dark:text-slate-400">
+				No talks match these filters.
+			</p>
+		</div>
+
+		<aside class="space-y-10">
+			<section>
+				<div class="flex items-baseline justify-between mb-3">
+					<h2 class="font-semibold">Next up</h2>
+					<a href={`${SPEAKING_BASE}/events`} class="text-sm text-primary-700 dark:text-primary-300 hover:underline"
+						>Full schedule</a
+					>
+				</div>
+				{
+					upcoming.length ? (
+						<ul class="space-y-3 text-sm">
+							{upcoming.map((event) => (
+								<li>
+									<a
+										href={event.href}
+										class="block rounded-lg border border-gray-200 dark:border-slate-700 p-3 hover:border-primary-400"
+									>
+										<span class="text-gray-500 dark:text-slate-400">
+											{event.flag} {event.location}
+										</span>
+										<span class="block font-semibold">{event.name}</span>
+										<span class="text-gray-500 dark:text-slate-400">{formatDate(event.date)}</span>
+									</a>
+								</li>
+							))}
+						</ul>
+					) : (
+						<p class="text-sm text-gray-500 dark:text-slate-400">Nothing announced yet. Your event could be next.</p>
+					)
+				}
+			</section>
+			<section>
+				<h2 class="font-semibold mb-3">Been there</h2>
+				<ul class="space-y-1.5 text-sm">
+					{
+						countries.map((c) => (
+							<li class="flex justify-between">
+								<a href={`${SPEAKING_BASE}/events?country=${c.code}`} class="hover:text-primary-600">
+									<span aria-hidden="true">{c.flag}</span> {c.name}
+								</a>
+								<span class="tabular-nums text-gray-400">{c.count}</span>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</aside>
+	</section>
+</Layout>

@@ -1,0 +1,249 @@
+---
+import { Picture } from 'astro:assets';
+import Layout from '~/layouts/SpeakingLayout.astro';
+import StatsBand from '~/components/speaking/StatsBand.astro';
+import SectionHeading from '~/components/speaking/SectionHeading.astro';
+import CalendarEvent from '~/components/speaking/CalendarEvent.astro';
+import VideoCard from '~/components/speaking/VideoCard.astro';
+import heroImage from '~/assets/images/speaking-hero.jpg';
+import recognitions from '~/data/recognitions.json';
+
+import { SPEAKING } from '~/config.mjs';
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { SPEAKING_BASE, getSpeaking } from '~/utils/speaking';
+
+const { stats, upcoming, past, topics, videos, types, years, countries } = await getSpeaking();
+
+// Always show a few rows on the calendar: upcoming first, then the most recent past talks.
+const calendar = [...upcoming, ...past.filter((e) => e.isTalk)].slice(0, Math.max(4, upcoming.length));
+const maxYearCount = Math.max(...years.map((y) => y.count));
+
+const testimonials = [
+	...new Map(
+		recognitions
+			// talk-related praise that is about one of my sessions (English only, the site is in English)
+			.filter(
+				(r) =>
+					r.tags?.some((tag) => ['talk', 'talks'].includes(tag)) &&
+					/\b(talk|workshop|presentation)\b/i.test(r.description) &&
+					!/[\u0590-\u05FF]/.test(r.description)
+			)
+			.map((r) => [r.href, r])
+	).values(),
+].slice(0, 3);
+
+const meta = {
+	title: 'Speaking: talks, workshops and podcasts by Liran Tal',
+	description: `${stats.talksDelivered} talks across ${stats.countries} countries since ${stats.firstYear}: AI and agentic security, software supply chain security and Node.js secure coding.`,
+	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+};
+---
+
+<Layout {meta}>
+	<!-- Hero -->
+	<section class="max-w-6xl mx-auto px-4 sm:px-6 pt-10 md:pt-16 pb-12 grid md:grid-cols-2 gap-10 items-center">
+		<div>
+			<p class="text-xs font-semibold tracking-[0.2em] uppercase text-primary-600 dark:text-primary-400">
+				Speaking · Booking 2027
+			</p>
+			<h1 class="mt-3 text-5xl md:text-6xl font-bold leading-tighter tracking-tighter font-heading">
+				Security talks,
+				<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500"
+					>hacked live on stage.</span
+				>
+			</h1>
+			<p class="mt-6 text-lg text-gray-600 dark:text-slate-400">
+				Talks, workshops and podcasts about AI and agentic security, software supply chain attacks and Node.js secure
+				coding. Most sessions break a real application in front of the audience and then fix it. Every talk is adapted
+				to its audience, in English or Hebrew.
+			</p>
+			<div class="mt-8 flex flex-wrap gap-3">
+				<a class="btn text-white bg-primary-600 hover:bg-primary-800" href={SPEAKING.inviteURL}>Invite me to speak</a>
+				<a
+					class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-50 dark:bg-slate-800 dark:text-white dark:border-slate-700 dark:hover:bg-slate-700"
+					href={`${SPEAKING_BASE}/talks`}>Browse the talks</a
+				>
+			</div>
+		</div>
+		<div class="relative">
+			<div
+				class="absolute -inset-2 md:-inset-3 rotate-2 rounded-2xl bg-gradient-to-br from-primary-500 to-secondary-500 opacity-80"
+				aria-hidden="true"
+			>
+			</div>
+			<Picture
+				src={heroImage}
+				widths={[480, 800, 1200]}
+				sizes="(max-width: 767px) 100vw, 560px"
+				formats={['avif', 'webp']}
+				loading="eager"
+				alt="Liran Tal on stage at JSNation US 2025, presenting from the lectern"
+				class="relative rounded-2xl shadow-xl aspect-[4/3] object-cover w-full"
+			/>
+		</div>
+	</section>
+
+	<StatsBand
+		items={[
+			{ value: stats.talksDelivered, label: 'talks delivered', note: 'conferences, meetups, webinars' },
+			{ value: stats.countries, label: 'countries', note: `${stats.cities} cities` },
+			{ value: stats.videos, label: 'recordings', note: 'talks and podcasts on video' },
+			{ value: stats.firstYear, label: 'on stage since', note: `${stats.languages} languages` },
+		]}
+	/>
+
+	<!-- Next on the calendar -->
+	<section class="max-w-6xl mx-auto px-4 sm:px-6 py-16 grid md:grid-cols-[1fr_2fr] gap-10">
+		<div class="md:border-l-4 md:border-primary-500 md:pl-6">
+			<p class="text-xs font-semibold tracking-[0.2em] uppercase text-primary-600 dark:text-primary-400">
+				Next on the calendar
+			</p>
+			<h2 class="mt-2 text-3xl md:text-4xl font-bold tracking-tight font-heading">Come and say hello.</h2>
+			<a
+				href={`${SPEAKING_BASE}/events`}
+				class="mt-4 inline-block text-sm font-semibold text-primary-700 dark:text-primary-300 border-b-2 border-primary-500 pb-0.5"
+				>Full schedule and archive</a
+			>
+		</div>
+		<ol class="border-y border-gray-200 dark:border-slate-800">
+			{calendar.map((event) => <CalendarEvent event={event} />)}
+		</ol>
+	</section>
+
+	<!-- Topics -->
+	<section class="bg-gray-50 dark:bg-slate-800/40">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+			<SectionHeading
+				title="Things I talk about."
+				link={`${SPEAKING_BASE}/talks`}
+				linkLabel={`All ${stats.uniqueTalks} talks`}
+			/>
+			<ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+				{
+					topics.map((topic) => (
+						<li class="relative flex flex-col rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-700 transition">
+							<p class="text-xs font-semibold tracking-[0.15em] uppercase text-primary-600 dark:text-primary-400">
+								{topic.talks.length} talks · {topic.deliveries} deliveries
+							</p>
+							<h3 class="mt-2 text-xl font-bold font-heading">
+								<a href={`${SPEAKING_BASE}/talks?topic=${topic.id}`} class="after:absolute after:inset-0">
+									{topic.label}
+								</a>
+							</h3>
+							<p class="mt-2 text-sm text-gray-600 dark:text-slate-400">{topic.description}</p>
+							<p class="mt-auto pt-4 text-xs text-gray-500 dark:text-slate-500">
+								Most requested: <span class="text-gray-700 dark:text-slate-300">{topic.flagship.title}</span>
+								{topic.flagship.count > 1 && <> · {topic.flagship.count}×</>}
+							</p>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</section>
+
+	<!-- Recordings -->
+	<section class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+		<SectionHeading
+			eyebrow="Recordings"
+			title="Watch a recent talk."
+			link={`${SPEAKING_BASE}/recordings`}
+			linkLabel={`All ${stats.videos} recordings`}
+		/>
+		<ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+			{videos.slice(0, 3).map((event) => <VideoCard event={event} />)}
+		</ul>
+	</section>
+
+	<!-- Formats + year by year -->
+	<section
+		class="max-w-6xl mx-auto px-4 sm:px-6 py-16 grid lg:grid-cols-2 gap-12 border-t border-gray-200 dark:border-slate-800"
+	>
+		<div>
+			<h2 class="text-3xl font-bold tracking-tight font-heading mb-6">Formats</h2>
+			<dl class="divide-y divide-gray-200 dark:divide-slate-800 border-y border-gray-200 dark:border-slate-800">
+				{
+					types.map((t) => (
+						<div class="grid grid-cols-[3.5rem_1fr] gap-4 py-4">
+							<dt class="text-3xl font-bold font-heading tabular-nums text-gray-900 dark:text-white">{t.count}</dt>
+							<dd>
+								<a
+									href={`${SPEAKING_BASE}/${t.type === 'podcast' || t.type === 'article' ? 'podcasts' : `events?type=${t.type}`}`}
+									class="font-semibold hover:text-primary-600 dark:hover:text-primary-400"
+								>
+									{t.plural}
+								</a>
+								<p class="text-sm text-gray-600 dark:text-slate-400">{t.description}</p>
+							</dd>
+						</div>
+					))
+				}
+			</dl>
+		</div>
+		<div>
+			<h2 class="text-3xl font-bold tracking-tight font-heading mb-6">Year by year</h2>
+			<ol class="space-y-2">
+				{
+					years.map((y) => (
+						<li class="grid grid-cols-[3rem_1fr_2rem] items-center gap-3 text-sm">
+							<a
+								href={`${SPEAKING_BASE}/events?year=${y.year}`}
+								class="tabular-nums text-gray-600 dark:text-slate-400 hover:text-primary-600"
+							>
+								{y.year}
+							</a>
+							<span class="h-4 rounded-r bg-gray-100 dark:bg-slate-800">
+								<span
+									class="block h-full rounded-r bg-gradient-to-r from-primary-500 to-secondary-500"
+									style={`width: ${(y.count / maxYearCount) * 100}%`}
+								/>
+							</span>
+							<span class="tabular-nums font-semibold text-right">{y.count}</span>
+						</li>
+					))
+				}
+			</ol>
+			<h3 class="mt-10 mb-3 font-semibold">Been there</h3>
+			<ul class="flex flex-wrap gap-2">
+				{
+					countries.map((c) => (
+						<li>
+							<a
+								href={`${SPEAKING_BASE}/events?country=${c.code}`}
+								class="inline-flex items-center gap-1.5 rounded-full border border-gray-200 dark:border-slate-700 px-3 py-1 text-sm hover:border-primary-400"
+							>
+								<span aria-hidden="true">{c.flag}</span>
+								{c.name}
+								<span class="text-gray-400 tabular-nums">{c.count}</span>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</section>
+
+	<!-- Testimonials -->
+	{
+		testimonials.length > 0 && (
+			<section class="max-w-6xl mx-auto px-4 sm:px-6 py-16 border-t border-gray-200 dark:border-slate-800">
+				<SectionHeading
+					eyebrow="From the audience"
+					title="What people say."
+					link="/recognitions"
+					linkLabel="More recognitions"
+				/>
+				<ul class="grid md:grid-cols-3 gap-4">
+					{testimonials.map((t) => (
+						<li class="flex flex-col rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6">
+							<blockquote class="text-gray-800 dark:text-slate-200">“{t.description}”</blockquote>
+							<a href={t.href} class="mt-auto pt-4 text-sm text-gray-500 dark:text-slate-400 hover:text-primary-600">
+								<span class="font-semibold text-gray-700 dark:text-slate-300">{t.name}</span> · {t.role}
+							</a>
+						</li>
+					))}
+				</ul>
+			</section>
+		)
+	}
+</Layout>

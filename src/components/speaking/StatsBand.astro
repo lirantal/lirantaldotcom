@@ -1,0 +1,34 @@
+---
+/** Big number call-outs: items = [{ value, label, note? }] */
+const { items } = Astro.props;
+---
+
+<div class="border-y border-gray-200 dark:border-slate-800">
+	<dl
+		class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-gray-200 dark:divide-slate-800 [&>div]:border-gray-200 dark:[&>div]:border-slate-800"
+	>
+		{
+			items.map((item, index) => (
+				<div
+					class:list={[
+						'px-4 sm:px-6 py-6 md:py-8',
+						index % 2 === 0 && 'border-r',
+						index < 2 && 'border-b md:border-b-0',
+						index === 1 && 'md:border-r',
+					]}
+				>
+					<dt class="sr-only">{item.label}</dt>
+					<dd>
+						<span class="block text-4xl md:text-5xl font-bold tracking-tight font-heading text-gray-900 dark:text-white">
+							{item.value}
+						</span>
+						<span class="mt-2 block text-sm text-gray-700 dark:text-slate-300">
+							{item.label}
+							{item.note && <span class="text-gray-500 dark:text-slate-500"> · {item.note}</span>}
+						</span>
+					</dd>
+				</div>
+			))
+		}
+	</dl>
+</div>

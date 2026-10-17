@@ -1,0 +1,133 @@
+---
+import Layout from '~/layouts/SpeakingLayout.astro';
+import PageIntro from '~/components/speaking/PageIntro.astro';
+import CalendarEvent from '~/components/speaking/CalendarEvent.astro';
+import EventRow from '~/components/speaking/EventRow.astro';
+import Filters from '~/components/speaking/Filters.astro';
+
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { SPEAKING_BASE, getSpeaking } from '~/utils/speaking';
+
+const { upcoming, past, stats, types, years, countries } = await getSpeaking();
+
+const pastByYear = [...years]
+	.reverse()
+	.map((y) => ({ year: y.year, events: past.filter((e) => e.year === y.year) }))
+	.filter((group) => group.events.length);
+
+// The archive lists past events; upcoming ones are featured above it.
+const countPast = (predicate) => past.filter(predicate).length;
+const filterGroups = [
+	{
+		name: 'type',
+		label: 'Type',
+		kind: 'chips',
+		options: types.map((t) => ({ value: t.type, label: t.label, count: countPast((e) => e.type === t.type) })),
+	},
+	{
+		name: 'year',
+		label: 'All years',
+		kind: 'select',
+		options: pastByYear.map((g) => ({ value: String(g.year), label: String(g.year), count: g.events.length })),
+	},
+	{
+		name: 'country',
+		label: 'All countries',
+		kind: 'select',
+		options: [
+			...countries.map((c) => ({
+				value: c.code,
+				label: `${c.flag} ${c.name}`,
+				count: countPast((e) => e.countryCode === c.code),
+			})),
+			{ value: 'online', label: '🌐 Online & remote', count: countPast((e) => e.remote) },
+		],
+	},
+	{ name: 'video', label: 'Has recording', kind: 'toggle' },
+];
+
+const filterAttrs = (e) => ({
+	'data-filter-item': '',
+	'data-type': e.type,
+	'data-year': String(e.year),
+	'data-country': e.countryCode ?? (e.remote ? 'online' : ''),
+	'data-video': e.hasVideo ? 'yes' : 'no',
+});
+
+const meta = {
+	title: 'Speaking schedule: upcoming and past events | Liran Tal',
+	description: `Every conference, meetup, webinar, workshop and podcast Liran Tal has spoken at: ${stats.appearances} events in ${stats.countries} countries since ${stats.firstYear}.`,
+	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+};
+---
+
+<Layout {meta}>
+	<PageIntro
+		eyebrow="Speaking · Schedule"
+		title="Every stage,"
+		highlight="in one place."
+		description="Where I'll be next, and everywhere I've been: conferences, meetups, webinars, workshops and podcasts, filterable by format, year and country."
+	>
+		<dl class="mt-8 flex flex-wrap gap-x-10 gap-y-4">
+			{
+				[
+					[stats.appearances, 'Events'],
+					[stats.countries, 'Countries'],
+					[stats.cities, 'Cities'],
+				].map(([value, label]) => (
+					<div class="flex flex-col-reverse">
+						<dt class="text-sm text-gray-500 dark:text-slate-400">{label}</dt>
+						<dd class="text-4xl font-bold font-heading">{value}</dd>
+					</div>
+				))
+			}
+		</dl>
+		<p class="mt-6 text-2xl tracking-wide" aria-label="Countries visited">
+			{countries.map((c) => <span title={c.name}>{c.flag}</span>)}
+		</p>
+	</PageIntro>
+
+	{
+		upcoming.length > 0 && (
+			<section class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+				<p class="text-xs font-semibold tracking-[0.2em] uppercase text-green-700 dark:text-green-400">
+					Upcoming · {upcoming.length} {upcoming.length === 1 ? 'event' : 'events'}
+				</p>
+				<ol class="mt-2 border-y border-gray-200 dark:border-slate-800">
+					{upcoming.map((event) => (
+						<CalendarEvent event={event} />
+					))}
+				</ol>
+			</section>
+		)
+	}
+
+	<section class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+		<p class="text-xs font-semibold tracking-[0.2em] uppercase text-primary-600 dark:text-primary-400">
+			Archive · {past.length} past events
+		</p>
+		<h2 class="mt-2 mb-6 text-3xl font-bold tracking-tight font-heading">Every event</h2>
+
+		<Filters groups={filterGroups} total={past.length} />
+
+		{
+			pastByYear.map((group) => (
+				<div data-filter-section class="mt-10" id={`year-${group.year}`}>
+					<h3 class="flex items-baseline gap-3 border-b border-gray-200 dark:border-slate-800 pb-2">
+						<span class="text-2xl font-bold font-heading">{group.year}</span>
+						<span class="text-sm text-gray-500 dark:text-slate-400">{group.events.length} events</span>
+					</h3>
+					<ol class="divide-y divide-gray-100 dark:divide-slate-800/60">
+						{group.events.map((event) => (
+							<EventRow event={event} {...filterAttrs(event)} />
+						))}
+					</ol>
+				</div>
+			))
+		}
+
+		<p data-filter-empty hidden class="py-16 text-center text-gray-500 dark:text-slate-400">
+			No events match these filters. <a href={`${SPEAKING_BASE}/events`} class="text-primary-600 underline">Reset</a>
+		</p>
+	</section>
+</Layout>

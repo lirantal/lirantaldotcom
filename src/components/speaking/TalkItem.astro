@@ -1,0 +1,64 @@
+---
+import { Icon } from 'astro-icon/components';
+import { TYPES, formatDate } from '~/utils/speaking';
+
+/** One talk in the catalogue list. */
+const { talk, ...rest } = Astro.props;
+
+const years = talk.firstYear === talk.lastYear ? `${talk.firstYear}` : `${talk.firstYear}–${talk.lastYear}`;
+const pastCount = talk.past.length;
+const delivered =
+	pastCount === 0 ? null : pastCount === 1 ? `Delivered once, at ${talk.past[0].name}` : `Delivered ${pastCount}×`;
+const next = talk.upcoming[0];
+const meta = [
+	delivered,
+	years,
+	talk.formats.map((type) => TYPES[type].label).join(', '),
+	next && `next: ${next.name}, ${formatDate(next.date)}`,
+].filter(Boolean);
+---
+
+<li {...rest} class="border-t border-gray-200 dark:border-slate-800 first:border-t-0">
+	<article class="group relative grid sm:grid-cols-[1fr_auto] gap-4 py-6">
+		<div>
+			<div class="flex flex-wrap items-center gap-2">
+				<span class="text-xs font-semibold tracking-[0.15em] uppercase text-primary-600 dark:text-primary-400"
+					>{talk.topic.label}</span
+				>
+				{
+					pastCount >= 3 && (
+						<span class="rounded-full px-2 py-0.5 text-xs font-semibold bg-secondary-100 text-secondary-800 dark:bg-secondary-900/60 dark:text-secondary-200">
+							Signature talk
+						</span>
+					)
+				}
+				{
+					talk.isNew && (
+						<span class="rounded-full px-2 py-0.5 text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/60 dark:text-green-200">
+							New
+						</span>
+					)
+				}
+			</div>
+			<h3 dir="auto" class="mt-2 text-xl font-bold font-heading leading-snug text-gray-900 dark:text-white">
+				<a
+					href={talk.href}
+					class="after:absolute after:inset-0 group-hover:text-primary-600 dark:group-hover:text-primary-400"
+					>{talk.title}</a
+				>
+			</h3>
+			<p class="mt-2 text-sm text-gray-500 dark:text-slate-400">{meta.join(' · ')}</p>
+		</div>
+		<span
+			class:list={[
+				'self-center justify-self-start inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm font-medium',
+				talk.recording
+					? 'border-red-200 text-red-700 dark:border-red-900 dark:text-red-300'
+					: 'border-gray-200 text-gray-600 dark:border-slate-700 dark:text-slate-300',
+			]}
+		>
+			{talk.recording ? <Icon name="tabler:player-play" class="w-4 h-4" /> : null}
+			{talk.recording ? 'Watch' : 'Details'}
+		</span>
+	</article>
+</li>

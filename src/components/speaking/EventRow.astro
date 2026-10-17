@@ -1,0 +1,64 @@
+---
+import { Icon } from 'astro-icon/components';
+import TypeBadge from '~/components/speaking/TypeBadge.astro';
+import { formatDate } from '~/utils/speaking';
+
+/**
+ * One event in an archive list. dateStyle 'short' (Oct 23) inside year groups, 'monthYear' across years.
+ * Pass talkTitle when listing deliveries of one talk: the session title is then only shown when it differs.
+ */
+const { event, dateStyle = 'short', talkTitle, ...rest } = Astro.props;
+const subtitle =
+	!event.title || event.title === event.name || event.title === talkTitle
+		? null
+		: talkTitle
+			? `as “${event.title}”`
+			: event.title;
+---
+
+<li {...rest}>
+	<a
+		href={event.href}
+		class="group grid grid-cols-[4.5rem_1fr] md:grid-cols-[5.5rem_1fr_13rem_9rem] gap-x-4 gap-y-1 items-baseline py-4 px-3 -mx-3 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800/60 transition"
+	>
+		<time datetime={event.date.toISOString()} class="text-sm font-semibold text-gray-900 dark:text-white tabular-nums">
+			{formatDate(event.date, dateStyle)}
+		</time>
+		<div class="min-w-0">
+			<h3
+				dir="auto"
+				class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400"
+			>
+				{event.name}
+			</h3>
+			{
+				subtitle && (
+					<p dir="auto" class="text-sm text-gray-600 dark:text-slate-400">
+						{subtitle}
+					</p>
+				)
+			}
+		</div>
+		<p class="col-start-2 md:col-start-auto text-sm text-gray-500 dark:text-slate-400">
+			{event.flag && <span aria-hidden="true">{event.flag} </span>}{event.location}
+		</p>
+		<div class="col-start-2 md:col-start-auto flex flex-wrap gap-1.5 md:justify-end">
+			{
+				event.upcoming && (
+					<span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold bg-green-600 text-white">
+						Upcoming
+					</span>
+				)
+			}
+			<TypeBadge type={event.type} />
+			{
+				event.hasVideo && (
+					<span title="Recording available" class="inline-flex items-center text-red-600 dark:text-red-400">
+						<Icon name="tabler:brand-youtube" class="w-5 h-5" />
+						<span class="sr-only">Recording available</span>
+					</span>
+				)
+			}
+		</div>
+	</a>
+</li>

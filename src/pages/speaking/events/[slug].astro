@@ -1,0 +1,260 @@
+---
+import { Icon } from 'astro-icon/components';
+import { YouTube } from 'astro-embed';
+import Layout from '~/layouts/SpeakingLayout.astro';
+import TypeBadge from '~/components/speaking/TypeBadge.astro';
+import EventRow from '~/components/speaking/EventRow.astro';
+import PhotoGallery from '~/components/speaking/PhotoGallery.astro';
+
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { SPEAKING_BASE, TYPES, formatDate, getSpeaking } from '~/utils/speaking';
+
+export async function getStaticPaths() {
+	const { events } = await getSpeaking();
+	return events.map((event, index) => ({
+		params: { slug: event.slug },
+		props: { event, newer: events[index - 1], older: events[index + 1] },
+	}));
+}
+
+const { event, newer, older } = Astro.props;
+const talk = event.talk;
+const otherDeliveries = talk ? talk.deliveries.filter((d) => d !== event) : [];
+const otherRecordings = event.recordings.filter((url) => !event.videoIds.some((id) => url.includes(id)));
+const isMedia = event.type === 'podcast' || event.type === 'article';
+const backHref = isMedia ? `${SPEAKING_BASE}/podcasts` : `${SPEAKING_BASE}/events`;
+
+const meta = {
+	title: `${event.name}${event.title && event.title !== event.name ? `: ${event.title}` : ''} | Liran Tal speaking`,
+	description: `${TYPES[event.type].label} on ${formatDate(event.date, 'long')}${event.remote ? '' : ` in ${event.location}`}${
+		event.title ? `: "${event.title}"` : ''
+	}.`,
+	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+};
+---
+
+<Layout {meta}>
+	<article class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 md:pt-16 pb-8">
+		<p class="text-xs font-semibold tracking-[0.2em] uppercase text-primary-600 dark:text-primary-400">
+			<a href={backHref} class="hover:underline">{isMedia ? 'Podcasts' : 'Schedule'}</a> · {TYPES[event.type].label} · {
+				event.upcoming ? 'Upcoming' : event.year
+			}
+		</p>
+		<h1 dir="auto" class="mt-3 text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading max-w-4xl">
+			{event.name}
+		</h1>
+		<div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-gray-600 dark:text-slate-400">
+			<time datetime={event.date.toISOString()} class="font-semibold text-gray-900 dark:text-white"
+				>{formatDate(event.date, 'long')}</time
+			>
+			<span>{event.flag} {event.location}</span>
+			{event.language !== 'English' && <span>In {event.language}</span>}
+			{
+				event.url && (
+					<a
+						href={event.url}
+						target="_blank"
+						rel="noopener"
+						class="inline-flex items-center gap-1 text-primary-700 dark:text-primary-300 hover:underline"
+					>
+						Event site <Icon name="tabler:external-link" class="w-4 h-4" />
+						<span class="sr-only">(opens in a new tab)</span>
+					</a>
+				)
+			}
+		</div>
+
+		<div class="mt-12 grid lg:grid-cols-[2fr_1fr] gap-12">
+			<div class="min-w-0 space-y-12">
+				<section>
+					<h2 class="text-2xl font-bold font-heading mb-4">{isMedia ? 'The episode' : 'My session at this event'}</h2>
+					<div class="rounded-xl border border-gray-200 dark:border-slate-700 p-6">
+						<div class="flex items-center gap-2 text-sm text-gray-500 dark:text-slate-400">
+							<TypeBadge type={event.type} />
+							{event.upcoming && <span>Upcoming · details will be shared after the session</span>}
+						</div>
+						<h3 dir="auto" class="mt-3 text-xl font-bold font-heading">
+							{
+								talk ? (
+									<a href={talk.href} class="hover:text-primary-600 dark:hover:text-primary-400">
+										{event.title}
+									</a>
+								) : (
+									(event.title ?? event.name)
+								)
+							}
+						</h3>
+						{
+							talk && (
+								<p class="mt-2 text-sm text-gray-600 dark:text-slate-400">
+									{talk.topic.label} ·{' '}
+									{talk.count === 1 ? 'Given only at this event' : `One of ${talk.count} deliveries of this talk`} ·{' '}
+									<a href={talk.href} class="text-primary-700 dark:text-primary-300 hover:underline">
+										About the talk
+									</a>
+								</p>
+							)
+						}
+					</div>
+				</section>
+
+				{
+					(event.videoIds.length > 0 ||
+						otherRecordings.length > 0 ||
+						event.slidesUrl ||
+						event.resources.length > 0) && (
+						<section>
+							<h2 class="text-2xl font-bold font-heading mb-4">Recording &amp; resources</h2>
+							<div class="space-y-4">
+								{event.videoIds.map((id) => (
+									<YouTube id={id} title={event.title ?? event.name} />
+								))}
+							</div>
+							<div class="mt-4 flex flex-wrap gap-3">
+								{otherRecordings.map((url) => (
+									<a
+										href={url}
+										target="_blank"
+										rel="noopener"
+										class="btn py-2 px-4 text-sm text-white bg-gray-900 hover:bg-gray-700 dark:bg-slate-700 dark:hover:bg-slate-600"
+									>
+										<Icon name={isMedia ? 'tabler:headphones' : 'tabler:player-play'} class="w-4 h-4 mr-2" />
+										{event.type === 'article'
+											? 'Read the article'
+											: isMedia
+												? 'Listen to the episode'
+												: 'Watch the recording'}
+									</a>
+								))}
+								{event.slidesUrl && (
+									<a
+										href={event.slidesUrl}
+										target="_blank"
+										rel="noopener"
+										class="btn py-2 px-4 text-sm text-white bg-primary-600 hover:bg-primary-800"
+									>
+										<Icon name="tabler:presentation" class="w-4 h-4 mr-2" />
+										Slides
+									</a>
+								)}
+								{event.resources.map((url) => (
+									<a
+										href={url}
+										target="_blank"
+										rel="noopener"
+										class="btn py-2 px-4 text-sm border border-gray-300 dark:border-slate-600 shadow-none"
+									>
+										<Icon name="tabler:link" class="w-4 h-4 mr-2" />
+										{new URL(url).hostname.replace(/^www\./, '')}
+									</a>
+								))}
+							</div>
+						</section>
+					)
+				}
+
+				{
+					event.images.length > 0 && (
+						<section>
+							<h2 class="text-2xl font-bold font-heading mb-4">Photos</h2>
+							<PhotoGallery photos={event.images.map((src) => ({ src }))} />
+						</section>
+					)
+				}
+
+				{
+					otherDeliveries.length > 0 && (
+						<section>
+							<h2 class="text-2xl font-bold font-heading mb-2">Also given at</h2>
+							<ol class="divide-y divide-gray-100 dark:divide-slate-800/60">
+								{otherDeliveries.slice(0, 6).map((d) => (
+									<EventRow event={d} dateStyle="monthYear" talkTitle={talk.title} />
+								))}
+							</ol>
+							{otherDeliveries.length > 6 && (
+								<a
+									href={talk.href}
+									class="mt-2 inline-block text-sm text-primary-700 dark:text-primary-300 hover:underline"
+								>
+									See all {talk.count} deliveries
+								</a>
+							)}
+						</section>
+					)
+				}
+			</div>
+
+			<aside class="space-y-8">
+				<dl class="rounded-xl bg-gray-50 dark:bg-slate-800/50 p-6 space-y-4 text-sm">
+					<div>
+						<dt class="text-gray-500 dark:text-slate-400">Format</dt>
+						<dd class="font-semibold">{TYPES[event.type].label}</dd>
+					</div>
+					<div>
+						<dt class="text-gray-500 dark:text-slate-400">Date</dt>
+						<dd class="font-semibold">{formatDate(event.date, 'long')}</dd>
+					</div>
+					<div>
+						<dt class="text-gray-500 dark:text-slate-400">Where</dt>
+						<dd class="font-semibold">{event.flag} {event.location}</dd>
+					</div>
+					<div>
+						<dt class="text-gray-500 dark:text-slate-400">Language</dt>
+						<dd class="font-semibold">{event.language}</dd>
+					</div>
+				</dl>
+
+				{
+					event.shoutouts.length > 0 && (
+						<section>
+							<h2 class="font-semibold mb-3">Shout-outs</h2>
+							<ul class="flex flex-wrap gap-2 text-sm">
+								{event.shoutouts.map((s) => (
+									<li>
+										<a
+											href={s.url}
+											target="_blank"
+											rel="noopener"
+											class="inline-flex items-center gap-1.5 rounded-full border border-gray-200 dark:border-slate-700 px-2.5 py-1 text-gray-700 dark:text-slate-300 hover:border-primary-400 hover:text-primary-600"
+										>
+											<Icon
+												name={s.network === 'linkedin' ? 'tabler:brand-linkedin' : 'tabler:brand-x'}
+												class="w-4 h-4"
+											/>
+											{s.label}
+										</a>
+									</li>
+								))}
+							</ul>
+						</section>
+					)
+				}
+
+				<nav aria-label="More events" class="grid gap-3 text-sm">
+					{
+						newer && (
+							<a
+								href={newer.href}
+								class="block rounded-lg border border-gray-200 dark:border-slate-700 p-4 hover:border-primary-400"
+							>
+								<span class="text-gray-500 dark:text-slate-400">Newer · {formatDate(newer.date, 'monthYear')}</span>
+								<span class="block font-semibold">{newer.name}</span>
+							</a>
+						)
+					}
+					{
+						older && (
+							<a
+								href={older.href}
+								class="block rounded-lg border border-gray-200 dark:border-slate-700 p-4 hover:border-primary-400"
+							>
+								<span class="text-gray-500 dark:text-slate-400">Older · {formatDate(older.date, 'monthYear')}</span>
+								<span class="block font-semibold">{older.name}</span>
+							</a>
+						)
+					}
+				</nav>
+			</aside>
+		</div>
+	</article>
+</Layout>

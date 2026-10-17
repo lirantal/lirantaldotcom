@@ -1,0 +1,46 @@
+---
+import { Icon } from 'astro-icon/components';
+import TypeBadge from '~/components/speaking/TypeBadge.astro';
+import { formatDate, youtubeThumbnail } from '~/utils/speaking';
+
+const { event, ...rest } = Astro.props;
+---
+
+<li {...rest}>
+	<a href={event.href} class="group block">
+		<div class="relative aspect-video overflow-hidden rounded-xl bg-gray-200 dark:bg-slate-800">
+			<img
+				src={youtubeThumbnail(event.videoIds[0])}
+				alt=""
+				loading="lazy"
+				decoding="async"
+				class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+			/>
+			<span class="absolute inset-0 flex items-center justify-center">
+				<span
+					class="flex h-12 w-12 items-center justify-center rounded-full bg-black/60 text-white transition group-hover:bg-red-600"
+				>
+					<Icon name="tabler:player-play-filled" class="w-6 h-6" />
+				</span>
+			</span>
+		</div>
+		<div class="mt-3 flex items-center gap-2 text-xs text-gray-500 dark:text-slate-400">
+			<TypeBadge type={event.type} />
+			<time datetime={event.date.toISOString()}>{formatDate(event.date, 'monthYear')}</time>
+			{event.language !== 'English' && <span>· {event.language}</span>}
+		</div>
+		<h3
+			dir="auto"
+			class="mt-2 font-semibold leading-snug text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400"
+		>
+			{event.title ?? event.name}
+		</h3>
+		{
+			event.title && (
+				<p dir="auto" class="mt-1 text-sm text-gray-500 dark:text-slate-400">
+					{event.name}
+				</p>
+			)
+		}
+	</a>
+</li>

@@ -1,0 +1,26 @@
+---
+import { imageAtSize } from '~/utils/speaking';
+
+/** photos = [{ src, caption? }] */
+const { photos } = Astro.props;
+---
+
+<ul class="grid grid-cols-2 md:grid-cols-3 gap-3">
+	{
+		photos.map((photo) => (
+			<li>
+				<a href={imageAtSize(photo.src, 'large')} target="_blank" rel="noopener" class="group block">
+					<img
+						src={imageAtSize(photo.src, 'small')}
+						alt={photo.caption ? `Photo from ${photo.caption}` : 'Event photo'}
+						loading="lazy"
+						decoding="async"
+						referrerpolicy="no-referrer"
+						class="aspect-[4/3] w-full rounded-lg object-cover bg-gray-200 dark:bg-slate-800 transition group-hover:opacity-90"
+					/>
+					{photo.caption && <span class="mt-1 block text-xs text-gray-500 dark:text-slate-400">{photo.caption}</span>}
+				</a>
+			</li>
+		))
+	}
+</ul>

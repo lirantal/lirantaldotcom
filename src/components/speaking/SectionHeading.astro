@@ -1,0 +1,24 @@
+---
+const { eyebrow, title, link, linkLabel, class: className = '' } = Astro.props;
+---
+
+<div class:list={['flex flex-wrap items-end justify-between gap-4 mb-8', className]}>
+	<div>
+		{
+			eyebrow && (
+				<p class="text-xs font-semibold tracking-[0.2em] uppercase text-primary-600 dark:text-primary-400">{eyebrow}</p>
+			)
+		}
+		<h2 class="mt-2 text-3xl md:text-4xl font-bold tracking-tight font-heading">{title}</h2>
+	</div>
+	{
+		link && (
+			<a
+				href={link}
+				class="text-sm font-semibold text-primary-700 dark:text-primary-300 border-b-2 border-primary-500 pb-0.5 hover:text-primary-900 dark:hover:text-white"
+			>
+				{linkLabel}
+			</a>
+		)
+	}
+</div>

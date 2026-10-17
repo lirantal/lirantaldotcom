@@ -1,0 +1,13 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import SpeakingNav from '~/components/speaking/SpeakingNav.astro';
+import InviteCTA from '~/components/speaking/InviteCTA.astro';
+
+const { meta } = Astro.props;
+---
+
+<PageLayout {meta}>
+	<SpeakingNav />
+	<slot />
+	<InviteCTA />
+</PageLayout>
