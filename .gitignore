@@ -32,3 +32,8 @@ pnpm-lock.yaml
 
 # APM dependencies
 apm_modules/
+
+# Amp orb state (generated portal links, thread artifacts)
+.amp/portals/
+.amp/in/
+.amp/out/
