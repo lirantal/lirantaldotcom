@@ -49,15 +49,30 @@ import { PROFILE } from '~/config.mjs';
 				fetchpriority="high"
 				class="rounded-full w-28 h-28 md:w-52 md:h-52 object-cover"
 			/>
-			<div class="grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
-				<a href={PROFILE.twitterURL} class="col-span-2 justify-self-center inline-flex items-center gap-2">
-					<Icon name="tabler:brand-x" class="w-4 h-4" aria-hidden="true" />X / Twitter ↗
+			<div class="flex items-center gap-3">
+				<a
+					href={PROFILE.twitterURL}
+					aria-label="X / Twitter"
+					title="X / Twitter"
+					class="inline-flex items-center justify-center w-11 h-11"
+				>
+					<Icon name="tabler:brand-x" class="w-6 h-6" aria-hidden="true" />
 				</a>
-				<a href={PROFILE.githubURL} class="inline-flex items-center gap-2">
-					<Icon name="tabler:brand-github" class="w-4 h-4" aria-hidden="true" />GitHub ↗
+				<a
+					href={PROFILE.githubURL}
+					aria-label="GitHub"
+					title="GitHub"
+					class="inline-flex items-center justify-center w-11 h-11"
+				>
+					<Icon name="tabler:brand-github" class="w-6 h-6" aria-hidden="true" />
 				</a>
-				<a href={PROFILE.linkedinURL} class="inline-flex items-center gap-2">
-					<Icon name="tabler:brand-linkedin" class="w-4 h-4" aria-hidden="true" />LinkedIn ↗
+				<a
+					href={PROFILE.linkedinURL}
+					aria-label="LinkedIn"
+					title="LinkedIn"
+					class="inline-flex items-center justify-center w-11 h-11"
+				>
+					<Icon name="tabler:brand-linkedin" class="w-6 h-6" aria-hidden="true" />
 				</a>
 			</div>
 		</div>
