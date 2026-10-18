@@ -1,5 +1,3 @@
-import mermaid from 'mermaid';
-
 const HOST_ATTR = 'data-mermaid-host';
 const ENCODED_ATTR = 'data-mermaid-encoded';
 
@@ -66,15 +64,22 @@ function collectMermaidSelectors(root: ParentNode): HTMLElement[] {
 	return blocks;
 }
 
-async function renderMermaidInArticle(article: Element): Promise<void> {
-	const hosts = collectMermaidSelectors(article);
-	if (hosts.length === 0) return;
-
+// Mermaid is large, so fetch it only for posts that actually contain diagrams.
+async function loadMermaid() {
+	const { default: mermaid } = await import('mermaid');
 	mermaid.initialize({
 		startOnLoad: false,
 		theme: isDarkDocument() ? 'dark' : 'default',
 		securityLevel: 'strict',
 	});
+	return mermaid;
+}
+
+async function renderMermaidInArticle(article: Element): Promise<void> {
+	const hosts = collectMermaidSelectors(article);
+	if (hosts.length === 0) return;
+
+	const mermaid = await loadMermaid();
 
 	const nodes = hosts.map((h) => h.querySelector('.mermaid')).filter(Boolean) as HTMLElement[];
 	await mermaid.run({ nodes });
@@ -84,11 +89,7 @@ async function rerenderAllInArticle(article: Element): Promise<void> {
 	const hosts = Array.from(article.querySelectorAll<HTMLElement>(`[${HOST_ATTR}]`));
 	if (hosts.length === 0) return;
 	resetHostsForRerender(hosts);
-	mermaid.initialize({
-		startOnLoad: false,
-		theme: isDarkDocument() ? 'dark' : 'default',
-		securityLevel: 'strict',
-	});
+	const mermaid = await loadMermaid();
 	const nodes = hosts.map((h) => h.querySelector('.mermaid')).filter(Boolean) as HTMLElement[];
 	await mermaid.run({ nodes });
 }

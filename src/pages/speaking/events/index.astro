@@ -90,9 +90,9 @@ const meta = {
 	{
 		upcoming.length > 0 && (
 			<section class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-				<p class="text-xs font-semibold tracking-[0.2em] uppercase text-green-700 dark:text-green-400">
+				<h2 class="text-xs font-semibold tracking-[0.2em] uppercase text-green-700 dark:text-green-400">
 					Upcoming · {upcoming.length} {upcoming.length === 1 ? 'event' : 'events'}
-				</p>
+				</h2>
 				<ol class="mt-2 border-y border-gray-200 dark:border-slate-800">
 					{upcoming.map((event) => (
 						<CalendarEvent event={event} />

@@ -55,7 +55,7 @@ Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Pro
 
 ## Layout hierarchy
 
-1. **`src/layouts/BaseLayout.astro`** — HTML shell, `MetaTags`, Pagefind CSS/JS, global `base.css`.
+1. **`src/layouts/BaseLayout.astro`** — HTML shell, `MetaTags`, theme script, skip link, global `base.css`. Pagefind CSS/JS load only from `PageFindSearch.astro` (pages that render search), and only post articles (`data-pagefind-body` in `SinglePost.astro`) are indexed.
 2. **`src/layouts/PageLayout.astro`** — BaseLayout + `Header` + `<main>` + `Footer`. Use for most marketing pages and blog **posts**.
 3. **`src/layouts/BlogLayout.astro`** — PageLayout + centered page title slot (`<slot name="title" />`). Used for blog index, tag, and category listing pages.
 
@@ -199,7 +199,7 @@ The **`Link`** header currently advertises: **`api-catalog`** → `/.well-known/
 - **After a Vercel deploy**, third-party scans (e.g. `POST https://isitagentready.com/api/scan` with `{"url":"https://lirantal.com"}`) should report **`checks.discoverability.linkHeaders`** as **pass** (homepage **`Link`** relations present), **`checks.discovery.apiCatalog`** as **pass** (catalog URL, content-type, and **`linkset`** structure), **`checks.botAccessControl.contentSignals`** as **pass** (**`Content-Signal`** declares **`ai-train`**, **`search`**, and **`ai-input`** on **`robots.txt`**), and **`checks.contentAccessibility.markdownNegotiation`** as **pass** (**`Accept: text/markdown`** returns Markdown with **`Content-Type: text/markdown`**).
 - **`GET /health.json`** in production should return **200** and **`application/json`** with a small JSON body suitable for liveness checks.
 - **Local dev** (`npm run dev`, `astro preview`) does **not** apply **`vercel.json`** headers or generated **`.vercel/output/config.json`** routes; verify Markdown negotiation by inspecting **`.vercel/output/config.json`** after **`npm run build`** or by testing the production deployment.
-- SEO crawlers may flag **broken JavaScript** and **broken CSS** on many pages for the same reason: **`/pagefind/pagefind-ui.js`** and **`/pagefind/pagefind-ui.css`** (from [BaseLayout.astro](src/layouts/BaseLayout.astro)) are emitted together by Pagefind into **`pagefind/`**; if either **404**s, the whole bundle is missing from the deploy output. **`www`** vs apex are duplicate reports for the same assets.
+- SEO crawlers may flag **broken JavaScript** and **broken CSS** on many pages for the same reason: **`/pagefind/pagefind-ui.js`** and **`/pagefind/pagefind-ui.css`** (loaded by [PageFindSearch.astro](src/components/widgets/PageFindSearch.astro) on blog listing pages) are emitted together by Pagefind into **`pagefind/`**; if either **404**s, the whole bundle is missing from the deploy output. **`www`** vs apex are duplicate reports for the same assets.
 - If **`SITE.origin`** in **`src/config.mjs`** ever changes, update **absolute `https://` URLs** inside **`public/.well-known/api-catalog`** (and any other hardcoded origin strings in **`site-for-agents.json`**) so anchors and `href` values stay aligned with production.
 
 ## Checklist: new blog post
