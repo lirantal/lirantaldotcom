@@ -1,24 +1,12 @@
 ---
 import { PROFILE } from '~/config.mjs';
 import { Icon } from 'astro-icon/components';
+import { getSocialShareLinks } from '~/utils/social-share.mjs';
 
 const { title } = Astro.props;
 const url = Astro.url;
 
-const links = [
-	{
-		label: 'Share on X',
-		icon: 'tabler:brand-x',
-		href: `https://twitter.com/share?url=${url}&text="${title}"&via=${PROFILE.twitterHandle}`,
-	},
-	{ label: 'Share on Facebook', icon: 'tabler:brand-facebook', href: `https://www.facebook.com/sharer.php?u=${url}` },
-	{
-		label: 'Share on LinkedIn',
-		icon: 'tabler:brand-linkedin',
-		href: `https://www.linkedin.com/shareArticle?url=${url}&title=${title}`,
-	},
-	{ label: 'Share on WhatsApp', icon: 'tabler:brand-whatsapp', href: `https://wa.me/?text=${title}%20${url}` },
-];
+const links = getSocialShareLinks(title, url, PROFILE.twitterHandle);
 ---
 
 <div
