@@ -9,7 +9,13 @@ const { eyebrow, title, highlight, description } = Astro.props;
 	</p>
 	<h1 class="mt-3 text-4xl md:text-6xl font-bold leading-tighter tracking-tighter font-heading max-w-4xl">
 		{title}
-		{highlight && <span class="text-primary-600 dark:text-primary-300">{highlight}</span>}
+		{
+			highlight && (
+				<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">
+					{highlight}
+				</span>
+			)
+		}
 	</h1>
 	{description && <p class="mt-5 max-w-2xl text-lg text-gray-600 dark:text-slate-400">{description}</p>}
 	<slot />

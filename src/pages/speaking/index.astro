@@ -48,7 +48,9 @@ const meta = {
 			</p>
 			<h1 class="mt-3 text-5xl md:text-6xl font-bold leading-tighter tracking-tighter font-heading">
 				Security talks,
-				<span class="text-primary-600 dark:text-primary-300">hacked live on stage.</span>
+				<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500"
+					>hacked live on stage.</span
+				>
 			</h1>
 			<p class="mt-6 text-lg text-gray-600 dark:text-slate-400">
 				Talks, workshops and podcasts about AI and agentic security, software supply chain attacks and Node.js secure
@@ -65,7 +67,12 @@ const meta = {
 				>
 			</div>
 		</div>
-		<div>
+		<div class="relative">
+			<div
+				class="absolute -inset-2 md:-inset-3 rotate-2 rounded-2xl bg-gradient-to-br from-primary-500 to-secondary-500 opacity-80"
+				aria-hidden="true"
+			>
+			</div>
 			<Picture
 				src={heroImage}
 				widths={[480, 800, 1200]}
@@ -73,7 +80,7 @@ const meta = {
 				formats={['avif', 'webp']}
 				loading="eager"
 				alt="Liran Tal on stage at JSNation US 2025, presenting from the lectern"
-				class="rounded-xl aspect-[4/3] object-cover w-full"
+				class="relative rounded-2xl shadow-xl aspect-[4/3] object-cover w-full"
 			/>
 		</div>
 	</section>
@@ -189,7 +196,7 @@ const meta = {
 							</a>
 							<span class="h-4 rounded-r bg-gray-100 dark:bg-slate-800">
 								<span
-									class="block h-full rounded-r bg-primary-600 dark:bg-primary-300"
+									class="block h-full rounded-r bg-gradient-to-r from-primary-500 to-secondary-500"
 									style={`width: ${(y.count / maxYearCount) * 100}%`}
 								/>
 							</span>
