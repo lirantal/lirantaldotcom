@@ -24,6 +24,30 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 <Layout {meta}>
 	<div class="portfolio">
 		<ProfileHero />
+		<section
+			class="border-t border-gray-200 dark:border-slate-700 pt-7 pb-10 md:pb-14"
+			aria-labelledby="featured-projects-title"
+		>
+			<div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 mb-6">
+				<h2 id="featured-projects-title" class="!text-base !tracking-normal">Tools & resources I maintain</h2>
+				<a href="#open-source" class="text-sm">More projects & impact →</a>
+			</div>
+			<div class="grid md:grid-cols-3 gap-7 md:gap-10">
+				{
+					projects
+						.filter((project) => ['lockfile-lint', 'npq', 'Node.js CLI Apps Best Practices'].includes(project.name))
+						.map((project) => (
+							<article>
+								<p class="eyebrow">{project.kind}</p>
+								<h3>
+									<a href={project.url}>{project.name} ↗</a>
+								</h3>
+								<p class="mt-3 muted text-sm">{project.description}</p>
+							</article>
+						))
+				}
+			</div>
+		</section>
 		<Section id="writing" number="01" title="Writing" description="What I’m learning. What I’m sharing.">
 			<a slot="link" href="/writing">All writing & publications →</a>
 			<div class="grid md:grid-cols-[2fr_1fr] gap-10 md:gap-16">
