@@ -1,6 +1,6 @@
+import codeInjection from '~/assets/images/code-injection-book-cover-light.png';
 import commandInjection from '~/assets/images/command-injection-book-cover-light.png';
 import pathTraversal from '~/assets/images/path-traversal-book-cover-light.png';
-import essential from '~/assets/images/book-cover-essential-nodejs-security.jpg';
 import headers from '~/assets/images/book-cover-web-security-learning-http-security-headers.png';
 import serverless from '~/assets/images/book-cover-serverless-security.jpeg';
 
@@ -66,6 +66,12 @@ export const projects = [
 
 export const books = [
 	{
+		title: 'Mitigate and Weaponize Code Injection Vulnerabilities',
+		series: 'Node.js Secure Coding',
+		image: codeInjection,
+		url: 'https://www.nodejs-security.com/book/code-injection',
+	},
+	{
 		title: 'Defending Against Command Injection',
 		series: 'Node.js Secure Coding',
 		image: commandInjection,
@@ -76,12 +82,6 @@ export const books = [
 		series: 'Node.js Secure Coding',
 		image: pathTraversal,
 		url: 'https://www.nodejs-security.com/book/path-traversal',
-	},
-	{
-		title: 'Essential Node.js Security',
-		series: 'Secure coding fundamentals',
-		image: essential,
-		url: 'https://nodejs-security.lemonsqueezy.com/checkout/buy/5d5975e1-4481-40a5-b180-de154cc865b0',
 	},
 	{
 		title: 'Web Security: Learning HTTP Security Headers',

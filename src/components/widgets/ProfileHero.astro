@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 import portrait from '~/assets/images/liran-tal-portrait.jpg';
 import { PROFILE } from '~/config.mjs';
 ---
@@ -49,8 +50,12 @@ import { PROFILE } from '~/config.mjs';
 				class="rounded-full w-28 h-28 md:w-52 md:h-52 object-cover"
 			/>
 			<div class="flex gap-6 text-sm">
-				<a href={PROFILE.githubURL}>GitHub ↗</a>
-				<a href={PROFILE.linkedinURL}>LinkedIn ↗</a>
+				<a href={PROFILE.githubURL} class="inline-flex items-center gap-2">
+					<Icon name="tabler:brand-github" class="w-4 h-4" aria-hidden="true" />GitHub ↗
+				</a>
+				<a href={PROFILE.linkedinURL} class="inline-flex items-center gap-2">
+					<Icon name="tabler:brand-linkedin" class="w-4 h-4" aria-hidden="true" />LinkedIn ↗
+				</a>
 			</div>
 		</div>
 	</div>
