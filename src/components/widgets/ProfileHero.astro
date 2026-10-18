@@ -1,85 +1,95 @@
 ---
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
+import portrait from '~/assets/images/liran-tal-portrait.jpg';
 import { PROFILE } from '~/config.mjs';
-import Picture from '~/components/core/Picture.astro';
 ---
 
-<section>
-	<div class="max-w-6xl mx-auto px-4 sm:px-6">
-		<div class="py-12 md:py-20">
-			<div class="text-center pb-10 md:pb-16">
-				<div>
-					<div class="relative mb-8 m-auto max-w-3xl">
-						<Picture
-							src="https://github.com/lirantal.png"
-							class="mx-auto rounded-full shadow-lg"
-							width="230"
-							height="230"
-							widths={[100, 200]}
-							aspectRatio="1:1"
-							alt="Liran Tal"
-							deprecated-src={import('~/assets/images/hero.jpg')}
-							deprecated-class="mx-auto rounded-md shadow-lg bg-gray-400 dark:bg-slate-700 w-full"
-							deprecated-widths={[400, 768]}
-							deprecated-sizes=" (max-width: 767px) 400px, 768px"
-							deprecated-aspectRatio="16:9"
-						/>
-					</div>
+<section class="pt-12 pb-10 md:pt-20 md:pb-14" aria-labelledby="intro-title">
+	<div class="flex flex-col-reverse md:flex-row gap-8 md:gap-16 items-start md:items-center">
+		<div class="flex-1">
+			<p class="eyebrow overflow-hidden">
+				<!-- Clip the leading separator on each wrapped row, keeping dots only between roles. -->
+				<span class="flex flex-wrap -ml-12 gap-y-2">
+					{
+						['Security researcher', 'Author', 'Open-source maintainer'].map((role) => (
+							<span class="inline-flex whitespace-nowrap">
+								<span class="w-12 shrink-0 text-center" aria-hidden="true">
+									·
+								</span>
+								{role}
+							</span>
+						))
+					}
+				</span>
+			</p>
+			<h1 id="intro-title">Hi, I’m <span class="text-primary-600 dark:text-primary-400">Liran Tal.</span></h1>
+			<p class="mt-5 text-xl md:text-2xl max-w-2xl leading-relaxed muted">
+				I help developers build secure software,<br />from Node.js to <span class="whitespace-nowrap">AI agents.</span>
+				I research, write, and build tools in the open.
+			</p>
+			<div class="mt-6 text-sm font-medium">
+				<p class="muted">I head Developer Relations at <a href="https://snyk.io/contributors/liran-tal/">Snyk</a></p>
+				<div class="mt-2 flex flex-wrap gap-x-6 gap-y-3">
+					<a href="/writing">Read my writing →</a>
+					<a href="/speaking">Invite me to speak →</a>
+					<a href="/speaking/press-kit">Bio & press kit →</a>
 				</div>
-				<h1 class="text-5xl md:text-[3.50rem] font-bold leading-tighter tracking-tighter mb-4 font-heading">
-					👋 Hi there, I'm
-					<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">Liran Tal</span
-					>
-					<!-- <span
-						class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 sm:whitespace-nowrap"
-						>Tal</span
-					> -->
-				</h1>
-				<span class="font-light text-xl text-gray-600 dark:text-slate-400"
-					>AI Security Researcher, Node.js Security Expert and Developer Advocate</span
+				<ul class="mt-5 flex flex-wrap gap-3" aria-label="Awards and recognition" role="list">
+					<li class="inline-flex items-center gap-2 rounded-md border border-[var(--line)] bg-[var(--wash)] px-3 py-2">
+						<Icon name="tabler:award" class="w-4 h-4 shrink-0 muted" aria-hidden="true" />
+						<span
+							><span class="muted font-normal">Awarded</span>
+							<a href="https://stars.github.com/profiles/lirantal/">GitHub Star</a></span
+						>
+					</li>
+					<li class="inline-flex items-center gap-2 rounded-md border border-[var(--line)] bg-[var(--wash)] px-3 py-2">
+						<Icon name="tabler:award" class="w-4 h-4 shrink-0 muted" aria-hidden="true" />
+						<span
+							><span class="muted font-normal">Awarded</span>
+							<a href="/recognitions">OpenJS Security Pathfinder</a></span
+						>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="shrink-0 flex flex-col items-center gap-5">
+			<Image
+				src={portrait}
+				alt="Liran Tal"
+				width={208}
+				height={208}
+				widths={[208, 416]}
+				sizes="208px"
+				loading="eager"
+				fetchpriority="high"
+				class="rounded-full w-28 h-28 md:w-52 md:h-52 object-cover"
+			/>
+			<div class="flex items-center gap-3">
+				<a
+					href={PROFILE.twitterURL}
+					aria-label="X / Twitter"
+					title="X / Twitter"
+					class="inline-flex items-center justify-center w-11 h-11"
 				>
-				<div class="max-w-3xl mt-8 mx-auto">
-					<p class="text-l text-gray-600 mb-8 dark:text-slate-400">
-						Liran Tal researches AI Security with a focus on hardening agentic developer workflows and the Model Context
-						Protocol (MCP). Over the past years, Liran has uncovered and responsibly disclosed CVEs in MCP servers, AI
-						frameworks, and open-source libraries, publishing practical write-ups that show how issues like command
-						injection, path traversal, and SQL read-only bypasses emerge in real systems and how to mitigate them. His
-						work also extends to open-source projects that audit and documents supply chain security, how tool-poisoning
-						in MCP tool metadata can steer agents toward unsafe actions, along with concrete guardrails for build
-						pipelines, IDE assistants, and CI that keep AI-generated code from introducing vulnerabilities.
-						<span class="block mt-2"></span>
-						Beyond AI, Liran is a longstanding Node.js developer and secure-coding advocate. He authored books on Node.js
-						security, contributed to the Node.js Security Working Group, and led community education through OWASP initiatives
-						and the OpenSSF Secure Coding Labs. He's recognized as a GitHub Star and received the OpenJS Foundation JavaScriptLandia
-						"Pathfinder for Security" award. Today, he leads Developer Relations at Snyk, where he turns research into approachable
-						education with guidance—frameworks, demos, policies, and tooling that teams can adopt to safely use LLMs, agentic
-						systems, and secure code in production.
-
-						<!-- @TODO - text here can be hidden on mobile devices -->
-						<!-- <span class="inline sm:hidden">...</span><span
-							class="hidden sm:inline"
-							></span
-						> -->
-					</p>
-					<div class="max-w-none px-6 flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4">
-						<div class="flex w-full sm:w-auto">
-							<a
-								class="btn text-white border border-primary-600 bg-primary-600 hover:bg-primary-800 hover:border-primary-800 sm:mb-0 w-full"
-								href={PROFILE.twitterURL}
-								target="_blank"
-								rel="noopener"
-							>
-								<Icon name="tabler:brand-twitter" class="w-5 h-5 mr-1 -ml-1.5" /> Add friend
-							</a>
-						</div>
-						<div class="flex w-full sm:w-auto">
-							<a
-								class="btn text-white bg-gray-900 hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-800 w-full"
-								href="https://github.com/lirantal">Learn more</a
-							>
-						</div>
-					</div>
-				</div>
+					<Icon name="tabler:brand-x" class="w-6 h-6" aria-hidden="true" />
+				</a>
+				<a
+					href={PROFILE.githubURL}
+					aria-label="GitHub"
+					title="GitHub"
+					class="inline-flex items-center justify-center w-11 h-11"
+				>
+					<Icon name="tabler:brand-github" class="w-6 h-6" aria-hidden="true" />
+				</a>
+				<a
+					href={PROFILE.linkedinURL}
+					aria-label="LinkedIn"
+					title="LinkedIn"
+					class="inline-flex items-center justify-center w-11 h-11"
+				>
+					<Icon name="tabler:brand-linkedin" class="w-6 h-6" aria-hidden="true" />
+				</a>
 			</div>
 		</div>
 	</div>

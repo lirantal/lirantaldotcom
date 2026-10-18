@@ -1,90 +1,53 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { PROFILE } from '~/config.mjs';
+import { NAVIGATION, PROFILE } from '~/config.mjs';
 import Logo from '~/components/atoms/Logo.astro';
 import ToggleTheme from '~/components/core/ToggleTheme.astro';
 import ToggleMenu from '~/components/core/ToggleMenu.astro';
+import { getHomePermalink } from '~/utils/permalinks';
 
-import { getBlogPermalink, getHomePermalink } from '~/utils/permalinks';
+const path = Astro.url.pathname.replace(/\/$/, '');
 ---
 
 <header
-	class="sticky top-0 z-40 flex-none mx-auto w-full bg-white md:bg-white/90 dark:bg-slate-900 dark:md:bg-slate-900/90 md:backdrop-blur-sm border-b dark:border-b-0"
+	class="sticky top-0 z-40 mx-auto w-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-slate-800"
 >
-	<div class="py-3 px-3 mx-auto w-full md:flex md:justify-between max-w-6xl md:px-4">
+	<div class="py-3 px-4 mx-auto w-full lg:flex lg:justify-between max-w-6xl">
 		<div class="flex justify-between">
-			<a class="flex items-center" href={getHomePermalink()}>
-				<Logo />
-			</a>
-			<div class="flex items-center md:hidden">
-				<ToggleTheme />
-				<ToggleMenu />
-			</div>
+			<a class="flex items-center" href={getHomePermalink()}><Logo /></a>
+			<div class="flex items-center lg:hidden"><ToggleTheme /><ToggleMenu /></div>
 		</div>
 		<nav
-			class="items-center w-full md:w-auto hidden md:flex text-gray-600 dark:text-slate-300 h-screen md:h-auto"
+			class="items-center w-full lg:w-auto hidden lg:flex text-gray-600 dark:text-slate-300 max-h-[calc(100dvh-5rem)] overflow-y-auto"
 			aria-label="Main navigation"
 			id="menu"
 		>
-			<ul class="flex flex-col pt-8 md:pt-0 md:flex-row md:self-center w-full md:w-auto collapsed text-xl md:text-base">
-				<!-- @TODO removed until we have more pages to put up here -->
-				<!-- <li>
-					<a
-						class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-						href="#">Pages</a
-					>
-				</li> -->
-				<!-- <li>
-					<a
-						class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-						href={getPermalink('useful-resources-to-create-websites', 'post')}
-						>Resources
-					</a>
-				</li> -->
-				<li>
-					<a
-						class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-						href={'/books/nodejs-secure-coding'}>🦄 Node.js Secure Coding</a
-					>
-				</li>
-				<li>
-					<a
-						class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-						href={getBlogPermalink()}>Blog</a
-					>
-				</li>
-				<li>
-					<a
-						class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-						href={'/speaking'}>Speaking</a
-					>
-				</li>
-				<!-- <li class="md:hidden">
-					<a
-						class="font-bold hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-						href={PROFILE.githubURL}
-						>GitHub
-					</a>
-				</li> -->
+			<ul class="flex flex-col py-4 lg:py-0 lg:flex-row w-full lg:w-auto text-lg lg:text-sm">
+				{
+					NAVIGATION.map((link) => (
+						<li>
+							<a
+								href={link.href}
+								aria-current={
+									!link.href.includes('#') && (path === link.href || path.startsWith(`${link.href}/`))
+										? 'page'
+										: undefined
+								}
+								class="font-medium hover:text-primary-700 dark:hover:text-primary-300 aria-[current=page]:text-primary-700 dark:aria-[current=page]:text-primary-300 px-3 py-3 flex items-center focus-visible:outline-2 focus-visible:outline-primary-500 focus-visible:-outline-offset-2"
+							>
+								{link.label}
+							</a>
+						</li>
+					))
+				}
 			</ul>
-			<div class="md:self-center flex items-center mb-4 md:mb-0 ml-2">
-				<div class="hidden items-center md:flex">
-					<ToggleTheme iconClass="w-5 h-5" />
-					<a
-						class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-						aria-label="Liran Tal's Twitter"
-						href={PROFILE.twitterURL}
-					>
-						<Icon name="tabler:brand-twitter" class="w-5 h-5" />
-					</a>
-					<a
-						href={PROFILE.githubURL}
-						class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
-						aria-label="Liran Tal's GitHub"
-					>
-						<Icon name="tabler:brand-github" class="w-5 h-5" />
-					</a>
-				</div>
+			<div class="hidden lg:flex items-center ml-3">
+				<ToggleTheme iconClass="w-5 h-5" />
+				<a
+					href={PROFILE.githubURL}
+					class="text-gray-500 dark:text-slate-400 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800"
+					aria-label="Liran Tal's GitHub"><Icon name="tabler:brand-github" class="w-5 h-5" /></a
+				>
 			</div>
 		</nav>
 	</div>

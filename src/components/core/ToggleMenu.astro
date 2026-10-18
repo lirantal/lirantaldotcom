@@ -10,6 +10,14 @@ const {
 } = Astro.props;
 ---
 
-<button type="button" class={className} aria-label={label} data-aw-toggle-menu>
-	<Icon name={iconName} class={iconClass} />
+<button
+	type="button"
+	class:list={[className, 'group']}
+	aria-label={label}
+	aria-expanded="false"
+	aria-controls="menu"
+	data-aw-toggle-menu
+>
+	<span class="group-[.expanded]:hidden" aria-hidden="true"><Icon name={iconName} class={iconClass} /></span>
+	<span class="hidden group-[.expanded]:block" aria-hidden="true"><Icon name="tabler:x" class={iconClass} /></span>
 </button>

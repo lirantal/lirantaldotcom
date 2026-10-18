@@ -1,29 +1,241 @@
 ---
-import { SITE } from '~/config.mjs';
-import { getCanonical, getHomePermalink } from '~/utils/permalinks';
+import { Image } from 'astro:assets';
+import { SITE, PROFILE } from '~/config.mjs';
+import { getCanonical, getHomePermalink, getPermalink } from '~/utils/permalinks';
 import Layout from '~/layouts/PageLayout.astro';
-
-import Features from '~/components/widgets/Features.astro';
-import HighlightedPosts from '~/components/blog/HighlightedPosts.astro';
 import ProfileHero from '~/components/widgets/ProfileHero.astro';
+import Section from '~/components/portfolio/Section.astro';
+import { papers, projects, books, publications } from '~/data/portfolio';
+import downloads from '~/data/npm-downloads.json';
+import { fetchPosts } from '~/utils/posts';
+import { getSpeaking } from '~/utils/speaking';
+import speakingImage from '~/assets/images/speaking-hero.jpg';
+import '~/assets/styles/portfolio.css';
 
-const meta = {
-	title: SITE.title,
-	description: SITE.description,
-	canonical: getCanonical(getHomePermalink()),
-};
+const posts = (await fetchPosts()).slice(0, 3);
+const { stats } = await getSpeaking();
+const totalDownloads = downloads.packages.reduce((total, pkg) => total + pkg.downloads, 0);
+const downloadLabel = `${(totalDownloads / 1_000_000).toFixed(2)}M`;
+const dateLabel = (date: string) =>
+	new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+const meta = { title: SITE.title, description: SITE.description, canonical: getCanonical(getHomePermalink()) };
 ---
 
 <Layout {meta}>
-	<ProfileHero />
-	<Features />
-	<HighlightedPosts />
-
-	<!-- 
-	<Steps />
-	<Features2 />
-	<Features3 />
-	<FAQs />
-	<Stats />
-	<CallToAction /> -->
+	<div class="portfolio">
+		<ProfileHero />
+		<section
+			class="border-t border-gray-200 dark:border-slate-700 pt-7 pb-10 md:pb-14"
+			aria-labelledby="featured-projects-title"
+		>
+			<div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 mb-6">
+				<h2 id="featured-projects-title" class="!text-base !tracking-normal">Tools & resources I maintain</h2>
+				<a href="#open-source" class="text-sm">More projects & impact →</a>
+			</div>
+			<div class="grid md:grid-cols-3 gap-7 md:gap-10">
+				{
+					projects
+						.filter((project) => ['lockfile-lint', 'npq', 'Node.js CLI Apps Best Practices'].includes(project.name))
+						.map((project) => (
+							<article>
+								<p class="eyebrow">{project.kind}</p>
+								<h3>
+									<a href={project.url}>{project.name} ↗</a>
+								</h3>
+								<p class="mt-3 muted text-sm">{project.description}</p>
+							</article>
+						))
+				}
+			</div>
+		</section>
+		<Section id="speaking" number="01" title="Speaking" description="From the terminal to the stage.">
+			<a slot="link" href="/speaking">Explore talks & events →</a>
+			<div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+				<Image
+					src={speakingImage}
+					alt="Liran Tal presenting at JSNation US 2025"
+					widths={[480, 960]}
+					sizes="(max-width: 767px) 100vw, 520px"
+					class="rounded-xl aspect-[16/10] w-full object-cover"
+				/>
+				<div>
+					<p class="text-2xl font-semibold tracking-tight">
+						{stats.talksDelivered} talks. {stats.countries} countries.<br />Plenty of live hacking.
+					</p>
+					<p class="muted mt-4">
+						I bring real-world attacks and practical defenses to conferences, meetups, and workshops. AI security,
+						Node.js, and the software supply chain, explained through code.
+					</p>
+					<div class="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+						<a href="/speaking/recordings">Watch a talk →</a><a href="/speaking/press-kit">Speaker press kit →</a>
+					</div>
+				</div>
+			</div>
+		</Section>
+		<Section id="writing" number="02" title="Writing" description="What I’m learning. What I’m sharing.">
+			<a slot="link" href="/writing">All writing & publications →</a>
+			<div class="grid md:grid-cols-[2fr_1fr] gap-10 md:gap-16">
+				<div>
+					{
+						posts.map((post) => (
+							<article class="editorial-row">
+								<p class="text-xs muted mb-2">
+									On the blog · <time datetime={new Date(post.pubDate).toISOString()}>{dateLabel(post.pubDate)}</time>
+								</p>
+								<h3>
+									<a href={getPermalink(post.slug, 'post')}>{post.title}</a>
+								</h3>
+								<p class="muted mt-3 text-sm">{post.description}</p>
+							</article>
+						))
+					}
+				</div>
+				<aside class="surface self-start" aria-label="Where I write">
+					<p class="eyebrow">Beyond this blog</p>
+					{
+						publications.slice(1).map((publication) => (
+							<div class="mt-5">
+								<h3>
+									<a href={publication.url}>{publication.name} ↗</a>
+								</h3>
+								<p class="muted text-sm mt-2">{publication.description}</p>
+							</div>
+						))
+					}
+					<p class="mt-6 text-sm"><a href="/rss.xml">Follow this blog via RSS →</a></p>
+				</aside>
+			</div>
+		</Section>
+		<Section id="research" number="03" title="Research" description="Investigating how systems fail.">
+			<p class="muted max-w-3xl mb-7">
+				My research focuses on AI agents, developer tooling, and software supply chain security. These are selected
+				co-authored papers, available as preprints on arXiv.
+			</p>
+			{
+				papers.map((paper) => (
+					<article class="editorial-row grid md:grid-cols-[9rem_1fr] gap-3 md:gap-8">
+						<div class="text-sm muted">
+							<>
+								<p>{paper.date}</p>
+								<p class="text-xs mt-1">arXiv · Preprint</p>
+							</>
+						</div>
+						<div>
+							<h3>
+								<a href={`https://arxiv.org/abs/${paper.id}`}>{paper.title} ↗</a>
+							</h3>
+							<p class="muted mt-3">{paper.description}</p>
+							<p class="muted text-xs mt-3">{paper.authors}</p>
+							<p class="text-sm mt-3">
+								<>
+									<a href={`https://arxiv.org/pdf/${paper.id}`}>Read PDF</a>
+									<span aria-hidden="true"> · </span>
+									<a href={`https://doi.org/10.48550/arXiv.${paper.id}`}>DOI: 10.48550/arXiv.{paper.id}</a>
+								</>
+							</p>
+						</div>
+					</article>
+				))
+			}
+		</Section>
+		<Section id="open-source" number="04" title="Open source" description="Useful tools. Shared with everyone.">
+			<a slot="link" href={PROFILE.githubURL}>All projects on GitHub ↗</a>
+			<div class="surface mb-8 grid md:grid-cols-[1fr_2fr] gap-6 items-start">
+				<div>
+					<p class="text-4xl font-bold tracking-tight">{downloadLabel}</p><p class="muted text-sm mt-2">
+						downloads across {downloads.packages.length} maintained npm packages
+					</p>
+				</div>
+				<div class="text-sm muted">
+					<p>
+						{dateLabel(downloads.start)} – {dateLabel(downloads.end)}. Package downloads, not unique developers; totals
+						include dependency installs.
+					</p>
+					<details class="mt-3 group">
+						<summary
+							class="flex items-center justify-between gap-4 list-none [&::-webkit-details-marker]:hidden cursor-pointer text-primary-700 dark:text-primary-300 underline underline-offset-4"
+						>
+							<span>Packages & source counts</span>
+							<span aria-hidden="true" class="group-open:hidden">+</span>
+							<span aria-hidden="true" class="hidden group-open:inline">−</span>
+						</summary>
+						<ul class="mt-3 space-y-2">
+							{
+								downloads.packages.map((pkg) => (
+									<li class="flex flex-wrap justify-between gap-x-4">
+										<>
+											<a href={`https://api.npmjs.org/downloads/point/${downloads.start}:${downloads.end}/${pkg.name}`}>
+												{pkg.name}
+											</a>
+											<span>{pkg.downloads.toLocaleString('en-US')}</span>
+										</>
+									</li>
+								))
+							}
+						</ul>
+					</details>
+					<p class="mt-3">
+						<a href="https://www.npmjs.com/~lirantal" class="flex items-center justify-between gap-4">
+							<span>Browse all my npm packages</span><span aria-hidden="true">↗</span>
+						</a>
+					</p>
+				</div>
+			</div>
+			<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8">
+				{
+					projects.map((project) => (
+						<article>
+							<p class="eyebrow">{project.kind}</p>
+							<h3>
+								<a href={project.url}>{project.name} ↗</a>
+							</h3>
+							<p class="mt-3 muted text-sm">{project.description}</p>
+						</article>
+					))
+				}
+			</div>
+		</Section>
+		<Section id="books" number="05" title="Books" description="A bookshelf for more secure code.">
+			<a slot="link" href="/books/nodejs-secure-coding">Explore Node.js Secure Coding →</a>
+			<p class="muted max-w-2xl mb-8">
+				Practical guides built around real vulnerabilities, with code to break, fixes to understand, and techniques to
+				take back to your own projects.
+			</p>
+			<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-9">
+				{
+					books.map((book) => (
+						<article>
+							<a href={book.url} class="book-cover block mb-5" tabindex="-1" aria-hidden="true">
+								<Image
+									src={book.image}
+									alt=""
+									widths={[180, 360]}
+									sizes="(max-width: 639px) 40vw, 190px"
+									class="h-52 w-full object-contain object-left-bottom"
+								/>
+							</a>
+							<p class="text-xs muted mb-2">{book.series}</p>
+							<h3 class="!text-base">
+								<a href={book.url}>{book.title} ↗</a>
+							</h3>
+						</article>
+					))
+				}
+			</div>
+		</Section>
+		<section class="portfolio-section grid md:grid-cols-[1fr_2fr] gap-6" aria-labelledby="community-title">
+			<div><p class="eyebrow">From the community</p><h2 id="community-title">Better together.</h2></div>
+			<figure>
+				<blockquote class="text-xl leading-relaxed">
+					“Some people talk about AppSec (me) and some people really dig in and do the work (you). I’m a big fan.”
+				</blockquote>
+				<figcaption class="text-sm muted mt-5">
+					Jim Manico · OWASP Leader · <a href="https://twitter.com/manicode/status/1326929685553451008"
+						>Original post ↗</a
+					>
+				</figcaption>
+				<p class="text-sm mt-5"><a href="/recognitions">More community feedback & recognitions →</a></p>
+			</figure>
+		</section>
+	</div>
 </Layout>

@@ -1,16 +1,10 @@
 ---
+
 ---
 
 <script is:inline>
-	// Set "light" theme as default
-	// if (!localStorage.theme) {
-	//   localStorage.theme = "light";
-	// }
-
-	if (
-		localStorage.theme === 'dark' ||
-		(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-	) {
+	// Light is the default; only an explicit saved preference enables dark mode.
+	if (localStorage.theme === 'dark') {
 		document.documentElement.classList.add('dark');
 	} else {
 		document.documentElement.classList.remove('dark');
@@ -28,9 +22,26 @@
 	window.onload = function () {
 		attachEvent('[data-aw-toggle-menu]', 'click', function (elem) {
 			elem.classList.toggle('expanded');
+			elem.setAttribute('aria-expanded', String(elem.classList.contains('expanded')));
 			document.body.classList.toggle('overflow-hidden');
 			document.getElementById('menu')?.classList.toggle('hidden');
 		});
+
+		function closeMenu() {
+			const toggle = document.querySelector('[data-aw-toggle-menu]');
+			toggle?.classList.remove('expanded');
+			toggle?.setAttribute('aria-expanded', 'false');
+			document.body.classList.remove('overflow-hidden');
+			document.getElementById('menu')?.classList.add('hidden');
+		}
+		attachEvent('#menu a', 'click', closeMenu);
+		document.addEventListener('keydown', function (event) {
+			if (event.key === 'Escape' && document.querySelector('[data-aw-toggle-menu].expanded')) {
+				closeMenu();
+				document.querySelector('[data-aw-toggle-menu]')?.focus();
+			}
+		});
+		window.matchMedia('(min-width: 1024px)').addEventListener('change', closeMenu);
 
 		attachEvent('[data-aw-toggle-color-scheme]', 'click', function () {
 			document.documentElement.classList.toggle('dark');
@@ -41,6 +52,7 @@
 		const elem = document.querySelector('[data-aw-toggle-menu]');
 		if (elem) {
 			elem.classList.remove('expanded');
+			elem.setAttribute('aria-expanded', 'false');
 		}
 		document.body.classList.remove('overflow-hidden');
 		document.getElementById('menu')?.classList.add('hidden');

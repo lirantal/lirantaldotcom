@@ -1,0 +1,11 @@
+{
+  "start": "2026-09-17",
+  "end": "2026-10-16",
+  "packages": [
+    { "name": "lockfile-lint", "downloads": 1639784 },
+    { "name": "lockfile-lint-api", "downloads": 1738224 },
+    { "name": "blessed-contrib", "downloads": 611306 },
+    { "name": "anti-trojan-source", "downloads": 156491 },
+    { "name": "eslint-plugin-anti-trojan-source", "downloads": 125132 }
+  ]
+}

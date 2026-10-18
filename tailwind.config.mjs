@@ -11,8 +11,8 @@ export default {
 				DEFAULT: {
 					css: {
 						'.dark code:not(pre > code)': {
-							color: theme('colors.gray.100'),
-							backgroundColor: theme('colors.slate.800'),
+							color: 'var(--color-slate-100)',
+							backgroundColor: 'var(--color-slate-800)',
 						},
 						'code::before': {
 							content: 'none',
@@ -33,7 +33,11 @@ export default {
 				},
 			}),
 			colors: {
-				primary: colors.blue,
+				primary: {
+					...colors.blue,
+					300: 'var(--color-blue-300)',
+					400: 'var(--color-blue-400)',
+				},
 				secondary: colors.pink,
 			},
 			fontFamily: {
