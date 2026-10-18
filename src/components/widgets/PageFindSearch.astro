@@ -8,10 +8,17 @@
 
 <style is:global>
 	.dark {
-		--pagefind-ui-primary: #eeeeee;
-		--pagefind-ui-text: #eeeeee;
-		--pagefind-ui-background: #152028;
-		--pagefind-ui-border: #152028;
-		--pagefind-ui-tag: #152028;
+		--pagefind-ui-primary: var(--color-blue-400);
+		--pagefind-ui-text: var(--color-slate-300);
+		--pagefind-ui-background: var(--color-slate-800);
+		--pagefind-ui-border: var(--color-slate-700);
+		--pagefind-ui-tag: var(--color-slate-700);
+	}
+	.dark #search .pagefind-ui__result-link {
+		color: var(--color-blue-400);
+	}
+	.dark #search mark {
+		color: var(--color-slate-900);
+		background-color: var(--color-blue-400);
 	}
 </style>

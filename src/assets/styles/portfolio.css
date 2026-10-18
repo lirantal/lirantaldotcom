@@ -10,10 +10,10 @@
 	line-height: 1.65;
 }
 .dark .portfolio {
-	--ink-muted: #a7b5c9;
-	--line: #334155;
-	--link: #93c5fd;
-	--wash: #162235;
+	--ink-muted: var(--color-slate-400);
+	--line: var(--color-slate-700);
+	--link: var(--color-blue-400);
+	--wash: var(--color-slate-800);
 }
 .portfolio a:not(.book-cover) {
 	color: var(--link);
