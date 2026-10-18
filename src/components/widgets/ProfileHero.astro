@@ -7,21 +7,33 @@ import { PROFILE } from '~/config.mjs';
 <section class="pt-12 pb-10 md:pt-20 md:pb-14" aria-labelledby="intro-title">
 	<div class="flex flex-col-reverse md:flex-row gap-8 md:gap-16 items-start md:items-center">
 		<div class="flex-1">
-			<p class="eyebrow flex flex-wrap gap-x-6 gap-y-2">
-				<span>Security researcher</span><span>Author</span><span>Open-source maintainer</span>
+			<p class="eyebrow overflow-hidden">
+				<!-- Clip the leading separator on each wrapped row, keeping dots only between roles. -->
+				<span class="flex flex-wrap -ml-12 gap-y-2">
+					{
+						['Security researcher', 'Author', 'Open-source maintainer'].map((role) => (
+							<span class="inline-flex whitespace-nowrap">
+								<span class="w-12 shrink-0 text-center" aria-hidden="true">
+									·
+								</span>
+								{role}
+							</span>
+						))
+					}
+				</span>
 			</p>
 			<h1 id="intro-title">Hi, I’m <span class="text-primary-600 dark:text-primary-400">Liran Tal.</span></h1>
 			<p class="mt-5 text-xl md:text-2xl max-w-2xl leading-relaxed muted">
 				I help developers build secure software,<br />from Node.js to <span class="whitespace-nowrap">AI agents.</span>
+				I research, write, and build tools in the open.
 			</p>
-			<p class="mt-3 text-lg muted">I research, write, and build tools in the open.</p>
-			<p class="mt-4 text-sm muted">
-				Developer Relations at <a href="https://snyk.io/contributors/liran-tal/">Snyk</a>
-			</p>
-			<div class="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium">
-				<a href="/writing">Read my writing →</a>
-				<a href="/speaking">Invite me to speak →</a>
-				<a href="/speaking/press-kit">Bio & press kit →</a>
+			<div class="mt-6 text-sm font-medium">
+				<p class="muted">Developer Relations at <a href="https://snyk.io/contributors/liran-tal/">Snyk</a></p>
+				<div class="mt-2 flex flex-wrap gap-x-6 gap-y-3">
+					<a href="/writing">Read my writing →</a>
+					<a href="/speaking">Invite me to speak →</a>
+					<a href="/speaking/press-kit">Bio & press kit →</a>
+				</div>
 			</div>
 		</div>
 		<div class="shrink-0 flex flex-col items-center gap-5">
@@ -42,8 +54,13 @@ import { PROFILE } from '~/config.mjs';
 			</div>
 		</div>
 	</div>
-	<div class="mt-10 pt-6 border-t border-gray-200 dark:border-slate-700 flex flex-wrap gap-x-7 gap-y-3 text-sm muted">
-		<a href="https://stars.github.com/profiles/lirantal/">GitHub Star</a>
-		<a href="/recognitions">OpenJS Security Pathfinder</a>
+	<div
+		class="mt-10 pt-6 border-t border-gray-200 dark:border-slate-700 flex flex-col sm:flex-row gap-x-7 gap-y-3 text-sm muted"
+	>
+		<span class="font-medium shrink-0">Industry recognition</span>
+		<div class="flex flex-wrap gap-x-7 gap-y-3">
+			<a href="https://stars.github.com/profiles/lirantal/">GitHub Star</a>
+			<a href="/recognitions">OpenJS Security Pathfinder</a>
+		</div>
 	</div>
 </section>
