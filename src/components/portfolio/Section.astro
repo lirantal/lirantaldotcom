@@ -1,0 +1,14 @@
+---
+const { id, number, title, description } = Astro.props;
+---
+
+<section {id} aria-labelledby={`${id}-title`} class="portfolio-section">
+	<div class="section-heading">
+		<div>
+			<p class="eyebrow">{number} / {title}</p>
+			<h2 id={`${id}-title`}>{description}</h2>
+		</div>
+		<slot name="link" />
+	</div>
+	<slot />
+</section>

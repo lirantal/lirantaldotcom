@@ -79,7 +79,7 @@ Use a published post such as `data/blog/2025-10-15.md` as a template. Commonly:
 
 Remote URLs in frontmatter `image` are supported if they start with `http://` or `https://`.
 
-**Homepage “From the blog” cards:** `src/components/blog/HighlightedPosts.astro` lists explicit **`slug`s**; update that file if you want different featured posts.
+**Homepage writing:** `src/pages/index.astro` shows the three most recent published posts from `fetchPosts()`. `/writing` shows eight and links to the complete `/blog` archive and external publications.
 
 ### Blog routes (files)
 
@@ -97,7 +97,9 @@ Post page layout: **`SinglePost.astro`** (title, tags, share, cover `Picture`, M
 
 | Path | Source | Notes |
 |------|--------|--------|
-| `/` | `src/pages/index.astro` | `PageLayout`: **ProfileHero** (bio / “about”), **Features**, **HighlightedPosts** |
+| `/` | `src/pages/index.astro` | Short **ProfileHero**, writing, research, open source, books, speaking, and community quote |
+| `/writing` | `src/pages/writing.astro` | Publication directory, selected external articles, and recent blog posts |
+| `/speaking/press-kit` | `src/pages/speaking/press-kit.astro` | Short/full bios, downloadable bio and portrait, organizer details |
 | `/recognitions` | `src/pages/recognitions.astro` | `RecognitionAwards` + **Solid** `Changelog` (`client:visible`) |
 | `/books/nodejs-secure-coding` | `src/pages/books/nodejs-secure-coding.astro` | Long book landing; book covers from `~/assets/images/book-cover-*` |
 | `/games/chatgpt-chat-meme-generator` | `src/pages/games/...` | iframe embed |
@@ -106,7 +108,14 @@ Post page layout: **`SinglePost.astro`** (title, tags, share, cover `Picture`, M
 | `/speaking` (+ `/talks`, `/talks/<slug>`, `/events`, `/events/<slug>`, `/recordings`, `/podcasts`) | `src/pages/speaking/**` | `SpeakingLayout` (sub-nav + invite CTA); see **Speaking pages** below |
 | 404 | `src/pages/404.astro` | |
 
-There is **no separate `/about` route**; the main bio lives in **`ProfileHero.astro`**.
+There is **no separate `/about` route**; the full bio lives in **`public/press/liran-tal-bio.txt`**, displayed and downloadable from the speaking press kit.
+
+## Portfolio content
+
+- **`src/data/portfolio.ts`** holds curated papers (with full co-author credits and arXiv IDs), projects, books, publications, external writing, and the short bio. These are selections, not exhaustive lists. Verify authorship and links before adding entries; arXiv papers are labeled preprints, not peer-reviewed publications.
+- **`src/data/npm-downloads.json`** is a dated snapshot for five selected maintained packages. Counts come from `https://api.npmjs.org/downloads/point/<start>:<end>/<package>`. To refresh, fetch `last-month` for every listed package and replace all counts and both dates together, only when every response succeeds and covers the same window. The displayed total is computed from this file. It measures package downloads (including dependency installs), not people; no npm API calls happen during builds or page visits.
+- **`src/assets/styles/portfolio.css`** scopes editorial styles to `.portfolio` on the homepage, writing page, and press kit. Existing blog and speaking layouts retain their styles.
+- The local **`liran-tal-portrait.jpg`** comes from `https://github.com/lirantal.png`; **`path-traversal-book-cover-light.png`** comes from `https://www.nodejs-security.com/images/book/book-path-traversal-cover-light.png`. Other covers and the stage photo reuse existing assets.
 
 ## Speaking pages
 
@@ -119,7 +128,7 @@ There is **no separate `/about` route**; the main bio lives in **`ProfileHero.as
 
 ## Navigation and footer
 
-- **Header:** `src/components/widgets/Header.astro` — logo → home, links to book page and blog; theme toggle; Twitter/GitHub from `PROFILE`.
+- **Header:** `src/components/widgets/Header.astro` — logo → home, links from `NAVIGATION` in `config.mjs`; theme toggle and GitHub. Research, Open source, and Books link to homepage sections; Writing links to the publication hub (with `/blog` archive access). Mobile navigation closes on selection or Escape.
 - **Footer:** `src/components/widgets/Footer.astro` — “Recognitions” link, columns from **`FOOTER`** in `config.mjs`, RSS icon.
 
 Adding a **new top-level page**: create `src/pages/<name>.astro` (or a folder with `index.astro`), use **`PageLayout`** with a `meta` object (`title`, `description`, `canonical` via `getCanonical(...)`), then **add a link in `Header.astro` and/or `Footer.astro` / `config.mjs`** as appropriate.
@@ -180,7 +189,7 @@ The **`Link`** header currently advertises: **`api-catalog`** → `/.well-known/
 3. Add cover asset under **`src/assets/images/blog/`** and set **`image: ~/assets/images/blog/...`**.
 4. Add inline images to **`public/images/blog/`**; reference as **`/images/blog/filename.png`**.
 5. Run **`npm run build`** locally to confirm **`dist/.../pagefind/`** (and **`.vercel/output/static/pagefind/`** after a Vercel adapter build) and paths (optional: `npm run dev`).
-6. Optionally update **`HighlightedPosts.astro`** slugs for the homepage.
+6. Published posts automatically appear in the homepage and writing page's recent-post lists.
 
 ## Conventions for agents
 
