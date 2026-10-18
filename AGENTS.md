@@ -2,6 +2,16 @@
 
 This file is for **coding agents** (Cursor, Copilot, etc.): project facts, conventions, and where to change things. Read it before editing layout, navigation, or content.
 
+## Design guidance
+
+Read **[docs/DESIGN.md](docs/DESIGN.md)** before changing layout, shared colors, or portfolio content. It records the owner-approved editorial direction, component patterns, palette, rationale, and visual-review lessons from PR #12. Keep detailed design decisions there; update it when a later review changes them.
+
+- Preserve the restrained **Inter / blue / neutral editorial style**, clear numbered section headings, and colored, underlined portfolio text links.
+- Keep the homepage bio short. Group the DevRel line, internal actions, and recognition badges together; keep social logos in one row under the portrait. The full bio belongs in the speaking press kit.
+- **Light is the default**, regardless of OS preference. Honor an explicit saved dark-mode choice. The approved **soft-black** palette uses shared tokens in `base.css`, not independent per-page palettes.
+- Verify content claims with sources: dated npm downloads are not unique users; arXiv entries are co-authored preprints, not automatically peer-reviewed papers.
+- For visual changes, inspect rendered light/dark and responsive states. For shared theme or interaction changes, also check affected search, prose, focus, menu, and filter states. Build success alone does not verify appearance.
+
 ## What this repo is
 
 Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Production URL: `https://lirantal.com` (`SITE.origin` in `src/config.mjs`). **Node.js 24+** is required (`package.json` `engines`); Vercel uses `NODE_VERSION` in `vercel.json`.
@@ -39,7 +49,7 @@ Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Pro
 2. **`src/layouts/PageLayout.astro`** — BaseLayout + `Header` + `<main>` + `Footer`. Use for most marketing pages and blog **posts**.
 3. **`src/layouts/BlogLayout.astro`** — PageLayout + centered page title slot (`<slot name="title" />`). Used for blog index, tag, and category listing pages.
 
-**Design tokens:** Tailwind `primary` (blue) and `secondary` (pink), dark mode via `class` on `<html>`, heading font `font-heading` / **Inter** from `@fontsource/inter` (see `Fonts.astro`, `tailwind.config.cjs`).
+**Design tokens:** Tailwind `primary` (blue) and `secondary` (pink), **Inter** from `@fontsource/inter` (see `Fonts.astro`, `tailwind.config.mjs`). Dark mode uses a `class` on `<html>`, with shared soft-black token overrides in `src/assets/styles/base.css`. Portfolio-specific layout and styling live in `src/assets/styles/portfolio.css`; palette values and usage are documented in `docs/DESIGN.md`.
 
 ## Blog: how it works
 
@@ -97,7 +107,7 @@ Post page layout: **`SinglePost.astro`** (title, tags, share, cover `Picture`, M
 
 | Path | Source | Notes |
 |------|--------|--------|
-| `/` | `src/pages/index.astro` | Short **ProfileHero**, writing, research, open source, books, speaking, and community quote |
+| `/` | `src/pages/index.astro` | Short **ProfileHero**, featured projects, speaking, writing, research, open source, books, and community quote |
 | `/writing` | `src/pages/writing.astro` | Publication directory, selected external articles, and recent blog posts |
 | `/speaking/press-kit` | `src/pages/speaking/press-kit.astro` | Short/full bios, downloadable bio and portrait, organizer details |
 | `/recognitions` | `src/pages/recognitions.astro` | `RecognitionAwards` + **Solid** `Changelog` (`client:visible`) |
@@ -115,7 +125,7 @@ There is **no separate `/about` route**; the full bio lives in **`public/press/l
 - **`src/data/portfolio.ts`** holds curated papers (with full co-author credits and arXiv IDs), projects, books, publications, external writing, and the short bio. These are selections, not exhaustive lists. Verify authorship and links before adding entries; arXiv papers are labeled preprints, not peer-reviewed publications.
 - **`src/data/npm-downloads.json`** is a dated snapshot for five selected maintained packages. Counts come from `https://api.npmjs.org/downloads/point/<start>:<end>/<package>`. To refresh, fetch `last-month` for every listed package and replace all counts and both dates together, only when every response succeeds and covers the same window. The displayed total is computed from this file. It measures package downloads (including dependency installs), not people; no npm API calls happen during builds or page visits.
 - **`src/assets/styles/portfolio.css`** scopes editorial styles to `.portfolio` on the homepage, writing page, and press kit. Existing blog and speaking layouts retain their styles.
-- The local **`liran-tal-portrait.jpg`** comes from `https://github.com/lirantal.png`; **`path-traversal-book-cover-light.png`** comes from `https://www.nodejs-security.com/images/book/book-path-traversal-cover-light.png`. Other covers and the stage photo reuse existing assets.
+- The local **`liran-tal-portrait.jpg`** comes from `https://github.com/lirantal.png`; **`path-traversal-book-cover-light.png`** comes from `https://www.nodejs-security.com/images/book/book-path-traversal-cover-light.png`. The **Code Injection** cover also comes from nodejs-security.com. Other covers and the stage photo reuse existing assets. Keep authentic cover art; the current shelf order and image treatment are documented in `docs/DESIGN.md`.
 
 ## Speaking pages
 
