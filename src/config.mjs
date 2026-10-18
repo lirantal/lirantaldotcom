@@ -77,7 +77,7 @@ export const FOOTER = {
 			items: [
 				{
 					title: 'GitHub Star 2023',
-					link: 'https://stars.github.com/profiles/lirantal/',
+					link: 'https://stars.github.com/alumni',
 					icon: 'emojione:glowing-star',
 				},
 				{
@@ -87,12 +87,12 @@ export const FOOTER = {
 				},
 				{
 					title: 'GitHub Star 2022',
-					link: 'https://stars.github.com/profiles/lirantal/',
+					link: 'https://stars.github.com/alumni',
 					icon: 'emojione:glowing-star',
 				},
 				{
 					title: 'GitHub Star 2021',
-					link: 'https://stars.github.com/profiles/lirantal/',
+					link: 'https://stars.github.com/alumni',
 					icon: 'emojione:glowing-star',
 				},
 			],
