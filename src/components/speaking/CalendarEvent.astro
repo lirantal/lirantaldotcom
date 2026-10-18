@@ -13,14 +13,14 @@ const { day, suffix } = ordinalDay(event.date);
 		class="group grid grid-cols-[5rem_1fr] sm:grid-cols-[6rem_1fr_auto] gap-x-4 gap-y-2 py-5 items-start"
 	>
 		<time datetime={event.date.toISOString()} class="leading-none">
-			<span class="text-4xl font-bold font-heading text-gray-900 dark:text-white">{day}</span><sup
+			<span class="text-4xl font-bold font-heading text-gray-900 dark:text-slate-100">{day}</span><sup
 				class="text-sm font-semibold">{suffix}</sup
 			>
 			<span class="mt-1 block text-sm text-gray-500 dark:text-slate-400">{formatDate(event.date, 'monthYear')}</span>
 		</time>
 		<div>
 			<h3
-				class="text-lg font-bold font-heading text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400"
+				class="text-lg font-bold font-heading text-gray-900 dark:text-slate-100 group-hover:text-primary-600 dark:group-hover:text-primary-400"
 			>
 				{event.flag}
 				{event.name}

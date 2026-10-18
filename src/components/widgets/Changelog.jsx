@@ -21,8 +21,8 @@ export default function Changelog() {
 				<div class="max-w-6xl mx-auto px-4 sm:px-6 overflow-hidden py-10 md:py-10">
 					<div class="flex flex-wrap md:-mx-8">
 						<div class="w-full px-0 sm:px-8">
-							<h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Categories</h3>
-							<ul class="items-center w-full text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+							<h3 class="mb-4 font-semibold text-gray-900 dark:text-slate-100">Categories</h3>
+							<ul class="items-center w-full text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-slate-100">
 								<li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
 									<div class="flex items-center pl-3">
 										<input
@@ -118,16 +118,16 @@ export default function Changelog() {
 													<figure class="max-w-screen-md">
 														{item.type === 'award' && (
 															<>
-																<h1 class="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h1>
+																<h1 class="text-lg font-semibold text-gray-900 dark:text-slate-100">{item.title}</h1>
 																<blockquote>
-																	<p class="text-sm font-base text-gray-900 dark:text-white">{item.description}</p>
+																	<p class="text-sm font-base text-gray-900 dark:text-slate-100">{item.description}</p>
 																</blockquote>
 															</>
 														)}
 
 														{(item.type === 'praise' || item.type === 'shoutout') && (
 															<blockquote>
-																<p class="text-lg font-semibold text-gray-900 dark:text-white">"{item.description}"</p>
+																<p class="text-lg font-semibold text-gray-900 dark:text-slate-100">"{item.description}"</p>
 															</blockquote>
 														)}
 

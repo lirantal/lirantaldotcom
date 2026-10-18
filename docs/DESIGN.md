@@ -27,6 +27,8 @@ The current sequence in [index.astro](../src/pages/index.astro) is:
 
 Speaking moved first because it offers a strong visual entry into the work and a useful path for event organizers. Keep the section IDs stable: navigation and external links use anchors such as `/#open-source`. Numbers express reading order; they are not part of the URL.
 
+The header logo is a plain "Liran Tal" wordmark in bold Inter, without an emoji.
+
 ### The hero groups links by purpose
 
 [ProfileHero.astro](../src/components/widgets/ProfileHero.astro) owns this composition:
@@ -80,7 +82,7 @@ Liran selected **C / Soft black** from the final comparison of two black variant
 | Secondary text | `#A5ADBA` | `--color-slate-400` |
 | Link/accent | `#92B8FF` | `--color-blue-300` / `--color-blue-400` |
 
-These overrides live under `.dark` in [base.css](../src/assets/styles/base.css); gray aliases keep existing shared components aligned. Portfolio variables reference the shared tokens. [tailwind.config.mjs](../tailwind.config.mjs) maps primary 300/400 to them and styles inline code; [PageFindSearch.astro](../src/components/widgets/PageFindSearch.astro) maps search surfaces, links, and highlights. Update these consumers together when changing a shared theme.
+These overrides live under `.dark` in [base.css](../src/assets/styles/base.css); gray aliases keep existing shared components aligned. `white` is deliberately **not** overridden: neutral-surface text uses `dark:text-slate-100` (the soft `#EDF0F4`), while white text on colored fills (buttons, the active speaking tab, badges) stays pure `#FFFFFF` so it keeps its contrast. Use `dark:*-slate-100` rather than `dark:*-white` for headings, logos, and hover text on neutral surfaces. Portfolio variables reference the shared tokens. [tailwind.config.mjs](../tailwind.config.mjs) maps primary 300/400 to them and styles inline code; [PageFindSearch.astro](../src/components/widgets/PageFindSearch.astro) maps search surfaces, links, and highlights. Update these consumers together when changing a shared theme.
 
 Light mode retains its existing white/blue/neutral styling. Portfolio-specific light values are `--ink-muted: #526075`, `--line: #E2E8F0`, `--link: #1D4ED8`, and `--wash: #F8FAFC`. Reuse these variables instead of scattering palette literals through components. A dark-only change should not recolor the light site.
 
