@@ -1,131 +1,110 @@
-# Website Design Documentation
+# Design guide for lirantal.com
 
-## Overview
+This guide records the editorial direction chosen with Liran during [PR #12](https://github.com/lirantal/lirantaldotcom/pull/12), merged October 18, 2026. Read it before changing the homepage, portfolio pages, or shared visual styles. [AGENTS.md](../AGENTS.md) covers the framework, routes, build pipeline, and content conventions.
 
-This is Liran Tal's personal website built with Astro, featuring a blog, interactive tools, and professional information.
+The decisions below are the baseline for future work, not a ban on iteration. When a design choice changes, update its rationale here rather than preserving contradictory rules. CSS and components remain the source of truth for current values.
 
-## Architecture
+## Direction: editorial, personal, and restrained
 
-### Framework
-- **Astro**: Static site generator with modern web technologies
-- **Tailwind CSS**: Utility-first CSS framework for styling
-- **TypeScript**: Type-safe JavaScript
+Liran chose the **Editorial** concept over the centered alternative: left-aligned writing, a portrait alongside it, visible projects near the top, and clear sections with room to breathe. Keep the existing Inter/blue/neutral identity. Avoid shiny effects, excessive animation, decorative gradients, or turning every item into a card.
 
-### Project Structure
+The homepage should quickly answer: what does Liran work on, what has he made, and where can I read or watch more? Show evidence through real projects, writing, papers, books, and talks rather than adding more biography or promotional claims.
 
-```
-src/
-├── components/
-│   └── widgets/
-│       └── Footer.astro          # Site footer component
-├── config.mjs                    # Site configuration
-├── layouts/
-│   └── PageLayout.astro          # Base page layout
-├── pages/
-│   ├── index.astro               # Homepage
-│   ├── recognitions.astro        # Awards and recognitions page
-│   ├── games/
-│   │   └── chatgpt-security-models-ui.astro  # Interactive security game
-│   └── books/
-│       └── nodejs-secure-coding.astro        # Book page
-├── assets/
-├── data/
-└── utils/
-```
+Inspiration came from [tej.as](https://tej.as), [Kent C. Dodds](https://kentcdodds.com), [faziz-dev](https://www.faziz-dev.com), [elie.tech](https://elie.tech), [Dhravya](https://dhravya.dev), and [jdx.dev](https://jdx.dev). These were references for content and structure, not designs to copy. Two explicit preferences were visibly colored, underlined links (elie.tech) and projects shown near the hero (jdx.dev).
 
-## Configuration System
+## Homepage hierarchy
 
-### Site Configuration (`src/config.mjs`)
+The current sequence in [index.astro](../src/pages/index.astro) is:
 
-The site uses a centralized configuration system with the following main exports:
+1. Short personal introduction, professional links, recognition badges, portrait, and social icons.
+2. “Tools & resources I maintain”: three selected projects, before the long-form sections.
+3. **01 / Speaking**: stage photograph, speaking statistics, and links into the speaking hub.
+4. **02 / Writing**: recent posts and places Liran publishes elsewhere.
+5. **03 / Research**: selected co-authored arXiv preprints.
+6. **04 / Open source**: dated npm download evidence and a broader project selection.
+7. **05 / Books**: a curated bookshelf.
+8. Attributed community feedback, followed by the shared footer.
 
-#### PROFILE
-Contains social media links and professional profiles:
-- GitHub, Twitter, LinkedIn, Mastodon URLs
-- Used throughout the site for social links
+Speaking moved first because it offers a strong visual entry into the work and a useful path for event organizers. Keep the section IDs stable: navigation and external links use anchors such as `/#open-source`. Numbers express reading order; they are not part of the URL.
 
-#### FOOTER
-Defines the footer structure with columns:
-- **Open Source Projects**: Links to GitHub repositories
-- **Published Author**: Books and publications
-- **Awards**: GitHub Stars, OpenJS Foundation awards
-- **Interactive Tools**: Games and interactive content
+### The hero groups links by purpose
 
-#### SITE
-Basic site metadata:
-- Name, origin, title, description
-- SEO and analytics configuration
+[ProfileHero.astro](../src/components/widgets/ProfileHero.astro) owns this composition:
 
-#### BLOG
-Blog-specific configuration:
-- Posts per page, permalinks structure
-- Category and tag settings
+- **Identity:** spaced dot separators between “Security researcher”, “Author”, and “Open-source maintainer”. Retain the separators; spacing alone made the roles feel disconnected. The current wrapping treatment clips a leading separator on a new row.
+- **Introduction:** one heading and one short paragraph. Both introductory sentences use the same size and weight. Break after “software,” where appropriate, and keep “AI agents” together; avoid a stranded final word. Do not force an exact line count across screen widths.
+- **Professional context:** “I head Developer Relations at Snyk”, immediately followed by Read my writing, Invite me to speak, and Bio & press kit.
+- **Recognition:** directly below that block, quiet bordered badges with an award icon and the wording “Awarded GitHub Star” and “Awarded OpenJS Security Pathfinder”. Keep the award names linked. There is no separate “Industry recognition” strip.
+- **Social profiles:** one horizontal row of X, GitHub, and LinkedIn logos beneath the portrait. No visible names or outgoing arrows here; keep accessible names, hover titles, visible keyboard focus, and generous click targets (currently 44 × 44px). X is important to Liran's public activity; do not omit it.
 
-## Components
+This grouping distinguishes navigating the site, learning about professional credentials, and connecting elsewhere without adding more headings. An earlier mixed row of internal actions and social links, a triangle of social links, and a detached job/awards strip all made those relationships harder to read.
 
-### Footer Component (`src/components/widgets/Footer.astro`)
+The full bio belongs in the [speaker press kit](../src/pages/speaking/press-kit.astro), not the homepage. Its display and download both read [liran-tal-bio.txt](../public/press/liran-tal-bio.txt); edit that source once. The short organizer bio lives in [portfolio.ts](../src/data/portfolio.ts). Use personal first-person wording on the homepage and third-person wording in reusable speaker bios.
 
-**Layout Structure:**
-- 12-column CSS Grid layout
-- Responsive design with different column spans:
-  - Large screens: "Liran Tal" section (3 cols) + 4 footer columns (2 cols each) = 11/12 cols
-  - Medium screens: 6 columns per section (stacked)
-  - Small screens: Full width sections (stacked)
+## Reuse these visual patterns
 
-**Content Sections:**
-1. **Brand section**: Site name + Recognitions link
-2. **Dynamic columns**: Rendered from `FOOTER.columns` configuration
-3. **Social links**: RSS, LinkedIn, Twitter, GitHub, Mastodon
-4. **Copyright**: Year + theme attribution
+| Pattern | Use and reasoning | Owner |
+| --- | --- | --- |
+| Numbered section heading | Large, bold, uppercase semantic `h2`, e.g. “02 / Writing”. The descriptive sentence is secondary. Small eyebrow labels alone did not separate the sections clearly enough. | [Section.astro](../src/components/portfolio/Section.astro) |
+| Editorial row | Titles, dates, descriptions, and thin dividing rules for writing and papers. Prefer this to a grid of boxed cards for content that people read sequentially. | `.editorial-row` in [portfolio.css](../src/assets/styles/portfolio.css) |
+| Quiet surface | Subtle fill, thin border, modest rounding for a publication sidebar or download summary. Reserve stronger grouping for related information, not every link. | `.surface` in `portfolio.css` |
+| Recognition badge | Small neutral surface, award icon, muted “Awarded”, linked award name. Wrap naturally on narrow screens. | `ProfileHero.astro` |
+| Book shelf | Real cover art with a common visual height and `object-contain`, not cropped illustrations; titles remain the accessible links. | `index.astro` and `portfolio.ts` |
+| Image with context | Real portrait and stage photo, with useful alt text and responsive image output. Avoid generic decoration in place of evidence. | `astro:assets` `Image` in the hero and homepage |
 
-**Styling:**
-- Dark mode support with Tailwind dark: variants
-- Hover effects and transitions
-- Icon support via astro-icon package
+The portfolio wrapper is at most 72rem wide, with 1.5rem horizontal padding (1.25rem on small screens). Its section spacing, rules, typography, and focus treatment live in `portfolio.css`. Reuse those styles inside `.portfolio`; do not accidentally apply their heading sizes to every blog or speaking page.
 
-## Pages
+### Links and controls
 
-### Interactive Tools
+- Portfolio text links are blue and underlined before hover. Color alone should not be the only indication that prose is clickable.
+- Directional cues, when used, follow the label: `→` for internal navigation and `↗` for an external destination. They are useful cues, not a requirement on every citation or inline link. Social logos are the deliberate exception.
+- Expand/collapse is not navigation. The npm disclosure uses native `details`/`summary` with a right-aligned `+`/`−`; the adjacent external link has its arrow on the right too. Do not restore a leading disclosure triangle beside a trailing external arrow.
+- Retain focus outlines, meaningful link names, and keyboard operation. Decorative icons should be hidden from assistive technology.
+- Use `PROFILE`, `NAVIGATION`, and `FOOTER` in [config.mjs](../src/config.mjs) for their shared destinations. The footer still groups projects, books, awards, and games; adjust its responsive grid if adding columns. Visible onWidget theme attribution was removed by request; retain the repository's license notices.
 
-#### ChatGPT Security Models UI (`/games/chatgpt-security-models-ui`)
-- Interactive security demonstration
-- Embedded iframe content
-- Educational tool about AI security models
+## Theme: light by default, soft black by choice
 
-## Recent Changes
+**A visitor without an explicit saved preference sees light mode, even if their OS prefers dark.** The toggle remembers the choice in `localStorage.theme`. Do not reinstate OS-driven theme selection. [BasicScripts.astro](../src/components/core/BasicScripts.astro) owns this behavior.
 
-### Footer Enhancement (Aug 25, 2025)
-- Added new "Interactive Tools" column to footer
-- Included link to ChatGPT Security Models game
-- Updated responsive grid layout to accommodate 4 footer columns
-- Modified column spans: lg:col-span-2 for footer columns, lg:col-span-3 for brand section
+Liran selected **C / Soft black** from the final comparison of two black variants and the earlier preferred option. That label refers to the final comparison, not an arbitrary third palette. The approved direction is near-black, neutral elevated surfaces, readable gray text, and a pale blue accent, without a navy wash or harsh pure-white body text.
 
-## Design Principles
+### Dark palette reference
 
-### Responsive Design
-- Mobile-first approach
-- Progressive enhancement for larger screens
-- Consistent spacing and typography
+| Role | Current value | Token or consumer |
+| --- | --- | --- |
+| Page | `#090A0C` | `--color-slate-900` |
+| Surface | `#181A1E` | `--color-slate-800` |
+| Divider | `#353A43` | `--color-slate-700` |
+| Heading | `#EDF0F4` | `--color-slate-100` |
+| Body | `#CBD0D8` | `--color-slate-300` |
+| Secondary text | `#A5ADBA` | `--color-slate-400` |
+| Link/accent | `#92B8FF` | `--color-blue-300` / `--color-blue-400` |
 
-### Content Organization
-- Clear hierarchical structure
-- Logical grouping in footer sections
-- Easy navigation between related content
+These overrides live under `.dark` in [base.css](../src/assets/styles/base.css); gray aliases keep existing shared components aligned. Portfolio variables reference the shared tokens. [tailwind.config.mjs](../tailwind.config.mjs) maps primary 300/400 to them and styles inline code; [PageFindSearch.astro](../src/components/widgets/PageFindSearch.astro) maps search surfaces, links, and highlights. Update these consumers together when changing a shared theme.
 
-### Maintainability
-- Configuration-driven content
-- Reusable components
-- Consistent styling patterns
+Light mode retains its existing white/blue/neutral styling. Portfolio-specific light values are `--ink-muted: #526075`, `--line: #E2E8F0`, `--link: #1D4ED8`, and `--wash: #F8FAFC`. Reuse these variables instead of scattering palette literals through components. A dark-only change should not recolor the light site.
 
-## Development Notes
+Measure contrast against actual rendered backgrounds, including cards and selected controls. Check muted copy, links, inline code, search highlights, and focus indicators—not just the hero heading. Automated visual commentary can misread colors; confirm a suspected defect with the screenshot and computed styles before changing the palette.
 
-### Adding Footer Links
-1. Update `FOOTER.columns` array in `src/config.mjs`
-2. Footer component automatically renders new columns
-3. Ensure grid layout accommodates column count
-4. Test responsive behavior across screen sizes
+## Content should support its claims
 
-### Content Management
-- Blog posts stored in `data/blog/` as Markdown files
-- Static assets in `src/assets/` and `public/`
-- Configuration-based approach for most site content
+- **Writing:** `/writing` is the directory across lirantal.com, Node.js Security, and Snyk; `/blog` remains the local archive. Homepage recent posts come from `fetchPosts()`, not a second curated list.
+- **Research:** verify authorship and destinations, credit co-authors, and label arXiv work as preprints. Presence on arXiv is not a claim of peer review. Keep primary-source links such as the abstract, PDF, and DOI.
+- **npm impact:** use [npm-downloads.json](../src/data/npm-downloads.json), show its date range and package scope, and retain “downloads, not unique developers” plus the dependency-install caveat. The total is computed, not manually advertised. Refresh all packages and both dates together; the procedure is in `AGENTS.md`. Do not turn this into a live client-side counter or imply it includes every package Liran maintains.
+- **Projects:** make the purpose understandable in a sentence. Include useful curated resources and best-practice guides alongside executable tools. The homepage selection is not an exhaustive GitHub inventory.
+- **Books:** Code Injection is first in the current five-book shelf, followed by Command Injection, Path Traversal, HTTP Security Headers, and Serverless Security. Essential Node.js Security was removed from this shelf to make room, not removed from the whole site. Use authentic cover assets and verified destinations.
+- **Speaking:** use the speaking data model and its build-time statistics, not hand-entered totals. The upstream public-speaking repository remains the data source, with a local fallback; see `AGENTS.md`.
+- **Endorsements:** retain attribution and a link to the original statement. Keep claims concrete rather than expanding them into unverified guarantees.
+
+## Review workflow and lessons
+
+1. **Start from the current component and data source.** Check the active layout before acting on a report. For example, the legacy `BooksHeader` breakpoint warning did not affect the live book page, which uses `PageLayout`; changing the active 1024px menu reset to match unused code would have been wrong.
+2. **Use mocks for genuine design choices.** Label alternatives and show palette swatches with hex values. Liran found side-by-side comparisons and the swatches useful. Carry the selected option forward; mock images are references, not verification of implementation. Small, specific portal corrections usually need direct implementation rather than a new design round.
+3. **Build and inspect the real page.** Run `npm run build` (including Pagefind and Markdown generation), plus `npm run lint` for code changes. Documentation-only changes need source/link checks, not a visual rebuild. If a build runs out of memory in a small orb, close browsers and stop dev servers first; this session used `NODE_OPTIONS=--max-old-space-size=3072 npm run build` on a 4GB orb.
+4. **Exercise responsive and non-default states.** Check desktop, an intermediate width near the reported 1073px viewport, and narrow widths such as 390px and 320px. Check both sides of the active header's 1024px breakpoint when touching navigation. Long award names, wrapped role separators, and link groups should fit without horizontal overflow.
+5. **Check shared-theme consumers.** For a palette change, inspect the homepage, writing, speaking, a blog article with inline code, and populated Pagefind results. Test fresh light default under dark OS preference, explicit dark selection, and persistence after reload. Exercise open menus, selected filters, disclosures, and keyboard focus when those controls are affected.
+6. **Inspect captures, not just successful commands.** Take representative screenshots in both themes; use a short pointer/keyboard recording for interaction changes. Compare DOM facts such as accessible names, destinations, and click-target sizes too. A responsive Chromium viewport is not proof of real-device touch behavior.
+7. **Use a review portal for element-specific feedback.** Run a supervised orb service and share its registered portal URL. The floating review control sends element text, selectors, and viewport details back to the thread. If Vite blocks the portal hostname, allow that exact trusted host through its host configuration or `__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS`; do not disable host validation globally or commit an ephemeral orb hostname as a site default.
+8. **Separate local, preview, and production evidence.** A portal may serve an older static build until rebuilt. For a reported missing image, inspect the requested URL and responsive `srcset`, status codes, and browser decoding before replacing the asset. A passing Vercel preview is not proof of production deployment or a fresh bot review. Keep those distinctions in delivery reports.
+
+Update this guide when a later review changes a design decision. Keep short, durable rules in `AGENTS.md`; keep rationale, alternatives, and visual conventions here rather than duplicating the full guide in agent instructions.
