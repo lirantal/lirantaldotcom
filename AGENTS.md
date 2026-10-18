@@ -12,6 +12,16 @@ Read **[docs/DESIGN.md](docs/DESIGN.md)** before changing layout, shared colors,
 - Verify content claims with sources: dated npm downloads are not unique users; arXiv entries are co-authored preprints, not automatically peer-reviewed papers.
 - For visual changes, inspect rendered light/dark and responsive states. For shared theme or interaction changes, also check affected search, prose, focus, menu, and filter states. Build success alone does not verify appearance.
 
+### Design reviews with the impeccable skill
+
+The [impeccable](https://github.com/pbakaus/impeccable) design skill is installed with [apm](https://github.com/microsoft/apm) (`apm.yml` → `.agents/skills/impeccable`; restore with `apm install`). Agents load it as the `impeccable` skill and run its commands as `/impeccable <command> <target>`:
+
+- **`critique <target>`**: design review (Nielsen heuristics, specificity, personas). Runs a design-review agent and a detector agent in isolation, then writes a report to `.impeccable/critique/` (tracked).
+- **`audit <target>`**: technical checks (accessibility, performance, theming, responsive).
+- **`polish <target>`**: refinement pass that preserves the incumbent design; it reads the latest critique report.
+
+Start each session with `.agents/skills/impeccable/scripts/impeccable context --target <file>`; there is no `PRODUCT.md`, so it treats `docs/DESIGN.md` and the code as the brief. The deterministic detector is `.agents/skills/impeccable/scripts/impeccable detect --json <files-or-url>`; URL scans need a Chromium, e.g. `IMPECCABLE_BROWSER=$(ls -d ~/.agent-browser/browsers/chrome-*/chrome | head -1)` in an orb. Inter, the numbered headings, and eyebrow labels are owner-approved, so treat `overused-font` and `kicker-above-heading` findings as sanctioned rather than defects.
+
 ## What this repo is
 
 Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Production URL: `https://lirantal.com` (`SITE.origin` in `src/config.mjs`). **Node.js 24+** is required (`package.json` `engines`); Vercel uses `NODE_VERSION` in `vercel.json`.

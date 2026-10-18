@@ -64,7 +64,7 @@ The portfolio wrapper is at most 72rem wide, with 1.5rem horizontal padding (1.2
 
 ## Theme: light by default, soft black by choice
 
-**A visitor without an explicit saved preference sees light mode, even if their OS prefers dark.** The toggle remembers the choice in `localStorage.theme`. Do not reinstate OS-driven theme selection. [BasicScripts.astro](../src/components/core/BasicScripts.astro) owns this behavior.
+**A visitor without an explicit saved preference sees light mode, even if their OS prefers dark.** The toggle remembers the choice in `localStorage.theme`. Do not reinstate OS-driven theme selection. [BasicScripts.astro](../src/components/core/BasicScripts.astro) owns this behavior; it is rendered in `<head>` so a saved dark preference applies before first paint. The toggle shows a moon in light mode and a sun in dark mode, and exposes the state with `aria-pressed`.
 
 Liran selected **C / Soft black** from the final comparison of two black variants and the earlier preferred option. That label refers to the final comparison, not an arbitrary third palette. The approved direction is near-black, neutral elevated surfaces, readable gray text, and a pale blue accent, without a navy wash or harsh pure-white body text.
 
@@ -81,6 +81,8 @@ Liran selected **C / Soft black** from the final comparison of two black variant
 | Link/accent | `#92B8FF` | `--color-blue-300` / `--color-blue-400` |
 
 These overrides live under `.dark` in [base.css](../src/assets/styles/base.css); gray aliases keep existing shared components aligned. Portfolio variables reference the shared tokens. [tailwind.config.mjs](../tailwind.config.mjs) maps primary 300/400 to them and styles inline code; [PageFindSearch.astro](../src/components/widgets/PageFindSearch.astro) maps search surfaces, links, and highlights. Update these consumers together when changing a shared theme.
+
+The speaking hub, blog, and shared chrome follow the same restraint as the portfolio pages: solid headline accents in `primary-600` / `primary-300` instead of gradient text, a plain rounded stage photo, solid year bars, a quiet bordered "Tell me about your event" panel with one solid blue button, and a blue (not pink) book promo after posts. Icon controls use the primary focus outline (`focus-visible:outline-primary-600`, inset inside the scrollable header nav), not the template's faint gray ring. Blog post prose is capped at `max-w-2xl` (about 73 characters per line at 18px).
 
 Light mode retains its existing white/blue/neutral styling. Portfolio-specific light values are `--ink-muted: #526075`, `--line: #E2E8F0`, `--link: #1D4ED8`, and `--wash: #F8FAFC`. Reuse these variables instead of scattering palette literals through components. A dark-only change should not recolor the light site.
 
