@@ -15,7 +15,7 @@ const { groups, total } = Astro.props;
 		groups.map((group) =>
 			group.kind === 'chips' ? (
 				<div class="flex flex-wrap items-center gap-2" role="group" aria-label={group.label}>
-					<span class="w-14 text-xs font-semibold tracking-widest uppercase text-gray-400 dark:text-slate-500">
+					<span class="w-14 text-xs font-semibold tracking-widest uppercase text-gray-500 dark:text-slate-400">
 						{group.label}
 					</span>
 					{[{ value: '', label: 'All', count: total }, ...group.options].map((option) => (

@@ -115,7 +115,9 @@ const meta = {
 				<div data-filter-section class="mt-10" id={`year-${group.year}`}>
 					<h3 class="flex items-baseline gap-3 border-b border-gray-200 dark:border-slate-800 pb-2">
 						<span class="text-2xl font-bold font-heading">{group.year}</span>
-						<span class="text-sm text-gray-500 dark:text-slate-400">{group.events.length} events</span>
+						<span class="text-sm text-gray-500 dark:text-slate-400">
+							{group.events.length} {group.events.length === 1 ? 'event' : 'events'}
+						</span>
 					</h3>
 					<ol class="divide-y divide-gray-100 dark:divide-slate-800/60">
 						{group.events.map((event) => (

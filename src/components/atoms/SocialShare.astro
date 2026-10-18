@@ -4,34 +4,35 @@ import { Icon } from 'astro-icon/components';
 
 const { title } = Astro.props;
 const url = Astro.url;
+
+const links = [
+	{
+		label: 'Share on X',
+		icon: 'tabler:brand-x',
+		href: `https://twitter.com/share?url=${url}&text="${title}"&via=${PROFILE.twitterHandle}`,
+	},
+	{ label: 'Share on Facebook', icon: 'tabler:brand-facebook', href: `https://www.facebook.com/sharer.php?u=${url}` },
+	{
+		label: 'Share on LinkedIn',
+		icon: 'tabler:brand-linkedin',
+		href: `https://www.linkedin.com/shareArticle?url=${url}&title=${title}`,
+	},
+	{ label: 'Share on WhatsApp', icon: 'tabler:brand-whatsapp', href: `https://wa.me/?text=${title}%20${url}` },
+];
 ---
 
-<div class="mx-auto text-center">
-	<span class="align-super font-normal">share this story on</span> 
-	<div class="">
-		<a
-			class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-			href={`https://twitter.com/share?url=${url}&text="${title}"&via=${PROFILE.twitterHandle}`}
-		>
-			<Icon name="logos:twitter" class="h-3" />
-		</a>
-		<a
-			href={`https://www.facebook.com/sharer.php?u=${url}`}
-			class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-		>
-			<Icon name="logos:facebook" class="h-3" />
-		</a>
-		<a
-			href={`https://www.linkedin.com/shareArticle?url=${url}&title=${title}`}
-			class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-		>
-			<Icon name="logos:linkedin-icon" class="h-3" />
-		</a>
-		<a
-			href={`https://wa.me/?text=${title}%20${url}`}
-			class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-		>
-			<Icon name="logos:whatsapp" class="h-3" />
-		</a>
-	</div>
+<div class="mx-auto flex items-center justify-center gap-1 text-sm text-gray-500 dark:text-slate-400">
+	<span class="mr-1">Share</span>
+	{
+		links.map((link) => (
+			<a
+				class="inline-flex items-center justify-center w-11 h-11 rounded-lg text-gray-500 hover:text-primary-700 hover:bg-gray-100 dark:text-slate-400 dark:hover:text-primary-300 dark:hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-300"
+				href={link.href}
+				aria-label={link.label}
+				title={link.label}
+			>
+				<Icon name={link.icon} class="w-5 h-5" aria-hidden="true" />
+			</a>
+		))
+	}
 </div>

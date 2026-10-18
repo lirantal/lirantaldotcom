@@ -24,7 +24,7 @@ const Content = post.Content;
 			<div class="container mx-auto px-6 sm:px-6 text-center mt-2 mb-2">
 				<PostTags tags={post.tags} />
 			</div>
-			<SocialShare {...post} class="mt-5 sm:mt-1 align-middle text-gray-400 dark:text-slate-600" />
+			<SocialShare {...post} />
 
 			{
 				post.image && (
@@ -35,19 +35,16 @@ const Content = post.Content;
 						sizes="(max-width: 900px) 400px, 900px"
 						alt={post.description}
 						aspectRatio="16:9"
+						loading="eager"
+						fetchpriority="high"
 					/>
 				)
 			}
 		</header>
 		<div
-			class="container mx-auto px-6 sm:px-6 max-w-5xl prose prose-lg lg:prose-lg dark:prose-invert dark:prose-headings:text-slate-300 prose-md prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-img:rounded-md prose-img:shadow-lg mt-8"
+			class="mx-auto px-6 sm:px-6 max-w-2xl prose prose-lg dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary-700 dark:prose-a:text-primary-300 prose-img:rounded-md prose-img:shadow-lg mt-8"
 		>
 			{Content ? <Content /> : <Fragment set:html={post.body} />}
-		</div>
-		<div class="container mx-auto px-6 sm:px-6 max-w-5xl mt-8 flex justify-between flex-col sm:flex-row">
-			<!-- Skip the social sharing component for now
-			<SocialShare {...post} class="mt-5 sm:mt-1 align-middle text-gray-400 dark:text-slate-600" />
-			 -->
 		</div>
 	</article>
 </section>
