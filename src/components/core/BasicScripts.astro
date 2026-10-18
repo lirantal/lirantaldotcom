@@ -3,15 +3,8 @@
 ---
 
 <script is:inline>
-	// Set "light" theme as default
-	// if (!localStorage.theme) {
-	//   localStorage.theme = "light";
-	// }
-
-	if (
-		localStorage.theme === 'dark' ||
-		(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-	) {
+	// Light is the default; only an explicit saved preference enables dark mode.
+	if (localStorage.theme === 'dark') {
 		document.documentElement.classList.add('dark');
 	} else {
 		document.documentElement.classList.remove('dark');
