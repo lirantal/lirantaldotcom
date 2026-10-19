@@ -24,6 +24,8 @@ This is Liran Tal's personal website and technical blog. Use the site to find pu
 - ARD manifest: [ard.json](https://lirantal.com/.well-known/ard.json)
 - AI catalog compatibility endpoint: [ai-catalog.json](https://lirantal.com/.well-known/ai-catalog.json)
 
+The ARD manifest carries capability and representative-query metadata. The AI Catalog endpoint lists the same resources using the AI Catalog entry schema.
+
 These are public, read-only resources and need no authentication. There is no dedicated MCP server or write API. Use `/robots.txt` as the source of truth for crawler and AI-use preferences.
 
 The full posts endpoint returns all published records. To page through the same collection, request `/api/posts/cursor/0.json`, then use its `nextCursor` in `/api/posts/cursor/{cursor}.json` until `nextCursor` is `null`. Each page contains up to 50 records.
