@@ -11,7 +11,10 @@
 </script>
 
 <style is:global>
+	/* Reserve Pagefind's scaled input height before its deferred script runs. */
 	#search {
+		--pagefind-ui-scale: 0.8;
+		min-height: calc(64px * var(--pagefind-ui-scale));
 		--pagefind-ui-font: 'Inter', ui-sans-serif, system-ui, sans-serif;
 		--pagefind-ui-primary: #1d4ed8;
 		--pagefind-ui-text: #334155;
@@ -20,6 +23,9 @@
 		--pagefind-ui-border-width: 1px;
 		--pagefind-ui-border-radius: 6px;
 		--pagefind-ui-tag: #f1f5f9;
+	}
+	#search .pagefind-ui {
+		--pagefind-ui-scale: inherit;
 	}
 	#search .pagefind-ui__search-input {
 		font-weight: 400;

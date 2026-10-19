@@ -59,7 +59,7 @@ Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Pro
 2. **`src/layouts/PageLayout.astro`** — BaseLayout + `Header` + `<main>` + `Footer`. Use for most marketing pages and blog **posts**.
 3. **`src/layouts/BlogLayout.astro`** — PageLayout + centered page title slot (`<slot name="title" />`). Used for blog index, tag, and category listing pages.
 
-**Design tokens:** Tailwind `primary` (blue) and `secondary` (pink), **Inter** from `@fontsource/inter` (see `Fonts.astro`, `tailwind.config.mjs`). Dark mode uses a `class` on `<html>`, with shared soft-black token overrides in `src/assets/styles/base.css`. Portfolio-specific layout and styling live in `src/assets/styles/portfolio.css`; palette values and usage are documented in `docs/DESIGN.md`.
+**Design tokens:** Tailwind `primary` (blue) and `secondary` (pink), variable **Inter** from `@fontsource-variable/inter` (see `Fonts.astro`, `fonts.css`, `tailwind.config.mjs`). Dark mode uses a `class` on `<html>`, with shared soft-black token overrides in `src/assets/styles/base.css`. Portfolio-specific layout and styling live in `src/assets/styles/portfolio.css`; palette values and usage are documented in `docs/DESIGN.md`.
 
 ## Blog: how it works
 
