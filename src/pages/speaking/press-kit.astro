@@ -35,7 +35,7 @@ const meta = {
 				<section aria-labelledby="short-bio-title" class="surface mb-10">
 					<p class="eyebrow">For introductions</p>
 					<h2 id="short-bio-title">Short bio</h2>
-					<p class="mt-5 select-text">{shortBio}</p>
+					<p class="mt-5 select-text max-w-[65ch]">{shortBio}</p>
 				</section>
 				<section aria-labelledby="full-bio-title">
 					<div class="section-heading">
@@ -43,7 +43,7 @@ const meta = {
 							>Download bio (.txt) ↓</a
 						>
 					</div>
-					{longBio.map((paragraph) => <p class="muted mb-5 select-text">{paragraph}</p>)}
+					{longBio.map((paragraph) => <p class="muted mb-5 select-text max-w-[65ch]">{paragraph}</p>)}
 				</section>
 			</div>
 			<aside aria-label="Speaker details">

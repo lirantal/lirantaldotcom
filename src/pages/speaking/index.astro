@@ -7,6 +7,7 @@ import CalendarEvent from '~/components/speaking/CalendarEvent.astro';
 import VideoCard from '~/components/speaking/VideoCard.astro';
 import heroImage from '~/assets/images/speaking-hero.jpg';
 import recognitions from '~/data/recognitions.json';
+import '~/assets/styles/portfolio.css';
 
 import { SPEAKING } from '~/config.mjs';
 import { getCanonical, getPermalink } from '~/utils/permalinks';
@@ -17,6 +18,7 @@ const { stats, upcoming, past, topics, videos, types, years, countries } = await
 // Always show a few rows on the calendar: upcoming first, then the most recent past talks.
 const calendar = [...upcoming, ...past.filter((e) => e.isTalk)].slice(0, Math.max(4, upcoming.length));
 const maxYearCount = Math.max(...years.map((y) => y.count));
+const topicsByDeliveries = [...topics].sort((a, b) => b.deliveries - a.deliveries);
 
 const testimonials = [
 	...new Map(
@@ -113,30 +115,31 @@ const meta = {
 	</section>
 
 	<!-- Topics -->
-	<section class="bg-gray-50 dark:bg-slate-800/40">
-		<div class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+	<section>
+		<div class="portfolio py-16">
 			<SectionHeading
 				title="Things I talk about."
 				link={`${SPEAKING_BASE}/talks`}
 				linkLabel={`All ${stats.uniqueTalks} talks`}
 			/>
-			<ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+			<ul>
 				{
-					topics.map((topic) => (
-						<li class="relative flex flex-col rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-700 transition">
-							<p class="text-xs font-semibold tracking-[0.15em] uppercase text-primary-600 dark:text-primary-400">
-								{topic.talks.length} talks · {topic.deliveries} deliveries
-							</p>
-							<h3 class="mt-2 text-xl font-bold font-heading">
-								<a href={`${SPEAKING_BASE}/talks?topic=${topic.id}`} class="after:absolute after:inset-0">
-									{topic.label}
-								</a>
-							</h3>
-							<p class="mt-2 text-sm text-gray-600 dark:text-slate-400">{topic.description}</p>
-							<p class="mt-auto pt-4 text-xs text-gray-500 dark:text-slate-500">
-								Most requested: <span class="text-gray-700 dark:text-slate-300">{topic.flagship.title}</span>
-								{topic.flagship.count > 1 && <> · {topic.flagship.count}×</>}
-							</p>
+					topicsByDeliveries.map((topic) => (
+						<li class="editorial-row grid md:grid-cols-[15rem_minmax(0,1fr)] gap-3 md:gap-10">
+							<div>
+								<p class="text-xs font-semibold tracking-[0.15em] uppercase text-gray-900 dark:text-slate-300">
+									{topic.talks.length} talks · {topic.deliveries} deliveries
+								</p>
+								<h3 class="mt-2 text-xl font-bold font-heading">
+									<a href={`${SPEAKING_BASE}/talks?topic=${topic.id}`}>{topic.label}</a>
+								</h3>
+							</div>
+							<div class="max-w-[65ch]">
+								<p class="text-sm muted">{topic.description}</p>
+								<p class="mt-3 text-xs muted">
+									Most requested: <span class="text-gray-700 dark:text-slate-300">{topic.flagship.title}</span>
+								</p>
+							</div>
 						</li>
 					))
 				}
