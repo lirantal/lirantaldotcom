@@ -76,8 +76,8 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 				</div>
 			</div>
 		</Section>
-		<Section id="writing" number="02" title="Writing" description="What I’m learning. What I’m sharing.">
-			<a slot="link" href="/writing">All writing & publications <span aria-hidden="true">→</span></a>
+		<Section id="writing" number="02" title="Blog & articles" description="What I’m learning. What I’m sharing.">
+			<a slot="link" href="/writing">Blog & publications <span aria-hidden="true">→</span></a>
 			<div class="grid md:grid-cols-[2fr_1fr] gap-10 md:gap-16">
 				<div>
 					{
@@ -94,7 +94,7 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 						))
 					}
 				</div>
-				<aside class="surface self-start" aria-label="Where I write">
+				<aside class="surface self-start" aria-label="Other publications">
 					<p class="eyebrow">Beyond this blog</p>
 					{
 						publications.slice(1).map((publication) => (

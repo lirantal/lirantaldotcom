@@ -114,7 +114,7 @@ export const publications = [
 		name: 'Snyk',
 		description: 'Articles and research on AI security, application security, and the software supply chain.',
 		url: 'https://snyk.io/contributors/liran-tal/',
-		label: 'Browse my Snyk writing',
+		label: 'Browse my Snyk articles',
 	},
 ];
 

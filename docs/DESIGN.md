@@ -19,7 +19,7 @@ The current sequence in [index.astro](../src/pages/index.astro) is:
 1. Short personal introduction, professional links, recognition badges, portrait, and social icons.
 2. “Tools & resources I maintain”: three selected projects, before the long-form sections.
 3. **01 / Speaking**: stage photograph, speaking statistics, and links into the speaking hub.
-4. **02 / Writing**: recent posts and places Liran publishes elsewhere.
+4. **02 / Blog & articles**: recent blog posts and places Liran publishes elsewhere.
 5. **03 / Research**: selected co-authored arXiv preprints.
 6. **04 / Open source**: dated npm download evidence and a broader project selection.
 7. **05 / Books**: a curated bookshelf.
@@ -43,7 +43,7 @@ Public Markdown images also need space reserved before download. `remark-image-d
 
 - **Identity:** spaced dot separators between “Security researcher”, “Author”, and “Open-source maintainer”. Retain the separators; spacing alone made the roles feel disconnected. The current wrapping treatment clips a leading separator on a new row.
 - **Introduction:** one heading and one short paragraph. Both introductory sentences use the same size and weight. Break after “software,” where appropriate, and keep “AI agents” together; avoid a stranded final word. Do not force an exact line count across screen widths.
-- **Professional context:** “I head Developer Relations at Snyk”, immediately followed by Read my writing, Invite me to speak, and Bio & press kit.
+- **Professional context:** “I head Developer Relations at Snyk”, immediately followed by Read my blog, Invite me to speak, and Bio & press kit.
 - **Recognition:** directly below that block, quiet bordered badges with an award icon and the wording “Awarded GitHub Star” and “Awarded OpenJS Security Pathfinder”. Keep the award names linked. There is no separate “Industry recognition” strip.
 - **Social profiles:** one horizontal row of X, GitHub, and LinkedIn logos beneath the portrait. No visible names or outgoing arrows here; keep accessible names, hover titles, visible keyboard focus, and generous click targets (currently 44 × 44px). X is important to Liran's public activity; do not omit it.
 
@@ -55,7 +55,7 @@ The full bio belongs in the [speaker press kit](../src/pages/speaking/press-kit.
 
 | Pattern | Use and reasoning | Owner |
 | --- | --- | --- |
-| Numbered section heading | Large, bold, uppercase semantic `h2`, e.g. “02 / Writing”. The descriptive sentence is secondary. Small eyebrow labels alone did not separate the sections clearly enough. | [Section.astro](../src/components/portfolio/Section.astro) |
+| Numbered section heading | Large, bold, uppercase semantic `h2`, e.g. “02 / Blog & articles”. The descriptive sentence is secondary. Small eyebrow labels alone did not separate the sections clearly enough. | [Section.astro](../src/components/portfolio/Section.astro) |
 | Editorial row | Titles, dates, descriptions, and thin dividing rules for writing and papers. Prefer this to a grid of boxed cards for content that people read sequentially. | `.editorial-row` in [portfolio.css](../src/assets/styles/portfolio.css) |
 | Quiet surface | Subtle fill, thin border, modest rounding for a publication sidebar or download summary. Reserve stronger grouping for related information, not every link. | `.surface` in `portfolio.css` |
 | Recognition badge | Small neutral surface, award icon, muted “Awarded”, linked award name. Wrap naturally on narrow screens. | `ProfileHero.astro` |
@@ -110,7 +110,7 @@ Measure contrast against actual rendered backgrounds, including cards and select
 
 ## Content should support its claims
 
-- **Writing:** `/writing` is the directory across lirantal.com, Node.js Security, and Snyk; `/blog` remains the local archive. Homepage recent posts come from `fetchPosts()`, not a second curated list.
+- **Blog:** `/writing` is labeled “Blog” in navigation and is the directory across lirantal.com, Node.js Security, and Snyk; `/blog` remains the local archive. Its recent local posts appear first and include their cover images when available. Homepage recent posts come from `fetchPosts()`, not a second curated list.
 - **Research:** verify authorship and destinations, credit co-authors, and label arXiv work as preprints. Presence on arXiv is not a claim of peer review. Keep primary-source links such as the abstract, PDF, and DOI.
 - **npm impact:** use [npm-downloads.json](../src/data/npm-downloads.json), show its date range and package scope, and retain “downloads, not unique developers” plus the dependency-install caveat. The total is computed, not manually advertised. Refresh all packages and both dates together; the procedure is in `AGENTS.md`. Do not turn this into a live client-side counter or imply it includes every package Liran maintains.
 - **Projects:** make the purpose understandable in a sentence. Include useful curated resources and best-practice guides alongside executable tools. The homepage selection is not an exhaustive GitHub inventory.
@@ -124,7 +124,7 @@ Measure contrast against actual rendered backgrounds, including cards and select
 2. **Use mocks for genuine design choices.** Label alternatives and show palette swatches with hex values. Liran found side-by-side comparisons and the swatches useful. Carry the selected option forward; mock images are references, not verification of implementation. Small, specific portal corrections usually need direct implementation rather than a new design round.
 3. **Build and inspect the real page.** Run `npm run build` (including Pagefind and Markdown generation), plus `npm run lint` for code changes. Documentation-only changes need source/link checks, not a visual rebuild. If a build runs out of memory in a small orb, close browsers and stop dev servers first; this session used `NODE_OPTIONS=--max-old-space-size=3072 npm run build` on a 4GB orb.
 4. **Exercise responsive and non-default states.** Check desktop, an intermediate width near the reported 1073px viewport, and narrow widths such as 390px and 320px. Check both sides of the active header's 1024px breakpoint when touching navigation. Long award names, wrapped role separators, and link groups should fit without horizontal overflow.
-5. **Check shared-theme consumers.** For a palette change, inspect the homepage, writing, speaking, a blog article with inline code, and populated Pagefind results. Test fresh light default under dark OS preference, explicit dark selection, and persistence after reload. Exercise open menus, selected filters, disclosures, and keyboard focus when those controls are affected.
+5. **Check shared-theme consumers.** For a palette change, inspect the homepage, Blog directory, speaking, a blog article with inline code, and populated Pagefind results. Test fresh light default under dark OS preference, explicit dark selection, and persistence after reload. Exercise open menus, selected filters, disclosures, and keyboard focus when those controls are affected.
 6. **Inspect captures, not just successful commands.** Take representative screenshots in both themes; use a short pointer/keyboard recording for interaction changes. Compare DOM facts such as accessible names, destinations, and click-target sizes too. A responsive Chromium viewport is not proof of real-device touch behavior.
 7. **Use a review portal for element-specific feedback.** Run a supervised orb service and share its registered portal URL. The floating review control sends element text, selectors, and viewport details back to the thread. If Vite blocks the portal hostname, allow that exact trusted host through its host configuration or `__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS`; do not disable host validation globally or commit an ephemeral orb hostname as a site default.
 8. **Separate local, preview, and production evidence.** A portal may serve an older static build until rebuilt. For a reported missing image, inspect the requested URL and responsive `srcset`, status codes, and browser decoding before replacing the asset. A passing Vercel preview is not proof of production deployment or a fresh bot review. Keep those distinctions in delivery reports.
