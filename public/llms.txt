@@ -30,6 +30,7 @@ The public site is read-only and requires no authentication. It does not provide
 - [Agent skill index](https://lirantal.com/.well-known/agent-skills/index.json)
 - [Agent plugin manifest](https://lirantal.com/plugin.json)
 - [Agent resource discovery manifest](https://lirantal.com/.well-known/ard.json)
+- [AI catalog compatibility manifest](https://lirantal.com/.well-known/ai-catalog.json)
 - [Repository guide](https://github.com/lirantal/lirantaldotcom/blob/main/AGENTS.md)
 
 ## Topic indexes

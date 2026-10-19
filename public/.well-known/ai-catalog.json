@@ -1,0 +1,38 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Liran Tal",
+    "identifier": "lirantal.com",
+    "documentationUrl": "https://lirantal.com/developers"
+  },
+  "entries": [
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:lirantal.com:api:website",
+      "displayName": "Liran Tal Read-only Website API",
+      "type": "application/vnd.oai.openapi+json;version=3.1.0",
+      "url": "https://lirantal.com/openapi.json",
+      "capabilities": ["ListBlogPosts", "ReadBlogContent", "ReadRssFeed"],
+      "description": "Public, unauthenticated read-only endpoints for published blog post metadata, Markdown articles, RSS, and service health.",
+      "representativeQueries": [
+        "Find Liran Tal's articles about MCP security",
+        "List recent blog posts about Node.js secure coding",
+        "Read Liran Tal's writing on AI agent security"
+      ]
+    },
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:lirantal.com:skill:lirantal-blog-research",
+      "displayName": "Liran Tal Blog Research Skill",
+      "type": "text/markdown",
+      "url": "https://lirantal.com/skills/lirantal-blog-research/SKILL.md",
+      "capabilities": ["ResearchBlogPosts", "CiteArticles"],
+      "description": "Instructions for agents to find, read, and cite Liran Tal's technical writing.",
+      "representativeQueries": [
+        "Find a primary source article by Liran Tal about MCP",
+        "What has Liran Tal published about AI security?",
+        "Read and cite a Liran Tal blog post on software supply-chain security"
+      ]
+    }
+  ]
+}
