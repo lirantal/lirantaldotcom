@@ -1,0 +1,71 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { PROFILE, SITE } from '~/config.mjs';
+import { getCanonical } from '~/utils/permalinks';
+
+const meta = {
+	title: 'Contact Liran Tal',
+	description: 'Public contact channels for professional, speaking, and open-source inquiries to Liran Tal.',
+	canonical: getCanonical('/contact'),
+};
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'ContactPage',
+		name: 'Contact Liran Tal',
+		url: meta.canonical,
+		mainEntity: {
+			'@type': 'Person',
+			name: SITE.name,
+			url: SITE.origin,
+			sameAs: [PROFILE.githubURL, PROFILE.linkedinURL, PROFILE.twitterURL, PROFILE.mastodonURL],
+		},
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE.origin },
+			{ '@type': 'ListItem', position: 2, name: 'Contact', item: meta.canonical },
+		],
+	},
+];
+---
+
+<Layout {meta}>
+	<script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+	<article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:py-16">
+		<p class="eyebrow">Liran Tal</p>
+		<h1>Contact</h1>
+		<p class="muted mt-6 text-lg">
+			Choose a public channel based on the kind of inquiry. This site does not have a contact form or accept private
+			messages through its blog search.
+		</p>
+		<ul class="mt-8 space-y-6">
+			<li class="surface">
+				<h2 class="!text-xl">Professional inquiries</h2>
+				<p class="muted mt-2">
+					For work, collaboration, and general professional questions, reach out through LinkedIn.
+				</p>
+				<p class="mt-3"><a href={PROFILE.linkedinURL}>Liran Tal on LinkedIn</a></p>
+			</li>
+			<li class="surface">
+				<h2 class="!text-xl">Speaking invitations</h2>
+				<p class="muted mt-2">
+					For conference and workshop invitations, see the speaking page and its invitation links.
+				</p>
+				<p class="mt-3"><a href="/speaking">Speaking topics and contact links</a></p>
+			</li>
+			<li class="surface">
+				<h2 class="!text-xl">Open-source projects</h2>
+				<p class="muted mt-2">For code questions or bug reports, open an issue in the relevant project repository.</p>
+				<p class="mt-3"><a href={PROFILE.githubURL}>Liran Tal's GitHub repositories</a></p>
+			</li>
+		</ul>
+		<p class="muted mt-8">
+			You can also follow public updates on <a href={PROFILE.twitterURL}>X</a> and
+			<a href={PROFILE.mastodonURL}>Mastodon</a>. Please do not post sensitive security details in public social
+			messages; use the affected project's documented security-reporting channel for vulnerability disclosures.
+		</p>
+	</article>
+</Layout>

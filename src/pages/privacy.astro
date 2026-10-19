@@ -1,0 +1,46 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { getCanonical } from '~/utils/permalinks';
+
+const meta = {
+	title: 'Privacy — Liran Tal',
+	description:
+		'How this personal website handles browser preferences, analytics, public content, and third-party links.',
+	canonical: getCanonical('/privacy'),
+};
+---
+
+<Layout {meta}>
+	<article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:py-16">
+		<p class="eyebrow">Liran Tal</p>
+		<h1>Privacy</h1>
+		<p class="muted mt-6 text-lg">
+			This site publishes articles, research, projects, books, and speaking information. It does not provide user
+			accounts, a contact form, or a service that accepts private content.
+		</p>
+		<h2 class="mt-10">Hosting and analytics</h2>
+		<p class="muted mt-3">
+			The site is hosted with Vercel and includes Vercel Web Analytics. Vercel processes information needed to deliver
+			and measure use of the site. For details about its processing, read the
+			<a href="https://vercel.com/legal/privacy-policy">Vercel Privacy Policy</a>.
+		</p>
+		<h2 class="mt-8">Browser preferences and search</h2>
+		<p class="muted mt-3">
+			The display theme preference is stored in your browser's local storage. Blog search filters the public post index
+			in the browser and does not call a server-side search endpoint. The public API contains published post metadata
+			and does not require an account or API key.
+		</p>
+		<h2 class="mt-8">External services</h2>
+		<p class="muted mt-3">
+			Some pages link to or embed content from other websites. Following a link or loading third-party content may share
+			information with that provider under its own terms and privacy notice. Book purchase and other checkout links lead
+			to external providers; this site does not process those transactions.
+		</p>
+		<h2 class="mt-8">Questions</h2>
+		<p class="muted mt-3">
+			For questions about this site's content or privacy information, use one of the public channels on the
+			<a href="/contact">contact page</a>. This notice describes this website; external services have their own privacy
+			terms.
+		</p>
+	</article>
+</Layout>

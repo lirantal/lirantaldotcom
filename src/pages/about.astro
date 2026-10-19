@@ -1,0 +1,64 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { PROFILE, SITE } from '~/config.mjs';
+import { getCanonical } from '~/utils/permalinks';
+
+const meta = {
+	title: 'About Liran Tal — AI Security and Open Source',
+	description:
+		'About Liran Tal, a security researcher, open-source maintainer, author, and developer advocate working on secure software and AI agents.',
+	canonical: getCanonical('/about'),
+};
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'AboutPage',
+		name: 'About Liran Tal',
+		url: meta.canonical,
+		mainEntity: {
+			'@type': 'Person',
+			name: SITE.name,
+			url: SITE.origin,
+			sameAs: [PROFILE.githubURL, PROFILE.linkedinURL, PROFILE.twitterURL, PROFILE.mastodonURL],
+		},
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE.origin },
+			{ '@type': 'ListItem', position: 2, name: 'About', item: meta.canonical },
+		],
+	},
+];
+---
+
+<Layout {meta}>
+	<script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+	<article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:py-16">
+		<p class="eyebrow">Liran Tal</p>
+		<h1>About</h1>
+		<p class="muted mt-6 text-lg">
+			Liran Tal is a security researcher, open-source maintainer, author, and developer advocate. His work focuses on
+			helping developers build secure software, from Node.js applications and software supply chains to AI agents and
+			MCP integrations.
+		</p>
+		<p class="muted mt-5">
+			Liran leads Developer Relations at <a href="https://snyk.io/contributors/liran-tal/">Snyk</a>. He researches
+			security problems in developer tooling, open-source ecosystems, and AI agent systems, and shares practical
+			guidance through articles, conference talks, and research papers. His writing and selected projects are collected
+			on this site so readers can follow sources back to original articles, code repositories, and publications.
+		</p>
+		<p class="muted mt-5">
+			He maintains open-source tools including <a href="https://github.com/lirantal/lockfile-lint">lockfile-lint</a>
+			and <a href="https://github.com/lirantal/npq">npq</a>, and has written books on Node.js and software security.
+			Selected papers are available as preprints, while conference talks and events are listed in the
+			<a href="/speaking">speaking archive</a>.
+		</p>
+		<p class="muted mt-5">
+			Browse <a href="/writing">articles</a>, <a href="/developers">developer resources</a>,
+			<a href="/speaking">talks</a>, or <a href="/recognitions">recognitions</a>. Public social and project profiles are
+			linked from the site footer.
+		</p>
+	</article>
+</Layout>

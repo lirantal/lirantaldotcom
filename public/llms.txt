@@ -13,8 +13,14 @@ The public site is read-only and requires no authentication. It does not provide
 ## Key resources
 
 - [Homepage](https://lirantal.com/)
+- [About Liran Tal](https://lirantal.com/about)
+- [Contact information](https://lirantal.com/contact)
+- [Privacy notice](https://lirantal.com/privacy)
+- [Developer resources](https://lirantal.com/developers)
 - [Blog and articles](https://lirantal.com/writing)
 - [Recent blog posts as JSON](https://lirantal.com/api/posts.json)
+- [Blog post API as Markdown](https://lirantal.com/api/posts.json.md)
+- [Paginated blog posts](https://lirantal.com/api/posts/cursor/0.json)
 - [OpenAPI specification](https://lirantal.com/openapi.json)
 - [RSS feed](https://lirantal.com/rss.xml)
 - [Sitemap](https://lirantal.com/sitemap-index.xml)
@@ -26,12 +32,19 @@ The public site is read-only and requires no authentication. It does not provide
 - [Agent resource discovery manifest](https://lirantal.com/.well-known/ard.json)
 - [Repository guide](https://github.com/lirantal/lirantaldotcom/blob/main/AGENTS.md)
 
+## Topic indexes
+
+- [Developer resources](https://lirantal.com/developers/llms.txt)
+- [API documentation](https://lirantal.com/api/llms.txt)
+- [Writing and article archive](https://lirantal.com/writing/llms.txt)
+- [Speaking and events](https://lirantal.com/speaking/llms.txt)
+
 ## Content formats
 
 HTML pages advertise Markdown twins with `rel="alternate"`. The homepage Markdown is available at [index.md](https://lirantal.com/index.md); append `.md` to an article URL to fetch its Markdown twin. Requests with `Accept: text/markdown` also receive Markdown on supported production routes.
 
 ## Access and API
 
-All listed HTTP resources are public GET endpoints with no authentication. The post API returns published metadata sorted newest first; it is not a search API, but clients can filter the returned titles, descriptions, categories, and tags locally. Article content is available from each post's `markdownUrl`.
+All listed HTTP resources are public GET endpoints with no authentication. `/api/posts.json` returns all published metadata sorted newest first. `/api/posts/cursor/0.json` returns the first page of up to 50 records; pass `nextCursor` to `/api/posts/cursor/{cursor}.json` for the next page. Neither endpoint provides server-side search; clients can filter titles, descriptions, categories, and tags locally. Article content is available from each post's `markdownUrl`.
 
 For agent-oriented browser search, open [the blog directory](https://lirantal.com/writing), which exposes a WebMCP `search_blog_posts` tool when the browser supports WebMCP.

@@ -1,0 +1,12 @@
+# Public API — lirantal.com
+
+All endpoints are public, read-only GET resources and require no authentication.
+
+- `GET https://lirantal.com/api/posts.json` returns all published post metadata, newest first.
+- `GET https://lirantal.com/api/posts/cursor/0.json` returns the first page of up to 50 records.
+- Continue at `/api/posts/cursor/{cursor}.json` using `nextCursor` until it is `null`.
+- `GET https://lirantal.com/openapi.json` describes the API in OpenAPI 3.1.
+- `GET https://lirantal.com/health.json` returns a static liveness response.
+- `GET https://lirantal.com/rss.xml` returns the RSS feed.
+
+The API does not provide server-side search, authentication, write operations, or a dedicated remote MCP server. Filter metadata locally and fetch an article's `markdownUrl` for its full text. See the [developer portal](https://lirantal.com/developers).

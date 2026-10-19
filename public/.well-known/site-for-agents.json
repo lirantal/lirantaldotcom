@@ -7,6 +7,17 @@
   "llms": "https://lirantal.com/llms.txt",
   "openapi": "https://lirantal.com/openapi.json",
   "postsApi": "https://lirantal.com/api/posts.json",
+  "postsApiFirstPage": "https://lirantal.com/api/posts/cursor/0.json",
+  "developerResources": "https://lirantal.com/developers",
+  "about": "https://lirantal.com/about",
+  "contact": "https://lirantal.com/contact",
+  "privacy": "https://lirantal.com/privacy",
+  "topicIndexes": {
+    "developers": "https://lirantal.com/developers/llms.txt",
+    "api": "https://lirantal.com/api/llms.txt",
+    "writing": "https://lirantal.com/writing/llms.txt",
+    "speaking": "https://lirantal.com/speaking/llms.txt"
+  },
   "agentView": "https://lirantal.com/agent-view.json",
   "agentSkills": "https://lirantal.com/.well-known/agent-skills/index.json",
   "ard": "https://lirantal.com/.well-known/ard.json",

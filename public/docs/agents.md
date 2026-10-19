@@ -13,6 +13,8 @@ This is Liran Tal's personal website and technical blog. Use the site to find pu
 
 - OpenAPI: [openapi.json](https://lirantal.com/openapi.json)
 - Published posts: [api/posts.json](https://lirantal.com/api/posts.json)
+- Paginated posts: [api/posts/cursor/0.json](https://lirantal.com/api/posts/cursor/0.json)
+- Developer guide: [developers](https://lirantal.com/developers)
 - RSS: [rss.xml](https://lirantal.com/rss.xml)
 - Sitemap: [sitemap-index.xml](https://lirantal.com/sitemap-index.xml)
 - Health: [health.json](https://lirantal.com/health.json)
@@ -22,6 +24,8 @@ This is Liran Tal's personal website and technical blog. Use the site to find pu
 - ARD manifest: [ard.json](https://lirantal.com/.well-known/ard.json)
 
 These are public, read-only resources and need no authentication. There is no dedicated MCP server or write API. Use `/robots.txt` as the source of truth for crawler and AI-use preferences.
+
+The full posts endpoint returns all published records. To page through the same collection, request `/api/posts/cursor/0.json`, then use its `nextCursor` in `/api/posts/cursor/{cursor}.json` until `nextCursor` is `null`. Each page contains up to 50 records.
 
 ## Markdown
 

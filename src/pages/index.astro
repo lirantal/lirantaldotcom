@@ -18,7 +18,11 @@ const totalDownloads = downloads.packages.reduce((total, pkg) => total + pkg.dow
 const downloadLabel = `${(totalDownloads / 1_000_000).toFixed(2)}M`;
 const dateLabel = (date: string) =>
 	new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
-const meta = { title: SITE.title, description: SITE.description, canonical: getCanonical(getHomePermalink()) };
+const meta = {
+	title: 'Liran Tal — AI Security Research & Node.js Security',
+	description: SITE.description,
+	canonical: getCanonical(getHomePermalink()),
+};
 ---
 
 <Layout {meta}>
