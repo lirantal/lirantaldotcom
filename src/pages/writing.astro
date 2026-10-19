@@ -31,7 +31,7 @@ const meta = {
 						<h2 class="!text-xl">{publication.name}</h2>
 						<p class="muted text-sm mt-3 mb-5">{publication.description}</p>
 						<a class="text-sm mt-auto" href={publication.url}>
-							{publication.label} →
+							{publication.label} <span aria-hidden="true">→</span>
 						</a>
 					</article>
 				))
@@ -48,7 +48,9 @@ const meta = {
 							<p class="eyebrow">{article.publication}</p>
 							<p class="muted text-xs mb-3">{article.date}</p>
 							<h3>
-								<a href={article.url}>{article.title} ↗</a>
+								<a href={article.url}>
+									{article.title} <span aria-hidden="true">↗</span>
+								</a>
 							</h3>
 							<p class="muted mt-3 text-sm">{article.description}</p>
 						</article>
@@ -59,7 +61,7 @@ const meta = {
 		<section class="portfolio-section" aria-labelledby="recent-title">
 			<div class="section-heading">
 				<div><p class="eyebrow">Lirantal.com</p><h2 id="recent-title">Recent posts from my blog.</h2></div><a
-					href="/blog">Complete blog archive →</a
+					href="/blog">Complete blog archive <span aria-hidden="true">→</span></a
 				>
 			</div>
 			{
@@ -84,7 +86,9 @@ const meta = {
 					</article>
 				))
 			}
-			<p class="mt-8 text-sm"><a href="/rss.xml">Subscribe to this blog with RSS →</a></p>
+			<p class="mt-8 text-sm">
+				<a href="/rss.xml">Subscribe to this blog with RSS <span aria-hidden="true">→</span></a>
+			</p>
 		</section>
 	</div>
 </Layout>

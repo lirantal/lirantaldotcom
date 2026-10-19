@@ -90,9 +90,9 @@ const meta = {
 	{
 		upcoming.length > 0 && (
 			<section class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-				<p class="text-xs font-semibold tracking-[0.2em] uppercase text-green-700 dark:text-green-400">
+				<h2 class="text-xs font-semibold tracking-[0.2em] uppercase text-green-700 dark:text-green-400">
 					Upcoming · {upcoming.length} {upcoming.length === 1 ? 'event' : 'events'}
-				</p>
+				</h2>
 				<ol class="mt-2 border-y border-gray-200 dark:border-slate-800">
 					{upcoming.map((event) => (
 						<CalendarEvent event={event} />
@@ -115,7 +115,9 @@ const meta = {
 				<div data-filter-section class="mt-10" id={`year-${group.year}`}>
 					<h3 class="flex items-baseline gap-3 border-b border-gray-200 dark:border-slate-800 pb-2">
 						<span class="text-2xl font-bold font-heading">{group.year}</span>
-						<span class="text-sm text-gray-500 dark:text-slate-400">{group.events.length} events</span>
+						<span class="text-sm text-gray-500 dark:text-slate-400">
+							{group.events.length} {group.events.length === 1 ? 'event' : 'events'}
+						</span>
 					</h3>
 					<ol class="divide-y divide-gray-100 dark:divide-slate-800/60">
 						{group.events.map((event) => (

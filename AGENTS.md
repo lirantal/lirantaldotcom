@@ -12,6 +12,16 @@ Read **[docs/DESIGN.md](docs/DESIGN.md)** before changing layout, shared colors,
 - Verify content claims with sources: dated npm downloads are not unique users; arXiv entries are co-authored preprints, not automatically peer-reviewed papers.
 - For visual changes, inspect rendered light/dark and responsive states. For shared theme or interaction changes, also check affected search, prose, focus, menu, and filter states. Build success alone does not verify appearance.
 
+### Design reviews with the impeccable skill
+
+The [impeccable](https://github.com/pbakaus/impeccable) design skill is installed with [apm](https://github.com/microsoft/apm) (`apm.yml` → `.agents/skills/impeccable`; restore with `apm install`). Agents load it as the `impeccable` skill and run its commands as `/impeccable <command> <target>`:
+
+- **`critique <target>`**: design review (Nielsen heuristics, specificity, personas). Runs a design-review agent and a detector agent in isolation, then writes a report to `.impeccable/critique/` (tracked).
+- **`audit <target>`**: technical checks (accessibility, performance, theming, responsive).
+- **`polish <target>`**: refinement pass that preserves the incumbent design; it reads the latest critique report.
+
+Start each session with `.agents/skills/impeccable/scripts/impeccable context --target <file>`; there is no `PRODUCT.md`, so it treats `docs/DESIGN.md` and the code as the brief. The deterministic detector is `.agents/skills/impeccable/scripts/impeccable detect --json <files-or-url>`; URL scans need a Chromium, e.g. `IMPECCABLE_BROWSER=$(ls -d ~/.agent-browser/browsers/chrome-*/chrome | head -1)` in an orb. Inter, the numbered headings, and eyebrow labels are owner-approved, so treat `overused-font` and `kicker-above-heading` findings as sanctioned rather than defects.
+
 ## What this repo is
 
 Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Production URL: `https://lirantal.com` (`SITE.origin` in `src/config.mjs`). **Node.js 24+** is required (`package.json` `engines`); Vercel uses `NODE_VERSION` in `vercel.json`.
@@ -45,7 +55,7 @@ Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Pro
 
 ## Layout hierarchy
 
-1. **`src/layouts/BaseLayout.astro`** — HTML shell, `MetaTags`, Pagefind CSS/JS, global `base.css`.
+1. **`src/layouts/BaseLayout.astro`** — HTML shell, `MetaTags`, theme script, skip link, global `base.css`. Pagefind CSS/JS load only from `PageFindSearch.astro` (pages that render search), and only post articles (`data-pagefind-body` in `SinglePost.astro`) are indexed.
 2. **`src/layouts/PageLayout.astro`** — BaseLayout + `Header` + `<main>` + `Footer`. Use for most marketing pages and blog **posts**.
 3. **`src/layouts/BlogLayout.astro`** — PageLayout + centered page title slot (`<slot name="title" />`). Used for blog index, tag, and category listing pages.
 
@@ -189,7 +199,7 @@ The **`Link`** header currently advertises: **`api-catalog`** → `/.well-known/
 - **After a Vercel deploy**, third-party scans (e.g. `POST https://isitagentready.com/api/scan` with `{"url":"https://lirantal.com"}`) should report **`checks.discoverability.linkHeaders`** as **pass** (homepage **`Link`** relations present), **`checks.discovery.apiCatalog`** as **pass** (catalog URL, content-type, and **`linkset`** structure), **`checks.botAccessControl.contentSignals`** as **pass** (**`Content-Signal`** declares **`ai-train`**, **`search`**, and **`ai-input`** on **`robots.txt`**), and **`checks.contentAccessibility.markdownNegotiation`** as **pass** (**`Accept: text/markdown`** returns Markdown with **`Content-Type: text/markdown`**).
 - **`GET /health.json`** in production should return **200** and **`application/json`** with a small JSON body suitable for liveness checks.
 - **Local dev** (`npm run dev`, `astro preview`) does **not** apply **`vercel.json`** headers or generated **`.vercel/output/config.json`** routes; verify Markdown negotiation by inspecting **`.vercel/output/config.json`** after **`npm run build`** or by testing the production deployment.
-- SEO crawlers may flag **broken JavaScript** and **broken CSS** on many pages for the same reason: **`/pagefind/pagefind-ui.js`** and **`/pagefind/pagefind-ui.css`** (from [BaseLayout.astro](src/layouts/BaseLayout.astro)) are emitted together by Pagefind into **`pagefind/`**; if either **404**s, the whole bundle is missing from the deploy output. **`www`** vs apex are duplicate reports for the same assets.
+- SEO crawlers may flag **broken JavaScript** and **broken CSS** on many pages for the same reason: **`/pagefind/pagefind-ui.js`** and **`/pagefind/pagefind-ui.css`** (loaded by [PageFindSearch.astro](src/components/widgets/PageFindSearch.astro) on blog listing pages) are emitted together by Pagefind into **`pagefind/`**; if either **404**s, the whole bundle is missing from the deploy output. **`www`** vs apex are duplicate reports for the same assets.
 - If **`SITE.origin`** in **`src/config.mjs`** ever changes, update **absolute `https://` URLs** inside **`public/.well-known/api-catalog`** (and any other hardcoded origin strings in **`site-for-agents.json`**) so anchors and `href` values stay aligned with production.
 
 ## Checklist: new blog post

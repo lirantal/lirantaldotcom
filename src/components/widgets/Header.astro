@@ -29,7 +29,10 @@ const path = Astro.url.pathname.replace(/\/$/, '');
 							<a
 								href={link.href}
 								aria-current={
-									!link.href.includes('#') && (path === link.href || path.startsWith(`${link.href}/`))
+									!link.href.includes('#') &&
+									(path === link.href ||
+										path.startsWith(`${link.href}/`) ||
+										(link.href === '/writing' && (path === '/blog' || path.startsWith('/blog/'))))
 										? 'page'
 										: undefined
 								}
@@ -45,7 +48,7 @@ const path = Astro.url.pathname.replace(/\/$/, '');
 				<ToggleTheme iconClass="w-5 h-5" />
 				<a
 					href={PROFILE.githubURL}
-					class="text-gray-500 dark:text-slate-400 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800"
+					class="text-gray-500 dark:text-slate-400 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-300"
 					aria-label="Liran Tal's GitHub"><Icon name="tabler:brand-github" class="w-5 h-5" /></a
 				>
 			</div>

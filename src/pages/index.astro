@@ -30,7 +30,7 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 		>
 			<div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 mb-6">
 				<h2 id="featured-projects-title" class="!text-base !tracking-normal">Tools & resources I maintain</h2>
-				<a href="#open-source" class="text-sm">More projects & impact →</a>
+				<a href="#open-source" class="text-sm">More projects & impact <span aria-hidden="true">→</span></a>
 			</div>
 			<div class="grid md:grid-cols-3 gap-7 md:gap-10">
 				{
@@ -40,7 +40,9 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 							<article>
 								<p class="eyebrow">{project.kind}</p>
 								<h3>
-									<a href={project.url}>{project.name} ↗</a>
+									<a href={project.url}>
+										{project.name} <span aria-hidden="true">↗</span>
+									</a>
 								</h3>
 								<p class="mt-3 muted text-sm">{project.description}</p>
 							</article>
@@ -49,7 +51,7 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 			</div>
 		</section>
 		<Section id="speaking" number="01" title="Speaking" description="From the terminal to the stage.">
-			<a slot="link" href="/speaking">Explore talks & events →</a>
+			<a slot="link" href="/speaking">Explore talks & events <span aria-hidden="true">→</span></a>
 			<div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
 				<Image
 					src={speakingImage}
@@ -67,13 +69,15 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 						Node.js, and the software supply chain, explained through code.
 					</p>
 					<div class="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm">
-						<a href="/speaking/recordings">Watch a talk →</a><a href="/speaking/press-kit">Speaker press kit →</a>
+						<a href="/speaking/recordings">Watch a talk <span aria-hidden="true">→</span></a><a
+							href="/speaking/press-kit">Speaker press kit <span aria-hidden="true">→</span></a
+						>
 					</div>
 				</div>
 			</div>
 		</Section>
 		<Section id="writing" number="02" title="Writing" description="What I’m learning. What I’m sharing.">
-			<a slot="link" href="/writing">All writing & publications →</a>
+			<a slot="link" href="/writing">All writing & publications <span aria-hidden="true">→</span></a>
 			<div class="grid md:grid-cols-[2fr_1fr] gap-10 md:gap-16">
 				<div>
 					{
@@ -96,13 +100,15 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 						publications.slice(1).map((publication) => (
 							<div class="mt-5">
 								<h3>
-									<a href={publication.url}>{publication.name} ↗</a>
+									<a href={publication.url}>
+										{publication.name} <span aria-hidden="true">↗</span>
+									</a>
 								</h3>
 								<p class="muted text-sm mt-2">{publication.description}</p>
 							</div>
 						))
 					}
-					<p class="mt-6 text-sm"><a href="/rss.xml">Follow this blog via RSS →</a></p>
+					<p class="mt-6 text-sm"><a href="/rss.xml">Follow this blog via RSS <span aria-hidden="true">→</span></a></p>
 				</aside>
 			</div>
 		</Section>
@@ -122,7 +128,9 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 						</div>
 						<div>
 							<h3>
-								<a href={`https://arxiv.org/abs/${paper.id}`}>{paper.title} ↗</a>
+								<a href={`https://arxiv.org/abs/${paper.id}`}>
+									{paper.title} <span aria-hidden="true">↗</span>
+								</a>
 							</h3>
 							<p class="muted mt-3">{paper.description}</p>
 							<p class="muted text-xs mt-3">{paper.authors}</p>
@@ -139,7 +147,7 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 			}
 		</Section>
 		<Section id="open-source" number="04" title="Open source" description="Useful tools. Shared with everyone.">
-			<a slot="link" href={PROFILE.githubURL}>All projects on GitHub ↗</a>
+			<a slot="link" href={PROFILE.githubURL}>All projects on GitHub <span aria-hidden="true">↗</span></a>
 			<div class="surface mb-8 grid md:grid-cols-[1fr_2fr] gap-6 items-start">
 				<div>
 					<p class="text-4xl font-bold tracking-tight">{downloadLabel}</p><p class="muted text-sm mt-2">
@@ -187,7 +195,9 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 						<article>
 							<p class="eyebrow">{project.kind}</p>
 							<h3>
-								<a href={project.url}>{project.name} ↗</a>
+								<a href={project.url}>
+									{project.name} <span aria-hidden="true">↗</span>
+								</a>
 							</h3>
 							<p class="mt-3 muted text-sm">{project.description}</p>
 						</article>
@@ -196,7 +206,9 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 			</div>
 		</Section>
 		<Section id="books" number="05" title="Books" description="A bookshelf for more secure code.">
-			<a slot="link" href="/books/nodejs-secure-coding">Explore Node.js Secure Coding →</a>
+			<a slot="link" href="/books/nodejs-secure-coding"
+				>Explore Node.js Secure Coding <span aria-hidden="true">→</span></a
+			>
 			<p class="muted max-w-2xl mb-8">
 				Practical guides built around real vulnerabilities, with code to break, fixes to understand, and techniques to
 				take back to your own projects.
@@ -216,7 +228,9 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 							</a>
 							<p class="text-xs muted mb-2">{book.series}</p>
 							<h3 class="!text-base">
-								<a href={book.url}>{book.title} ↗</a>
+								<a href={book.url}>
+									{book.title} <span aria-hidden="true">↗</span>
+								</a>
 							</h3>
 						</article>
 					))
@@ -231,10 +245,12 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 				</blockquote>
 				<figcaption class="text-sm muted mt-5">
 					Jim Manico · OWASP Leader · <a href="https://twitter.com/manicode/status/1326929685553451008"
-						>Original post ↗</a
+						>Original post <span aria-hidden="true">↗</span></a
 					>
 				</figcaption>
-				<p class="text-sm mt-5"><a href="/recognitions">More community feedback & recognitions →</a></p>
+				<p class="text-sm mt-5">
+					<a href="/recognitions">More community feedback & recognitions <span aria-hidden="true">→</span></a>
+				</p>
 			</figure>
 		</section>
 	</div>

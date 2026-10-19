@@ -15,7 +15,7 @@ const { groups, total } = Astro.props;
 		groups.map((group) =>
 			group.kind === 'chips' ? (
 				<div class="flex flex-wrap items-center gap-2" role="group" aria-label={group.label}>
-					<span class="w-14 text-xs font-semibold tracking-widest uppercase text-gray-400 dark:text-slate-500">
+					<span class="w-14 text-xs font-semibold tracking-widest uppercase text-gray-500 dark:text-slate-400">
 						{group.label}
 					</span>
 					{[{ value: '', label: 'All', count: total }, ...group.options].map((option) => (
@@ -24,7 +24,7 @@ const { groups, total } = Astro.props;
 							data-filter={group.name}
 							data-value={option.value}
 							aria-pressed={option.value === '' ? 'true' : 'false'}
-							class="rounded-full border border-gray-200 dark:border-slate-700 px-3 py-1 text-sm text-gray-700 dark:text-slate-300 hover:border-primary-400 aria-pressed:bg-gray-900 aria-pressed:text-white aria-pressed:border-gray-900 dark:aria-pressed:bg-white dark:aria-pressed:text-gray-900 dark:aria-pressed:border-white"
+							class="relative rounded-full border border-gray-200 dark:border-slate-700 px-3 py-2 text-sm after:absolute after:inset-x-0 after:-inset-y-1 after:content-[''] text-gray-700 dark:text-slate-300 hover:border-primary-400 aria-pressed:bg-gray-900 aria-pressed:text-white aria-pressed:border-gray-900 dark:aria-pressed:bg-white dark:aria-pressed:text-gray-900 dark:aria-pressed:border-white"
 						>
 							{option.label}
 							{option.count !== undefined && <span class="ml-1 opacity-60 tabular-nums">{option.count}</span>}

@@ -14,6 +14,10 @@ export default {
 							color: 'var(--color-slate-100)',
 							backgroundColor: 'var(--color-slate-800)',
 						},
+						// Long inline tokens (env vars, config keys) must wrap instead of widening the page on mobile.
+						':not(pre) > code': {
+							overflowWrap: 'anywhere',
+						},
 						'code::before': {
 							content: 'none',
 						},
