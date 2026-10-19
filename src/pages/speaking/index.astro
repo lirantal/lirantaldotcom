@@ -18,6 +18,7 @@ const { stats, upcoming, past, topics, videos, types, years, countries } = await
 // Always show a few rows on the calendar: upcoming first, then the most recent past talks.
 const calendar = [...upcoming, ...past.filter((e) => e.isTalk)].slice(0, Math.max(4, upcoming.length));
 const maxYearCount = Math.max(...years.map((y) => y.count));
+const topicsByDeliveries = [...topics].sort((a, b) => b.deliveries - a.deliveries);
 
 const testimonials = [
 	...new Map(
@@ -123,10 +124,10 @@ const meta = {
 			/>
 			<ul>
 				{
-					topics.map((topic) => (
+					topicsByDeliveries.map((topic) => (
 						<li class="editorial-row grid md:grid-cols-[15rem_minmax(0,1fr)] gap-3 md:gap-10">
 							<div>
-								<p class="text-xs font-semibold tracking-[0.15em] uppercase text-primary-600 dark:text-primary-400">
+								<p class="text-xs font-semibold tracking-[0.15em] uppercase text-gray-900 dark:text-slate-300">
 									{topic.talks.length} talks · {topic.deliveries} deliveries
 								</p>
 								<h3 class="mt-2 text-xl font-bold font-heading">
@@ -137,7 +138,6 @@ const meta = {
 								<p class="text-sm muted">{topic.description}</p>
 								<p class="mt-3 text-xs muted">
 									Most requested: <span class="text-gray-700 dark:text-slate-300">{topic.flagship.title}</span>
-									{topic.flagship.count > 1 && <> · {topic.flagship.count}×</>}
 								</p>
 							</div>
 						</li>
@@ -231,20 +231,18 @@ const meta = {
 	<!-- Testimonials -->
 	{
 		testimonials.length > 0 && (
-			<section class="portfolio py-16 border-t border-gray-200 dark:border-slate-800">
+			<section class="max-w-6xl mx-auto px-4 sm:px-6 py-16 border-t border-gray-200 dark:border-slate-800">
 				<SectionHeading
 					eyebrow="From the audience"
 					title="What people say."
 					link="/recognitions"
 					linkLabel="More recognitions"
 				/>
-				<ul>
+				<ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
 					{testimonials.map((t) => (
-						<li class="editorial-row grid md:grid-cols-[15rem_minmax(0,1fr)] gap-3 md:gap-10">
-							<blockquote class="md:col-start-2 max-w-[65ch] text-gray-800 dark:text-slate-200">
-								“{t.description}”
-							</blockquote>
-							<a href={t.href} class="md:col-start-1 md:row-start-1 text-sm">
+						<li class="flex flex-col rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6">
+							<blockquote class="text-gray-800 dark:text-slate-200">“{t.description}”</blockquote>
+							<a href={t.href} class="mt-auto pt-4 text-sm text-gray-500 dark:text-slate-400 hover:text-primary-600">
 								<span class="font-semibold text-gray-700 dark:text-slate-300">{t.name}</span> · {t.role}
 							</a>
 						</li>

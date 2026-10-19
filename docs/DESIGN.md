@@ -58,7 +58,8 @@ The portfolio wrapper is at most 72rem wide, with 1.5rem horizontal padding (1.2
 
 ### Speaking and blog editorial layouts
 
-- Speaking topics and audience feedback use ruled editorial rows. At desktop widths, topic names or attribution occupy a narrow left column and descriptions or quotations occupy the right; mobile stacks each row. Keep the real quotations, topic counts, and flagship sessions.
+- Speaking topics use ruled editorial rows, ordered by delivery count descending. At desktop widths, topic names occupy a narrow left column and descriptions occupy the right; mobile stacks each row. Topic stats use neutral ink to distinguish them from the blue linked titles. Keep flagship session titles after “Most requested” without repeat counts.
+- Audience feedback uses the original bordered testimonial cards in a responsive grid. The owner prefers this recognizable recommendation format over editorial rows; preserve the quotations and attribution links.
 - Speaking sub-navigation marks the current page with an underline and `aria-current`. Type labels use quiet neutral borders; upcoming status remains explicit. Calendar and archive event titles are blue and underlined before hover.
 - Blog listings share the homepage's 72rem grid. Use compact text-led rows with blue, underlined titles and small cover thumbnails, rather than full-width covers between entries. Tag and category archives share this layout.
 - Post dates, titles, tags, sharing controls, and covers align to that grid's left edge. The article body retains its narrower reading column. After the article, “More writing” lists three recent published posts, excluding the current post, and links to the full archive. Keep this navigation outside Pagefind's indexed article body.
