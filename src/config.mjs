@@ -7,7 +7,7 @@ export const PROFILE = {
 };
 
 export const NAVIGATION = [
-	{ href: '/writing', label: 'Writing' },
+	{ href: '/writing', label: 'Blog' },
 	{ href: '/#research', label: 'Research' },
 	{ href: '/#open-source', label: 'Open source' },
 	{ href: '/#books', label: 'Books' },
@@ -121,7 +121,7 @@ export const SITE = {
 
 	title: 'Liran Tal',
 	description:
-		'AI security researcher, open-source maintainer, and author. Explore Liran Tal’s writing, research papers, developer tools, books, and conference talks.',
+		'AI security researcher, open-source maintainer, and author. Explore Liran Tal’s blog, research papers, developer tools, books, and conference talks.',
 
 	// deprecated_googleAnalyticsId: false, // or "G-XXXXXXXXXX",
 	// deprecated_googleSiteVerificationId: 'orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M',

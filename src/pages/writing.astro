@@ -2,14 +2,18 @@
 import Layout from '~/layouts/PageLayout.astro';
 import { publications, externalWriting } from '~/data/portfolio';
 import { fetchPosts } from '~/utils/posts';
+import { findImage } from '~/utils/images';
 import { getCanonical, getPermalink } from '~/utils/permalinks';
+import Picture from '~/components/core/Picture.astro';
 import '~/assets/styles/portfolio.css';
 
-const posts = (await fetchPosts()).slice(0, 8);
+const posts = await Promise.all(
+	(await fetchPosts()).slice(0, 8).map(async (post) => ({ ...post, image: await findImage(post.image) }))
+);
 const meta = {
-	title: 'Writing by Liran Tal',
+	title: 'Blog and articles by Liran Tal',
 	description:
-		'Writing on AI security, Node.js, developer tooling, and secure coding, across lirantal.com, Node.js Security, and Snyk.',
+		'Blog posts and selected articles on AI security, Node.js, developer tooling, and secure coding, across lirantal.com, Node.js Security, and Snyk.',
 	canonical: getCanonical('/writing'),
 };
 ---
@@ -17,13 +21,70 @@ const meta = {
 <Layout {meta}>
 	<div class="portfolio">
 		<header class="page-intro">
-			<p class="eyebrow">Articles · Tutorials · Research write-ups</p>
-			<h1>Writing, across the web.</h1>
+			<p class="eyebrow">Across lirantal.com · Node.js Security · Snyk</p>
+			<h1>Blog and articles.</h1>
 			<p>
 				I write to make security easier to understand and put into practice. Here’s where to find my work, from deep
 				dives into vulnerable code to the tools I use every day.
 			</p>
 		</header>
+		<section class="portfolio-section" aria-labelledby="recent-title">
+			<div class="section-heading">
+				<div><p class="eyebrow">Lirantal.com</p><h2 id="recent-title">Recent blog posts.</h2></div>
+				<div class="section-actions">
+					<a href="/blog">Complete blog archive <span aria-hidden="true">→</span></a>
+					<a href="/rss.xml">Subscribe via RSS <span aria-hidden="true">→</span></a>
+				</div>
+			</div>
+			{
+				posts.map((post) => (
+					<article
+						class:list={[
+							'editorial-row grid gap-x-4 gap-y-3 md:gap-x-8',
+							post.image
+								? 'grid-cols-[5rem_1fr] md:grid-cols-[9rem_10rem_1fr]'
+								: 'grid-cols-1 md:grid-cols-[9rem_1fr]',
+						]}
+					>
+						<time class="muted text-sm" datetime={new Date(post.pubDate).toISOString()}>
+							{new Date(post.pubDate).toLocaleDateString('en-US', {
+								month: 'short',
+								day: 'numeric',
+								year: 'numeric',
+								timeZone: 'UTC',
+							})}
+						</time>
+						{post.image && (
+							<a
+								class="col-start-2 row-start-1 block h-20 w-36 overflow-hidden rounded-md bg-[var(--wash)] md:h-24 md:w-40"
+								href={getPermalink(post.slug, 'post')}
+								aria-label={`Read ${post.title}`}
+							>
+								<Picture
+									src={post.image}
+									class="h-full w-full object-cover"
+									widths={[320, 640]}
+									sizes="(max-width: 767px) 144px, 160px"
+									alt=""
+									aspectRatio="16:9"
+								/>
+							</a>
+						)}
+						<div
+							class:list={[
+								'min-w-0',
+								post.image ? 'col-span-2 md:col-span-1 md:col-start-3' : 'col-start-1 md:col-start-2',
+							]}
+						>
+							<h3>
+								<a href={getPermalink(post.slug, 'post')}>{post.title}</a>
+							</h3>
+							<p class="muted mt-3 text-sm max-w-[65ch]">{post.description}</p>
+						</div>
+					</article>
+				))
+			}
+		</section>
 		<section aria-label="Publications" class="grid md:grid-cols-3 gap-5 mb-12">
 			{
 				publications.map((publication) => (
@@ -39,7 +100,7 @@ const meta = {
 		</section>
 		<section class="portfolio-section" aria-labelledby="elsewhere-title">
 			<div class="section-heading">
-				<div><p class="eyebrow">Selected reading</p><h2 id="elsewhere-title">Published elsewhere.</h2></div>
+				<div><p class="eyebrow">Selected articles</p><h2 id="elsewhere-title">Published elsewhere.</h2></div>
 			</div>
 			<div class="grid md:grid-cols-3 gap-8">
 				{
@@ -58,37 +119,6 @@ const meta = {
 				}
 			</div>
 		</section>
-		<section class="portfolio-section" aria-labelledby="recent-title">
-			<div class="section-heading">
-				<div><p class="eyebrow">Lirantal.com</p><h2 id="recent-title">Recent posts from my blog.</h2></div><a
-					href="/blog">Complete blog archive <span aria-hidden="true">→</span></a
-				>
-			</div>
-			{
-				posts.map((post) => (
-					<article class="editorial-row grid md:grid-cols-[9rem_1fr] gap-3 md:gap-8">
-						<time class="muted text-sm" datetime={new Date(post.pubDate).toISOString()}>
-							{new Date(post.pubDate).toLocaleDateString('en-US', {
-								month: 'short',
-								day: 'numeric',
-								year: 'numeric',
-								timeZone: 'UTC',
-							})}
-						</time>
-						<div>
-							<>
-								<h3>
-									<a href={getPermalink(post.slug, 'post')}>{post.title}</a>
-								</h3>
-								<p class="muted mt-3 text-sm max-w-[65ch]">{post.description}</p>
-							</>
-						</div>
-					</article>
-				))
-			}
-			<p class="mt-8 text-sm">
-				<a href="/rss.xml">Subscribe to this blog with RSS <span aria-hidden="true">→</span></a>
-			</p>
-		</section>
+		
 	</div>
 </Layout>

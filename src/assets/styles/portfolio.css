@@ -1,4 +1,4 @@
-/* Shared editorial styling for the portfolio and its writing / press pages. */
+/* Shared editorial styling for the portfolio and its Blog / press pages. */
 .portfolio {
 	--ink-muted: #526075;
 	--line: #e2e8f0;
@@ -75,6 +75,13 @@
 	min-width: 0;
 }
 .portfolio .section-heading > a {
+	font-size: 0.9rem;
+}
+.portfolio .section-heading > .section-actions {
+	display: flex;
+	flex: 0 0 auto;
+	flex-wrap: wrap;
+	gap: 0.5rem 1.5rem;
 	font-size: 0.9rem;
 }
 .portfolio .editorial-row {
