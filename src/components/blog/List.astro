@@ -4,10 +4,10 @@ import Item from '~/components/blog/ListItem.astro';
 const { posts } = Astro.props;
 ---
 
-<ul>
+<ul class="divide-y divide-gray-200 dark:divide-slate-700 border-y border-gray-200 dark:border-slate-700">
 	{
 		posts.map((post) => (
-			<li class="mb-[7.5rem]">
+			<li class="py-7 sm:py-8">
 				<Item post={post} />
 			</li>
 		))

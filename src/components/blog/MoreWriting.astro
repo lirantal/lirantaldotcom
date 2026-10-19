@@ -1,0 +1,32 @@
+---
+import { fetchPosts } from '~/utils/posts';
+import { getPermalink, getBlogPermalink } from '~/utils/permalinks';
+import { getFormattedDate } from '~/utils/utils';
+import '~/assets/styles/portfolio.css';
+
+const { currentSlug } = Astro.props;
+const posts = (await fetchPosts()).filter((post) => post.slug !== currentSlug).slice(0, 3);
+---
+
+<section class="portfolio" aria-labelledby="more-writing-title" data-pagefind-ignore>
+	<div class="portfolio-section mt-12">
+		<div class="section-heading">
+			<h2 id="more-writing-title">More writing</h2>
+			<a href={getBlogPermalink()}>All writing <span aria-hidden="true">→</span></a>
+		</div>
+		<ul>
+			{
+				posts.map((post) => (
+					<li class="editorial-row grid md:grid-cols-[9rem_minmax(0,1fr)] gap-2 md:gap-8">
+						<time class="muted text-sm" datetime={post.pubDate}>
+							{getFormattedDate(post.pubDate)}
+						</time>
+						<h3 class="max-w-[60ch]">
+							<a href={getPermalink(post.slug, 'post')}>{post.title}</a>
+						</h3>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
