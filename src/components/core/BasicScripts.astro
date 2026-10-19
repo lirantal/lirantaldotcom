@@ -43,9 +43,17 @@
 		});
 		window.matchMedia('(min-width: 1024px)').addEventListener('change', closeMenu);
 
+		function syncThemeToggles() {
+			const isDark = document.documentElement.classList.contains('dark');
+			document
+				.querySelectorAll('[data-aw-toggle-color-scheme]')
+				.forEach((elem) => elem.setAttribute('aria-pressed', String(isDark)));
+		}
+		syncThemeToggles();
 		attachEvent('[data-aw-toggle-color-scheme]', 'click', function () {
 			document.documentElement.classList.toggle('dark');
 			localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+			syncThemeToggles();
 		});
 	};
 	window.onpageshow = function () {

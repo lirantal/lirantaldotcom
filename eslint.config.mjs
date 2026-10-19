@@ -15,6 +15,9 @@ export default tseslint.config(
 			'.vercel/**',
 			'public/**',
 			'.github/**',
+			// Vendored third-party agent skills (installed by apm) and apm's download cache.
+			'.agents/skills/impeccable/**',
+			'apm_modules/**',
 		],
 	},
 	{

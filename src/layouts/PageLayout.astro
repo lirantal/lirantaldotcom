@@ -8,7 +8,7 @@ const { meta } = Astro.props;
 
 <Layout {meta}>
 	<Header />
-	<main>
+	<main id="main" tabindex="-1" class="focus:outline-none">
 		<slot />
 	</main>
 	<Footer />

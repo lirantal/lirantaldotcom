@@ -10,7 +10,7 @@ const { day, suffix } = ordinalDay(event.date);
 <li class="border-t border-gray-200 dark:border-slate-800 first:border-t-0">
 	<a
 		href={event.href}
-		class="group grid grid-cols-[5rem_1fr] sm:grid-cols-[6rem_1fr_auto] gap-x-4 gap-y-2 py-5 items-start"
+		class="group grid grid-cols-[5rem_minmax(0,1fr)] sm:grid-cols-[6rem_minmax(0,1fr)_auto] gap-x-4 gap-y-2 py-5 items-start"
 	>
 		<time datetime={event.date.toISOString()} class="leading-none">
 			<span class="text-4xl font-bold font-heading text-gray-900 dark:text-slate-100">{day}</span><sup
@@ -33,7 +33,7 @@ const { day, suffix } = ordinalDay(event.date);
 		<div class="col-start-2 sm:col-start-auto flex gap-1.5">
 			{
 				event.upcoming ? (
-					<span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold bg-green-600 text-white">
+					<span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold bg-green-700 dark:bg-green-800 text-white">
 						Upcoming
 					</span>
 				) : (

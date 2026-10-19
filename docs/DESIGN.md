@@ -6,7 +6,7 @@ The decisions below are the baseline for future work, not a ban on iteration. Wh
 
 ## Direction: editorial, personal, and restrained
 
-Liran chose the **Editorial** concept over the centered alternative: left-aligned writing, a portrait alongside it, visible projects near the top, and clear sections with room to breathe. Keep the existing Inter/blue/neutral identity. Avoid shiny effects, excessive animation, decorative gradients, or turning every item into a card.
+Liran chose the **Editorial** concept over the centered alternative: left-aligned writing, a portrait alongside it, visible projects near the top, and clear sections with room to breathe. Keep the existing Inter/blue/neutral identity. Avoid shiny effects, excessive animation, or turning every item into a card. Preserve the established gradients on speaking headings, year bars, the stage-photo frame and invitation panel, the blog title, recognition headings, and 404 text; the owner explicitly requested retaining these accents during review of PR #14.
 
 The homepage should quickly answer: what does Liran work on, what has he made, and where can I read or watch more? Show evidence through real projects, writing, papers, books, and talks rather than adding more biography or promotional claims.
 
@@ -66,7 +66,7 @@ The portfolio wrapper is at most 72rem wide, with 1.5rem horizontal padding (1.2
 
 ## Theme: light by default, soft black by choice
 
-**A visitor without an explicit saved preference sees light mode, even if their OS prefers dark.** The toggle remembers the choice in `localStorage.theme`. Do not reinstate OS-driven theme selection. [BasicScripts.astro](../src/components/core/BasicScripts.astro) owns this behavior.
+**A visitor without an explicit saved preference sees light mode, even if their OS prefers dark.** The toggle remembers the choice in `localStorage.theme`. Do not reinstate OS-driven theme selection. [BasicScripts.astro](../src/components/core/BasicScripts.astro) owns this behavior; it is rendered in `<head>` so a saved dark preference applies before first paint. The toggle shows a moon in light mode and a sun in dark mode, and exposes the state with `aria-pressed`.
 
 Liran selected **C / Soft black** from the final comparison of two black variants and the earlier preferred option. That label refers to the final comparison, not an arbitrary third palette. The approved direction is near-black, neutral elevated surfaces, readable gray text, and a pale blue accent, without a navy wash or harsh pure-white body text.
 
@@ -83,6 +83,8 @@ Liran selected **C / Soft black** from the final comparison of two black variant
 | Link/accent | `#92B8FF` | `--color-blue-300` / `--color-blue-400` |
 
 These overrides live under `.dark` in [base.css](../src/assets/styles/base.css); gray aliases keep existing shared components aligned. `white` is deliberately **not** overridden: neutral-surface text uses `dark:text-slate-100` (the soft `#EDF0F4`), while white text on colored fills (buttons, the active speaking tab, badges) stays pure `#FFFFFF` so it keeps its contrast. Use `dark:*-slate-100` rather than `dark:*-white` for headings, logos, and hover text on neutral surfaces. Portfolio variables reference the shared tokens. [tailwind.config.mjs](../tailwind.config.mjs) maps primary 300/400 to them and styles inline code; [PageFindSearch.astro](../src/components/widgets/PageFindSearch.astro) maps search surfaces, links, and highlights. Update these consumers together when changing a shared theme.
+
+The speaking hub and blog retain their established blue-to-pink gradients on headline accents, speaking year bars, the stage-photo frame, and the "Tell me about your event" panel. Recognition headings retain their red-to-purple gradient, and the 404 heading retains its blue-to-pink gradient. These are owner-approved accents; do not replace them with solid colors during design cleanup. Shared chrome remains restrained, with a blue (not pink) book promo after posts. Icon controls use the primary focus outline (`focus-visible:outline-primary-600`, inset inside the scrollable header nav), not the template's faint gray ring. Blog post prose is capped at `max-w-2xl` (about 73 characters per line at 18px).
 
 Light mode retains its existing white/blue/neutral styling. Portfolio-specific light values are `--ink-muted: #526075`, `--line: #E2E8F0`, `--link: #1D4ED8`, and `--wash: #F8FAFC`. Reuse these variables instead of scattering palette literals through components. A dark-only change should not recolor the light site.
 

@@ -64,13 +64,17 @@
 }
 .portfolio .section-heading {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: end;
 	justify-content: space-between;
-	gap: 1.5rem;
+	gap: 1rem 1.5rem;
 	margin-bottom: 2rem;
 }
+.portfolio .section-heading > div {
+	flex: 1 1 20rem;
+	min-width: 0;
+}
 .portfolio .section-heading > a {
-	flex-shrink: 0;
 	font-size: 0.9rem;
 }
 .portfolio .editorial-row {

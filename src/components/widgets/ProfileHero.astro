@@ -7,7 +7,7 @@ import { PROFILE } from '~/config.mjs';
 
 <section class="pt-12 pb-10 md:pt-20 md:pb-14" aria-labelledby="intro-title">
 	<div class="flex flex-col-reverse md:flex-row gap-8 md:gap-16 items-start md:items-center">
-		<div class="flex-1">
+		<div class="flex-1 min-w-0">
 			<p class="eyebrow overflow-hidden">
 				<!-- Clip the leading separator on each wrapped row, keeping dots only between roles. -->
 				<span class="flex flex-wrap -ml-12 gap-y-2">
@@ -24,16 +24,17 @@ import { PROFILE } from '~/config.mjs';
 				</span>
 			</p>
 			<h1 id="intro-title">Hi, I’m <span class="text-primary-600 dark:text-primary-400">Liran Tal.</span></h1>
-			<p class="mt-5 text-xl md:text-2xl max-w-2xl leading-relaxed muted">
-				I help developers build secure software,<br />from Node.js to <span class="whitespace-nowrap">AI agents.</span>
-				I research, write, and build tools in the open.
+			<p class="mt-5 text-xl md:text-2xl max-w-2xl leading-relaxed muted text-pretty">
+				I help developers build secure software,<br class="hidden md:inline" /> from Node.js to
+				<span class="whitespace-nowrap">AI agents.</span> I research, write, and build tools in
+				<span class="whitespace-nowrap">the open.</span>
 			</p>
 			<div class="mt-6 text-sm font-medium">
 				<p class="muted">I head Developer Relations at <a href="https://snyk.io/contributors/liran-tal/">Snyk</a></p>
 				<div class="mt-2 flex flex-wrap gap-x-6 gap-y-3">
-					<a href="/writing">Read my writing →</a>
-					<a href="/speaking">Invite me to speak →</a>
-					<a href="/speaking/press-kit">Bio & press kit →</a>
+					<a href="/writing">Read my writing <span aria-hidden="true">→</span></a>
+					<a href="/speaking">Invite me to speak <span aria-hidden="true">→</span></a>
+					<a href="/speaking/press-kit">Bio & press kit <span aria-hidden="true">→</span></a>
 				</div>
 				<ul class="mt-5 flex flex-wrap gap-3" aria-label="Awards and recognition" role="list">
 					<li class="inline-flex items-center gap-2 rounded-md border border-[var(--line)] bg-[var(--wash)] px-3 py-2">
