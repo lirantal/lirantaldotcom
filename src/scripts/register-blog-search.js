@@ -4,7 +4,10 @@ const status = document.querySelector('#blog-search-status');
 const resultsList = document.querySelector('#blog-search-results');
 
 if (form && input && status && resultsList) {
+	form.hidden = false;
 	let postItems;
+	let latestSearchId = 0;
+	const unavailableMessage = 'Article search is temporarily unavailable. Try the RSS feed or complete blog archive.';
 
 	const fetchPosts = async (signal) => {
 		if (!postItems) {
@@ -66,26 +69,35 @@ if (form && input && status && resultsList) {
 		}
 	};
 
-	form.addEventListener('submit', async (event) => {
+	const runSearch = async (query) => {
+		const searchId = ++latestSearchId;
+		status.hidden = false;
+		status.textContent = 'Searching published articles…';
+
+		try {
+			const results = await findPosts(query);
+			if (searchId === latestSearchId) renderResults(query, results);
+		} catch {
+			if (searchId !== latestSearchId) return;
+			status.hidden = false;
+			status.textContent = unavailableMessage;
+		}
+	};
+
+	form.addEventListener('submit', (event) => {
 		event.preventDefault();
 		const query = input.value.trim();
 		if (!query) return;
 		const url = new URL(window.location.href);
 		url.searchParams.set('q', query);
 		window.history.replaceState(null, '', url);
-		status.hidden = false;
-		status.textContent = 'Searching published articles…';
-		try {
-			renderResults(query, await findPosts(query));
-		} catch {
-			status.textContent = 'Article search is temporarily unavailable. Try the RSS feed or complete blog archive.';
-		}
+		void runSearch(query);
 	});
 
 	const initialQuery = new URLSearchParams(window.location.search).get('q');
 	if (initialQuery) {
 		input.value = initialQuery;
-		void findPosts(initialQuery).then((results) => renderResults(initialQuery, results));
+		void runSearch(initialQuery);
 	}
 
 	const modelContext = document.modelContext ?? navigator.modelContext;

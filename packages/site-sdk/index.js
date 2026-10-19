@@ -21,7 +21,7 @@ export class LirantalSiteClient {
 
 	async searchPosts(query, { limit = 10, signal } = {}) {
 		const terms = String(query ?? '')
-			.toLocaleLowerCase()
+			.toLowerCase()
 			.trim()
 			.split(/\s+/)
 			.filter(Boolean);
@@ -33,7 +33,7 @@ export class LirantalSiteClient {
 				const text = [post.title, post.description, post.category, ...(post.tags ?? [])]
 					.filter(Boolean)
 					.join(' ')
-					.toLocaleLowerCase();
+					.toLowerCase();
 				return terms.every((term) => text.includes(term));
 			})
 			.slice(0, Math.max(0, limit));

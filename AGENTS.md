@@ -197,7 +197,7 @@ Normative references: [RFC 8288](https://www.rfc-editor.org/rfc/rfc8288) (Web Li
 | **`public/docs/agents.md`** | **`service-doc`** target: human-readable stub that points agents at **this `AGENTS.md`** in the repo. |
 | **`public/llms.txt`, `public/.well-known/ard.json`, `public/.well-known/agent-skills/index.json`, `public/plugin.json`, `public/agent-view.json`** | Agent navigation, ARD, skill/plugin metadata, and the structured site view. |
 | **`public/robots.txt`** | **`robots.txt`**: **`Allow`**, **`Sitemap`**, and **`Content-Signal`** under **`User-agent: *`** for crawler and AI-usage preferences. |
-| **`scripts/generate-markdown-pages.mjs`** + **`.vercel/output/config.json`** | **Markdown negotiation**: built HTML pages are converted into hidden static Markdown files and returned from the original URL only when the request includes **`Accept: text/markdown`**. |
+| **`scripts/generate-markdown-pages.mjs`** + **`.vercel/output/config.json`** | **Markdown negotiation**: built HTML pages are converted into hidden static Markdown files and returned from the original URL when the request includes **`Accept: text/markdown`** or a recognized AI crawler sends its **`User-Agent`**. The response varies on the matching request header. |
 
 The **`Link`** header currently advertises: **`api-catalog`** → `/.well-known/api-catalog`, **`ard`** → `/.well-known/ard.json`, **`describedby`** → `/.well-known/site-for-agents.json`, **`service-desc`** → `/openapi.json`, **`service-doc`** → `/docs/agents.md`.
 

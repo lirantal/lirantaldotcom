@@ -5,7 +5,7 @@ This is Liran Tal's personal website and technical blog. Use the site to find pu
 ## When to use this site
 
 - Find Liran Tal's published writing and reference the original article URL.
-- Search post titles, summaries, categories, and tags through the public read-only JSON endpoint.
+- Fetch post metadata from the public read-only JSON endpoint and filter titles, descriptions, categories, and tags locally; the endpoint does not provide server-side search.
 - Read complete post text from the Markdown URL included in each API item.
 - Browse related profile and project details through the homepage, writing directory, speaking pages, and RSS feed.
 
