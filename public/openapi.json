@@ -2,10 +2,18 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Liran Tal Website API",
-    "version": "1.0.0",
-    "description": "Read-only public endpoints for published blog metadata, the RSS feed, and service health. No authentication is required. Full article text is available from each item's Markdown URL."
+    "version": "1.1.0",
+    "description": "Read-only public endpoints for published blog metadata, the RSS feed, and service health. No authentication is required. Full article text is available from each item's Markdown URL.",
+    "contact": {
+      "name": "Liran Tal",
+      "url": "https://lirantal.com/contact"
+    }
   },
   "servers": [{ "url": "https://lirantal.com" }],
+  "externalDocs": {
+    "description": "Developer guide",
+    "url": "https://lirantal.com/developers"
+  },
   "paths": {
     "/api/posts.json": {
       "get": {
@@ -17,7 +25,149 @@
             "description": "Published post metadata",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/PostCollection" }
+                "schema": {
+                  "type": "object",
+                  "required": ["name", "description", "count", "items"],
+                  "properties": {
+                    "name": { "type": "string", "description": "Name of this public post collection." },
+                    "description": { "type": "string" },
+                    "count": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "description": "Number of published posts in this response."
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "slug",
+                          "title",
+                          "description",
+                          "publishedAt",
+                          "category",
+                          "tags",
+                          "url",
+                          "markdownUrl"
+                        ],
+                        "properties": {
+                          "slug": { "type": "string", "description": "Stable post slug." },
+                          "title": { "type": "string" },
+                          "description": { "type": "string" },
+                          "publishedAt": { "type": ["string", "null"], "format": "date-time" },
+                          "category": { "type": ["string", "null"] },
+                          "tags": { "type": "array", "items": { "type": "string" } },
+                          "url": { "type": "string", "format": "uri", "description": "Canonical HTML article URL." },
+                          "markdownUrl": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "Markdown representation of the full article."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/posts/cursor/{cursor}.json": {
+      "get": {
+        "operationId": "listBlogPostsPage",
+        "summary": "List a page of published blog posts",
+        "description": "Returns up to 50 published post records. Start with cursor 0, then use nextCursor from the response to request the next page. A null nextCursor means there are no more pages.",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "path",
+            "required": true,
+            "description": "Non-negative offset cursor returned by the previous page; begin with 0.",
+            "schema": { "type": "string", "pattern": "^[0-9]+$", "example": "0" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "One page of published post metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "name",
+                    "description",
+                    "count",
+                    "totalCount",
+                    "pageSize",
+                    "cursor",
+                    "nextCursor",
+                    "items"
+                  ],
+                  "properties": {
+                    "name": { "type": "string" },
+                    "description": { "type": "string" },
+                    "count": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 50,
+                      "description": "Number of records in this page."
+                    },
+                    "totalCount": { "type": "integer", "minimum": 0, "description": "Total published post count." },
+                    "pageSize": { "type": "integer", "const": 50 },
+                    "cursor": { "type": "string", "description": "Offset used to produce this page." },
+                    "nextCursor": {
+                      "type": ["string", "null"],
+                      "description": "Offset for the next page, or null when complete."
+                    },
+                    "items": {
+                      "type": "array",
+                      "maxItems": 50,
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "slug",
+                          "title",
+                          "description",
+                          "publishedAt",
+                          "category",
+                          "tags",
+                          "url",
+                          "markdownUrl"
+                        ],
+                        "properties": {
+                          "slug": { "type": "string" },
+                          "title": { "type": "string" },
+                          "description": { "type": "string" },
+                          "publishedAt": { "type": ["string", "null"], "format": "date-time" },
+                          "category": { "type": ["string", "null"] },
+                          "tags": { "type": "array", "items": { "type": "string" } },
+                          "url": { "type": "string", "format": "uri" },
+                          "markdownUrl": { "type": "string", "format": "uri" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The cursor does not identify a generated page.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["title", "status"],
+                  "properties": {
+                    "type": { "type": "string", "format": "uri-reference" },
+                    "title": { "type": "string" },
+                    "status": { "type": "integer", "const": 404 },
+                    "detail": { "type": "string" },
+                    "documentation": { "type": "string", "format": "uri" }
+                  }
+                }
               }
             }
           }
@@ -48,42 +198,11 @@
                 "schema": {
                   "type": "object",
                   "required": ["status"],
-                  "properties": { "status": { "const": "ok" } }
+                  "properties": { "status": { "type": "string", "const": "ok" } }
                 }
               }
             }
           }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "PostCollection": {
-        "type": "object",
-        "required": ["name", "description", "count", "items"],
-        "properties": {
-          "name": { "type": "string" },
-          "description": { "type": "string" },
-          "count": { "type": "integer", "minimum": 0 },
-          "items": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/Post" }
-          }
-        }
-      },
-      "Post": {
-        "type": "object",
-        "required": ["slug", "title", "description", "publishedAt", "tags", "url", "markdownUrl"],
-        "properties": {
-          "slug": { "type": "string" },
-          "title": { "type": "string" },
-          "description": { "type": "string" },
-          "publishedAt": { "type": ["string", "null"], "format": "date-time" },
-          "category": { "type": ["string", "null"] },
-          "tags": { "type": "array", "items": { "type": "string" } },
-          "url": { "type": "string", "format": "uri" },
-          "markdownUrl": { "type": "string", "format": "uri" }
         }
       }
     }

@@ -19,6 +19,20 @@ export class LirantalSiteClient {
 		return response.json();
 	}
 
+	async listPostsPage(cursor = '0', { signal } = {}) {
+		const normalizedCursor = String(cursor);
+		if (!/^\d+$/.test(normalizedCursor)) {
+			throw new TypeError('The posts page cursor must be a non-negative integer offset.');
+		}
+
+		const response = await this.fetch(`${this.baseUrl}/api/posts/cursor/${encodeURIComponent(normalizedCursor)}.json`, {
+			headers: { Accept: 'application/json' },
+			signal,
+		});
+		if (!response.ok) throw new Error(`Could not fetch posts page: HTTP ${response.status}`);
+		return response.json();
+	}
+
 	async searchPosts(query, { limit = 10, signal } = {}) {
 		const terms = String(query ?? '')
 			.toLowerCase()

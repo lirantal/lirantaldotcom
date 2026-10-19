@@ -15,6 +15,7 @@ The client filters the returned metadata locally. It does not call a server-side
 ## API
 
 - `listPosts({ signal })` returns the full published post collection.
+- `listPostsPage(cursor = '0', { signal })` returns a 50-item page and its `nextCursor`; pass that cursor into the next call until it is `null`.
 - `searchPosts(query, { limit, signal })` matches all query terms against title, summary, category, and tags.
 - Set `baseUrl` to use a compatible mirror or `fetchImpl` to provide a custom Fetch implementation.
 

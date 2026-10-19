@@ -1,0 +1,144 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { SITE } from '~/config.mjs';
+import { getCanonical } from '~/utils/permalinks';
+
+const meta = {
+	title: 'Developer Resources — Liran Tal',
+	description:
+		'API documentation, quickstarts, OpenAPI specification, SDK source, and integration guidance for public Liran Tal website resources.',
+	canonical: getCanonical('/developers'),
+};
+
+const faqs = [
+	{
+		question: 'Do the website APIs require an API key?',
+		answer: 'No. The published blog metadata and pagination endpoints are public, unauthenticated GET resources.',
+	},
+	{
+		question: 'Can I search posts on the server?',
+		answer:
+			'No. Fetch the post metadata and filter titles, descriptions, categories, and tags locally. The browser blog search exposes the same read-only behavior through WebMCP when supported.',
+	},
+	{
+		question: 'Is there a sandbox or write API?',
+		answer: 'No. The site provides public read-only content, so there is no sandbox, API key flow, or write endpoint.',
+	},
+	{
+		question: 'How do I retrieve the full text of an article?',
+		answer:
+			'Each post record includes a markdownUrl. Fetch that URL for the article text, or request the article URL with Accept: text/markdown.',
+	},
+];
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: faqs.map(({ question, answer }) => ({
+			'@type': 'Question',
+			name: question,
+			acceptedAnswer: { '@type': 'Answer', text: answer },
+		})),
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE.origin },
+			{ '@type': 'ListItem', position: 2, name: 'Developers', item: new URL('/developers', SITE.origin).toString() },
+		],
+	},
+];
+---
+
+<Layout {meta}>
+	<script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+	<article class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:py-16">
+		<header class="mb-10 max-w-3xl">
+			<p class="eyebrow">Lirantal.com</p>
+			<h1>Developer resources</h1>
+			<p class="muted mt-4 text-lg">
+				Use the public API and article formats to discover, browse, and cite Liran Tal's writing. The API is read-only,
+				requires no key, and has no write operations.
+			</p>
+		</header>
+
+		<section class="surface mb-8" aria-labelledby="quickstart-title">
+			<h2 id="quickstart-title" class="!text-2xl">Quickstart</h2>
+			<p class="muted mt-3">Fetch the published post index with any HTTP client:</p>
+			<pre
+				class="mt-4 overflow-x-auto rounded-lg bg-slate-950 p-4 text-sm text-slate-100"><code>curl -fsS https://lirantal.com/api/posts.json</code></pre>
+			<p class="muted mt-4">Each item includes its title, description, tags, canonical page URL, and Markdown URL.</p>
+			<pre
+				class="mt-4 overflow-x-auto rounded-lg bg-slate-950 p-4 text-sm text-slate-100"><code>{`const response = await fetch('https://lirantal.com/api/posts.json');
+const { items } = await response.json();
+const terms = 'MCP security'.toLowerCase().split(/\\s+/);
+const matches = items.filter((post) => {
+  const text = [post.title, post.description, post.category, ...post.tags]
+    .filter(Boolean).join(' ').toLowerCase();
+  return terms.every((term) => text.includes(term));
+});`}</code></pre>
+		</section>
+
+		<section class="mb-10" aria-labelledby="endpoints-title">
+			<h2 id="endpoints-title">API endpoints</h2>
+			<dl class="mt-5 grid gap-5 sm:grid-cols-2">
+				<div class="surface">
+					<dt class="font-semibold"><code>GET /api/posts.json</code></dt><dd class="muted mt-2">
+						The complete published-post metadata collection.
+					</dd>
+				</div>
+				<div class="surface">
+					<dt class="font-semibold"><code>GET /api/posts/cursor/0.json</code></dt><dd class="muted mt-2">
+						A page of up to 50 items. Follow <code>nextCursor</code> at <code>/api/posts/cursor/{'{cursor}'}.json</code> until
+						it is null.
+					</dd>
+				</div>
+				<div class="surface">
+					<dt class="font-semibold"><code>GET /openapi.json</code></dt><dd class="muted mt-2">
+						OpenAPI 3.1 description of the public HTTP resources.
+					</dd>
+				</div>
+				<div class="surface">
+					<dt class="font-semibold"><code>GET /rss.xml</code></dt><dd class="muted mt-2">RSS feed for new articles.</dd>
+				</div>
+			</dl>
+			<p class="muted mt-5">
+				All endpoints are read-only and unauthenticated. There are no API keys, sandbox environment, user accounts, or
+				write operations. The post endpoint returns metadata; clients perform search locally.
+			</p>
+		</section>
+
+		<section class="surface mb-10" aria-labelledby="formats-title">
+			<h2 id="formats-title" class="!text-2xl">Article formats and SDK</h2>
+			<p class="muted mt-3">
+				Use an item's <code>markdownUrl</code> to fetch the full article. HTML article pages also advertise their Markdown
+				alternate, and production supports <code>Accept: text/markdown</code>.
+			</p>
+			<p class="muted mt-3">
+				A dependency-free JavaScript client is available in the
+				<a href="https://github.com/lirantal/lirantaldotcom/tree/main/packages/site-sdk">repository SDK source</a>. The
+				package is not currently published to npm.
+			</p>
+			<p class="muted mt-3">
+				The site does not operate a remote MCP server. Browser agents can use the read-only
+				<code>search_blog_posts</code> WebMCP tool on the <a href="/writing">blog directory</a> when supported.
+			</p>
+		</section>
+
+		<section aria-labelledby="faq-title">
+			<h2 id="faq-title">Frequently asked questions</h2>
+			<dl class="mt-5 space-y-6">
+				{
+					faqs.map(({ question, answer }) => (
+						<div class="border-t border-[var(--line)] pt-4">
+							<dt class="font-semibold">{question}</dt>
+							<dd class="muted mt-2">{answer}</dd>
+						</div>
+					))
+				}
+			</dl>
+		</section>
+	</article>
+</Layout>

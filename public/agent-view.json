@@ -12,9 +12,16 @@
     "readOnly": true,
     "mcpServer": null
   },
+  "developerResources": "https://lirantal.com/developers",
+  "trustPages": {
+    "about": "https://lirantal.com/about",
+    "contact": "https://lirantal.com/contact",
+    "privacy": "https://lirantal.com/privacy"
+  },
   "endpoints": {
     "openapi": "https://lirantal.com/openapi.json",
     "posts": "https://lirantal.com/api/posts.json",
+    "postsFirstPage": "https://lirantal.com/api/posts/cursor/0.json",
     "rss": "https://lirantal.com/rss.xml",
     "sitemap": "https://lirantal.com/sitemap-index.xml",
     "health": "https://lirantal.com/health.json",

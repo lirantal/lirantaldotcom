@@ -46,6 +46,35 @@ for (const htmlFile of htmlFiles) {
 	generated += 1;
 }
 
+const postApiPath = path.join(site, 'api', 'posts.json');
+try {
+	const postApi = JSON.parse(await fs.readFile(postApiPath, 'utf8'));
+	const apiMarkdown = apiJsonToMarkdown(postApi);
+	const markdownPath = path.join('api', 'posts.json.md');
+	const outputFile = path.join(outputRoot, markdownPath);
+	const pageMarkdownFile = path.join(site, markdownPath);
+	await fs.mkdir(path.dirname(outputFile), { recursive: true });
+	await fs.writeFile(outputFile, `${apiMarkdown}\n`);
+	await fs.mkdir(path.dirname(pageMarkdownFile), { recursive: true });
+	await fs.writeFile(pageMarkdownFile, `${apiMarkdown}\n`);
+	await syncMarkdownTwinToVercel(pageMarkdownFile, markdownPath);
+	markdownRoutes.push({
+		source: '/api/posts.json',
+		filePath: markdownPath,
+		destination: '/_markdown/api/posts.json.md',
+		tokens: estimateTokenCount(apiMarkdown),
+	});
+	generated += 1;
+} catch (error) {
+	if (error.code !== 'ENOENT') throw error;
+}
+
+const notFoundMarkdown = `---\ntitle: Page not found — Liran Tal\ndescription: This URL does not match a published page on lirantal.com.\ncanonical: https://lirantal.com/404\n---\n\n# Page not found\n\nThis URL does not match a published page on lirantal.com. Browse the [site index](https://lirantal.com/llms.txt) or [developer resources](https://lirantal.com/developers).`;
+const notFoundMarkdownFile = path.join(outputRoot, '404.md');
+await fs.mkdir(path.dirname(notFoundMarkdownFile), { recursive: true });
+await fs.writeFile(notFoundMarkdownFile, `${notFoundMarkdown}\n`);
+await syncMarkdownTwinToVercel(notFoundMarkdownFile, path.join('_markdown', '404.md'));
+
 console.log(`markdown-pages: generated ${generated} markdown files in ${path.relative(root, outputRoot)}`);
 await configureVercelOutput(markdownRoutes);
 
@@ -150,9 +179,47 @@ async function configureVercelOutput(routes) {
 			vary: 'User-Agent',
 		}),
 	]);
+	const notFoundRoutes = [
+		{
+			src: '^/.*$',
+			has: [{ type: 'header', key: 'accept', value: '(.*)text/markdown(.*)' }],
+			headers: {
+				'Content-Type': 'text/markdown; charset=utf-8',
+				Vary: 'Accept',
+				'x-markdown-tokens': String(estimateTokenCount(notFoundMarkdown)),
+			},
+			dest: '/_markdown/404.md',
+			status: 404,
+		},
+		{
+			src: '^/.*$',
+			has: [
+				{
+					type: 'header',
+					key: 'user-agent',
+					value:
+						'(GPTBot|ClaudeBot|ChatGPT-User|PerplexityBot|Google-Extended|Applebot-Extended|ora-agent|DeepSeekBot)',
+				},
+			],
+			headers: {
+				'Content-Type': 'text/markdown; charset=utf-8',
+				Vary: 'User-Agent',
+				'x-markdown-tokens': String(estimateTokenCount(notFoundMarkdown)),
+			},
+			dest: '/_markdown/404.md',
+			status: 404,
+		},
+		{
+			src: '^/api/.*$',
+			headers: { 'Content-Type': 'application/problem+json; charset=utf-8' },
+			dest: '/_errors/api-not-found.json',
+			status: 404,
+		},
+	];
 	const routesWithoutOldMarkdownNegotiation = existingRoutes.filter(
 		(route) =>
 			!(route.dest?.startsWith('/_markdown/') && route.headers?.['x-markdown-tokens']) &&
+			!(route.dest === '/_errors/api-not-found.json') &&
 			!(
 				route.dest === '/agent-view.json' &&
 				route.has?.some(({ type, key, value }) => type === 'query' && key === 'mode' && value === 'agent')
@@ -160,12 +227,16 @@ async function configureVercelOutput(routes) {
 	);
 	const filesystemRouteIndex = routesWithoutOldMarkdownNegotiation.findIndex((route) => route.handle === 'filesystem');
 	const insertAt = filesystemRouteIndex === -1 ? routesWithoutOldMarkdownNegotiation.length : filesystemRouteIndex;
+	const notFoundInsertAt =
+		filesystemRouteIndex === -1 ? routesWithoutOldMarkdownNegotiation.length : filesystemRouteIndex + 1;
 
 	config.routes = [
 		...routesWithoutOldMarkdownNegotiation.slice(0, insertAt),
 		agentViewRoute,
 		...markdownNegotiationRoutes,
-		...routesWithoutOldMarkdownNegotiation.slice(insertAt),
+		...routesWithoutOldMarkdownNegotiation.slice(insertAt, notFoundInsertAt),
+		...notFoundRoutes,
+		...routesWithoutOldMarkdownNegotiation.slice(notFoundInsertAt),
 	];
 	config.overrides ??= {};
 	for (const route of routes) {
@@ -174,6 +245,10 @@ async function configureVercelOutput(routes) {
 			contentType: 'text/markdown; charset=utf-8',
 		};
 	}
+	config.overrides['_markdown/404.md'] = {
+		...config.overrides['_markdown/404.md'],
+		contentType: 'text/markdown; charset=utf-8',
+	};
 
 	await fs.writeFile(configFile, `${JSON.stringify(config, null, '\t')}\n`);
 	console.log(`markdown-pages: configured ${markdownNegotiationRoutes.length} Vercel markdown negotiation routes`);
@@ -186,12 +261,33 @@ function htmlToMarkdown(html) {
 	const markdownBody = normalizeMarkdown(turndown.turndown(body));
 	const pageHeading = markdownBody.startsWith('# ') ? '' : `# ${metadata.title || 'Liran Tal'}\n\n`;
 	const jsonLdBlock = jsonLd.length > 0 ? `\n\n\`\`\`json\n${jsonLd.join('\n')}\n\`\`\`` : '';
+	const frontmatter = [
+		'---',
+		`title: ${JSON.stringify(metadata.title || 'Liran Tal')}`,
+		...(metadata.description ? [`description: ${JSON.stringify(metadata.description)}`] : []),
+		...(metadata.canonical ? [`canonical: ${JSON.stringify(metadata.canonical)}`] : []),
+		'---',
+	].join('\n');
 
-	return `${pageHeading}${markdownBody}${jsonLdBlock}`.trim();
+	return `${frontmatter}\n\n${pageHeading}${markdownBody}${jsonLdBlock}`.trim();
+}
+
+function apiJsonToMarkdown(collection) {
+	const frontmatter = [
+		'---',
+		'title: "Liran Tal published blog posts API"',
+		'description: "Markdown representation of the public, read-only published post metadata API."',
+		'canonical: "https://lirantal.com/api/posts.json"',
+		'---',
+	].join('\n');
+	const records = Array.isArray(collection.items) ? collection.items.length : 0;
+
+	return `${frontmatter}\n\n# Published blog posts API\n\n${collection.description || 'Published post metadata from lirantal.com.'}\n\nThis response contains ${records} published post records. For pagination, use [the first cursor page](https://lirantal.com/api/posts/cursor/0.json).\n\n## JSON response\n\n\`\`\`json\n${JSON.stringify(collection, null, 2)}\n\`\`\``;
 }
 
 function extractMetadata(html) {
 	const metaTags = [...html.matchAll(/<meta\b[^>]*>/gi)].map((match) => parseAttributes(match[0]));
+	const linkTags = [...html.matchAll(/<link\b[^>]*>/gi)].map((match) => parseAttributes(match[0]));
 
 	const byName = (name) =>
 		metaTags.find((attrs) => attrs.name?.toLowerCase() === name || attrs.property?.toLowerCase() === name)?.content;
@@ -200,6 +296,7 @@ function extractMetadata(html) {
 		title: textContent(matchFirst(html, /<title\b[^>]*>([\s\S]*?)<\/title>/i)) || decodeHtml(byName('og:title')),
 		description: decodeHtml(byName('description') || byName('og:description')),
 		image: decodeHtml(byName('og:image')),
+		canonical: linkTags.find((attrs) => attrs.rel?.toLowerCase().split(/\s+/).includes('canonical'))?.href,
 	};
 }
 

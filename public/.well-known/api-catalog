@@ -1,46 +1,53 @@
 {
-  "linkset": [
-    {
-      "anchor": "https://lirantal.com/api/posts.json",
-      "service-desc": [
-        {
-          "href": "https://lirantal.com/openapi.json",
-          "type": "application/vnd.oai.openapi+json;version=3.1.0"
-        }
-      ],
-      "service-doc": [
-        {
-          "href": "https://lirantal.com/docs/agents.md",
-          "type": "text/markdown"
-        }
-      ],
-      "status": [
-        {
-          "href": "https://lirantal.com/health.json",
-          "type": "application/json"
-        }
-      ]
-    },
-    {
-      "anchor": "https://lirantal.com/rss.xml",
-      "service-desc": [
-        {
-          "href": "https://lirantal.com/rss.xml",
-          "type": "application/rss+xml"
-        }
-      ],
-      "service-doc": [
-        {
-          "href": "https://lirantal.com/docs/agents.md",
-          "type": "text/markdown"
-        }
-      ],
-      "status": [
-        {
-          "href": "https://lirantal.com/health.json",
-          "type": "application/json"
-        }
-      ]
-    }
-  ]
+	"linkset": [
+		{
+			"anchor": "https://lirantal.com/api/posts.json",
+			"service-desc": [
+				{
+					"href": "https://lirantal.com/openapi.json",
+					"type": "application/vnd.oai.openapi+json;version=3.1.0"
+				}
+			],
+			"service-doc": [
+				{
+					"href": "https://lirantal.com/docs/agents.md",
+					"type": "text/markdown"
+				}
+			],
+			"item": [
+				{
+					"href": "https://lirantal.com/api/posts/cursor/0.json",
+					"type": "application/json",
+					"title": "First page of published post metadata"
+				}
+			],
+			"status": [
+				{
+					"href": "https://lirantal.com/health.json",
+					"type": "application/json"
+				}
+			]
+		},
+		{
+			"anchor": "https://lirantal.com/rss.xml",
+			"service-desc": [
+				{
+					"href": "https://lirantal.com/rss.xml",
+					"type": "application/rss+xml"
+				}
+			],
+			"service-doc": [
+				{
+					"href": "https://lirantal.com/docs/agents.md",
+					"type": "text/markdown"
+				}
+			],
+			"status": [
+				{
+					"href": "https://lirantal.com/health.json",
+					"type": "application/json"
+				}
+			]
+		}
+	]
 }

@@ -1,0 +1,12 @@
+# Developer resources — lirantal.com
+
+Liran Tal's website exposes public, read-only resources for published articles. No authentication, API key, sandbox, account, or write operation is provided.
+
+- [Developer portal](https://lirantal.com/developers)
+- [OpenAPI 3.1 specification](https://lirantal.com/openapi.json)
+- [Full published post metadata](https://lirantal.com/api/posts.json)
+- [First 50 post records](https://lirantal.com/api/posts/cursor/0.json)
+- [API guide for agents](https://lirantal.com/api/llms.txt)
+- [JavaScript SDK source](https://github.com/lirantal/lirantaldotcom/tree/main/packages/site-sdk)
+
+Use each record's `markdownUrl` to read the corresponding article. Search is performed locally over public metadata; there is no server-side search API or dedicated remote MCP server.

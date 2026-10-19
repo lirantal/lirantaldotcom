@@ -16,6 +16,13 @@ export interface BlogPostCollection {
 	items: BlogPost[];
 }
 
+export interface BlogPostPage extends BlogPostCollection {
+	totalCount: number;
+	pageSize: number;
+	cursor: string;
+	nextCursor: string | null;
+}
+
 export interface ClientOptions {
 	baseUrl?: string;
 	fetchImpl?: typeof fetch;
@@ -28,5 +35,6 @@ export interface RequestOptions {
 export declare class LirantalSiteClient {
 	constructor(options?: ClientOptions);
 	listPosts(options?: RequestOptions): Promise<BlogPostCollection>;
+	listPostsPage(cursor?: string, options?: RequestOptions): Promise<BlogPostPage>;
 	searchPosts(query: string, options?: RequestOptions & { limit?: number }): Promise<BlogPost[]>;
 }

@@ -1,0 +1,7 @@
+{
+  "type": "about:blank",
+  "title": "API resource not found",
+  "status": 404,
+  "detail": "No public API resource exists at this URL.",
+  "documentation": "https://lirantal.com/developers"
+}

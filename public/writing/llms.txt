@@ -1,0 +1,11 @@
+# Writing — lirantal.com
+
+Browse Liran Tal's articles about AI and agent security, MCP, Node.js security, software supply-chain security, and open source.
+
+- [Writing directory](https://lirantal.com/writing)
+- [Full post metadata as JSON](https://lirantal.com/api/posts.json)
+- [Paginated post metadata](https://lirantal.com/api/posts/cursor/0.json)
+- [RSS feed](https://lirantal.com/rss.xml)
+- [Sitemap](https://lirantal.com/sitemap-index.xml)
+
+Each post record includes the canonical HTML URL and a `markdownUrl` for its full text. Article HTML pages also advertise their Markdown alternate; append `.md` to a post URL or request `Accept: text/markdown` on supported routes.

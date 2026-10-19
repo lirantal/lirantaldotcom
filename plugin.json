@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "Liran Tal Web Resources",
+  "version": "1.0.0",
+  "description": "A research skill and public read-only API for Liran Tal's website and technical blog.",
+  "author": {
+    "name": "Liran Tal",
+    "url": "https://lirantal.com"
+  },
+  "homepage": "https://lirantal.com",
+  "repository": "https://github.com/lirantal/lirantaldotcom"
+}
