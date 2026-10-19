@@ -1,0 +1,44 @@
+<section class="surface mb-10" aria-labelledby="blog-search-title">
+	<h2 id="blog-search-title" class="!text-xl">Search Liran Tal's writing</h2>
+	<p class="muted text-sm mt-2 mb-5">
+		Search published article titles, summaries, categories, and tags. Browser agents can use this search through WebMCP
+		when supported.
+	</p>
+	<form
+		id="blog-agent-search"
+		toolname="search_blog_posts"
+		tooldescription="Search Liran Tal's published blog posts by topic. Returns matching article titles, summaries, dates, URLs, and Markdown URLs."
+		hidden
+		action="/writing"
+		method="get"
+		role="search"
+		class="flex flex-col sm:flex-row gap-3"
+	>
+		<label class="sr-only" for="blog-search-query">Search topics</label>
+		<input
+			id="blog-search-query"
+			name="q"
+			type="search"
+			required
+			class="min-w-0 flex-1 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+			placeholder="For example: MCP security"
+		/>
+		<button
+			type="submit"
+			class="rounded-md bg-primary-700 px-5 py-2 text-sm font-semibold text-white hover:bg-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700 dark:bg-primary-500 dark:text-slate-950 dark:hover:bg-primary-400"
+			>Search articles</button
+		>
+	</form>
+	<noscript>
+		<p class="muted mt-4 text-sm">
+			Interactive search needs JavaScript. You can browse the <a href="/blog">blog archive</a> or the
+			<a href="/api/posts.json">published post metadata</a>.
+		</p>
+	</noscript>
+	<p id="blog-search-status" class="muted mt-4 text-sm" aria-live="polite" hidden></p>
+	<ol id="blog-search-results" class="mt-4 space-y-4" hidden></ol>
+</section>
+
+<script>
+	import '~/scripts/register-blog-search.js';
+</script>

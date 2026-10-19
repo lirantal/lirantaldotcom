@@ -1,0 +1,91 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Liran Tal Website API",
+    "version": "1.0.0",
+    "description": "Read-only public endpoints for published blog metadata, the RSS feed, and service health. No authentication is required. Full article text is available from each item's Markdown URL."
+  },
+  "servers": [{ "url": "https://lirantal.com" }],
+  "paths": {
+    "/api/posts.json": {
+      "get": {
+        "operationId": "listBlogPosts",
+        "summary": "List published blog posts",
+        "description": "Returns metadata for all published posts, sorted newest first. Clients can filter the returned metadata locally and fetch full article text from markdownUrl.",
+        "responses": {
+          "200": {
+            "description": "Published post metadata",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/PostCollection" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rss.xml": {
+      "get": {
+        "operationId": "getRssFeed",
+        "summary": "Read the RSS feed",
+        "responses": {
+          "200": {
+            "description": "RSS 2.0 feed",
+            "content": { "application/rss+xml": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/health.json": {
+      "get": {
+        "operationId": "getHealth",
+        "summary": "Check service status",
+        "responses": {
+          "200": {
+            "description": "Static liveness response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["status"],
+                  "properties": { "status": { "const": "ok" } }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PostCollection": {
+        "type": "object",
+        "required": ["name", "description", "count", "items"],
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "count": { "type": "integer", "minimum": 0 },
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Post" }
+          }
+        }
+      },
+      "Post": {
+        "type": "object",
+        "required": ["slug", "title", "description", "publishedAt", "tags", "url", "markdownUrl"],
+        "properties": {
+          "slug": { "type": "string" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "publishedAt": { "type": ["string", "null"], "format": "date-time" },
+          "category": { "type": ["string", "null"] },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "url": { "type": "string", "format": "uri" },
+          "markdownUrl": { "type": "string", "format": "uri" }
+        }
+      }
+    }
+  }
+}

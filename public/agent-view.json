@@ -1,0 +1,29 @@
+{
+  "name": "Liran Tal personal website and blog",
+  "url": "https://lirantal.com",
+  "description": "AI security research, open-source projects, books, talks, and articles on AI agents, MCP, Node.js, and software supply-chain security.",
+  "whenToUse": [
+    "Find Liran Tal's published writing on AI and agent security, MCP, Node.js security, and software supply chains.",
+    "Browse Liran Tal's open-source projects, research, books, or conference talks.",
+    "Retrieve public post metadata or article text for research and citation."
+  ],
+  "access": {
+    "authentication": "none",
+    "readOnly": true,
+    "mcpServer": null
+  },
+  "endpoints": {
+    "openapi": "https://lirantal.com/openapi.json",
+    "posts": "https://lirantal.com/api/posts.json",
+    "rss": "https://lirantal.com/rss.xml",
+    "sitemap": "https://lirantal.com/sitemap-index.xml",
+    "health": "https://lirantal.com/health.json",
+    "llms": "https://lirantal.com/llms.txt",
+    "agentSkills": "https://lirantal.com/.well-known/agent-skills/index.json",
+    "agentResourceDiscovery": "https://lirantal.com/.well-known/ard.json"
+  },
+  "notes": [
+    "The posts endpoint returns metadata; each item includes a Markdown URL for its full article.",
+    "There is no dedicated MCP server or write API."
+  ]
+}

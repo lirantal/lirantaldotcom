@@ -30,11 +30,16 @@ for (const htmlFile of htmlFiles) {
 	const markdown = htmlToMarkdown(html);
 	const markdownPath = markdownOutputPath(relativeHtmlPath);
 	const outputFile = path.join(outputRoot, markdownPath);
+	const pageMarkdownFile = path.join(site, markdownPath);
 
 	await fs.mkdir(path.dirname(outputFile), { recursive: true });
 	await fs.writeFile(outputFile, `${markdown}\n`);
+	await fs.mkdir(path.dirname(pageMarkdownFile), { recursive: true });
+	await fs.writeFile(pageMarkdownFile, `${markdown}\n`);
+	await syncMarkdownTwinToVercel(pageMarkdownFile, markdownPath);
 	markdownRoutes.push({
 		source: pageRoutePath(relativeHtmlPath),
+		filePath: markdownPath,
 		destination: `/_markdown/${markdownPath.split(path.sep).join('/')}`,
 		tokens: estimateTokenCount(markdown),
 	});
@@ -43,6 +48,20 @@ for (const htmlFile of htmlFiles) {
 
 console.log(`markdown-pages: generated ${generated} markdown files in ${path.relative(root, outputRoot)}`);
 await configureVercelOutput(markdownRoutes);
+
+async function syncMarkdownTwinToVercel(sourceFile, markdownPath) {
+	const vercelStatic = path.join(root, '.vercel', 'output', 'static');
+	const destination = path.join(vercelStatic, markdownPath);
+
+	try {
+		await fs.access(vercelStatic);
+	} catch {
+		return;
+	}
+
+	await fs.mkdir(path.dirname(destination), { recursive: true });
+	await fs.copyFile(sourceFile, destination);
+}
 
 async function getSiteDirectory() {
 	const clientDir = path.join(root, 'dist', 'client');
@@ -113,33 +132,48 @@ async function configureVercelOutput(routes) {
 
 	const config = JSON.parse(await fs.readFile(configFile, 'utf8'));
 	const existingRoutes = Array.isArray(config.routes) ? config.routes : [];
-	const markdownNegotiationRoutes = routes.map((route) => ({
-		src: `^${escapeRegex(route.source)}\\/?$`,
-		has: [
-			{
-				type: 'header',
-				key: 'accept',
-				value: '(.*)text/markdown(.*)',
-			},
-		],
-		headers: {
-			'Content-Type': 'text/markdown; charset=utf-8',
-			Vary: 'Accept',
-			'x-markdown-tokens': String(route.tokens),
-		},
-		dest: route.destination,
-	}));
+	const agentViewRoute = {
+		src: '^/$',
+		has: [{ type: 'query', key: 'mode', value: 'agent' }],
+		headers: { 'Content-Type': 'application/json; charset=utf-8' },
+		dest: '/agent-view.json',
+	};
+	const markdownNegotiationRoutes = routes.flatMap((route) => [
+		makeMarkdownRoute(route, {
+			key: 'accept',
+			value: '(.*)text/markdown(.*)',
+			vary: 'Accept',
+		}),
+		makeMarkdownRoute(route, {
+			key: 'user-agent',
+			value: '(GPTBot|ClaudeBot|ChatGPT-User|PerplexityBot|Google-Extended|Applebot-Extended|ora-agent|DeepSeekBot)',
+			vary: 'User-Agent',
+		}),
+	]);
 	const routesWithoutOldMarkdownNegotiation = existingRoutes.filter(
-		(route) => !(route.dest?.startsWith('/_markdown/') && route.headers?.['x-markdown-tokens'])
+		(route) =>
+			!(route.dest?.startsWith('/_markdown/') && route.headers?.['x-markdown-tokens']) &&
+			!(
+				route.dest === '/agent-view.json' &&
+				route.has?.some(({ type, key, value }) => type === 'query' && key === 'mode' && value === 'agent')
+			)
 	);
 	const filesystemRouteIndex = routesWithoutOldMarkdownNegotiation.findIndex((route) => route.handle === 'filesystem');
 	const insertAt = filesystemRouteIndex === -1 ? routesWithoutOldMarkdownNegotiation.length : filesystemRouteIndex;
 
 	config.routes = [
 		...routesWithoutOldMarkdownNegotiation.slice(0, insertAt),
+		agentViewRoute,
 		...markdownNegotiationRoutes,
 		...routesWithoutOldMarkdownNegotiation.slice(insertAt),
 	];
+	config.overrides ??= {};
+	for (const route of routes) {
+		config.overrides[route.filePath] = {
+			...config.overrides[route.filePath],
+			contentType: 'text/markdown; charset=utf-8',
+		};
+	}
 
 	await fs.writeFile(configFile, `${JSON.stringify(config, null, '\t')}\n`);
 	console.log(`markdown-pages: configured ${markdownNegotiationRoutes.length} Vercel markdown negotiation routes`);
@@ -150,10 +184,10 @@ function htmlToMarkdown(html) {
 	const jsonLd = extractJsonLd(html);
 	const body = extractContentHtml(html);
 	const markdownBody = normalizeMarkdown(turndown.turndown(body));
-	const frontmatter = renderFrontmatter(metadata);
+	const pageHeading = markdownBody.startsWith('# ') ? '' : `# ${metadata.title || 'Liran Tal'}\n\n`;
 	const jsonLdBlock = jsonLd.length > 0 ? `\n\n\`\`\`json\n${jsonLd.join('\n')}\n\`\`\`` : '';
 
-	return `${frontmatter}${markdownBody}${jsonLdBlock}`.trim();
+	return `${pageHeading}${markdownBody}${jsonLdBlock}`.trim();
 }
 
 function extractMetadata(html) {
@@ -188,22 +222,24 @@ function extractContentHtml(html) {
 		.replace(/<style\b[\s\S]*?<\/style>/gi, '');
 }
 
-function renderFrontmatter(metadata) {
-	const entries = Object.entries(metadata).filter(([, value]) => Boolean(value));
-
-	if (entries.length === 0) {
-		return '';
-	}
-
-	const lines = entries.map(([key, value]) => `${key}: ${JSON.stringify(value)}`);
-	return `---\n${lines.join('\n')}\n---\n\n`;
-}
-
 function normalizeMarkdown(markdown) {
 	return markdown
 		.replace(/\n{3,}/g, '\n\n')
 		.replace(/[ \t]+\n/g, '\n')
 		.trim();
+}
+
+function makeMarkdownRoute(route, { key, value, vary }) {
+	return {
+		src: `^${escapeRegex(route.source)}\\/?$`,
+		has: [{ type: 'header', key, value }],
+		headers: {
+			'Content-Type': 'text/markdown; charset=utf-8',
+			Vary: vary,
+			'x-markdown-tokens': String(route.tokens),
+		},
+		dest: route.destination,
+	};
 }
 
 function estimateTokenCount(markdown) {

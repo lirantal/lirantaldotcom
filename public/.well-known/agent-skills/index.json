@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "lirantal-blog-research",
+      "type": "skill-md",
+      "description": "Find, read, and cite Liran Tal's writing on AI and agent security, MCP, Node.js, and software supply-chain security.",
+      "url": "https://lirantal.com/skills/lirantal-blog-research/SKILL.md",
+      "digest": "sha256:f857ebb3d524b0bd97beb934567ed193633d0803a1efa239e1bc4a4693150753"
+    }
+  ]
+}
