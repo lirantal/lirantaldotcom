@@ -62,7 +62,7 @@ const meta = {
 					>Invite me to speak <span aria-hidden="true" class="ml-1">↗</span></a
 				>
 				<a
-					class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-50 dark:bg-slate-800 dark:text-white dark:border-slate-700 dark:hover:bg-slate-700"
+					class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-50 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700 dark:hover:bg-slate-700"
 					href={`${SPEAKING_BASE}/talks`}>Browse the talks</a
 				>
 			</div>
@@ -167,7 +167,7 @@ const meta = {
 				{
 					types.map((t) => (
 						<div class="grid grid-cols-[3.5rem_1fr] gap-4 py-4">
-							<dt class="text-3xl font-bold font-heading tabular-nums text-gray-900 dark:text-white">{t.count}</dt>
+							<dt class="text-3xl font-bold font-heading tabular-nums text-gray-900 dark:text-slate-100">{t.count}</dt>
 							<dd>
 								<a
 									href={`${SPEAKING_BASE}/${t.type === 'podcast' || t.type === 'article' ? 'podcasts' : `events?type=${t.type}`}`}

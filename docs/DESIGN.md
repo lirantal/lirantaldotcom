@@ -27,6 +27,8 @@ The current sequence in [index.astro](../src/pages/index.astro) is:
 
 Speaking moved first because it offers a strong visual entry into the work and a useful path for event organizers. Keep the section IDs stable: navigation and external links use anchors such as `/#open-source`. Numbers express reading order; they are not part of the URL.
 
+The header logo is a plain "Liran Tal" wordmark in bold Inter, without an emoji.
+
 ### The hero groups links by purpose
 
 [ProfileHero.astro](../src/components/widgets/ProfileHero.astro) owns this composition:
@@ -80,7 +82,7 @@ Liran selected **C / Soft black** from the final comparison of two black variant
 | Secondary text | `#A5ADBA` | `--color-slate-400` |
 | Link/accent | `#92B8FF` | `--color-blue-300` / `--color-blue-400` |
 
-These overrides live under `.dark` in [base.css](../src/assets/styles/base.css); gray aliases keep existing shared components aligned. Portfolio variables reference the shared tokens. [tailwind.config.mjs](../tailwind.config.mjs) maps primary 300/400 to them and styles inline code; [PageFindSearch.astro](../src/components/widgets/PageFindSearch.astro) maps search surfaces, links, and highlights. Update these consumers together when changing a shared theme.
+These overrides live under `.dark` in [base.css](../src/assets/styles/base.css); gray aliases keep existing shared components aligned. `white` is deliberately **not** overridden: neutral-surface text uses `dark:text-slate-100` (the soft `#EDF0F4`), while white text on colored fills (buttons, the active speaking tab, badges) stays pure `#FFFFFF` so it keeps its contrast. Use `dark:*-slate-100` rather than `dark:*-white` for headings, logos, and hover text on neutral surfaces. Portfolio variables reference the shared tokens. [tailwind.config.mjs](../tailwind.config.mjs) maps primary 300/400 to them and styles inline code; [PageFindSearch.astro](../src/components/widgets/PageFindSearch.astro) maps search surfaces, links, and highlights. Update these consumers together when changing a shared theme.
 
 The speaking hub and blog retain their established blue-to-pink gradients on headline accents, speaking year bars, the stage-photo frame, and the "Tell me about your event" panel. Recognition headings retain their red-to-purple gradient, and the 404 heading retains its blue-to-pink gradient. These are owner-approved accents; do not replace them with solid colors during design cleanup. Shared chrome remains restrained, with a blue (not pink) book promo after posts. Icon controls use the primary focus outline (`focus-visible:outline-primary-600`, inset inside the scrollable header nav), not the template's faint gray ring. Blog post prose is capped at `max-w-2xl` (about 73 characters per line at 18px).
 

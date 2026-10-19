@@ -21,13 +21,13 @@ const subtitle =
 		href={event.href}
 		class="group grid grid-cols-[4.5rem_1fr] md:grid-cols-[5.5rem_1fr_13rem_9rem] gap-x-4 gap-y-1 items-baseline py-4 px-3 -mx-3 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800/60 transition"
 	>
-		<time datetime={event.date.toISOString()} class="text-sm font-semibold text-gray-900 dark:text-white tabular-nums">
+		<time datetime={event.date.toISOString()} class="text-sm font-semibold text-gray-900 dark:text-slate-100 tabular-nums">
 			{formatDate(event.date, dateStyle)}
 		</time>
 		<div class="min-w-0">
 			<h3
 				dir="auto"
-				class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400"
+				class="font-semibold text-gray-900 dark:text-slate-100 group-hover:text-primary-600 dark:group-hover:text-primary-400"
 			>
 				{event.name}
 			</h3>
