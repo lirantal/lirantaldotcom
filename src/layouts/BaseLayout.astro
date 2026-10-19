@@ -3,14 +3,17 @@ import '~/assets/styles/base.css';
 
 import MetaTags from '~/components/core/MetaTags.astro';
 import BasicScripts from '~/components/core/BasicScripts.astro';
+import { SITE } from '~/config.mjs';
 
 const { meta = {} } = Astro.props;
+const markdownPath = Astro.url.pathname === '/' ? '/index.md' : `${Astro.url.pathname.replace(/\/$/, '')}.md`;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="motion-safe:scroll-smooth 2xl:text-[20px]">
 	<head>
 		<MetaTags {...meta} />
+		<link rel="alternate" type="text/markdown" href={new URL(markdownPath, SITE.origin).toString()} />
 		<!-- Runs in <head> so a saved dark preference applies before first paint. -->
 		<BasicScripts />
 	</head>

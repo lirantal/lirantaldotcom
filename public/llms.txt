@@ -1,0 +1,37 @@
+# Liran Tal — lirantal.com
+
+Liran Tal's personal website and technical blog. It covers AI and agent security, Model Context Protocol (MCP), Node.js secure coding, software supply-chain security, open-source projects, books, research, and conference talks.
+
+## When to use this site
+
+- Find or cite Liran Tal's articles about agentic security, MCP, Node.js, and software supply-chain security.
+- Browse his open-source projects, preprint research, books, speaking engagements, and published articles.
+- Retrieve public blog metadata from the read-only JSON API, then fetch the full article from its Markdown URL.
+
+The public site is read-only and requires no authentication. It does not provide a dedicated MCP server or write API. Respect the site's crawler policy in `/robots.txt` and the `Content-Signal` declaration there.
+
+## Key resources
+
+- [Homepage](https://lirantal.com/)
+- [Blog and articles](https://lirantal.com/writing)
+- [Recent blog posts as JSON](https://lirantal.com/api/posts.json)
+- [OpenAPI specification](https://lirantal.com/openapi.json)
+- [RSS feed](https://lirantal.com/rss.xml)
+- [Sitemap](https://lirantal.com/sitemap-index.xml)
+- [Health status](https://lirantal.com/health.json)
+- [Agent-specific structured view](https://lirantal.com/agent-view.json)
+- [Agent resources and documentation](https://lirantal.com/docs/agents.md)
+- [Agent skill index](https://lirantal.com/.well-known/agent-skills/index.json)
+- [Agent plugin manifest](https://lirantal.com/plugin.json)
+- [Agent resource discovery manifest](https://lirantal.com/.well-known/ard.json)
+- [Repository guide](https://github.com/lirantal/lirantaldotcom/blob/main/AGENTS.md)
+
+## Content formats
+
+HTML pages advertise Markdown twins with `rel="alternate"`. The homepage Markdown is available at [index.md](https://lirantal.com/index.md); append `.md` to an article URL to fetch its Markdown twin. Requests with `Accept: text/markdown` also receive Markdown on supported production routes.
+
+## Access and API
+
+All listed HTTP resources are public GET endpoints with no authentication. The post API returns published metadata sorted newest first; it is not a search API, but clients can filter the returned titles, descriptions, categories, and tags locally. Article content is available from each post's `markdownUrl`.
+
+For agent-oriented browser search, open [the blog directory](https://lirantal.com/writing), which exposes a WebMCP `search_blog_posts` tool when the browser supports WebMCP.

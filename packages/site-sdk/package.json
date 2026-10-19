@@ -1,0 +1,38 @@
+{
+  "name": "@lirantal/site-sdk",
+  "version": "0.1.0",
+  "description": "Read published blog metadata from lirantal.com.",
+  "keywords": [
+    "lirantal",
+    "blog",
+    "agent",
+    "openapi"
+  ],
+  "type": "module",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lirantal/lirantaldotcom.git",
+    "directory": "packages/site-sdk"
+  },
+  "homepage": "https://lirantal.com",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,9 +1,17 @@
 {
   "site": "https://lirantal.com",
   "name": "lirantal.com",
-  "description": "Personal website and technical blog of Liran Tal (Astro static site).",
+  "description": "Personal website and technical blog of Liran Tal, with read-only post metadata, Markdown article twins, and agent discovery resources.",
   "rss": "https://lirantal.com/rss.xml",
   "sitemap": "https://lirantal.com/sitemap-index.xml",
+  "llms": "https://lirantal.com/llms.txt",
+  "openapi": "https://lirantal.com/openapi.json",
+  "postsApi": "https://lirantal.com/api/posts.json",
+  "agentView": "https://lirantal.com/agent-view.json",
+  "agentSkills": "https://lirantal.com/.well-known/agent-skills/index.json",
+  "ard": "https://lirantal.com/.well-known/ard.json",
+  "agentPlugin": "https://lirantal.com/plugin.json",
+  "agentDocumentation": "https://lirantal.com/docs/agents.md",
   "repository": "https://github.com/lirantal/lirantaldotcom",
   "agentRepositoryGuide": "https://github.com/lirantal/lirantaldotcom/blob/main/AGENTS.md",
   "apiCatalog": "https://lirantal.com/.well-known/api-catalog"

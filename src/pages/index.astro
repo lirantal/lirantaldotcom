@@ -22,6 +22,19 @@ const meta = { title: SITE.title, description: SITE.description, canonical: getC
 ---
 
 <Layout {meta}>
+	<script
+		is:inline
+		type="application/ld+json"
+		set:html={JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'Person',
+			name: SITE.name,
+			url: SITE.origin,
+			description: SITE.description,
+			jobTitle: 'AI security researcher, open-source maintainer, and author',
+			sameAs: [PROFILE.githubURL, PROFILE.linkedinURL, PROFILE.twitterURL, PROFILE.mastodonURL],
+		})}
+	/>
 	<div class="portfolio">
 		<ProfileHero />
 		<section
