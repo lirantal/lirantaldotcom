@@ -11,6 +11,14 @@
 </script>
 
 <style is:global>
+	/* Match Pagefind's 64px scaled input plus p-4 before its deferred script runs. */
+	#search {
+		--pagefind-ui-scale: 0.8;
+		min-height: calc(64px * var(--pagefind-ui-scale) + 2rem);
+	}
+	#search .pagefind-ui {
+		--pagefind-ui-scale: inherit;
+	}
 	.dark {
 		--pagefind-ui-primary: var(--color-blue-400);
 		--pagefind-ui-text: var(--color-slate-300);

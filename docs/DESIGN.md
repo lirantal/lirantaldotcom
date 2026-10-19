@@ -29,6 +29,14 @@ Speaking moved first because it offers a strong visual entry into the work and a
 
 The header logo is a plain "Liran Tal" wordmark in bold Inter, without an emoji.
 
+### Font loading stability
+
+Inter uses the weight-axis variable files from `@fontsource-variable/inter`. `Fonts.astro` preloads the Latin WOFF2 subset once for all weights; `src/assets/styles/fonts.css` preserves the package's language subsets with `font-display: optional`. This prevents a late font swap from changing text widths and wrapping during a fresh load. On slow connections the system fallback can remain for that page view; cached or promptly loaded fonts use Inter. Keep the preload URL identical to the CSS font URL and retain its anonymous CORS mode. Avoid restoring separate weight downloads or `swap` without checking cold-load layout shifts at mobile and intermediate desktop widths.
+
+Public Markdown images also need space reserved before download. `remark-image-dimensions.mjs` reads local image metadata at build time and emits width/height attributes while retaining responsive CSS sizing. Remote images still need explicit dimensions from their source or component.
+
+`PageFindSearch.astro` reserves the search field's scaled height before Pagefind initializes, preventing the archive list from jumping when its deferred script loads. Keep the reserved height and Pagefind scale aligned.
+
 ### The hero groups links by purpose
 
 [ProfileHero.astro](../src/components/widgets/ProfileHero.astro) owns this composition:

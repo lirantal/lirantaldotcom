@@ -26,7 +26,7 @@
     "@astrolib/analytics": "^0.6.1",
     "@astrolib/seo": "1.0.0-beta.8",
     "@eslint/js": "^10.0.1",
-    "@fontsource/inter": "^5.2.8",
+    "@fontsource-variable/inter": "^5.2.8",
     "@iconify-json/emojione": "^1.2.3",
     "@iconify-json/logos": "^1.2.9",
     "@iconify-json/mdi": "^1.2.3",
