@@ -11,17 +11,15 @@ const Content = post.Content;
 
 <section class="py-4 sm:py-4 lg:py-4 mx-auto">
 	<article data-pagefind-body>
-		<header>
-			<p class="max-w-5xl mx-auto text-center">
+		<header class="max-w-6xl mx-auto px-5 sm:px-6 pt-8 sm:pt-12">
+			<p class="text-sm text-gray-600 dark:text-slate-400 mb-3">
 				<time datetime={post.pubDate}>{getFormattedDate(post.pubDate)}</time> ~ {post.readingTime}
 			</p>
-			<h1
-				class="px-4 sm:px-6 max-w-5xl mx-auto text-center text-4xl md:text-4xl font-bold leading-tighter tracking-tighter mb-4 font-heading"
-			>
+			<h1 class="max-w-4xl text-4xl md:text-5xl font-bold leading-tighter tracking-tighter mb-4 font-heading">
 				{post.title}
 			</h1>
 
-			<div class="container mx-auto px-6 sm:px-6 text-center mt-2 mb-2">
+			<div class="mt-5 mb-2">
 				<PostTags tags={post.tags} />
 			</div>
 			<SocialShare {...post} />
@@ -30,9 +28,9 @@ const Content = post.Content;
 				post.image && (
 					<Picture
 						src={post.image}
-						class="max-w-full lg:max-w-6xl mx-auto mt-4 mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
-						widths={[400, 900]}
-						sizes="(max-width: 900px) 400px, 900px"
+						class="w-full mt-6 mb-6 rounded-md bg-gray-400 dark:bg-slate-700"
+						widths={[480, 900, 1200]}
+						sizes="(max-width: 1152px) calc(100vw - 48px), 1104px"
 						alt={post.description}
 						aspectRatio="16:9"
 						loading="eager"

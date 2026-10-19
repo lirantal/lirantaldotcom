@@ -2,7 +2,7 @@
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
 <script is:inline src="/pagefind/pagefind-ui.js" defer></script>
 
-<div id="search" class="ml-3 p-4 -mt-8"></div>
+<div id="search" class="mb-10 max-w-2xl"></div>
 
 <script>
 	window.addEventListener('DOMContentLoaded', () => {
@@ -11,7 +11,36 @@
 </script>
 
 <style is:global>
-	.dark {
+	#search {
+		--pagefind-ui-font: 'Inter', ui-sans-serif, system-ui, sans-serif;
+		--pagefind-ui-primary: #1d4ed8;
+		--pagefind-ui-text: #334155;
+		--pagefind-ui-background: #fff;
+		--pagefind-ui-border: #94a3b8;
+		--pagefind-ui-border-width: 1px;
+		--pagefind-ui-border-radius: 6px;
+		--pagefind-ui-tag: #f1f5f9;
+	}
+	#search .pagefind-ui__search-input {
+		font-weight: 400;
+	}
+	#search .pagefind-ui__search-input::placeholder {
+		color: #526075;
+		opacity: 1;
+	}
+	#search .pagefind-ui__search-input:focus-visible {
+		outline: 2px solid var(--pagefind-ui-primary);
+		outline-offset: 3px;
+	}
+	#search .pagefind-ui__result-link {
+		color: var(--pagefind-ui-primary);
+		text-decoration: underline;
+		text-underline-offset: 0.23em;
+	}
+	.dark #search .pagefind-ui__search-input::placeholder {
+		color: var(--color-slate-400);
+	}
+	.dark #search {
 		--pagefind-ui-primary: var(--color-blue-400);
 		--pagefind-ui-text: var(--color-slate-300);
 		--pagefind-ui-background: var(--color-slate-800);

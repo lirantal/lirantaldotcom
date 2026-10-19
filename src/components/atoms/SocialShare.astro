@@ -9,10 +9,7 @@ const url = Astro.url;
 const links = getSocialShareLinks(title, url, PROFILE.twitterHandle);
 ---
 
-<div
-	data-pagefind-ignore
-	class="mx-auto flex items-center justify-center gap-1 text-sm text-gray-500 dark:text-slate-400"
->
+<div data-pagefind-ignore class="flex items-center justify-start gap-1 text-sm text-gray-500 dark:text-slate-400">
 	<span class="mr-1">Share</span>
 	{
 		links.map((link) => (

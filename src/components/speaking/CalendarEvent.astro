@@ -20,10 +20,9 @@ const { day, suffix } = ordinalDay(event.date);
 		</time>
 		<div>
 			<h3
-				class="text-lg font-bold font-heading text-gray-900 dark:text-slate-100 group-hover:text-primary-600 dark:group-hover:text-primary-400"
+				class="text-lg font-bold font-heading underline decoration-primary-300 dark:decoration-primary-700 underline-offset-4 group-hover:decoration-current"
 			>
-				{event.flag}
-				{event.name}
+				<span class="text-primary-700 dark:text-primary-300">{event.flag} {event.name}</span>
 			</h3>
 			<p class="mt-1 text-sm text-gray-600 dark:text-slate-400">
 				{event.location}
