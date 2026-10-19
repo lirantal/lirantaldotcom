@@ -8,4 +8,4 @@ Browse Liran Tal's articles about AI and agent security, MCP, Node.js security, 
 - [RSS feed](https://lirantal.com/rss.xml)
 - [Sitemap](https://lirantal.com/sitemap-index.xml)
 
-Each post record includes the canonical HTML URL and a `markdownUrl` for its full text. Article HTML pages also advertise their Markdown alternate; append `.md` to a post URL or request `Accept: text/markdown` on supported routes.
+Each post record includes the article HTML URL and a `markdownUrl` for its full text. Article HTML pages also advertise their Markdown alternate; append `.md` to a post URL or request `Accept: text/markdown` on supported routes.

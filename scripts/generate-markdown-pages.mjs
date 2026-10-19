@@ -181,6 +181,12 @@ async function configureVercelOutput(routes) {
 	]);
 	const notFoundRoutes = [
 		{
+			src: '^/api/.*$',
+			headers: { 'Content-Type': 'application/problem+json; charset=utf-8' },
+			dest: '/_errors/api-not-found.json',
+			status: 404,
+		},
+		{
 			src: '^/.*$',
 			has: [{ type: 'header', key: 'accept', value: '(.*)text/markdown(.*)' }],
 			headers: {
@@ -207,12 +213,6 @@ async function configureVercelOutput(routes) {
 				'x-markdown-tokens': String(estimateTokenCount(notFoundMarkdown)),
 			},
 			dest: '/_markdown/404.md',
-			status: 404,
-		},
-		{
-			src: '^/api/.*$',
-			headers: { 'Content-Type': 'application/problem+json; charset=utf-8' },
-			dest: '/_errors/api-not-found.json',
 			status: 404,
 		},
 	];
