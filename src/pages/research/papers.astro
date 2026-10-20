@@ -1,0 +1,27 @@
+---
+import Layout from '~/layouts/ResearchLayout.astro';
+import PaperList from '~/components/research/PaperList.astro';
+import { scholarURL, papers } from '~/data/research';
+import { getCanonical } from '~/utils/permalinks';
+const meta = {
+	title: 'Research papers by Liran Tal',
+	description:
+		'Co-authored preprints on agent skill security, AI vulnerability review, and dependency remediation. Abstracts, full author credits, PDFs, and DOIs.',
+	canonical: getCanonical('/research/papers'),
+};
+---
+
+<Layout {meta}>
+	<header class="research-intro">
+		<p class="eyebrow">Research / Papers</p>
+		<h1>Research papers.</h1>
+		<p class="lede">
+			{papers.length} selected co-authored preprints on AI agents and software security. These works are available on arXiv;
+			a preprint listing does not imply peer review.
+		</p>
+		<p class="mt-5 text-sm">
+			<a href={scholarURL}>View publications & citations on Google Scholar <span aria-hidden="true">↗</span></a>
+		</p>
+	</header>
+	<section aria-label="Co-authored preprints" class="portfolio-section"><PaperList /></section>
+</Layout>

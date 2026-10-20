@@ -8,7 +8,7 @@ export const PROFILE = {
 
 export const NAVIGATION = [
 	{ href: '/writing', label: 'Blog' },
-	{ href: '/#research', label: 'Research' },
+	{ href: '/research', label: 'Research' },
 	{ href: '/#open-source', label: 'Open source' },
 	{ href: '/#books', label: 'Books' },
 	{ href: '/speaking', label: 'Speaking' },

@@ -1,0 +1,118 @@
+---
+import Layout from '~/layouts/ResearchLayout.astro';
+import Section from '~/components/portfolio/Section.astro';
+import PaperList from '~/components/research/PaperList.astro';
+import {
+	papers,
+	activeAdvisories,
+	criticalAdvisories,
+	researchPages,
+	researchAsOf,
+	dateLabel,
+	scholarURL,
+} from '~/data/research';
+import { getCanonical } from '~/utils/permalinks';
+
+const meta = {
+	title: 'Research by Liran Tal — papers, patents & security disclosures',
+	description:
+		'Explore Liran Tal’s co-authored research papers, patent application, CVEs, lockfile injection research, OWASP npm security guidance, and AI security work.',
+	canonical: getCanonical('/research'),
+};
+---
+
+<Layout {meta}>
+	<section class="research-intro" aria-labelledby="research-title">
+		<p class="eyebrow">Research</p>
+		<h1 id="research-title">Investigating how systems fail.</h1>
+		<p class="lede">
+			I study the trust we place in software: the dependencies we install, the code we review, and the tools we give to
+			AI agents. Here are the findings, disclosures, and defenses that came out of that work.
+		</p>
+		<dl class="research-metrics grid grid-cols-2 md:grid-cols-4 gap-x-8 mt-9">
+			<div>
+				<dt class="muted text-sm">Co-authored preprints</dt><dd>{papers.length}</dd><p>
+					<a href="/research/papers">Published on arXiv</a>
+				</p>
+			</div>
+			<div>
+				<dt class="muted text-sm">Active credited advisories</dt><dd>{activeAdvisories.length}</dd><p>
+					<a href="/research/advisories">GitHub Advisory Database</a>
+				</p>
+			</div>
+			<div>
+				<dt class="muted text-sm">Critical-severity advisories</dt><dd>{criticalAdvisories.length}</dd><p class="muted">
+					Among the active records
+				</p>
+			</div>
+			<div>
+				<dt class="muted text-sm">Original lockfile research</dt><dd>2019</dd><p>
+					<a href="/research/lockfile-injection">Extended at Black Hat EU</a>
+				</p>
+			</div>
+		</dl>
+		<div class="grid md:grid-cols-[1fr_2fr] gap-4 md:gap-10 mt-6 text-sm">
+			<p><a href={scholarURL}>Citations & h-index on Google Scholar <span aria-hidden="true">↗</span></a></p>
+			<p class="muted">
+				Research snapshot: {dateLabel(researchAsOf)}. Counts cover the work listed here. Citation totals are available
+				on my Google Scholar profile.
+			</p>
+		</div>
+	</section>
+	<Section
+		id="explore"
+		number="01"
+		title="Explore the research"
+		description="From a finding to a fix, a paper, or a shared practice."
+	>
+		<div class="grid md:grid-cols-2 gap-x-14 gap-y-0">
+			{
+				researchPages.map((page) => (
+					<article class="py-6 border-t border-gray-200 dark:border-slate-700">
+						<p class="eyebrow">{page.context}</p>
+						<h3>
+							<a href={`/research/${page.slug}`}>
+								{page.label} <span aria-hidden="true">→</span>
+							</a>
+						</h3>
+						<p class="muted mt-3 text-sm max-w-xl">{page.summary}</p>
+					</article>
+				))
+			}
+		</div>
+	</Section>
+	<Section
+		id="recent-papers"
+		number="02"
+		title="Recent papers"
+		description="Co-authored research, with the full methods and evidence."
+	>
+		<a slot="link" href="/research/papers">All papers <span aria-hidden="true">→</span></a>
+		<PaperList limit={2} />
+	</Section>
+	<Section
+		id="research-in-practice"
+		number="03"
+		title="Research in practice"
+		description="What happens after publication matters, too."
+	>
+		<div class="grid md:grid-cols-2 gap-10">
+			<article>
+				<h3>From lockfiles to Black Hat</h3><p class="muted mt-3 research-copy">
+					GitLab’s Dennis Appelt and Greg Johnson extended my 2019 lockfile injection research to more techniques and
+					ecosystems, presenting their work at Black Hat Europe 2021.
+				</p><p class="mt-4 text-sm">
+					<a href="/research/lockfile-injection">Follow the research trail <span aria-hidden="true">→</span></a>
+				</p>
+			</article>
+			<article>
+				<h3>A foundation for OWASP guidance</h3><p class="muted mt-3 research-copy">
+					The npm security best practices I co-authored with Juan Picado became the original basis of OWASP’s NPM
+					Security Cheat Sheet.
+				</p><p class="mt-4 text-sm">
+					<a href="/research/npm-security">Read about the OWASP connection <span aria-hidden="true">→</span></a>
+				</p>
+			</article>
+		</div>
+	</Section>
+</Layout>

@@ -1,0 +1,15 @@
+# Research — lirantal.com
+
+Liran Tal's research portfolio. Papers are selected co-authored arXiv preprints, not claims of peer review. The disclosure archive is a dated snapshot of publicly credited GitHub advisory records, including clearly marked withdrawn entries. Counts of active advisories exclude withdrawn records and do not imply distinct CVEs or sole discovery.
+
+- [Research overview](https://lirantal.com/research)
+- [Papers, author credits, PDFs, and DOIs](https://lirantal.com/research/papers)
+- [Patents and published applications](https://lirantal.com/research/patents)
+- [CVEs and security advisories](https://lirantal.com/research/advisories)
+- [Lockfile injection research and Black Hat follow-on work](https://lirantal.com/research/lockfile-injection)
+- [npm security guidance and OWASP adoption](https://lirantal.com/research/npm-security)
+- [AI and agent security](https://lirantal.com/research/ai-security)
+- [Software supply-chain investigations and defenses](https://lirantal.com/research/supply-chain-security)
+- [Google Scholar profile for citation metrics](https://scholar.google.com/citations?user=J3pv7lMAAAAJ&hl=en)
+
+Each research page links its primary sources. The verified patent record is a published application, not a granted patent. Follow the linked source for current legal status, affected versions, and remediation details.

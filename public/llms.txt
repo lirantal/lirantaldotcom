@@ -18,6 +18,9 @@ The public site is read-only and requires no authentication. It does not provide
 - [Privacy notice](https://lirantal.com/privacy)
 - [Developer resources](https://lirantal.com/developers)
 - [Blog and articles](https://lirantal.com/writing)
+- [Research overview](https://lirantal.com/research)
+- [Research papers](https://lirantal.com/research/papers)
+- [CVEs and security advisories](https://lirantal.com/research/advisories)
 - [Recent blog posts as JSON](https://lirantal.com/api/posts.json)
 - [Blog post API as Markdown](https://lirantal.com/api/posts.json.md)
 - [Paginated blog posts](https://lirantal.com/api/posts/cursor/0.json)
@@ -40,6 +43,7 @@ The public site is read-only and requires no authentication. It does not provide
 - [API documentation](https://lirantal.com/api/llms.txt)
 - [Writing and article archive](https://lirantal.com/writing/llms.txt)
 - [Speaking and events](https://lirantal.com/speaking/llms.txt)
+- [Research and disclosures](https://lirantal.com/research/llms.txt)
 
 ## Content formats
 

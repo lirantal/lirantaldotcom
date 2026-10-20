@@ -148,7 +148,7 @@ There is **no separate `/about` route**; the full bio lives in **`public/press/l
 
 ## Navigation and footer
 
-- **Header:** `src/components/widgets/Header.astro` — logo → home, links from `NAVIGATION` in `config.mjs`; theme toggle and GitHub. Research, Open source, and Books link to homepage sections; Blog links to the publication hub (with `/blog` archive access). Mobile navigation closes on selection or Escape.
+- **Header:** `src/components/widgets/Header.astro` — logo → home, links from `NAVIGATION` in `config.mjs`. Research links to `/research`; Open source and Books link to homepage sections; Blog links to the publication hub (with `/blog` archive access). Mobile navigation closes on selection or Escape.
 - **Footer:** `src/components/widgets/Footer.astro` — “Recognitions” link, columns from **`FOOTER`** in `config.mjs`, RSS icon.
 
 Adding a **new top-level page**: create `src/pages/<name>.astro` (or a folder with `index.astro`), use **`PageLayout`** with a `meta` object (`title`, `description`, `canonical` via `getCanonical(...)`), then **add a link in `Header.astro` and/or `Footer.astro` / `config.mjs`** as appropriate.
@@ -162,6 +162,15 @@ Adding a **new top-level page**: create `src/pages/<name>.astro` (or a folder wi
 ## Data files
 
 - **`src/data/recognitions.json`** — used by recognition-related UI where imported.
+
+### Research hub
+
+- **`/research`** is the overview; `/research/papers` and `/research/advisories` have dedicated archive pages. **`src/data/research.ts`** defines the patent, lockfile injection, npm guidance, AI security, and supply-chain pages rendered by **`src/pages/research/[slug].astro`**. Navigation and overview links derive from the same data. **`ResearchLayout.astro`** uses the shared portfolio tokens and wraps its sub-navigation at small widths.
+- Papers remain in **`src/data/portfolio.ts`**, with full co-author credits, arXiv identifiers, and preprint labels. The homepage and Research hub use **`PaperList.astro`** for their recent-paper selections. Keep the existing `/#research` homepage anchor working.
+- **`src/data/research-advisories.json`** is a dated snapshot of *all pages* of the public GitHub `credit:lirantal` query. Preserve the exact GHSA URL, CVE if present, package, displayed ecosystem, severity, publication date, and withdrawn status for every record. Refresh the entire snapshot together, check unique GHSA IDs and the query's total, then update `asOf`. Do not scrape during builds or visitor requests. Active and critical totals derive from non-withdrawn records; advisory counts are not claims of distinct CVEs or sole discovery.
+- The Google Scholar profile is linked for citation totals and h-index. No numeric Scholar metrics were independently readable during implementation; do not invent them, treat unavailable counts as zero, or substitute another database's totals without explicit attribution and a dated source.
+- Patent copy distinguishes an application from a grant. The verified record is US20160139914A1, listed as abandoned by Google Patents. Do not claim additional inventions from similarly named inventors, or count publications from one family as separate inventions.
+- Preserve source trails: the 2019 npm guidance was co-authored with Juan Picado; OWASP credits it as the original basis of its evolving cheat sheet. GitLab's Black Hat EU 2021 work by Dennis Appelt and Greg Johnson explicitly extends Liran's 2019 lockfile research. The event-stream post-mortem was co-authored with Danny Grander. anti-trojan-source is defensive tooling, not a claim to the original Trojan Source discovery.
 
 ## Agents readiness (HTTP discovery)
 
