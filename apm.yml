@@ -7,6 +7,5 @@ dependencies:
     - lirantal/skill-creator-extra/skills/skill-creator-extra
     - blader/humanizer
     - pbakaus/impeccable/.agents/skills/impeccable
-    - anthropics/skills/skills/frontend-design#dbd4588f9e1033efb41dad4bef2f7947c8993d44
   mcp: []
 scripts: {}

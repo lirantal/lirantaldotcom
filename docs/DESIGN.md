@@ -133,32 +133,3 @@ Measure contrast against actual rendered backgrounds, including cards and select
 8. **Separate local, preview, and production evidence.** A portal may serve an older static build until rebuilt. For a reported missing image, inspect the requested URL and responsive `srcset`, status codes, and browser decoding before replacing the asset. A passing Vercel preview is not proof of production deployment or a fresh bot review. Keep those distinctions in delivery reports.
 
 Update this guide when a later review changes a design decision. Keep short, durable rules in `AGENTS.md`; keep rationale, alternatives, and visual conventions here rather than duplicating the full guide in agent instructions.
-
-## Anthropic frontend-design refinement
-
-The `frontend-design` skill is installed through APM from `anthropics/skills/skills/frontend-design`; its deployed instructions and license live in `.agents/skills/frontend-design/`. Restore dependencies with `apm install --frozen --target agent-skills`. Applying this skill means reading its instructions and following its plan/build/critique process; it is not a website runtime dependency or a CLI that restyles the site automatically.
-
-The design plan retains Inter for all roles and the existing palette: white `#FFFFFF`, heading slate `#0F172A`, secondary ink `#526075`, link blue `#1D4ED8`, divider `#E2E8F0`, and quiet surface `#F8FAFC`. Dark mode continues to use the shared tokens above. The layout stays left aligned:
-
-```text
-Desktop                          Mobile
-Introduction       Portrait      Portrait + social row
-Securing the                     Securing the
-agentic future.                  agentic future.
-Professional links + awards      Professional links + awards
-Project | Project | Project      Project / rule / Project / rule / Project
-01 / Section       Link          01 / Section
-Content                          Link, then content
-```
-
-Review against the brief: a new typeface, animated hero, or decorative security-terminal treatment would add a competing identity. Spend the visual emphasis on the headline's two-part composition, keep real projects near it, and use rules only to distinguish adjacent projects. Retain the owner's numbered headings, role labels, blue phrase, and authentic imagery even where the skill's general advice prefers other treatments.
-
-The implementation gives the hero's blue phrase its own line while permitting natural wrapping on very narrow screens, and adds project separators that switch from vertical on desktop to horizontal when stacked. On narrow screens, reset the section heading's `flex-basis` to `auto`: the desktop `20rem` width basis otherwise becomes a 20rem **height** when the flex direction changes to column. This removes accidental empty space between section descriptions and their links/content on all portfolio pages, including the Blog directory and press kit. Headline styling is scoped to the profile hero; the shared type scale stays intact.
-
-### Evaluation of the first application
-
-[Desktop comparison](design-review/frontend-design-desktop.png) and [mobile comparison](design-review/frontend-design-mobile.png) show the same content before (left) and after (right). These are local Chromium captures at 1440px and 390px, with the dev toolbar hidden, reduced motion, and image painting enabled for full-page screenshots. The baseline uses the parent commit's exact components and CSS.
-
-The strongest value is responsive rhythm: at 390px the first section-heading block shrinks from 360px to 113px, removing 247px of unintended space. The desktop headline keeps “agentic future” together, and project rules clarify grouping without introducing cards. This is a modest visual refinement within the approved direction; installing the skill alone does not improve a site, and these changes do not establish conversion or usability gains.
-
-Validation: light/dark homepage renders at 320, 390, 768, and 1440px without horizontal overflow or failed images; Blog directory and press kit checked at 390 and 1440px in both themes. Confirmed light default with dark OS preference, saved-theme persistence, mobile menu Escape/focus return, and visible link focus. Production build (including Pagefind and Markdown postbuild), ESLint, existing Node tests, frozen APM restore, and Impeccable's changed-file detector pass. APM also completed file-level deployment records for the existing skills so frozen restores succeed; their upstream commits and deployed content did not change.
