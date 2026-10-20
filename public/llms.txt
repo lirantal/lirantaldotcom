@@ -48,4 +48,4 @@ HTML pages advertise Markdown twins with `rel="alternate"`. The homepage Markdow
 
 All listed HTTP resources are public GET endpoints with no authentication. `/api/posts.json` returns all published metadata sorted newest first. `/api/posts/cursor/0.json` returns the first page of up to 50 records; pass `nextCursor` to `/api/posts/cursor/{cursor}.json` for the next page. Neither endpoint provides server-side search; clients can filter titles, descriptions, categories, and tags locally. Article content is available from each post's `markdownUrl`.
 
-For agent-oriented browser search, open [the blog directory](https://lirantal.com/writing), which exposes a WebMCP `search_blog_posts` tool when the browser supports WebMCP.
+For agent-oriented browser search, open [the homepage](https://lirantal.com) or [the blog directory](https://lirantal.com/writing), which expose a WebMCP `search_blog_posts` tool when the browser supports WebMCP.
