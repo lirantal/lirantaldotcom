@@ -1,6 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { NAVIGATION, PROFILE } from '~/config.mjs';
+import { NAVIGATION } from '~/config.mjs';
 import Logo from '~/components/atoms/Logo.astro';
 import ToggleTheme from '~/components/core/ToggleTheme.astro';
 import ToggleMenu from '~/components/core/ToggleMenu.astro';
@@ -46,11 +45,6 @@ const path = Astro.url.pathname.replace(/\/$/, '');
 			</ul>
 			<div class="hidden lg:flex items-center ml-3">
 				<ToggleTheme iconClass="w-5 h-5" />
-				<a
-					href={PROFILE.githubURL}
-					class="text-gray-500 dark:text-slate-400 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-300"
-					aria-label="Liran Tal's GitHub"><Icon name="tabler:brand-github" class="w-5 h-5" /></a
-				>
 			</div>
 		</nav>
 	</div>

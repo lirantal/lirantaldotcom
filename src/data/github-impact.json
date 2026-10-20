@@ -1,0 +1,42 @@
+{
+  "asOf": "2026-10-20",
+  "scope": "Six selected repositories maintained by Liran Tal; not all repositories or unique people.",
+  "repositories": [
+    {
+      "name": "lockfile-lint",
+      "url": "https://github.com/lirantal/lockfile-lint",
+      "stars": 870,
+      "forks": 37
+    },
+    {
+      "name": "npq",
+      "url": "https://github.com/lirantal/npq",
+      "stars": 1794,
+      "forks": 44
+    },
+    {
+      "name": "dockly",
+      "url": "https://github.com/lirantal/dockly",
+      "stars": 4035,
+      "forks": 170
+    },
+    {
+      "name": "anti-trojan-source",
+      "url": "https://github.com/lirantal/anti-trojan-source",
+      "stars": 90,
+      "forks": 12
+    },
+    {
+      "name": "nodejs-cli-apps-best-practices",
+      "url": "https://github.com/lirantal/nodejs-cli-apps-best-practices",
+      "stars": 4137,
+      "forks": 171
+    },
+    {
+      "name": "awesome-nodejs-security",
+      "url": "https://github.com/lirantal/awesome-nodejs-security",
+      "stars": 3049,
+      "forks": 329
+    }
+  ]
+}

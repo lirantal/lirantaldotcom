@@ -28,6 +28,7 @@ The current sequence in [index.astro](../src/pages/index.astro) is:
 Speaking moved first because it offers a strong visual entry into the work and a useful path for event organizers. Keep the section IDs stable: navigation and external links use anchors such as `/#open-source`. Numbers express reading order; they are not part of the URL.
 
 The header logo is a plain "Liran Tal" wordmark in bold Inter, without an emoji.
+The header omits the duplicate GitHub icon; the profile's social row remains the connection point.
 
 ### Font loading stability
 
@@ -114,9 +115,11 @@ Measure contrast against actual rendered backgrounds, including cards and select
 - **Research:** verify authorship and destinations, credit co-authors, and label arXiv work as preprints. Presence on arXiv is not a claim of peer review. Keep primary-source links such as the abstract, PDF, and DOI.
 - **npm impact:** use [npm-downloads.json](../src/data/npm-downloads.json), show its date range and package scope, and retain “downloads, not unique developers” plus the dependency-install caveat. The total is computed, not manually advertised. Refresh all packages and both dates together; the procedure is in `AGENTS.md`. Do not turn this into a live client-side counter or imply it includes every package Liran maintains.
 - **Projects:** make the purpose understandable in a sentence. Include useful curated resources and best-practice guides alongside executable tools. The homepage selection is not an exhaustive GitHub inventory.
+- **Project sources and GitHub impact:** source pills link to npm (red) and GitHub (neutral), with both shown for published packages. The dated `src/data/github-impact.json` snapshot covers the six featured repositories. Sum stars and forks separately, retain per-repository links and counts, and do not imply unique people or all repositories. Refresh every repository together from its public GitHub page (`stargazerCount` and `forksCount` in the embedded data); write a new date only after every fetch succeeds. No visitor or build-time API requests are needed.
 - **Books:** Code Injection is first in the current five-book shelf, followed by Command Injection, Path Traversal, HTTP Security Headers, and Serverless Security. Essential Node.js Security was removed from this shelf to make room, not removed from the whole site. Use authentic cover assets and verified destinations.
 - **Speaking:** use the speaking data model and its build-time statistics, not hand-entered totals. The upstream public-speaking repository remains the data source, with a local fallback; see `AGENTS.md`.
 - **Endorsements:** retain attribution and a link to the original statement. Keep claims concrete rather than expanding them into unverified guarantees.
+- **Homepage community:** four compact editorial quotes use the existing local portraits and testimonials, selected in `src/data/community.ts`. Keep attribution inline after the quote, including name, historical role, and original-post link. The local portraits avoid a runtime dependency on X or an avatar proxy; no automatic freshness is implied.
 
 ## Review workflow and lessons
 

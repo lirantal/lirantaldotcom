@@ -1,0 +1,23 @@
+---
+import { Icon } from 'astro-icon/components';
+interface Props {
+	url: string;
+	npm?: string;
+	name: string;
+}
+const { url, npm, name } = Astro.props;
+---
+
+<div class="project-badges mt-3 flex flex-wrap gap-2">
+	{
+		npm && (
+			<a class="project-badge npm-badge" href={`https://www.npmjs.com/package/${npm}`} aria-label={`${name} on npm`}>
+				<Icon name="tabler:brand-npm" aria-hidden="true" />
+				npm package
+			</a>
+		)
+	}
+	<a class="project-badge github-badge" href={url} aria-label={`${name} on GitHub`}
+		><Icon name="tabler:brand-github" aria-hidden="true" />GitHub repo</a
+	>
+</div>
