@@ -43,7 +43,7 @@ Public Markdown images also need space reserved before download. `remark-image-d
 [ProfileHero.astro](../src/components/widgets/ProfileHero.astro) owns this composition:
 
 - **Identity:** spaced dot separators between “Security researcher”, “Author”, and “Open-source maintainer”. Retain the separators; spacing alone made the roles feel disconnected. The current wrapping treatment clips a leading separator on a new row.
-- **Introduction:** one heading and one short paragraph. Both introductory sentences use the same size and weight. Break after “software,” where appropriate, and keep “AI agents” together; avoid a stranded final word. Do not force an exact line count across screen widths.
+- **Introduction:** “Securing the agentic future.” leads with the work; the header retains the personal name. The supporting paragraph is “I research emerging threats and build open-source defenses for AI agents, the software they write, and the tools they trust.” Let both wrap naturally without forcing an exact line count across screen widths.
 - **Professional context:** “I head Developer Relations at Snyk”, immediately followed by Read my blog, Invite me to speak, and Bio & press kit.
 - **Recognition:** directly below that block, quiet bordered badges with an award icon and the wording “Awarded GitHub Star” and “Awarded OpenJS Security Pathfinder”. Keep the award names linked. There is no separate “Industry recognition” strip.
 - **Social profiles:** one horizontal row of X, GitHub, and LinkedIn logos beneath the portrait. No visible names or outgoing arrows here; keep accessible names, hover titles, visible keyboard focus, and generous click targets (currently 44 × 44px). X is important to Liran's public activity; do not omit it.
