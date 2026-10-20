@@ -110,6 +110,52 @@
 	border-radius: 0.75rem;
 	padding: 1.5rem;
 }
+.portfolio .impact-metrics {
+	font-variant-numeric: tabular-nums;
+}
+.portfolio a.project-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	padding: 0.2rem 0.55rem;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	font-size: 0.7rem;
+	font-weight: 600;
+	text-decoration: none;
+}
+.portfolio .project-badge svg {
+	width: 1rem;
+	height: 1rem;
+}
+.portfolio a.github-badge {
+	color: inherit;
+	background: var(--wash);
+}
+.portfolio a.npm-badge {
+	color: #a31d24;
+	background: #fff1f2;
+	border-color: #fecdd3;
+}
+.dark .portfolio a.npm-badge {
+	color: #fda4af;
+	background: #35151c;
+	border-color: #873642;
+}
+.portfolio a.project-badge:hover {
+	text-decoration: underline;
+}
+.portfolio .community-quote {
+	padding-block: 1rem;
+	border-bottom: 1px solid var(--line);
+}
+.portfolio .community-quote:first-child {
+	padding-top: 0;
+}
+.portfolio .community-quote:last-child {
+	border-bottom: 0;
+	padding-bottom: 0;
+}
 @media (max-width: 639px) {
 	.portfolio {
 		padding-inline: 1.25rem;

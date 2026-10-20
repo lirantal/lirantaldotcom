@@ -28,36 +28,42 @@ export const papers = [
 export const projects = [
 	{
 		name: 'lockfile-lint',
+		npm: 'lockfile-lint',
 		kind: 'Supply chain security',
 		description: 'Lint lockfiles for trusted registries and protect against lockfile injection.',
 		url: 'https://github.com/lirantal/lockfile-lint',
 	},
 	{
 		name: 'npq',
+		npm: 'npq',
 		kind: 'Developer tooling',
 		description: 'Check package health and security signals before installing npm dependencies.',
 		url: 'https://github.com/lirantal/npq',
 	},
 	{
 		name: 'dockly',
+		npm: 'dockly',
 		kind: 'Developer tooling',
 		description: 'An interactive terminal interface for managing Docker containers and services.',
 		url: 'https://github.com/lirantal/dockly',
 	},
 	{
 		name: 'anti-trojan-source',
+		npm: 'anti-trojan-source',
 		kind: 'Code security',
 		description: 'Detect bidirectional Unicode characters used to disguise malicious source code.',
 		url: 'https://github.com/lirantal/anti-trojan-source',
 	},
 	{
 		name: 'Node.js CLI Apps Best Practices',
+		npm: undefined,
 		kind: 'Community guide',
 		description: 'A practical guide to building thoughtful, accessible, and reliable command-line applications.',
 		url: 'https://github.com/lirantal/nodejs-cli-apps-best-practices',
 	},
 	{
 		name: 'Awesome Node.js Security',
+		npm: undefined,
 		kind: 'Curated resources',
 		description: 'Security resources, tools, and learning material for the Node.js ecosystem.',
 		url: 'https://github.com/lirantal/awesome-nodejs-security',
