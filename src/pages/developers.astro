@@ -123,7 +123,10 @@ const matches = items.filter((post) => {
 			</p>
 			<p class="muted mt-3">
 				The site does not operate a remote MCP server. Browser agents can use the read-only
-				<code>search_blog_posts</code> WebMCP tool on the <a href="/writing">blog directory</a> when supported.
+				<code>search_blog_posts</code> WebMCP tool on the <a href="/">homepage</a> and <a href="/writing"
+					>blog directory</a
+				> when supported. It registers through <code>document.modelContext.registerTool()</code>, with
+				<code>navigator.modelContext</code> as a compatibility fallback.
 			</p>
 		</section>
 

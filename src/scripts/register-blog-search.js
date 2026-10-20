@@ -1,3 +1,40 @@
+/* global document, window */
+let postItems;
+
+const fetchPosts = async (signal) => {
+	if (!postItems) {
+		const response = await fetch('/api/posts.json', { headers: { Accept: 'application/json' }, signal });
+		if (!response.ok) throw new Error('The published post index could not be loaded.');
+		const data = await response.json();
+		postItems = data.items;
+	}
+	return postItems;
+};
+
+const findPosts = async (query, signal) => {
+	if (typeof query !== 'string' || !query.trim()) throw new TypeError('query must be a non-empty string.');
+	const terms = query.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+
+	const posts = await fetchPosts(signal);
+	return posts
+		.filter((post) => {
+			const searchableText = [post.title, post.description, post.category, ...(post.tags ?? [])]
+				.filter(Boolean)
+				.join(' ')
+				.toLocaleLowerCase();
+			return terms.every((term) => searchableText.includes(term));
+		})
+		.slice(0, 10)
+		.map(({ title, description, publishedAt, url, markdownUrl, tags }) => ({
+			title,
+			description,
+			publishedAt,
+			url,
+			markdownUrl,
+			tags,
+		}));
+};
+
 const form = document.querySelector('#blog-agent-search');
 const input = document.querySelector('#blog-search-query');
 const status = document.querySelector('#blog-search-status');
@@ -5,43 +42,8 @@ const resultsList = document.querySelector('#blog-search-results');
 
 if (form && input && status && resultsList) {
 	form.hidden = false;
-	let postItems;
 	let latestSearchId = 0;
 	const unavailableMessage = 'Article search is temporarily unavailable. Try the RSS feed or complete blog archive.';
-
-	const fetchPosts = async (signal) => {
-		if (!postItems) {
-			const response = await fetch('/api/posts.json', { headers: { Accept: 'application/json' }, signal });
-			if (!response.ok) throw new Error('The published post index could not be loaded.');
-			const data = await response.json();
-			postItems = data.items;
-		}
-		return postItems;
-	};
-
-	const findPosts = async (query, signal) => {
-		const terms = query.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
-		if (terms.length === 0) return [];
-
-		const posts = await fetchPosts(signal);
-		return posts
-			.filter((post) => {
-				const searchableText = [post.title, post.description, post.category, ...(post.tags ?? [])]
-					.filter(Boolean)
-					.join(' ')
-					.toLocaleLowerCase();
-				return terms.every((term) => searchableText.includes(term));
-			})
-			.slice(0, 10)
-			.map(({ title, description, publishedAt, url, markdownUrl, tags }) => ({
-				title,
-				description,
-				publishedAt,
-				url,
-				markdownUrl,
-				tags,
-			}));
-	};
 
 	const renderResults = (query, results) => {
 		resultsList.replaceChildren();
@@ -99,15 +101,19 @@ if (form && input && status && resultsList) {
 		input.value = initialQuery;
 		void runSearch(initialQuery);
 	}
+}
 
-	const modelContext = document.modelContext ?? navigator.modelContext;
-	if (modelContext && typeof modelContext.registerTool === 'function') {
-		const registrationController = new AbortController();
-		window.addEventListener('pagehide', (event) => {
-			if (!event.persisted) registrationController.abort();
-		});
-		void modelContext
-			.registerTool(
+// Prefer the document API; older browser implementations may expose it on navigator.
+const modelContext =
+	typeof document.modelContext?.registerTool === 'function' ? document.modelContext : navigator.modelContext;
+if (modelContext && typeof modelContext.registerTool === 'function') {
+	const registrationController = new AbortController();
+	window.addEventListener('pagehide', (event) => {
+		if (!event.persisted) registrationController.abort();
+	});
+	void Promise.resolve()
+		.then(() =>
+			modelContext.registerTool(
 				{
 					name: 'search_blog_posts',
 					description:
@@ -130,6 +136,6 @@ if (form && input && status && resultsList) {
 				},
 				{ signal: registrationController.signal }
 			)
-			.catch((error) => console.warn('Could not register the blog search WebMCP tool.', error));
-	}
+		)
+		.catch((error) => console.warn('Could not register the blog search WebMCP tool.', error));
 }
