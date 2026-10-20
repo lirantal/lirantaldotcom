@@ -51,6 +51,18 @@
 .portfolio h1 {
 	font-size: clamp(2.75rem, 5.5vw, 4.5rem);
 }
+.portfolio .profile-headline {
+	font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+	text-wrap: balance;
+}
+.portfolio .featured-projects {
+	display: grid;
+	gap: 1.5rem;
+}
+.portfolio .featured-projects > article {
+	border-top: 1px solid var(--line);
+	padding-top: 1.25rem;
+}
 .portfolio h2 {
 	font-size: clamp(1.75rem, 3vw, 2.25rem);
 }
@@ -156,6 +168,20 @@
 	border-bottom: 0;
 	padding-bottom: 0;
 }
+@media (min-width: 768px) {
+	.portfolio .featured-projects {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 2rem;
+	}
+	.portfolio .featured-projects > article {
+		border-top: 0;
+		padding-top: 0;
+	}
+	.portfolio .featured-projects > article + article {
+		border-left: 1px solid var(--line);
+		padding-left: 2rem;
+	}
+}
 @media (max-width: 639px) {
 	.portfolio {
 		padding-inline: 1.25rem;
@@ -164,6 +190,9 @@
 		align-items: start;
 		flex-direction: column;
 		gap: 1rem;
+	}
+	.portfolio .section-heading > div {
+		flex-basis: auto;
 	}
 	.portfolio .portfolio-section {
 		padding-block: 2.5rem;
