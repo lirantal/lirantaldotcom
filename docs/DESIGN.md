@@ -47,6 +47,7 @@ Public Markdown images also need space reserved before download. `remark-image-d
 - **Professional context:** “I head Developer Relations at Snyk”, immediately followed by Read my blog, Invite me to speak, and Bio & press kit.
 - **Recognition:** directly below that block, quiet bordered badges with an award icon and the wording “Awarded GitHub Star” and “Awarded OpenJS Security Pathfinder”. Keep the award names linked. There is no separate “Industry recognition” strip.
 - **Social profiles:** one horizontal row of X, GitHub, and LinkedIn logos beneath the portrait. No visible names or outgoing arrows here; keep accessible names, hover titles, visible keyboard focus, and generous click targets (currently 44 × 44px). X is important to Liran's public activity; do not omit it.
+- **Responsive order:** on narrow screens, show the introduction before the portrait and social links so the visible sequence matches the markup and keyboard focus order. On desktop, keep the portrait and social row alongside the introduction.
 
 This grouping distinguishes navigating the site, learning about professional credentials, and connecting elsewhere without adding more headings. An earlier mixed row of internal actions and social links, a triangle of social links, and a detached job/awards strip all made those relationships harder to read.
 
