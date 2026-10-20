@@ -12,6 +12,10 @@ Read **[docs/DESIGN.md](docs/DESIGN.md)** before changing layout, shared colors,
 - Verify content claims with sources: dated npm downloads are not unique users; arXiv entries are co-authored preprints, not automatically peer-reviewed papers.
 - For visual changes, inspect rendered light/dark and responsive states. For shared theme or interaction changes, also check affected search, prose, focus, menu, and filter states. Build success alone does not verify appearance.
 
+### Applying Anthropic frontend-design
+
+The [frontend-design](.agents/skills/frontend-design/SKILL.md) skill is installed through APM and pinned to an upstream commit in `apm.yml` / `apm.lock.yaml`. Restore with `apm install --frozen --target agent-skills`. Read its instructions, plan against `docs/DESIGN.md`, implement, then critique rendered screenshots. The owner-approved direction above takes precedence over the skill’s general preferences. The first application and before/after comparisons are documented in `docs/DESIGN.md`.
+
 ### Design reviews with the impeccable skill
 
 The [impeccable](https://github.com/pbakaus/impeccable) design skill is installed with [apm](https://github.com/microsoft/apm) (`apm.yml` → `.agents/skills/impeccable`; restore with `apm install`). Agents load it as the `impeccable` skill and run its commands as `/impeccable <command> <target>`:
