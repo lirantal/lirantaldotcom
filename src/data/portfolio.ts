@@ -7,6 +7,15 @@ import serverless from '~/assets/images/book-cover-serverless-security.jpeg';
 // Curated selections, not exhaustive publication or contribution lists.
 export const papers = [
 	{
+		title:
+			'VulnBump: A Benchmark for Fixing Vulnerable Dependencies in Real Projects While Keeping the Build and Tests Green',
+		id: '2610.17374',
+		date: 'October 2026',
+		authors: 'Gabija Pasiunaite, Ryan McMorrow, Brian Clark, Liran Tal, and Luke Tu',
+		description:
+			'A benchmark of 307 dependency upgrades across 43 repositories, evaluating whether AI agents fix vulnerabilities while preserving successful builds and tests.',
+	},
+	{
 		title: 'Snyk VulnBench JS 1.0: Can LLMs Find the Same Bugs Twice?',
 		id: '2606.15762',
 		date: 'June 2026',

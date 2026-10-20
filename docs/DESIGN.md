@@ -20,7 +20,7 @@ The current sequence in [index.astro](../src/pages/index.astro) is:
 2. “Tools & resources I maintain”: three selected projects, before the long-form sections.
 3. **01 / Speaking**: stage photograph, speaking statistics, and links into the speaking hub.
 4. **02 / Blog & articles**: recent blog posts and places Liran publishes elsewhere.
-5. **03 / Research**: selected co-authored arXiv preprints.
+5. **03 / Research**: recent co-authored arXiv preprints and links to the dedicated Research hub and disclosure archive.
 6. **04 / Open source**: dated npm download evidence and a broader project selection.
 7. **05 / Books**: a curated bookshelf.
 8. Attributed community feedback, followed by the shared footer.
@@ -74,6 +74,14 @@ The portfolio wrapper is at most 72rem wide, with 1.5rem horizontal padding (1.2
 - Post dates, titles, tags, sharing controls, and covers align to that grid's left edge. The article body retains its narrower reading column. After the article, “More writing” lists three recent published posts, excluding the current post, and links to the full archive. Keep this navigation outside Pagefind's indexed article body.
 - Pagefind uses Inter, explicit placeholder contrast, visible input focus, and theme tokens. Verify populated results and clearing the query against a production build; dev mode does not generate its assets.
 - Cap recent-post descriptions on `/writing` and press-kit bio paragraphs at 65ch. Let text wrap naturally rather than inserting manual line breaks.
+
+### Research hub and archives
+
+Research now has its own `/research` hub, following Speaking's overview/subpage model while retaining the portfolio's restrained typography, rules, and blue underlined links. The homepage keeps its stable `#research` anchor and offers a compact preview; the main menu opens the hub. Research navigation uses an underline and `aria-current` for the current page, and wraps on narrow screens so every destination remains discoverable without horizontal scrolling.
+
+The overview opens with counts derived from the listed preprints and the dated advisory snapshot, plus the year of the original lockfile research. Google Scholar is linked for citations and h-index; unavailable metrics are not displayed as numeric estimates. Research areas use text-led entries separated by rules. Detail pages keep the main reading column near 68ch and place factual context in one quiet sidebar, with primary sources and related research below.
+
+The disclosure archive renders every record statically and progressively adds search, severity, and status filters. Withdrawn entries remain available with an explicit label, and are excluded from the active and critical totals. Filtering reports the visible count and provides an empty state and reset action. Keep long package names and identifiers within the viewport in both themes.
 
 ### Links and controls
 

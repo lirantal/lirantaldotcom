@@ -1,0 +1,95 @@
+---
+import Layout from '~/layouts/ResearchLayout.astro';
+import { studies, researchPages } from '~/data/research';
+import { getCanonical } from '~/utils/permalinks';
+export function getStaticPaths() {
+	return studies.map((study) => ({ params: { slug: study.slug }, props: { study } }));
+}
+const { study } = Astro.props;
+const meta = {
+	title: `${study.label} research — Liran Tal`,
+	description: study.description,
+	canonical: getCanonical(`/research/${study.slug}`),
+};
+---
+
+<Layout {meta}>
+	<header class="research-intro">
+		<p class="eyebrow">Research / {study.label}</p>
+		<h1>{study.title}</h1>
+		<p class="lede">{study.description}</p>
+	</header>
+	<div class="grid lg:grid-cols-[2fr_1fr] gap-10 lg:gap-16 items-start">
+		<div>
+			{
+				study.sections.map((section, index) => (
+					<section class="portfolio-section" aria-labelledby={`finding-${index}`}>
+						<h2 id={`finding-${index}`} class="mb-5">
+							{section.title}
+						</h2>
+						<div class="research-copy muted">
+							{section.paragraphs.map((paragraph) => (
+								<p>{paragraph}</p>
+							))}
+						</div>
+						{section.links && (
+							<ul class="source-links mt-5 text-sm">
+								{section.links.map((link) => (
+									<li>
+										<a href={link.url}>
+											{link.label} <span aria-hidden="true">↗</span>
+										</a>
+									</li>
+								))}
+							</ul>
+						)}
+					</section>
+				))
+			}
+		</div>
+		<aside class="surface" aria-label="Research at a glance">
+			<h2 class="!text-lg mb-6">At a glance</h2>
+			<dl class="research-facts">
+				{
+					study.facts.map((fact) => (
+						<div>
+							<>
+								<dt>{fact.label}</dt>
+								<dd>{fact.value}</dd>
+							</>
+						</div>
+					))
+				}
+			</dl>
+			<p class="mt-7 text-sm"><a href="#sources">Sources & attribution <span aria-hidden="true">↓</span></a></p>
+		</aside>
+	</div>
+	<section id="sources" class="portfolio-section" aria-labelledby="sources-title">
+		<h2 id="sources-title">Sources & attribution</h2>
+		<ul class="source-links mt-6 text-sm">
+			{
+				study.sources.map((source) => (
+					<li>
+						<a href={source.url}>
+							{source.label} <span aria-hidden="true">↗</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+	<nav class="portfolio-section" aria-label="Related research">
+		<h2>Continue exploring</h2>
+		<ul class="mt-5 flex flex-wrap gap-x-8 gap-y-3">
+			{
+				study.related.map((slug) => (
+					<li>
+						<a href={`/research/${slug}`}>
+							{researchPages.find((page) => page.slug === slug)?.label} <span aria-hidden="true">→</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
+</Layout>

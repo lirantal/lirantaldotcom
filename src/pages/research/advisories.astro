@@ -1,0 +1,179 @@
+---
+import Layout from '~/layouts/ResearchLayout.astro';
+import {
+	advisories,
+	activeAdvisories,
+	criticalAdvisories,
+	advisorySource,
+	researchAsOf,
+	dateLabel,
+} from '~/data/research';
+import { getCanonical } from '~/utils/permalinks';
+const withdrawnCount = advisories.length - activeAdvisories.length;
+const meta = {
+	title: 'CVEs & security advisories credited to Liran Tal',
+	description:
+		'Browse publicly credited security disclosures by Liran Tal, including command injection, path traversal, SSRF, and MCP server vulnerabilities.',
+	canonical: getCanonical('/research/advisories'),
+};
+---
+
+<Layout {meta}>
+	<header class="research-intro">
+		<p class="eyebrow">Research / Coordinated disclosure</p>
+		<h1>CVEs & security advisories.</h1>
+		<p class="lede">
+			Vulnerabilities I have received public credit for disclosing, across developer tooling, JavaScript packages,
+			runtimes, and MCP servers. Each record links to the original advisory and its remediation details.
+		</p>
+		<p class="mt-5 text-sm"><a href={advisorySource}>View my credits on GitHub <span aria-hidden="true">↗</span></a></p>
+		<dl class="research-metrics grid grid-cols-3 gap-4 mt-8">
+			<div><dt class="muted text-sm">Active advisories</dt><dd>{activeAdvisories.length}</dd></div>
+			<div><dt class="muted text-sm">Critical severity</dt><dd>{criticalAdvisories.length}</dd></div>
+			<div><dt class="muted text-sm">Withdrawn records</dt><dd>{withdrawnCount}</dd></div>
+		</dl>
+		<p class="text-sm muted mt-5 max-w-3xl">
+			GitHub snapshot: {dateLabel(researchAsOf)}. The {advisories.length} records below include {withdrawnCount} withdrawn
+			entries, which are excluded from active and critical counts. Advisory records are not necessarily distinct vulnerabilities;
+			credits may be shared with other researchers.
+		</p>
+	</header>
+	<section aria-labelledby="archive-title">
+		<h2 id="archive-title">Disclosure archive</h2>
+		<form id="advisory-filters" class="surface mt-6 mb-6" hidden role="search" aria-label="Filter advisories">
+			<div class="grid sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_auto] gap-4 items-end">
+				<div>
+					<label for="advisory-query" class="block text-sm font-medium mb-2">Search disclosures</label><input
+						id="advisory-query"
+						type="search"
+						placeholder="Package, CVE, GHSA, or vulnerability"
+						class="advisory-control w-full"
+					/>
+				</div>
+				<div>
+					<label for="advisory-severity" class="block text-sm font-medium mb-2">Severity</label><select
+						id="advisory-severity"
+						class="advisory-control w-full"
+					>
+						<option value="">All severities</option>
+						<option>Critical</option><option>High</option><option>Moderate</option><option>Low</option>
+					</select>
+				</div>
+				<div>
+					<label for="advisory-status" class="block text-sm font-medium mb-2">Status</label><select
+						id="advisory-status"
+						class="advisory-control w-full"
+						><option value="">All records</option><option value="active">Active</option><option value="withdrawn"
+							>Withdrawn</option
+						></select
+					>
+				</div>
+				<button type="reset" class="advisory-control cursor-pointer hover:underline">Reset filters</button>
+			</div>
+		</form>
+		<p id="advisory-count" role="status" aria-live="polite" class="text-sm muted my-6">
+			Showing {advisories.length} of {advisories.length} records
+		</p>
+		<div id="advisory-list">
+			{
+				advisories.map((advisory) => (
+					<article
+						class="editorial-row grid md:grid-cols-[9rem_1fr] gap-3 md:gap-8"
+						data-advisory
+						data-severity={advisory.severity}
+						data-status={advisory.withdrawn ? 'withdrawn' : 'active'}
+						data-search={`${advisory.title} ${advisory.cve || ''} ${advisory.ghsa} ${advisory.package} ${advisory.ecosystem}`.toLowerCase()}
+					>
+						<div class="text-sm muted">
+							<time datetime={advisory.published}>{dateLabel(advisory.published)}</time>
+							<p class="mt-2 font-medium">{advisory.severity} severity</p>
+							{advisory.withdrawn && (
+								<p class="mt-2 inline-block rounded border border-gray-300 dark:border-slate-600 px-2 py-1 text-xs font-semibold">
+									Withdrawn
+								</p>
+							)}
+						</div>
+						<div>
+							<h3>
+								<a href={advisory.url}>
+									{advisory.title.replaceAll('`', '')} <span aria-hidden="true">↗</span>
+								</a>
+							</h3>
+							<p class="muted text-sm mt-3">
+								{advisory.package} · {advisory.ecosystem}
+							</p>
+							<p class="muted text-xs mt-2">
+								{advisory.cve && <span>{advisory.cve} · </span>}
+								{advisory.ghsa}
+							</p>
+						</div>
+					</article>
+				))
+			}
+		</div>
+		<p id="advisory-empty" class="surface mt-6" hidden>
+			No disclosures match these filters. Try another package or CVE, or reset the filters.
+		</p>
+	</section>
+</Layout>
+
+<style>
+	.advisory-control {
+		min-height: 2.75rem;
+		padding: 0.65rem 0.75rem;
+		border: 1px solid var(--line);
+		border-radius: 0.375rem;
+		background: var(--color-white);
+		color: inherit;
+		font-size: 0.875rem;
+	}
+	:global(.dark) .advisory-control {
+		background: var(--color-slate-900);
+	}
+	.advisory-control::placeholder {
+		color: var(--ink-muted);
+	}
+	.advisory-control:focus-visible {
+		outline: 2px solid var(--link);
+		outline-offset: 3px;
+	}
+	[data-advisory][hidden] {
+		display: none;
+	}
+</style>
+
+<script>
+	const form = document.querySelector<HTMLFormElement>('#advisory-filters');
+	const query = document.querySelector<HTMLInputElement>('#advisory-query');
+	const severity = document.querySelector<HTMLSelectElement>('#advisory-severity');
+	const status = document.querySelector<HTMLSelectElement>('#advisory-status');
+	const count = document.querySelector('#advisory-count');
+	const empty = document.querySelector<HTMLElement>('#advisory-empty');
+	const records = [...document.querySelectorAll<HTMLElement>('[data-advisory]')];
+	if (form && query && severity && status && count && empty) {
+		const filter = () => {
+			const terms = query.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+			let visible = 0;
+			for (const record of records) {
+				const match =
+					terms.every((term) => record.dataset.search?.includes(term)) &&
+					(!severity.value || record.dataset.severity === severity.value) &&
+					(!status.value || record.dataset.status === status.value);
+				record.hidden = !match;
+				if (match) visible++;
+			}
+			count.textContent = `Showing ${visible} of ${records.length} records`;
+			empty.hidden = visible > 0;
+		};
+		form.hidden = false;
+		form.addEventListener('input', filter);
+		form.addEventListener('change', filter);
+		form.addEventListener('submit', (event) => event.preventDefault());
+		form.addEventListener('reset', () => {
+			query.value = '';
+			severity.value = '';
+			status.value = '';
+			filter();
+		});
+	}
+</script>

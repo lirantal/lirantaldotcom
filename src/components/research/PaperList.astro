@@ -1,0 +1,30 @@
+---
+import { papers } from '~/data/research';
+const { limit = papers.length } = Astro.props;
+---
+
+<div>
+	{
+		papers.slice(0, limit).map((paper) => (
+			<article class="editorial-row grid md:grid-cols-[9rem_1fr] gap-3 md:gap-8">
+				<div class="text-sm muted">
+					<p>{paper.date}</p>
+					<p class="text-xs mt-1">arXiv · Preprint</p>
+				</div>
+				<div>
+					<h3>
+						<a href={`https://arxiv.org/abs/${paper.id}`}>
+							{paper.title} <span aria-hidden="true">↗</span>
+						</a>
+					</h3>
+					<p class="muted mt-3 research-copy">{paper.description}</p>
+					<p class="muted text-xs mt-3">{paper.authors}</p>
+					<p class="text-sm mt-3 flex flex-wrap gap-x-5 gap-y-2">
+						<a href={`https://arxiv.org/pdf/${paper.id}`}>Read PDF</a>
+						<a href={`https://doi.org/10.48550/arXiv.${paper.id}`}>DOI: 10.48550/arXiv.{paper.id}</a>
+					</p>
+				</div>
+			</article>
+		))
+	}
+</div>
