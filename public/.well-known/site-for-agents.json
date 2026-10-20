@@ -21,6 +21,7 @@
   "agentView": "https://lirantal.com/agent-view.json",
   "agentSkills": "https://lirantal.com/.well-known/agent-skills/index.json",
   "ard": "https://lirantal.com/.well-known/ard.json",
+  "aiCatalog": "https://lirantal.com/.well-known/ai-catalog.json",
   "agentPlugin": "https://lirantal.com/plugin.json",
   "agentDocumentation": "https://lirantal.com/docs/agents.md",
   "repository": "https://github.com/lirantal/lirantaldotcom",

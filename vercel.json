@@ -36,7 +36,7 @@
       "headers": [
         {
           "key": "Link",
-          "value": "</.well-known/api-catalog>; rel=\"api-catalog\", </.well-known/ard.json>; rel=\"ard\", </.well-known/site-for-agents.json>; rel=\"describedby\", </openapi.json>; rel=\"service-desc\", </docs/agents.md>; rel=\"service-doc\""
+          "value": "</.well-known/api-catalog>; rel=\"api-catalog\", </.well-known/ard.json>; rel=\"ard\", </.well-known/ai-catalog.json>; rel=\"ai-catalog\", </.well-known/site-for-agents.json>; rel=\"describedby\", </openapi.json>; rel=\"service-desc\", </docs/agents.md>; rel=\"service-doc\""
         }
       ]
     },
@@ -46,6 +46,19 @@
         {
           "key": "Content-Type",
           "value": "application/linkset+json; profile=\"https://www.rfc-editor.org/info/rfc9727\""
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/ai-catalog.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
         }
       ]
     },

@@ -27,7 +27,8 @@
     "health": "https://lirantal.com/health.json",
     "llms": "https://lirantal.com/llms.txt",
     "agentSkills": "https://lirantal.com/.well-known/agent-skills/index.json",
-    "agentResourceDiscovery": "https://lirantal.com/.well-known/ard.json"
+    "agentResourceDiscovery": "https://lirantal.com/.well-known/ard.json",
+    "aiCatalog": "https://lirantal.com/.well-known/ai-catalog.json"
   },
   "notes": [
     "The posts endpoint returns metadata; each item includes a Markdown URL for its full article.",

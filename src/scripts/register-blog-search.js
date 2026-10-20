@@ -102,27 +102,34 @@ if (form && input && status && resultsList) {
 
 	const modelContext = document.modelContext ?? navigator.modelContext;
 	if (modelContext && typeof modelContext.registerTool === 'function') {
+		const registrationController = new AbortController();
+		window.addEventListener('pagehide', (event) => {
+			if (!event.persisted) registrationController.abort();
+		});
 		void modelContext
-			.registerTool({
-				name: 'search_blog_posts',
-				description:
-					"Search Liran Tal's published blog posts by topic. Returns matching article titles, summaries, dates, canonical URLs, and Markdown URLs.",
-				inputSchema: {
-					type: 'object',
-					properties: {
-						query: {
-							type: 'string',
-							description: 'A topic, keyword, project, or technology to find in article metadata.',
+			.registerTool(
+				{
+					name: 'search_blog_posts',
+					description:
+						"Search Liran Tal's published blog posts by topic. Returns matching article titles, summaries, dates, canonical URLs, and Markdown URLs.",
+					inputSchema: {
+						type: 'object',
+						properties: {
+							query: {
+								type: 'string',
+								description: 'A topic, keyword, project, or technology to find in article metadata.',
+							},
 						},
+						required: ['query'],
 					},
-					required: ['query'],
+					annotations: { readOnlyHint: true, untrustedContentHint: true },
+					execute: async ({ query }, { signal } = {}) => ({
+						query,
+						results: await findPosts(query, signal),
+					}),
 				},
-				annotations: { readOnlyHint: true, untrustedContentHint: true },
-				execute: async ({ query }, { signal } = {}) => ({
-					query,
-					results: await findPosts(query, signal),
-				}),
-			})
+				{ signal: registrationController.signal }
+			)
 			.catch((error) => console.warn('Could not register the blog search WebMCP tool.', error));
 	}
 }

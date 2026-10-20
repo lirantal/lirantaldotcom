@@ -1,0 +1,24 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Liran Tal",
+    "identifier": "lirantal.com",
+    "documentationUrl": "https://lirantal.com/developers"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:lirantal.com:api:website",
+      "displayName": "Liran Tal Read-only Website API",
+      "type": "application/vnd.oai.openapi+json;version=3.1.0",
+      "url": "https://lirantal.com/openapi.json",
+      "description": "Public, unauthenticated read-only endpoints for published blog post metadata, Markdown articles, RSS, and service health."
+    },
+    {
+      "identifier": "urn:air:lirantal.com:skill:lirantal-blog-research",
+      "displayName": "Liran Tal Blog Research Skill",
+      "type": "text/markdown",
+      "url": "https://lirantal.com/skills/lirantal-blog-research/SKILL.md",
+      "description": "Instructions for agents to find, read, and cite Liran Tal's technical writing."
+    }
+  ]
+}

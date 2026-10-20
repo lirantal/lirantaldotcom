@@ -22,6 +22,9 @@ This is Liran Tal's personal website and technical blog. Use the site to find pu
 - Discovery metadata: [site-for-agents.json](https://lirantal.com/.well-known/site-for-agents.json)
 - Agent skill index: [agent-skills/index.json](https://lirantal.com/.well-known/agent-skills/index.json)
 - ARD manifest: [ard.json](https://lirantal.com/.well-known/ard.json)
+- AI catalog compatibility endpoint: [ai-catalog.json](https://lirantal.com/.well-known/ai-catalog.json)
+
+The ARD manifest carries capability and representative-query metadata. The AI Catalog endpoint lists the same resources using the AI Catalog entry schema.
 
 These are public, read-only resources and need no authentication. There is no dedicated MCP server or write API. Use `/robots.txt` as the source of truth for crawler and AI-use preferences.
 

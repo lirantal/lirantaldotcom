@@ -1,10 +1,16 @@
 {
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Liran Tal",
+    "identifier": "lirantal.com",
+    "documentationUrl": "https://lirantal.com/developers"
+  },
   "entries": [
     {
       "@context": "https://agenticresourcediscovery.org/context/v1",
       "identifier": "urn:air:lirantal.com:api:website",
       "displayName": "Liran Tal Read-only Website API",
-      "type": "application/json",
+      "type": "application/vnd.oai.openapi+json;version=3.1.0",
       "url": "https://lirantal.com/openapi.json",
       "capabilities": ["ListBlogPosts", "ReadBlogContent", "ReadRssFeed"],
       "description": "Public, unauthenticated read-only endpoints for published blog post metadata, Markdown articles, RSS, and service health.",
