@@ -163,8 +163,12 @@ async function configureVercelOutput(routes) {
 	const existingRoutes = Array.isArray(config.routes) ? config.routes : [];
 	const agentViewRoute = {
 		src: '^/$',
+		methods: ['GET', 'HEAD'],
 		has: [{ type: 'query', key: 'mode', value: 'agent' }],
-		headers: { 'Content-Type': 'application/json; charset=utf-8' },
+		headers: {
+			'Content-Type': 'application/json; charset=utf-8',
+			'Access-Control-Allow-Origin': '*',
+		},
 		dest: '/agent-view.json',
 	};
 	const markdownNegotiationRoutes = routes.flatMap((route) => [
