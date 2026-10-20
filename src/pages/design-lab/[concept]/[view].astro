@@ -1,0 +1,320 @@
+---
+import Arrow from '~/components/design-lab/Arrow.astro';
+import PreviewLayout from '~/components/design-lab/PreviewLayout.astro';
+import { concepts, views, previewURL } from '~/components/design-lab/concepts';
+import type { Concept, View } from '~/components/design-lab/concepts';
+import { Image } from 'astro:assets';
+import Picture from '~/components/core/Picture.astro';
+import { fetchPosts } from '~/utils/posts';
+import { findImage } from '~/utils/images';
+import { getPermalink } from '~/utils/permalinks';
+import { PROFILE } from '~/config.mjs';
+import { papers, projects } from '~/data/portfolio';
+import portrait from '~/assets/images/liran-tal-portrait.jpg';
+import stage from '~/assets/images/speaking-hero.jpg';
+export function getStaticPaths() {
+	return concepts.flatMap((concept) =>
+		views.map((view) => ({ params: { concept: concept.id, view }, props: { concept, view } }))
+	);
+}
+interface Props {
+	concept: Concept;
+	view: View;
+}
+const { concept, view } = Astro.props;
+const posts = (await fetchPosts()).slice(0, 6);
+const covers = await Promise.all(posts.map((post) => findImage(post.image)));
+const article = posts[0];
+const Article = article.Content;
+const date = (value: string) =>
+	new Date(value).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+const link = (target: View) => previewURL(concept.id, target);
+const title = view === 'article' ? article.title : view === 'writing' ? 'Writing' : 'Liran Tal';
+---
+
+<PreviewLayout {concept} {view} {title}>
+	<div class="concept-shell">
+		<header class="concept-header">
+			<a class="wordmark" href={link('home')}>Liran Tal<span class="wordmark-dot" aria-hidden="true">.</span></a>
+			<p class="rail-note">Security researcher.<br />Author. Open-source maintainer.</p>
+			<nav aria-label="Site navigation">
+				<a href={link('writing')} aria-current={view === 'writing' || view === 'article' ? 'page' : undefined}
+					>Writing</a
+				>
+				<a href="/research">Research</a>
+				<a href={view === 'home' ? '#tools' : `${link('home')}#tools`}>Open source</a>
+				<a href="/speaking">Speaking</a>
+			</nav>
+			<div class="rail-profile">
+				<Image src={portrait} alt="Liran Tal" width={112} height={112} loading="eager" />
+				<p>I head Developer Relations at <a href="https://snyk.io/contributors/liran-tal/">Snyk</a>.</p>
+				<a href={PROFILE.githubURL}>GitHub</a><a href={PROFILE.twitterURL}>X / Twitter</a><a href={PROFILE.linkedinURL}
+					>LinkedIn</a
+				>
+			</div>
+		</header>
+		<main id="preview-main" class:list={['concept-main', `view-${view}`]} tabindex="-1">
+			{
+				view === 'home' && (
+					<>
+						<section class="concept-hero" aria-labelledby="hero-title">
+							<div class="hero-copy">
+								<p class="intro-note">Security, software, and the people building it.</p>
+								<h1 id="hero-title">Securing the agentic future.</h1>
+								<p class="hero-description">
+									I research emerging threats and build open-source defenses for AI agents, the software they write, and
+									the tools they trust.
+								</p>
+								<div class="hero-actions">
+									<>
+										<a class="primary-link" href={link('writing')}>
+											Explore my writing <Arrow />
+										</a>
+										<a href="/speaking">Invite me to speak</a>
+									</>
+								</div>
+								<p class="hero-credentials">
+									GitHub Star. OpenJS Security Pathfinder.
+									<br />I head Developer Relations at <a href="https://snyk.io/contributors/liran-tal/">Snyk</a>.
+								</p>
+							</div>
+							<figure class="hero-photo">
+								{concept.id === 'after-hours' ? (
+									<Image
+										src={stage}
+										alt="Liran presenting at JSNation US 2025"
+										widths={[480, 960]}
+										sizes="(max-width: 800px) 100vw, 560px"
+										loading="eager"
+										fetchpriority="high"
+									/>
+								) : (
+									<Image
+										src={portrait}
+										alt="Liran Tal"
+										widths={[240, 480]}
+										sizes="(max-width: 800px) 160px, 320px"
+										loading="eager"
+										fetchpriority="high"
+									/>
+								)}
+								<figcaption>
+									{concept.id === 'after-hours'
+										? 'From the terminal to the stage. JSNation US, 2025.'
+										: 'Researching how systems fail. Building what helps.'}
+								</figcaption>
+							</figure>
+						</section>
+						<section class="home-writing" aria-labelledby="home-writing-title">
+							<div class="section-label">
+								<>
+									<h2 id="home-writing-title">Recent writing</h2>
+									<a href={link('writing')}>All articles</a>
+								</>
+							</div>
+							<div class="home-stories">
+								{posts.slice(0, 3).map((post, index) => (
+									<article class:list={['story', { 'lead-story': index === 0 }]}>
+										{index === 0 && covers[index] && (
+											<a class="story-image" href={link('article')} tabindex="-1" aria-hidden="true">
+												<Picture
+													src={covers[index]}
+													alt=""
+													widths={[480, 960]}
+													sizes="(max-width: 800px) 100vw, 620px"
+												/>
+											</a>
+										)}
+										<div class="story-copy">
+											<p class="story-meta">
+												<time datetime={new Date(post.pubDate).toISOString()}>{date(post.pubDate)}</time>
+											</p>
+											<h3>
+												<a href={index === 0 ? link('article') : getPermalink(post.slug, 'post')}>{post.title}</a>
+											</h3>
+											<p>{post.description}</p>
+											<a class="read-link" href={index === 0 ? link('article') : getPermalink(post.slug, 'post')}>
+												Read article <Arrow />
+											</a>
+										</div>
+									</article>
+								))}
+							</div>
+						</section>
+						<section id="tools" class="tools-section" aria-labelledby="tools-title">
+							<div class="section-label">
+								<>
+									<h2 id="tools-title">Built to be useful.</h2>
+									<a href={PROFILE.githubURL}>All projects on GitHub</a>
+								</>
+							</div>
+							<div class="tool-list">
+								{projects.slice(0, 3).map((project) => (
+									<article>
+										<p class="story-meta">{project.kind}</p>
+										<h3>
+											<a href={project.url}>
+												{project.name} <Arrow />
+											</a>
+										</h3>
+										<p>{project.description}</p>
+									</article>
+								))}
+							</div>
+						</section>
+						<section class="research-section" aria-labelledby="papers-title">
+							<div class="section-label">
+								<>
+									<h2 id="papers-title">Research in the open.</h2>
+									<a href="/research">Research & disclosures</a>
+								</>
+							</div>
+							{papers.map((paper) => (
+								<article class="paper-row">
+									<p class="story-meta">
+										{paper.date}
+										<br />
+										Co-authored arXiv preprint
+									</p>
+									<div>
+										<h3>
+											<a href={`https://arxiv.org/abs/${paper.id}`}>{paper.title}</a>
+										</h3>
+										<p>{paper.description}</p>
+										<p class="paper-authors">{paper.authors}</p>
+									</div>
+								</article>
+							))}
+						</section>
+					</>
+				)
+			}
+			{
+				view === 'writing' && (
+					<>
+						<section class="writing-intro" aria-labelledby="writing-title">
+							<>
+								<p class="intro-note">Notes from the work.</p>
+								<h1 id="writing-title">
+									Thinking out loud.
+									<br />
+									Building in the open.
+								</h1>
+								<p class="hero-description">
+									Practical writing on AI agents, Node.js security, and the tools I use along the way.
+								</p>
+								<div class="writing-actions">
+									<>
+										<a href="/blog">Search the full archive</a>
+										<a href="/rss.xml">Subscribe via RSS</a>
+									</>
+								</div>
+							</>
+						</section>
+						<div class="writing-layout">
+							<>
+								<section class="writing-stories" aria-label="Recent articles">
+									{posts.map((post, index) => (
+										<article class="story">
+											{covers[index] && (
+												<a
+													class="story-image"
+													href={index === 0 ? link('article') : getPermalink(post.slug, 'post')}
+													tabindex="-1"
+													aria-hidden="true"
+												>
+													<Picture
+														src={covers[index]}
+														alt=""
+														widths={[400, 800]}
+														sizes="(max-width: 800px) 100vw, 520px"
+														loading={index === 0 ? 'eager' : 'lazy'}
+													/>
+												</a>
+											)}
+											<div class="story-copy">
+												<p class="story-meta">
+													<time datetime={new Date(post.pubDate).toISOString()}>{date(post.pubDate)}</time>
+												</p>
+												<h2>
+													<a href={index === 0 ? link('article') : getPermalink(post.slug, 'post')}>{post.title}</a>
+												</h2>
+												<p>{post.description}</p>
+												<a class="read-link" href={index === 0 ? link('article') : getPermalink(post.slug, 'post')}>
+													Read article <Arrow />
+												</a>
+											</div>
+										</article>
+									))}
+								</section>
+								<aside class="writing-aside">
+									<>
+										<h2>Elsewhere I write</h2>
+										<p>More practical security writing, beyond this blog.</p>
+										<a href="https://www.nodejs-security.com/blog">Node.js Security</a>
+										<a href="https://snyk.io/blog/author/liran-tal/">Snyk</a>
+										<hr />
+										<p>Looking for the research?</p>
+										<a href="/research">Papers & security disclosures</a>
+									</>
+								</aside>
+							</>
+						</div>
+					</>
+				)
+			}
+			{
+				view === 'article' && (
+					<article class="article-preview">
+						<header class="article-header">
+							<>
+								<a href={link('writing')}>Back to writing</a>
+								<p class="story-meta">
+									<time datetime={new Date(article.pubDate).toISOString()}>{date(article.pubDate)}</time>
+								</p>
+								<h1>{article.title}</h1>
+								<p class="hero-description">{article.description}</p>
+								<div class="article-byline">
+									<>
+										<Image src={portrait} alt="" width={40} height={40} />
+										<span>By Liran Tal</span>
+										<a href={getPermalink(article.slug, 'post')}>Original article</a>
+									</>
+								</div>
+							</>
+						</header>
+						{covers[0] && (
+							<Picture
+								class="article-cover"
+								src={covers[0]}
+								alt="Illustration accompanying the self-hosted Hermes Agent guide"
+								widths={[640, 1200]}
+								sizes="(max-width: 800px) 100vw, 1000px"
+								loading="eager"
+							/>
+						)}
+						<div class="reading-body" id="article-body">
+							<Article />
+						</div>
+						<footer class="article-end">
+							<>
+								<h2>Keep exploring.</h2>
+								<a href={link('writing')}>More writing by Liran</a>
+								<a href="/rss.xml">Subscribe via RSS</a>
+							</>
+						</footer>
+					</article>
+				)
+			}
+		</main>
+		<footer class="concept-footer">
+			<p>Liran Tal<br /><span>Security researcher, author, open-source maintainer.</span></p><nav
+				aria-label="Social profiles"
+			>
+				<a href={PROFILE.githubURL}>GitHub</a><a href={PROFILE.twitterURL}>X / Twitter</a><a href={PROFILE.linkedinURL}
+					>LinkedIn</a
+				><a href="/rss.xml">RSS</a>
+			</nav><a href="/">Current website</a>
+		</footer>
+	</div>
+</PreviewLayout>

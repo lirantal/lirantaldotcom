@@ -1,0 +1,50 @@
+---
+import type { Concept, View } from './concepts';
+import { concepts, views, previewURL } from './concepts';
+import './design-lab.css';
+interface Props {
+	concept?: Concept;
+	view?: View;
+	title: string;
+}
+const { concept, view = 'home', title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex, nofollow" />
+		<meta name="color-scheme" content={concept?.id === 'after-hours' ? 'dark' : 'light'} />
+		<title>{title} — Liran Tal design previews</title>
+	</head>
+	<body class="lab-body" data-concept={concept?.id || 'gallery'}>
+		<a class="lab-skip" href="#preview-main">Skip to content</a>
+		<div class="lab-toolbar">
+			<a href="/design-lab" class="lab-back">All designs</a>
+			{
+				concept && (
+					<>
+						<nav aria-label="Compare designs" class="lab-concept-nav">
+							{concepts.map((item) => (
+								<a href={previewURL(item.id, view)} aria-current={item.id === concept.id ? 'page' : undefined}>
+									{item.name}
+								</a>
+							))}
+						</nav>
+						<nav aria-label="Preview page" class="lab-view-nav">
+							{views.map((item) => (
+								<a href={previewURL(concept.id, item)} aria-current={item === view ? 'page' : undefined}>
+									{item === 'home' ? 'Homepage' : item === 'writing' ? 'Blog' : 'Article'}
+								</a>
+							))}
+						</nav>
+					</>
+				)
+			}
+			{!concept && <span>Three directions. One body of work.</span>}
+		</div>
+		<slot />
+	</body>
+</html>

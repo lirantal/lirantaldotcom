@@ -1,0 +1,65 @@
+---
+import PreviewLayout from '~/components/design-lab/PreviewLayout.astro';
+import { concepts, previewURL, views } from '~/components/design-lab/concepts';
+---
+
+<PreviewLayout title="Choose a direction">
+	<main id="preview-main" class="gallery" tabindex="-1">
+		<header class="gallery-intro">
+			<h1>A different look.<br />Still unmistakably Liran.</h1><p>
+				Three working design directions for the same website. Explore the homepage, blog, and a real article in each.
+				These are proposals to compare before choosing what to bring into the site.
+			</p><a href="/">Compare with the current website</a>
+		</header>
+		<div class="gallery-grid">
+			{
+				concepts.map((concept) => (
+					<article class="concept-card">
+						<a href={previewURL(concept.id)} aria-label={`Explore ${concept.name}`}>
+							<img
+								src={`/design-lab/${concept.id}.webp`}
+								alt={`${concept.name} homepage preview`}
+								width="900"
+								height="625"
+							/>
+						</a>
+						<div class="concept-card-copy">
+							<>
+								<h2>{concept.name}</h2>
+								<p class="concept-subtitle">{concept.subtitle}</p>
+								<div class="concept-palette" aria-hidden="true">
+									{concept.palette.map((color) => (
+										<span style={{ background: color }} />
+									))}
+								</div>
+								<p>{concept.description}</p>
+								<p>{concept.tradeoff}</p>
+								<nav aria-label={`${concept.name} pages`}>
+									{views.map((view) => (
+										<a href={previewURL(concept.id, view)}>
+											{view === 'home' ? 'Homepage' : view === 'writing' ? 'Blog' : 'Article'}
+										</a>
+									))}
+								</nav>
+							</>
+						</div>
+					</article>
+				))
+			}
+		</div>
+		<section class="gallery-guide" aria-label="How to compare">
+			<div>
+				<h2>Look beyond the first screen.</h2><p>
+					Open the blog and article views. Compare how quickly you can find something to read, how the text feels on a
+					long page, and whether the design still works on your phone. The design switcher keeps you on the same page
+					type.
+				</p>
+			</div><div>
+				<h2>Pick a direction, then refine it.</h2><p>
+					You can choose one concept or specific parts of several. The next iteration carries that choice through
+					search, books, speaking, research, light/dark behavior, and the rest of the website.
+				</p>
+			</div>
+		</section>
+	</main>
+</PreviewLayout>

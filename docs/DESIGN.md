@@ -152,3 +152,7 @@ Measure contrast against actual rendered backgrounds, including cards and select
 8. **Separate local, preview, and production evidence.** A portal may serve an older static build until rebuilt. For a reported missing image, inspect the requested URL and responsive `srcset`, status codes, and browser decoding before replacing the asset. A passing Vercel preview is not proof of production deployment or a fresh bot review. Keep those distinctions in delivery reports.
 
 Update this guide when a later review changes a design decision. Keep short, durable rules in `AGENTS.md`; keep rationale, alternatives, and visual conventions here rather than duplicating the full guide in agent instructions.
+
+## Theme exploration
+
+The owner requested visibly different themes after reverting PR #27. The isolated `/design-lab` gallery compares Fieldnotes, Signal, and After Hours across homepage, blog listing, and article views using Anthropic’s frontend-design skill. [The exploration brief and review](design-review/FRONTEND-CONCEPTS.md) authorize deviations from the incumbent type, palette, and composition on those routes only. No proposed theme has been selected for production.
