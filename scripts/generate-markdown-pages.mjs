@@ -46,30 +46,32 @@ for (const htmlFile of htmlFiles) {
 	generated += 1;
 }
 
-const postApiPath = path.join(site, 'api', 'posts.json');
-try {
-	const postApi = JSON.parse(await fs.readFile(postApiPath, 'utf8'));
-	const apiMarkdown = apiJsonToMarkdown(postApi);
-	const markdownPath = path.join('api', 'posts.json.md');
+// Include every static API response and llms.txt index, including all cursor pages.
+for (const resourceFile of await collectResourceFiles(site)) {
+	const relativePath = path.relative(site, resourceFile);
+	const source = `/${relativePath.split(path.sep).join('/')}`;
+	const content = await fs.readFile(resourceFile, 'utf8');
+	const markdown = resourceFile.endsWith('.json')
+		? apiJsonToMarkdown(JSON.parse(content), source)
+		: headingLedMarkdown(content, 'Liran Tal agent resources');
+	const markdownPath = `${relativePath}.md`;
 	const outputFile = path.join(outputRoot, markdownPath);
 	const pageMarkdownFile = path.join(site, markdownPath);
 	await fs.mkdir(path.dirname(outputFile), { recursive: true });
-	await fs.writeFile(outputFile, `${apiMarkdown}\n`);
+	await fs.writeFile(outputFile, `${markdown}\n`);
 	await fs.mkdir(path.dirname(pageMarkdownFile), { recursive: true });
-	await fs.writeFile(pageMarkdownFile, `${apiMarkdown}\n`);
+	await fs.writeFile(pageMarkdownFile, `${markdown}\n`);
 	await syncMarkdownTwinToVercel(pageMarkdownFile, markdownPath);
 	markdownRoutes.push({
-		source: '/api/posts.json',
+		source,
 		filePath: markdownPath,
-		destination: '/_markdown/api/posts.json.md',
-		tokens: estimateTokenCount(apiMarkdown),
+		destination: `/_markdown/${markdownPath.split(path.sep).join('/')}`,
+		tokens: estimateTokenCount(markdown),
 	});
 	generated += 1;
-} catch (error) {
-	if (error.code !== 'ENOENT') throw error;
 }
 
-const notFoundMarkdown = `---\ntitle: Page not found — Liran Tal\ndescription: This URL does not match a published page on lirantal.com.\ncanonical: https://lirantal.com/404\n---\n\n# Page not found\n\nThis URL does not match a published page on lirantal.com. Browse the [site index](https://lirantal.com/llms.txt) or [developer resources](https://lirantal.com/developers).`;
+const notFoundMarkdown = `# Page not found\n\nThis URL does not match a published page on lirantal.com. Browse the [site index](https://lirantal.com/llms.txt) or [developer resources](https://lirantal.com/developers).`;
 const notFoundMarkdownFile = path.join(outputRoot, '404.md');
 await fs.mkdir(path.dirname(notFoundMarkdownFile), { recursive: true });
 await fs.writeFile(notFoundMarkdownFile, `${notFoundMarkdown}\n`);
@@ -259,30 +261,51 @@ function htmlToMarkdown(html) {
 	const jsonLd = extractJsonLd(html);
 	const body = extractContentHtml(html);
 	const markdownBody = normalizeMarkdown(turndown.turndown(body));
-	const pageHeading = markdownBody.startsWith('# ') ? '' : `# ${metadata.title || 'Liran Tal'}\n\n`;
 	const jsonLdBlock = jsonLd.length > 0 ? `\n\n\`\`\`json\n${jsonLd.join('\n')}\n\`\`\`` : '';
-	const frontmatter = [
-		'---',
-		`title: ${JSON.stringify(metadata.title || 'Liran Tal')}`,
-		...(metadata.description ? [`description: ${JSON.stringify(metadata.description)}`] : []),
-		...(metadata.canonical ? [`canonical: ${JSON.stringify(metadata.canonical)}`] : []),
-		'---',
-	].join('\n');
+	const details = [metadata.description, metadata.canonical ? `Canonical: ${metadata.canonical}` : '']
+		.filter(Boolean)
+		.join('\n\n');
+	const headingLed = headingLedMarkdown(markdownBody, metadata.title || 'Liran Tal');
+	const headingEnd = headingLed.indexOf('\n');
+	const heading = headingEnd === -1 ? headingLed : headingLed.slice(0, headingEnd);
+	const rest = headingEnd === -1 ? '' : headingLed.slice(headingEnd).trim();
 
-	return `${frontmatter}\n\n${pageHeading}${markdownBody}${jsonLdBlock}`.trim();
+	return [heading, details, rest].filter(Boolean).join('\n\n') + jsonLdBlock;
 }
 
-function apiJsonToMarkdown(collection) {
-	const frontmatter = [
-		'---',
-		'title: "Liran Tal published blog posts API"',
-		'description: "Markdown representation of the public, read-only published post metadata API."',
-		'canonical: "https://lirantal.com/api/posts.json"',
-		'---',
-	].join('\n');
-	const records = Array.isArray(collection.items) ? collection.items.length : 0;
+function headingLedMarkdown(markdown, title) {
+	const body = markdown.trim();
+	return body.startsWith('# ') ? body : `# ${title}\n\n${body}`;
+}
 
-	return `${frontmatter}\n\n# Published blog posts API\n\n${collection.description || 'Published post metadata from lirantal.com.'}\n\nThis response contains ${records} published post records. For pagination, use [the first cursor page](https://lirantal.com/api/posts/cursor/0.json).\n\n## JSON response\n\n\`\`\`json\n${JSON.stringify(collection, null, 2)}\n\`\`\``;
+function apiJsonToMarkdown(collection, source) {
+	const records = Array.isArray(collection.items) ? collection.items.length : 0;
+	const pagination = Array.isArray(collection.items)
+		? `\n\nThis response contains ${records} published post records. For pagination, use [the first cursor page](https://lirantal.com/api/posts/cursor/0.json).`
+		: '';
+
+	return `# ${collection.name || 'Liran Tal public API'}\n\n${collection.description || 'Public, read-only response from lirantal.com.'}\n\nCanonical: https://lirantal.com${source}${pagination}\n\n## JSON response\n\n\`\`\`json\n${JSON.stringify(collection, null, 2)}\n\`\`\``;
+}
+
+async function collectResourceFiles(directory) {
+	const entries = await fs.readdir(directory, { withFileTypes: true });
+	const files = [];
+
+	for (const entry of entries) {
+		// Skip generated content, search indexes, assets, and internal error payloads.
+		if (entry.name.startsWith('_') || entry.name.startsWith('.') || entry.name === 'pagefind') continue;
+		const fullPath = path.join(directory, entry.name);
+		if (entry.isDirectory()) {
+			files.push(...(await collectResourceFiles(fullPath)));
+		} else if (entry.isFile()) {
+			const relativePath = path.relative(site, fullPath).split(path.sep).join('/');
+			if (entry.name === 'llms.txt' || (relativePath.startsWith('api/') && /\.(json|txt)$/.test(entry.name))) {
+				files.push(fullPath);
+			}
+		}
+	}
+
+	return files;
 }
 
 function extractMetadata(html) {

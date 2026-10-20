@@ -32,6 +32,6 @@ The full posts endpoint returns all published records. To page through the same 
 
 ## Markdown
 
-HTML pages advertise a Markdown alternate. The homepage has a Markdown twin at `/index.md`; for a page such as `/blog/example`, append `.md` to get `/blog/example.md`. Production also supports `Accept: text/markdown` content negotiation.
+HTML pages advertise a Markdown alternate. The homepage has a Markdown twin at `/index.md`; for a page such as `/blog/example`, append `.md` to get `/blog/example.md`. Static API responses and `llms.txt` indexes also have twins, such as `/api/posts/cursor/0.json.md` and `/api/llms.txt.md`. Generated twins start with a top-level heading and are served as `text/markdown`. Production also supports `Accept: text/markdown` content negotiation.
 
 For build commands, site architecture, content conventions, and repository changes, read the [repository agent guide](https://github.com/lirantal/lirantaldotcom/blob/main/AGENTS.md).
