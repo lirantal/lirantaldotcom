@@ -1,4 +1,7 @@
 {
+  "version": "1.0",
+  "mode": "agent",
+  "agentModeUrl": "https://lirantal.com/?mode=agent",
   "name": "Liran Tal personal website and blog",
   "url": "https://lirantal.com",
   "description": "AI security research, open-source projects, books, talks, and articles on AI agents, MCP, Node.js, and software supply-chain security.",
@@ -9,9 +12,41 @@
   ],
   "access": {
     "authentication": "none",
+    "apiKeyRequired": false,
+    "methods": ["GET", "HEAD"],
     "readOnly": true,
     "mcpServer": null
   },
+  "capabilities": [
+    {
+      "id": "list_posts",
+      "description": "Retrieve all published blog post metadata, sorted newest first. Filter titles, descriptions, categories, and tags locally.",
+      "method": "GET",
+      "url": "https://lirantal.com/api/posts.json",
+      "responseType": "application/json"
+    },
+    {
+      "id": "paginate_posts",
+      "description": "Retrieve up to 50 published posts per page. Start at cursor 0, follow nextCursor at /api/posts/cursor/{cursor}.json, and stop when nextCursor is null.",
+      "method": "GET",
+      "url": "https://lirantal.com/api/posts/cursor/0.json",
+      "responseType": "application/json"
+    },
+    {
+      "id": "read_article",
+      "description": "Fetch the markdownUrl returned by a post metadata record to read the complete article.",
+      "method": "GET",
+      "urlSource": "items[].markdownUrl",
+      "responseType": "text/markdown"
+    },
+    {
+      "id": "read_feed",
+      "description": "Read recent published articles from the RSS feed.",
+      "method": "GET",
+      "url": "https://lirantal.com/rss.xml",
+      "responseType": "application/rss+xml"
+    }
+  ],
   "developerResources": "https://lirantal.com/developers",
   "trustPages": {
     "about": "https://lirantal.com/about",

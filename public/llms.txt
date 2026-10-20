@@ -26,6 +26,7 @@ The public site is read-only and requires no authentication. It does not provide
 - [Sitemap](https://lirantal.com/sitemap-index.xml)
 - [Health status](https://lirantal.com/health.json)
 - [Agent-specific structured view](https://lirantal.com/agent-view.json)
+- [Homepage in agent mode](https://lirantal.com/?mode=agent) — JSON capabilities, API endpoints, and authentication requirements.
 - [Agent resources and documentation](https://lirantal.com/docs/agents.md)
 - [Agent skill index](https://lirantal.com/.well-known/agent-skills/index.json)
 - [Agent plugin manifest](https://lirantal.com/plugin.json)
