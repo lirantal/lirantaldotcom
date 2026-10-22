@@ -27,11 +27,13 @@ const { concept, view = 'home', title } = Astro.props;
 				concept && (
 					<>
 						<nav aria-label="Compare designs" class="lab-concept-nav">
-							{concepts.map((item) => (
-								<a href={previewURL(item.id, view)} aria-current={item.id === concept.id ? 'page' : undefined}>
-									{item.name}
-								</a>
-							))}
+							{concepts
+								.filter((item) => item.round === concept.round)
+								.map((item) => (
+									<a href={previewURL(item.id, view)} aria-current={item.id === concept.id ? 'page' : undefined}>
+										{item.name}
+									</a>
+								))}
 						</nav>
 						<nav aria-label="Preview page" class="lab-view-nav">
 							{views.map((item) => (
@@ -43,7 +45,7 @@ const { concept, view = 'home', title } = Astro.props;
 					</>
 				)
 			}
-			{!concept && <span>Three directions. One body of work.</span>}
+			{!concept && <span>Round two. Three light-mode directions.</span>}
 		</div>
 		<slot />
 	</body>

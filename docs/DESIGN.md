@@ -156,3 +156,5 @@ Update this guide when a later review changes a design decision. Keep short, dur
 ## Theme exploration
 
 The owner requested visibly different themes after reverting PR #27. The isolated `/design-lab` gallery compares Fieldnotes, Signal, and After Hours across homepage, blog listing, and article views using Anthropic’s frontend-design skill. [The exploration brief and review](design-review/FRONTEND-CONCEPTS.md) authorize deviations from the incumbent type, palette, and composition on those routes only. No proposed theme has been selected for production.
+
+The second round follows owner feedback: keep Manrope from After Hours, use compact sections, focus on light mode, avoid decorative divider lines, and reject the newspaper direction. The latest gallery leads with Prism, Atlas, and Lumen; first-round proposals remain in an expandable history section. [Round-two plans and review](design-review/ROUND-TWO.md) record this exploration; no production theme is selected.

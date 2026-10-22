@@ -1,0 +1,36 @@
+---
+import { previewURL, views } from './concepts';
+import type { Concept } from './concepts';
+interface Props {
+	concept: Concept;
+}
+const { concept } = Astro.props;
+---
+
+<article class="concept-card">
+	<a href={previewURL(concept.id)} aria-label={`Explore ${concept.name}`}
+		><img
+			src={`/design-lab/${concept.id}.webp`}
+			alt={`${concept.name} homepage preview`}
+			width="900"
+			height="625"
+			loading={concept.round === 2 ? 'eager' : 'lazy'}
+		/></a
+	>
+	<div class="concept-card-copy">
+		<h2>{concept.name}</h2><p class="concept-subtitle">{concept.subtitle}</p><div
+			class="concept-palette"
+			aria-hidden="true"
+		>
+			{concept.palette.map((color) => <span style={{ background: color }} />)}
+		</div><p>{concept.description}</p><p>{concept.tradeoff}</p><nav aria-label={`${concept.name} pages`}>
+			{
+				views.map((view) => (
+					<a href={previewURL(concept.id, view)}>
+						{view === 'home' ? 'Homepage' : view === 'writing' ? 'Blog' : 'Article'}
+					</a>
+				))
+			}
+		</nav>
+	</div>
+</article>

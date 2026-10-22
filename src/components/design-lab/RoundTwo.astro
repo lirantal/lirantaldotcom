@@ -1,0 +1,547 @@
+---
+import type { Concept, View } from './concepts';
+import { previewURL } from './concepts';
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import Arrow from './Arrow.astro';
+import Picture from '~/components/core/Picture.astro';
+import { fetchPosts } from '~/utils/posts';
+import { findImage } from '~/utils/images';
+import { getPermalink } from '~/utils/permalinks';
+import { PROFILE } from '~/config.mjs';
+import { projects, papers, books } from '~/data/portfolio';
+import { community } from '~/data/community';
+import portrait from '~/assets/images/liran-tal-portrait.jpg';
+import stage from '~/assets/images/speaking-hero.jpg';
+import './round-two.css';
+interface Props {
+	concept: Concept;
+	view: View;
+}
+const { concept, view } = Astro.props;
+const posts = (await fetchPosts()).slice(0, 6);
+const covers = await Promise.all(posts.map((post) => findImage(post.image)));
+const article = posts[0];
+const Article = article.Content;
+const link = (target: View) => previewURL(concept.id, target);
+const postURL = (index: number) => (index === 0 ? link('article') : getPermalink(posts[index].slug, 'post'));
+const date = (value: string) =>
+	new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+const tags = [...new Set(posts.flatMap((post) => (post.tags || []).slice(0, 1)))].slice(0, 3) as string[];
+const iconNames = ['tabler:shield-check', 'tabler:package', 'tabler:terminal-2'];
+---
+
+<div class="r2">
+	<header class="r2-header">
+		<a class="r2-brand" href={link('home')}
+			><span class="r2-monogram" aria-hidden="true">lt</span><span
+				>Liran Tal<span class="r2-brand-note">Security researcher & builder</span></span
+			></a
+		><nav aria-label="Site navigation">
+			<a href={link('writing')} aria-current={view !== 'home' ? 'page' : undefined}>Writing</a><a href="/research"
+				>Research</a
+			><a href={view === 'home' ? '#tools' : `${link('home')}#tools`}>Open source</a><a href="/speaking">Speaking</a>
+		</nav><a class="r2-contact" href="/speaking/press-kit">Let’s connect <Arrow /></a>
+	</header>
+	<main id="preview-main" class:list={['r2-main', `r2-${view}`]} tabindex="-1">
+		{
+			view === 'home' && (
+				<>
+					<section class="r2-hero" aria-labelledby="r2-title">
+						<div class="r2-identity">
+							<>
+								<Image
+									src={portrait}
+									alt="Liran Tal"
+									widths={[240, 480]}
+									sizes="(max-width: 700px) 200px, 320px"
+									loading="eager"
+								/>
+								<div>
+									<>
+										<strong>Liran Tal</strong>
+										<p>
+											Researcher. Author.
+											<br />
+											Open-source maintainer.
+										</p>
+										<a href={PROFILE.githubURL}>
+											GitHub <Arrow />
+										</a>
+									</>
+								</div>
+							</>
+						</div>
+						<div class="r2-intro">
+							<>
+								<p class="r2-hello">Hi, I’m Liran.</p>
+								<h1 id="r2-title">
+									Securing the
+									<br class="r2-hero-break" /> agentic future.
+								</h1>
+								<p class="r2-lede">
+									I research emerging threats and build open-source defenses for AI agents, the software they write, and
+									the tools they trust.
+								</p>
+								<div class="r2-actions">
+									<>
+										<a class="r2-button" href={link('writing')}>
+											Explore my writing <Arrow />
+										</a>
+										<a href="/speaking">Invite me to speak</a>
+									</>
+								</div>
+								<div class="r2-credentials">
+									<>
+										<span>
+											<Icon name="tabler:award" aria-hidden="true" />
+											GitHub Star
+										</span>
+										<span>OpenJS Security Pathfinder</span>
+									</>
+								</div>
+							</>
+						</div>
+						<div class="r2-composition">
+							<div class="r2-feature-art">
+								<>
+									<Picture
+										src={covers[0]}
+										alt="Artwork for the latest published article"
+										widths={[480, 960]}
+										sizes="(max-width: 700px) 100vw, 520px"
+										loading="eager"
+									/>
+									<a href={link('article')}>
+										<>
+											<span>Latest from the blog</span>
+											<strong>{article.title}</strong>
+											<Arrow />
+										</>
+									</a>
+								</>
+							</div>
+							<figure class="r2-stage">
+								<>
+									<Image
+										src={stage}
+										alt="Liran presenting at JSNation US 2025"
+										widths={[480, 960]}
+										sizes="(max-width: 700px) 100vw, 560px"
+										loading="eager"
+									/>
+									<figcaption>
+										<>
+											<span>From the terminal to the stage.</span>
+											<a href="/speaking/recordings">
+												Watch a talk <Arrow />
+											</a>
+										</>
+									</figcaption>
+								</>
+							</figure>
+							<div class="r2-floating-profile">
+								<>
+									<Image src={portrait} alt="Liran Tal" width={88} height={88} />
+									<span>
+										Developer Relations at <a href="https://snyk.io/contributors/liran-tal/">Snyk</a>
+									</span>
+								</>
+							</div>
+						</div>
+					</section>
+					<div class="r2-dashboard">
+						<section class="r2-tools" id="tools" aria-labelledby="r2-tools-title">
+							<>
+								<div class="r2-section-head">
+									<>
+										<h2 id="r2-tools-title">Tools I maintain</h2>
+										<a href={PROFILE.githubURL}>
+											All projects <Arrow />
+										</a>
+									</>
+								</div>
+								<div class="r2-tool-grid">
+									{projects.slice(0, 3).map((project, index) => (
+										<article>
+											<span class="r2-tool-icon">
+												<Icon name={iconNames[index]} aria-hidden="true" />
+											</span>
+											<div>
+												<h3>
+													<a href={project.url}>
+														{project.name}
+														<Arrow />
+													</a>
+												</h3>
+												<p>{project.description}</p>
+												<a class="r2-small-link" href={project.url}>
+													GitHub
+												</a>
+											</div>
+										</article>
+									))}
+								</div>
+							</>
+						</section>
+						<section class="r2-writing" aria-labelledby="r2-writing-title">
+							<>
+								<div class="r2-section-head">
+									<>
+										<div>
+											<>
+												<p>Ideas, experiments, and practical guides</p>
+												<h2 id="r2-writing-title">The latest thinking.</h2>
+											</>
+										</div>
+										<a href={link('writing')}>
+											All writing <Arrow />
+										</a>
+									</>
+								</div>
+								<div class="r2-home-stories">
+									{posts.slice(0, 3).map((post, index) => (
+										<article class:list={['r2-story', { 'r2-lead-story': index === 0 }]}>
+											<a class="r2-story-image" href={postURL(index)} tabindex="-1" aria-hidden="true">
+												<Picture
+													src={covers[index]}
+													alt=""
+													widths={[400, 800]}
+													sizes="(max-width: 700px) 100vw, 560px"
+												/>
+											</a>
+											<div class="r2-story-copy">
+												<p class="r2-meta">
+													<time datetime={new Date(post.pubDate).toISOString()}>{date(post.pubDate)}</time>
+												</p>
+												<h3>
+													<a href={postURL(index)}>{post.title}</a>
+												</h3>
+												<p>{post.description}</p>
+												<a class="r2-read" href={postURL(index)}>
+													Read article <Arrow />
+												</a>
+											</div>
+										</article>
+									))}
+								</div>
+							</>
+						</section>
+						<section class="r2-research" aria-labelledby="r2-research-title">
+							<div class="r2-section-head">
+								<>
+									<h2 id="r2-research-title">Under the surface.</h2>
+									<a href="/research">
+										Research <Arrow />
+									</a>
+								</>
+							</div>
+							<p class="r2-section-copy">Investigating how systems fail, and sharing what we learn.</p>
+							{papers.slice(0, 2).map((paper) => (
+								<article>
+									<span class="r2-paper-icon">
+										<Icon name="tabler:file-search" aria-hidden="true" />
+									</span>
+									<div>
+										<p class="r2-meta">{paper.date} · Co-authored arXiv preprint</p>
+										<h3>
+											<a href={`https://arxiv.org/abs/${paper.id}`}>{paper.title}</a>
+										</h3>
+										<p class="r2-authors">{paper.authors}</p>
+									</div>
+								</article>
+							))}
+						</section>
+						<section class="r2-books" aria-labelledby="r2-books-title">
+							<>
+								<div class="r2-section-head">
+									<>
+										<div>
+											<>
+												<p>Practical security, in depth</p>
+												<h2 id="r2-books-title">Off the shelf.</h2>
+											</>
+										</div>
+										<a href="/books/nodejs-secure-coding">
+											The books <Arrow />
+										</a>
+									</>
+								</div>
+								<div class="r2-book-shelf">
+									{books.slice(0, 3).map((book) => (
+										<a href={book.url}>
+											<Image
+												src={book.image}
+												alt={book.title}
+												widths={[180, 360]}
+												sizes="(max-width: 700px) 26vw, 150px"
+											/>
+											<span>{book.title}</span>
+										</a>
+									))}
+								</div>
+							</>
+						</section>
+						<aside class="r2-community">
+							<>
+								<Icon name="tabler:quote" aria-hidden="true" />
+								<blockquote>“{community[0].quote}”</blockquote>
+								<p>
+									{community[0].name}, {community[0].role}{' '}
+									<a href={community[0].url}>
+										Original post <Arrow />
+									</a>
+								</p>
+							</>
+						</aside>
+					</div>
+				</>
+			)
+		}
+		{
+			view === 'writing' && (
+				<>
+					<header class="r2-writing-intro">
+						<>
+							<div>
+								<>
+									<p class="r2-hello">From my desk</p>
+									<h1>
+										Ideas worth
+										<br />
+										working through.
+									</h1>
+									<p class="r2-lede">
+										AI agents, software security, and the tools I build along the way. Notes from doing the work.
+									</p>
+									<div class="r2-actions">
+										<>
+											<a href="/blog">
+												Full archive & search <Arrow />
+											</a>
+											<a href="/rss.xml">Follow via RSS</a>
+										</>
+									</div>
+								</>
+							</div>
+							<aside class="r2-author-note">
+								<>
+									<Image src={portrait} alt="Liran Tal" width={72} height={72} />
+									<strong>Writing by Liran Tal</strong>
+									<p>Security researcher, author, and open-source maintainer. I head Developer Relations at Snyk.</p>
+									<a href="/speaking/press-kit">
+										More about me <Arrow />
+									</a>
+								</>
+							</aside>
+						</>
+					</header>
+					<section class="r2-browser" data-r2-browser aria-labelledby="r2-browse-title">
+						<>
+							<div class="r2-browse-controls">
+								<>
+									<h2 id="r2-browse-title">Recent articles</h2>
+									<label class="r2-search">
+										<>
+											<Icon name="tabler:search" aria-hidden="true" />
+											<span class="r2-sr-only">Filter these six articles</span>
+											<input type="search" placeholder="Find an article…" data-r2-query />
+										</>
+									</label>
+									<p class="r2-result-count" role="status" aria-live="polite" data-r2-count>
+										6 recent articles
+									</p>
+								</>
+							</div>
+							<div class="r2-topic-controls" aria-label="Filter recent articles by topic">
+								<button type="button" data-r2-topic="" aria-pressed="true">
+									All topics
+								</button>
+								{tags.map((tag) => (
+									<button type="button" data-r2-topic={tag} aria-pressed="false">
+										{tag === 'llm' ? 'LLMs' : tag === 'ai' ? 'AI' : tag.charAt(0).toUpperCase() + tag.slice(1)}
+									</button>
+								))}
+							</div>
+							<div class="r2-post-grid">
+								{posts.map((post, index) => (
+									<article
+										class="r2-post"
+										data-r2-post
+										data-search={`${post.title} ${post.description} ${(post.tags || []).join(' ')}`.toLowerCase()}
+										data-tags={JSON.stringify(post.tags || [])}
+									>
+										<a class="r2-post-image" href={postURL(index)} tabindex="-1" aria-hidden="true">
+											<Picture
+												src={covers[index]}
+												alt=""
+												widths={[400, 800]}
+												sizes="(max-width: 700px) 100vw, 650px"
+												loading={index === 0 ? 'eager' : 'lazy'}
+											/>
+										</a>
+										<div class="r2-post-copy">
+											<p class="r2-meta">
+												<time datetime={new Date(post.pubDate).toISOString()}>{date(post.pubDate)}</time>
+											</p>
+											<h2>
+												<a href={postURL(index)}>{post.title}</a>
+											</h2>
+											<p>{post.description}</p>
+											<a class="r2-read" href={postURL(index)}>
+												Read article <Arrow />
+											</a>
+										</div>
+									</article>
+								))}
+							</div>
+							<div class="r2-empty" data-r2-empty hidden>
+								<>
+									<h3>No matching articles in this selection.</h3>
+									<p>
+										Try a different search, clear the filters, or <a href="/blog">search the full archive</a>.
+									</p>
+									<button type="button" data-r2-clear>
+										Clear filters
+									</button>
+								</>
+							</div>
+						</>
+					</section>
+					<aside class="r2-elsewhere">
+						<>
+							<div>
+								<>
+									<h2>More places to find my writing.</h2>
+									<p>Practical security beyond this blog.</p>
+								</>
+							</div>
+							<a href="https://www.nodejs-security.com/blog">
+								Node.js Security <Arrow />
+							</a>
+							<a href="https://snyk.io/blog/author/liran-tal/">
+								Snyk <Arrow />
+							</a>
+							<a href="/research">
+								Research & disclosures <Arrow />
+							</a>
+						</>
+					</aside>
+				</>
+			)
+		}
+		{
+			view === 'article' && (
+				<article class="r2-article">
+					<>
+						<header class="r2-article-head">
+							<>
+								<a href={link('writing')}>Back to writing</a>
+								<p class="r2-meta">{date(article.pubDate)}</p>
+								<h1>{article.title}</h1>
+								<p class="r2-lede">{article.description}</p>
+								<div class="r2-byline">
+									<>
+										<Image src={portrait} alt="" width={44} height={44} />
+										<span>
+											<>
+												<strong>Liran Tal</strong>
+												<span>Security researcher & open-source maintainer</span>
+											</>
+										</span>
+										<a href={getPermalink(article.slug, 'post')}>
+											Original article <Arrow />
+										</a>
+									</>
+								</div>
+							</>
+						</header>
+						<div class="r2-article-layout">
+							<>
+								<aside class="r2-reading-aside">
+									<>
+										<span class="r2-reading-mark">
+											<Icon name="tabler:book" aria-hidden="true" />
+										</span>
+										<h2>A note from the work.</h2>
+										<p>Practical guides from real experiments, built to come back to.</p>
+										<a href="/rss.xml">Follow via RSS</a>
+										<a href={link('writing')}>More writing</a>
+									</>
+								</aside>
+								<div class="r2-reading-content">
+									<>
+										<Picture
+											class="r2-article-cover"
+											src={covers[0]}
+											alt={`Cover artwork for ${article.title}`}
+											widths={[640, 1200]}
+											sizes="(max-width: 700px) 100vw, 900px"
+											loading="eager"
+										/>
+										<div class="reading-body">
+											<Article />
+										</div>
+										<footer class="r2-article-end">
+											<>
+												<h2>Keep following the thread.</h2>
+												<p>More practical writing on AI agents, developer tooling, and software security.</p>
+												<a class="r2-button" href={link('writing')}>
+													Explore more writing <Arrow />
+												</a>
+											</>
+										</footer>
+									</>
+								</div>
+							</>
+						</div>
+					</>
+				</article>
+			)
+		}
+	</main>
+	<footer class="r2-footer">
+		<div class="r2-footer-brand">
+			<strong>Liran Tal</strong><p>Researching what’s next.<br />Building what helps.</p>
+		</div><nav aria-label="Social profiles">
+			<a href={PROFILE.githubURL}>GitHub</a><a href={PROFILE.twitterURL}>X / Twitter</a><a href={PROFILE.linkedinURL}
+				>LinkedIn</a
+			><a href="/rss.xml">RSS</a>
+		</nav><a href="/">Current website</a>
+	</footer>
+</div>
+<script>
+	for (const browser of document.querySelectorAll<HTMLElement>('[data-r2-browser]')) {
+		const input = browser.querySelector<HTMLInputElement>('[data-r2-query]');
+		const posts = Array.from(browser.querySelectorAll<HTMLElement>('[data-r2-post]'));
+		const buttons = Array.from(browser.querySelectorAll<HTMLButtonElement>('[data-r2-topic]'));
+		let topic = '';
+		function update() {
+			const query = (input?.value || '').trim().toLowerCase();
+			let count = 0;
+			for (const post of posts) {
+				const tags = JSON.parse(post.dataset.tags || '[]') as string[];
+				const match = (!topic || tags.includes(topic)) && (post.dataset.search || '').includes(query);
+				post.hidden = !match;
+				if (match) count++;
+			}
+			const status = browser.querySelector('[data-r2-count]');
+			if (status) status.textContent = `${count} of ${posts.length} recent articles`;
+			const empty = browser.querySelector<HTMLElement>('[data-r2-empty]');
+			if (empty) empty.hidden = count > 0;
+			for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.r2Topic === topic));
+		}
+		input?.addEventListener('input', update);
+		for (const button of buttons)
+			button.addEventListener('click', () => {
+				topic = button.dataset.r2Topic || '';
+				update();
+			});
+		browser.querySelector('[data-r2-clear]')?.addEventListener('click', () => {
+			topic = '';
+			if (input) input.value = '';
+			update();
+			input?.focus();
+		});
+	}
+</script>
