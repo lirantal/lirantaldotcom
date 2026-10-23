@@ -76,6 +76,14 @@ The portfolio wrapper is at most 72rem wide, with 1.5rem horizontal padding (1.2
 - Pagefind uses Inter, explicit placeholder contrast, visible input focus, and theme tokens. Verify populated results and clearing the query against a production build; dev mode does not generate its assets.
 - Cap recent-post descriptions on `/writing` and press-kit bio paragraphs at 65ch. Let text wrap naturally rather than inserting manual line breaks.
 
+### Recognitions
+
+- `/recognitions` opens with a compact left-aligned introduction and in-page links to awards and community appreciation. Retain the approved red-to-purple heading accent.
+- The three local award photographs use responsive rectangular frames on the shared 72rem grid. Keep the original award descriptions, OpenJS quotation, and source links.
+- Community appreciation follows the speaking testimonial pattern: bordered cards, one column on mobile, two at intermediate widths, and three on desktop. Render all entries statically; progressively enhance category checkboxes with a live result count, an empty state, and a reset action. Filtering preserves newest-first date order.
+- Portraits use committed local assets in `public/images/blog/`, with initials for people without a verified local portrait. Do not restore runtime avatar proxies. Keep source-post links and historical attribution roles.
+- The shared footer uses two link columns on narrow screens and five proportional columns on desktop, with the identity block above the links on mobile and a ruled social/copyright row.
+
 ### Research hub and archives
 
 Research now has its own `/research` hub, following Speaking's overview/subpage model while retaining the portfolio's restrained typography, rules, and blue underlined links. The homepage keeps its stable `#research` anchor and offers a compact preview; the main menu opens the hub. Research navigation uses an underline and `aria-current` for the current page, and wraps on narrow screens so every destination remains discoverable without horizontal scrolling.
