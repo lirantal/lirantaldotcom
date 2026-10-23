@@ -1,0 +1,162 @@
+---
+import itemsSeed from '~/data/recognitions.json';
+
+const categories = [
+	{ type: 'praise', label: 'Recognitions' },
+	{ type: 'award', label: 'Awards' },
+	{ type: 'shoutout', label: 'Shoutouts' },
+];
+const items = [...itemsSeed].sort((a, b) => b.date.localeCompare(a.date));
+const dateFormat = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeZone: 'UTC' });
+---
+
+<section class="portfolio-section mt-14" aria-labelledby="community-heading" data-recognitions>
+	<div class="mb-8">
+		<div>
+			<h2 id="community-heading" class="mb-3">02 / Appreciation & milestones</h2>
+			<p class="muted max-w-prose">
+				Community appreciation and recognition, alongside personal and professional achievements. Roles reflect the
+				original posts.
+			</p>
+		</div>
+	</div>
+	<fieldset class="recognition-filters mb-4 flex flex-wrap gap-3" hidden>
+		<legend class="mb-3 text-sm font-semibold">Show categories</legend>
+		{
+			categories.map(({ type, label }) => (
+				<label class="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 px-4 py-3 text-sm dark:border-slate-700">
+					<input
+						type="checkbox"
+						value={type}
+						checked
+						aria-controls="recognition-list"
+						class="h-4 w-4 accent-primary-600"
+					/>
+					{label}
+				</label>
+			))
+		}
+	</fieldset>
+	<p class="muted mb-6 text-sm" role="status" aria-live="polite" aria-atomic="true" data-recognition-count>
+		{items.length} entries · Newest first
+	</p>
+	<ul id="recognition-list" class="grid items-start gap-4 md:grid-cols-2 lg:grid-cols-3">
+		{
+			items.map((item) => (
+				<li
+					data-recognition-type={item.type}
+					class="recognition-card flex h-full min-w-0 flex-col rounded-xl border border-gray-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900"
+				>
+					<figure class="flex h-full flex-col">
+						<div class="muted mb-4 flex flex-wrap items-center justify-between gap-2 text-xs">
+							<span>{categories.find(({ type }) => type === item.type)?.label}</span>
+							<time datetime={item.date}>{dateFormat.format(new Date(`${item.date}T00:00:00Z`))}</time>
+						</div>
+						{item.type === 'award' && <h3 class="mb-3">{item.title}</h3>}
+						<blockquote class="text-gray-800 dark:text-slate-200">
+							<p dir="auto">“{item.description}”</p>
+						</blockquote>
+						<figcaption class="mt-auto pt-6">
+							<div class="flex items-center gap-3">
+								<span
+									class="recognition-avatar relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-sm font-semibold text-gray-700 dark:bg-slate-800 dark:text-slate-300"
+									aria-hidden="true"
+								>
+									{item.name
+										.split(/\s+/)
+										.slice(0, 2)
+										.map((part) => Array.from(part)[0])
+										.join('')}
+									{item.profile_image && (
+										<img
+											src={item.profile_image}
+											alt=""
+											width="40"
+											height="40"
+											loading="lazy"
+											decoding="async"
+											class="absolute inset-0 h-full w-full object-cover"
+										/>
+									)}
+								</span>
+								<div class="min-w-0 text-sm">
+									<p class="font-semibold text-gray-700 dark:text-slate-300">{item.name}</p>
+									{(item.role || ('title' in item && item.type !== 'award' && item.title)) && (
+										<p class="muted">{item.role || ('title' in item && item.title)}</p>
+									)}
+								</div>
+							</div>
+							<a
+								href={item.href}
+								class="mt-4 inline-block text-sm"
+								aria-label={`Original post by ${item.name} on ${dateFormat.format(new Date(`${item.date}T00:00:00Z`))}`}
+							>
+								Read original post ↗︎
+							</a>
+						</figcaption>
+					</figure>
+				</li>
+			))
+		}
+	</ul>
+	<div class="surface mt-6 p-6" data-recognition-empty hidden>
+		<p class="mb-3">No categories selected. Choose a category to see its entries.</p>
+		<button
+			type="button"
+			class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold dark:border-slate-700"
+			data-recognition-reset>Show all categories</button
+		>
+	</div>
+</section>
+
+<style>
+	.recognition-card {
+		overflow-wrap: anywhere;
+	}
+	[data-recognition-type][hidden],
+	.recognition-filters[hidden] {
+		display: none;
+	}
+	.recognition-filters input:focus-visible,
+	[data-recognition-reset]:focus-visible {
+		outline: 2px solid var(--link);
+		outline-offset: 4px;
+	}
+</style>
+
+<script>
+	const root = document.querySelector('[data-recognitions]');
+	if (root) {
+		const filters = root.querySelector<HTMLFieldSetElement>('fieldset')!;
+		const inputs = [...filters.querySelectorAll<HTMLInputElement>('input')];
+		const cards = [...root.querySelectorAll<HTMLElement>('[data-recognition-type]')];
+		const count = root.querySelector('[data-recognition-count]')!;
+		const empty = root.querySelector<HTMLElement>('[data-recognition-empty]')!;
+		const update = () => {
+			const selected = new Set(inputs.filter((input) => input.checked).map((input) => input.value));
+			let visible = 0;
+			cards.forEach((card) => {
+				card.hidden = !selected.has(card.dataset.recognitionType!);
+				if (!card.hidden) visible++;
+			});
+			count.textContent = `${visible} of ${cards.length} entries · Newest first`;
+			empty.hidden = visible > 0;
+		};
+		update();
+		filters.hidden = false;
+		filters.addEventListener('change', update);
+		root.querySelector('[data-recognition-reset]')?.addEventListener('click', () => {
+			inputs.forEach((input) => {
+				input.checked = true;
+			});
+			update();
+		});
+		// Initials remain visible beneath a portrait if a local asset ever fails.
+		root.querySelectorAll('img').forEach((img) => {
+			img.addEventListener('error', () => {
+				img.hidden = true;
+			});
+			if (img.complete && img.naturalWidth === 0) img.hidden = true;
+		});
+	}
+</script>

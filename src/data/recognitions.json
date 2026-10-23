@@ -10,7 +10,7 @@
     "role": "OWASP Leader",
     "contact": "https://twitter.com/manicode",
     "username": "manicode",
-    "profile_image": "https://unavatar.io/twitter/manicode",
+    "profile_image": "/images/blog/manicode.jpg",
     "description": "What an honor. Thank you Liran. Some people talk about AppSec (me) and some people really dig in and do the work (you). I'm a big fan. 🤙🏻"
   },
   {
@@ -23,7 +23,7 @@
     "role": "Head of Engineering at @hoprnet",
     "contact": "https://twitter.com/0xjjpa",
     "username": "0xjjpa",
-    "profile_image": "https://unavatar.io/twitter/0xjjpa",
+    "profile_image": "/images/blog/jjperezaguinaga.jpg",
     "description": "This is one of the best guides I've seen on this topic, really cool stuff. Definitely going to take a look at @snyksec's @github action to add it in our @hoprnet project."
   },
   {
@@ -36,7 +36,7 @@
     "title": "Software Developer",
     "contact": "https://twitter.com/cryptus_neoxys",
     "username": "cryptus_neoxys",
-    "profile_image": "https://unavatar.io/twitter/cryptus_neoxys",
+    "profile_image": "/images/blog/cryptus_neoxys.jpg",
     "description": "This has become my primary source for learning docker with node. Thanks for sharing these 💝"
   },
   {
@@ -49,6 +49,7 @@
     "role": "Tech Lead",
     "contact": "https://twitter.com/fcarrascosa_dev",
     "username": "fcarrascosa_dev",
+    "profile_image": "/images/blog/fcarrascosa_dev.jpg",
     "description": "After being in a workshop by @liran_tal and realizing that RegExps can be exploited fairly easily, I decided to use a validation library. I even contributed to the @DefinitelyTyped definition of it :D"
   },
   {
@@ -128,18 +129,6 @@
   },
   {
     "type": "praise",
-    "tags": ["javascript", "advocacy", "security"],
-    "medium": "twitter",
-    "href": "https://twitter.com/organicdelight/status/1577222734459080705?s=20&t=Ks8JR5uZBO77ELJMzehHEQ",
-    "name": "Duncan Healy",
-    "date": "2022-10-14",
-    "role": "Software Engineer",
-    "contact": "https://twitter.com/organicdelight",
-    "username": "organicdelight",
-    "description": "path traversal - may the path be with you, @liran_tal warning about dangers in vscode extensions dotdotpwn'ing /etc/hosts @  #NodeConfEU r%2d%u"
-  },
-  {
-    "type": "praise",
     "tags": ["web", "javascript", "security"],
     "medium": "twitter",
     "href": "https://twitter.com/snyksec/status/1576672117315305472?s=20&t=Ks8JR5uZBO77ELJMzehHEQ",
@@ -161,18 +150,6 @@
     "contact": "https://twitter.com/shuding_",
     "username": "shuding_",
     "description": "https://github.com/lirantal/lockfile-lint is a great tool to help reduce that risk"
-  },
-  {
-    "type": "shoutout",
-    "tags": ["testing", "software", "consumer driven contracts"],
-    "medium": "twitter",
-    "href": "https://twitter.com/gbrlmngr/status/1581955776360632320?s=20&t=Ks8JR5uZBO77ELJMzehHEQ",
-    "name": "Gabriel Mangiurea",
-    "date": "2022-10-17",
-    "role": "Software Engineer at Vercel",
-    "contact": "https://twitter.com/gbrlmngr",
-    "username": "gbrlmngr",
-    "description": "This should be a standard for any back-end-to-front-end integration! Thank you @liran_tal!"
   },
   {
     "type": "shoutout",
@@ -228,7 +205,7 @@
     "medium": "twitter",
     "href": "https://twitter.com/FloorDrees/status/1537377621742321664?s=20&t=8WC6uhF4SAAWYxj1vVN88A",
     "name": "Floor",
-    "date": "2022-06-161",
+    "date": "2022-06-16",
     "role": "Early startups dev advisor",
     "contact": "https://twitter.com/FloorDrees",
     "username": "FloorDrees",
@@ -304,31 +281,8 @@
     "role": "Tech Lead and Senior Front End Engineer @INGnl Web",
     "contact": "https://twitter.com/fcarrascosa_dev",
     "username": "fcarrascosa_dev",
+    "profile_image": "/images/blog/fcarrascosa_dev.jpg",
     "description": "Did you already hack a React App? We are doing it with @liran_tal #JSDayCAN2022"
-  },
-  {
-    "type": "praise",
-    "tags": ["react", "talk", "advocacy", "security"],
-    "medium": "twitter",
-    "href": "https://twitter.com/goyoregalado/status/1522254938373603332?s=20&t=TZUultVDBKnPYj1mIZFhzg",
-    "name": "Goyo Regalado",
-    "date": "2022-05-05",
-    "role": "Software Engineer",
-    "contact": "https://twitter.com/goyoregalado",
-    "username": "goyoregalado",
-    "description": "Being part of @canariasjs staff gives me the privilege to attend and record @liran_tal workshop. Wonderful professional and better person. #JSDayCAN2022"
-  },
-  {
-    "type": "praise",
-    "tags": ["react", "talk", "advocacy", "security"],
-    "medium": "twitter",
-    "href": "https://twitter.com/goyoregalado/status/1522254938373603332?s=20&t=TZUultVDBKnPYj1mIZFhzg",
-    "name": "Goyo Regalado",
-    "date": "2022-05-05",
-    "role": "Software Engineer",
-    "contact": "https://twitter.com/goyoregalado",
-    "username": "goyoregalado",
-    "description": "Being part of @canariasjs staff gives me the privilege to attend and record @liran_tal workshop. Wonderful professional and better person. #JSDayCAN2022"
   },
   {
     "type": "praise",
@@ -377,18 +331,6 @@
     "contact": "https://twitter.com/liadyosef",
     "username": "liadyosef",
     "description": "תפקיד הDeveloper Relations הוא אחד המאתגרים שיש. אנשי DevRel טובים צריכים לשמור על איזון לא פשוט בין רמה טכנית גבוהה, יכולות תקשורת והעברת מסרים, ויצירה מתמשכת של תוכן בעל ערך. ממש כיף לראות נציגות משלנו, @liran_tal, ברשימת 100 אנשי הDevRel המשפיעים בעולם https://ecairn.com/blog/top-100-influencers-devrel"
-  },
-  {
-    "type": "praise",
-    "tags": ["security", "research", "advocacy"],
-    "medium": "twitter",
-    "href": "https://twitter.com/NusratSwarna/status/1493648308291526657?s=20&t=nmb9xDmgqvdhC1dgAqYmrw",
-    "name": "Nusrat Zahan",
-    "date": "2022-02-15",
-    "role": "PhD Candidate@NCSU CS || Former Research Intern @Microsoft",
-    "contact": "https://twitter.com/liadyosef",
-    "username": "liadyosef",
-    "description": "We would like to thank 470 npm practitioners who participated in our research and provided valuable feedback. The paper is available in arXiv: https://lnkd.in/gwGt989T. @liran_tal"
   },
   {
     "type": "praise",
@@ -500,18 +442,6 @@
   },
   {
     "type": "praise",
-    "tags": ["security", "research", "advocacy"],
-    "medium": "twitter",
-    "href": "https://twitter.com/goldbergyoni/status/1485986577251803140?s=20&t=3sIH1duw-OV1Qts5YxLYBA",
-    "name": "Yoni Goldberg",
-    "date": "2022-01-25",
-    "role": "Node.js consultant",
-    "contact": "https://twitter.com/goldbergyoni",
-    "username": "goldbergyoni",
-    "description": "Highly recommend this beyond-the-basics Node.js talk by Liran Tal 'Mastering Node.js best practices for Docker-based applications' https://youtu.be/VSEx8gV51lY"
-  },
-  {
-    "type": "praise",
     "tags": ["advocacy"],
     "medium": "twitter",
     "href": "https://twitter.com/AnfibiaCreativa/status/1594397671141285888?s=20&t=bUwQuWPBgHZFNwgr9uQ51Q",
@@ -532,6 +462,7 @@
     "role": "Senior Architect @fourTheorem",
     "contact": "https://twitter.com/loige",
     "username": "loige",
+    "profile_image": "/images/blog/loige.jpg",
     "description": "This morning I learned how to author an ESLint plugin! Pretty cool 😍 Thanks @simonesanfradev and @liran_tal"
   },
   {
@@ -544,6 +475,7 @@
     "role": "Senior Architect @fourTheorem",
     "contact": "https://twitter.com/loige",
     "username": "loige",
+    "profile_image": "/images/blog/loige.jpg",
     "description": "Open Source is awesome! I have been learning a lot about ESLint, ASTs, and security working on this PR: https://github.com/eslint-community/eslint-plugin-security/pull/95 - A huge thank you to @simonesanfradev for involving me in this, to @liran_tal for inspiring this work, and to @slicknet for the awesome review session!"
   },
   {

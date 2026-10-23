@@ -120,7 +120,7 @@ Post page layout: **`SinglePost.astro`** (title, tags, share, cover `Picture`, M
 | `/` | `src/pages/index.astro` | Short **ProfileHero**, featured projects, speaking, Blog & articles, research, open source, books, and community quote |
 | `/writing` | `src/pages/writing.astro` | Blog directory (labeled **Blog**), recent local posts, archive and RSS links, publication links, and selected external articles |
 | `/speaking/press-kit` | `src/pages/speaking/press-kit.astro` | Short/full bios, downloadable bio and portrait, organizer details |
-| `/recognitions` | `src/pages/recognitions.astro` | `RecognitionAwards` + **Solid** `Changelog` (`client:visible`) |
+| `/recognitions` | `src/pages/recognitions.astro` | `RecognitionAwards` + static `Changelog.astro` with progressive category filters |
 | `/books/nodejs-secure-coding` | `src/pages/books/nodejs-secure-coding.astro` | Long book landing; book covers from `~/assets/images/book-cover-*` |
 | `/games/chatgpt-chat-meme-generator` | `src/pages/games/...` | iframe embed |
 | `/games/chatgpt-security-models-ui` | `src/pages/games/...` | iframe embed |

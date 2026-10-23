@@ -3,133 +3,74 @@ import { Picture } from 'astro:assets';
 import githubStars from '~/assets/images/lirantal-github-stars-award.jpg';
 import openjsAward from '~/assets/images/lirantal-openjs-foundation-security-award.jpg';
 import schrodingerAward from '~/assets/images/lirantal-schrodinger-award.jpg';
+
+const awards = [
+	{
+		title: 'GitHub Stars award',
+		image: githubStars,
+		alt: 'Liran Tal’s GitHub Stars award',
+		description:
+			'GitHub Stars are a diverse set of individuals that inspire, educate, and influence those around them. They are nominated by GitHub as experts and technical leaders who passionately share their expertise with others.',
+		href: 'https://stars.github.com/alumni',
+		label: 'About GitHub Stars',
+	},
+	{
+		title: 'OpenJS Foundation Pathfinder award for Security',
+		image: openjsAward,
+		alt: 'Liran Tal’s OpenJS Foundation Security award',
+		quote:
+			'Liran is a tireless advocate for security in the JS ecosystem. He works hard to build bridges, educate developers about security issues, and support Open Source projects working to improve their security posture. Liran has served on the Node security team and is always available to support developers!',
+		href: 'https://openjsf.org/blog/openjs-world-2022-heres-what-you-missed',
+		label: 'Read the OpenJS announcement',
+	},
+	{
+		title: 'Schrodinger Open Source Day award',
+		image: schrodingerAward,
+		alt: 'Liran Tal’s Schrodinger Open Source Day award',
+		description:
+			'Liran Tal delivered the opening keynote at the OpenSourceDay 2023 event in Italy and was honored to receive the Schrodinger Open Source Day award.',
+		href: 'https://osday.dev/',
+		label: 'About Open Source Day',
+	},
+];
 ---
 
-<section class="body-font">
-	<div class="container px-5 py-24 mx-auto">
-		<div class="text-center mb-20">
-			<h2 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-slate-100 md:text-5xl lg:text-6xl">
-				<span class="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-red-500"> Awards</span>
-			</h2>
-			<div class="container mx-auto lg:px-48">
-				<p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
-					<!-- description -->
-				</p>
-			</div>
-			<div class="flex mt-6 justify-center">
-				<div class="w-16 h-1 rounded-full bg-indigo-500 inline-flex"></div>
-			</div>
-		</div>
-		<div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
-			<div class="p-4 md:w-1/3 flex flex-col text-center items-center">
-				<Picture
-					class="mx-auto rounded-full shadow-lg aspect-square object-cover"
-					widths={[400, 900, 1024]}
-					sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-					loading="eager"
-					alt="Liran Tal GitHub Stars Award"
-					src={githubStars}
-				/>
-
-				<div class="flex-grow mt-2">
-					<h2 class="text-base title-font font-medium mb-3">GitHub Stars award</h2>
-					<p class="leading-relaxed text-base">
-						GitHub Stars are a diverse set of individuals that inspire, educate, and influence those around them. They
-						are nominated by GitHub as experts and technical leaders who passionately share their expertise with others.
-					</p>
-					<a
-						class="mt-3 text-indigo-500 inline-flex items-center"
-						href="https://stars.github.com/alumni"
-						target="_blank"
-						>Learn More
-						<svg
-							fill="none"
-							stroke="currentColor"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							class="w-4 h-4 ml-2"
-							viewBox="0 0 24 24"
-						>
-							<path d="M5 12h14M12 5l7 7-7 7"></path>
-						</svg>
+<section class="recognition-awards" aria-labelledby="awards-heading">
+	<h2 id="awards-heading" class="mb-6">01 / Awards</h2>
+	<div class="grid gap-8 md:grid-cols-3">
+		{
+			awards.map((award) => (
+				<article class="flex min-w-0 flex-col">
+					<Picture
+						src={award.image}
+						alt={award.alt}
+						widths={[320, 640, 960]}
+						sizes="(min-width: 1152px) 347px, (min-width: 768px) calc((100vw - 112px) / 3), calc(100vw - 40px)"
+						width={640}
+						class="award-photo mb-5 w-full rounded-xl"
+						loading="eager"
+					/>
+					<h3 class="mb-3">{award.title}</h3>
+					{award.quote ? (
+						<figure class="mb-5">
+							<blockquote class="text-sm leading-relaxed">“{award.quote}”</blockquote>
+							<figcaption class="muted mt-3 text-sm">— The OpenJS Foundation</figcaption>
+						</figure>
+					) : (
+						<p class="muted mb-5 text-sm leading-relaxed">{award.description}</p>
+					)}
+					<a class="mt-auto text-sm" href={award.href}>
+						{award.label} ↗︎
 					</a>
-				</div>
-			</div>
-
-			<div class="p-4 md:w-1/3 flex flex-col text-center items-center">
-				<Picture
-					class="mx-auto rounded-full shadow-lg aspect-square object-cover"
-					widths={[400, 900, 1024]}
-					sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-					loading="eager"
-					alt="Liran Tal OpenJS Foundation Security Award"
-					src={openjsAward}
-				/>
-				<div class="flex-grow mt-2">
-					<h2 class="text-base title-font font-medium mb-3">OpenJS Foundation Pathfinder award for Security</h2>
-					<blockquote class="p-4 my-4 border-l-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800">
-						<p class="text-base italic font-medium leading-relaxed text-gray-900 dark:text-slate-100">
-							"Liran is a tireless advocate for security in the JS ecosystem. He works hard to build bridges, educate
-							developers about security issues, and support Open Source projects working to improve their security
-							posture. Liran has served on the Node security team and is always available to support developers!"
-						</p>
-					</blockquote>
-					<p class="leading-relaxed">
-						<span class="italic font-semibold"> </span> - The OpenJS Foundation
-					</p>
-					<a
-						class="mt-3 text-indigo-500 inline-flex items-center"
-						href="https://openjsf.org/blog/openjs-world-2022-heres-what-you-missed"
-						target="_blank"
-						>Learn More
-						<svg
-							fill="none"
-							stroke="currentColor"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							class="w-4 h-4 ml-2"
-							viewBox="0 0 24 24"
-						>
-							<path d="M5 12h14M12 5l7 7-7 7"></path>
-						</svg>
-					</a>
-				</div>
-			</div>
-
-			<div class="p-4 md:w-1/3 flex flex-col text-center items-center">
-				<Picture
-					class="mx-auto rounded-full shadow-lg aspect-square object-cover"
-					widths={[400, 900, 1024]}
-					sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-					loading="eager"
-					alt="Liran Tal Schrodinger Award"
-					src={schrodingerAward}
-				/>
-
-				<div class="flex-grow mt-2">
-					<h2 class="title-font text-base font-medium mb-3">Schrodinger Open Source Day award</h2>
-					<p class="leading-relaxed text-base">
-						Liran Tal delivered the opening keynote at the OpenSourceDay 2023 event in Italy and was honored to receive the
-						Schrodinger Open Source Day award.
-					</p>
-					<a class="mt-3 text-indigo-500 inline-flex items-center" href="https://osday.dev/" target="_blank"
-						>Learn More
-						<svg
-							fill="none"
-							stroke="currentColor"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							class="w-4 h-4 ml-2"
-							viewBox="0 0 24 24"
-						>
-							<path d="M5 12h14M12 5l7 7-7 7"></path>
-						</svg>
-					</a>
-				</div>
-			</div>
-		</div>
+				</article>
+			))
+		}
 	</div>
 </section>
+
+<style>
+	.award-photo {
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+	}
+</style>

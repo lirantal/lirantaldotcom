@@ -7,9 +7,9 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="border-t border-gray-200 dark:border-slate-800">
-	<div class="max-w-6xl mx-auto px-4 sm:px-6">
-		<div class="grid grid-cols-1 md:grid-cols-12 gap-4 gap-y-8 md:gap-8 py-8 md:py-12">
-			<div class="md:col-span-6 lg:col-span-3">
+	<div class="max-w-6xl mx-auto px-5 sm:px-6">
+		<div class="footer-columns grid grid-cols-2 gap-x-6 gap-y-8 py-10 md:py-12">
+			<div class="col-span-2 lg:col-span-1">
 				<div class="mb-2">
 					<a class="inline-block font-bold text-xl" href={getHomePermalink()}>Liran Tal</a>
 
@@ -23,20 +23,23 @@ const currentYear = new Date().getFullYear();
 							</a>
 						</li>
 						<li>
-							<a class="inline-block py-1.5 text-gray-600 hover:text-gray-700 dark:text-gray-400" href="/about"
-								>About</a>
+							<a class="inline-block py-1.5 text-gray-600 hover:text-gray-700 dark:text-gray-400" href="/about">About</a
+							>
 						</li>
 						<li>
 							<a class="inline-block py-1.5 text-gray-600 hover:text-gray-700 dark:text-gray-400" href="/contact"
-								>Contact</a>
+								>Contact</a
+							>
 						</li>
 						<li>
 							<a class="inline-block py-1.5 text-gray-600 hover:text-gray-700 dark:text-gray-400" href="/developers"
-								>Developers</a>
+								>Developers</a
+							>
 						</li>
 						<li>
 							<a class="inline-block py-1.5 text-gray-600 hover:text-gray-700 dark:text-gray-400" href="/privacy"
-								>Privacy</a>
+								>Privacy</a
+							>
 						</li>
 					</ul>
 				</div>
@@ -57,7 +60,7 @@ const currentYear = new Date().getFullYear();
 				FOOTER.columns.map((column) => {
 					return (
 						<>
-							<div class="md:col-span-6 lg:col-span-2">
+							<div class="min-w-0">
 								<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">{column.title}</div>
 								<ul class="text-sm">
 									{column.items.map((item) => {
@@ -80,7 +83,7 @@ const currentYear = new Date().getFullYear();
 				})
 			}
 		</div>
-		<div class="md:flex md:items-center md:justify-between py-6 md:py-8">
+		<div class="md:flex md:items-center md:justify-between border-t border-gray-200 dark:border-slate-800 py-6 md:py-8">
 			<ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0">
 				<li>
 					<a
@@ -136,3 +139,25 @@ const currentYear = new Date().getFullYear();
 		</div>
 	</div>
 </footer>
+
+<style>
+	@media (min-width: 1024px) {
+		.footer-columns {
+			grid-template-columns: 0.85fr 1.3fr 1.25fr 1.2fr 1fr;
+		}
+	}
+	footer a {
+		overflow-wrap: anywhere;
+	}
+	footer a:hover {
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+	footer a:focus-visible {
+		outline: 2px solid var(--color-blue-700);
+		outline-offset: 4px;
+	}
+	:global(.dark) footer a:focus-visible {
+		outline-color: var(--color-blue-300);
+	}
+</style>
