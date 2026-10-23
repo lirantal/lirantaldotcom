@@ -1,0 +1,76 @@
+---
+import Shell from './Shell.astro';
+import Awards from './Awards.astro';
+import Content from './Content.astro';
+import { Image } from 'astro:assets';
+import { PROFILE } from '~/config.mjs';
+import type { Concept } from '../concepts';
+import portrait from '~/assets/images/liran-tal-portrait.jpg';
+import stage from '~/assets/images/speaking-hero.jpg';
+interface Props {
+	concept: Concept;
+}
+const { concept } = Astro.props;
+---
+
+<Shell {concept}>
+	<main id="preview-main" tabindex="-1">
+		<section class="prism-hero" aria-labelledby="prism-title">
+			<div>
+				<p class="v3-role">Security researcher. Author. Open-source maintainer.</p><h1 id="prism-title">
+					Securing the<br />agentic future.
+				</h1><p class="v3-lede">
+					I research emerging threats and build open-source defenses for AI agents, the software they write, and the
+					tools they trust.
+				</p><p class="prism-work">
+					I head Developer Relations at <a href="https://snyk.io/contributors/liran-tal/">Snyk</a>.
+				</p><div class="v3-section-actions">
+					<a class="v3-button" href="/research">Explore my research</a><a href="/speaking">Invite me to speak</a>
+				</div><div class="prism-social">
+					<a href={PROFILE.githubURL}>GitHub</a><a href={PROFILE.twitterURL}>X / Twitter</a><a
+						href={PROFILE.linkedinURL}>LinkedIn</a>
+				</div>
+			</div><div class="prism-photos">
+				<Image
+					class="prism-portrait"
+					src={portrait}
+					alt="Liran Tal"
+					widths={[300, 600]}
+					sizes="(max-width: 760px) 80vw, 420px"
+					loading="eager"
+					fetchpriority="high"
+				/><figure>
+					<Image src={stage} alt="Liran presenting at JSNation US 2025" widths={[240, 480]} sizes="240px" /><figcaption>
+						JSNation US, 2025
+					</figcaption>
+				</figure>
+			</div>
+		</section>
+		<Awards />
+		<section class="prism-panel prism-research" id="research" aria-labelledby="prism-research-title">
+			<div class="v3-section-heading">
+				<h2 id="prism-research-title">Research</h2><a href="/research">Research & disclosures</a>
+			</div><Content kind="research" concept="prism" limit={2} />
+		</section>
+		<section class="prism-panel prism-projects" id="open-source" aria-labelledby="prism-projects-title">
+			<div class="v3-section-heading">
+				<h2 id="prism-projects-title">Open source</h2><a href={PROFILE.githubURL}>GitHub</a>
+			</div><Content kind="open-source" concept="prism" />
+		</section>
+		<section class="prism-panel prism-speaking" id="speaking" aria-labelledby="prism-speaking-title">
+			<div class="v3-section-heading">
+				<h2 id="prism-speaking-title">Speaking</h2><a href="/speaking">Talks & events</a>
+			</div><Content kind="speaking" concept="prism" />
+		</section>
+		<section class="prism-panel prism-books" id="books" aria-labelledby="prism-books-title">
+			<div class="v3-section-heading">
+				<h2 id="prism-books-title">Books</h2><a href="/books/nodejs-secure-coding">Node.js Secure Coding</a>
+			</div><Content kind="books" concept="prism" limit={5} />
+		</section>
+		<section class="prism-panel prism-blog" id="blog" aria-labelledby="prism-blog-title">
+			<div class="v3-section-heading">
+				<h2 id="prism-blog-title">Blog</h2><a href="/design-lab/prism/writing">All articles</a>
+			</div><Content kind="blog" concept="prism" />
+		</section>
+	</main>
+</Shell>

@@ -1,5 +1,7 @@
 # Second design round
 
+> Historical round. Superseded by [round three](ROUND-THREE.md); Atlas and Lumen have been retired.
+
 ## Owner feedback
 
 Signal's compact section spacing was useful, but its overall presentation was too simplistic. After Hours was also too simplistic and its horizontal/vertical dividers looked unprofessional; its font was liked. Fieldnotes' magazine/newspaper feel was rejected. Prioritize light mode now; a dark counterpart comes after a direction is selected.

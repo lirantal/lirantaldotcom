@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import { fetchPosts } from '~/utils/posts';
+import { findImage } from '~/utils/images';
+import { getPermalink } from '~/utils/permalinks';
+import { previewURL } from '../concepts';
+import Picture from '~/components/core/Picture.astro';
+import portrait from '~/assets/images/liran-tal-portrait.jpg';
+interface Props {
+	concept: string;
+}
+const { concept } = Astro.props;
+const post = (await fetchPosts())[0];
+const Post = post.Content;
+const image = await findImage(post.image);
+---
+
+<article class="v3-article">
+	<header>
+		<a href={previewURL(concept, 'writing')}>Back to Blog</a><p class="v3-meta">
+			<time datetime={new Date(post.pubDate).toISOString()}
+				>{
+					new Date(post.pubDate).toLocaleDateString('en-US', {
+						month: 'long',
+						day: 'numeric',
+						year: 'numeric',
+						timeZone: 'UTC',
+					})
+				}</time>
+		</p><h1>{post.title}</h1><p class="v3-lede">{post.description}</p><div class="v3-byline">
+			<Image src={portrait} alt="" width={44} height={44} /><span>By Liran Tal</span><a
+				href={getPermalink(post.slug, 'post')}>Original article</a>
+		</div>
+	</header><Picture
+		class="v3-article-cover"
+		src={image}
+		alt={`Cover artwork for ${post.title}`}
+		widths={[640, 1200]}
+		sizes="(max-width: 760px) 100vw, 960px"
+		loading="eager"
+	/><div class="reading-body"><Post /></div><footer>
+		<h2>Blog</h2><a href={previewURL(concept, 'writing')}>More articles</a><a href="/rss.xml">Follow via RSS</a>
+	</footer>
+</article>

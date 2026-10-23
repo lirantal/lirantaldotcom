@@ -1,0 +1,30 @@
+---
+import type { Concept } from '../concepts';
+import { previewURL } from '../concepts';
+import { PROFILE } from '~/config.mjs';
+import './themes.css';
+interface Props {
+	concept: Concept;
+}
+const { concept } = Astro.props;
+---
+
+<div class:list={['v3', `v3-${concept.id}`]}>
+	<header class="v3-header">
+		<a class="v3-wordmark" href={previewURL(concept.id)}>Liran Tal</a><nav aria-label="Site navigation">
+			<a href={previewURL(concept.id, 'writing')}>Blog</a><a href="/research">Research</a><a
+				href={`${previewURL(concept.id)}#open-source`}>Open source</a
+			><a href="/speaking">Speaking</a><a href={`${previewURL(concept.id)}#books`}>Books</a>
+		</nav><a class="v3-header-contact" href="/speaking/press-kit">Bio & press kit</a>
+	</header>
+	<slot />
+	<footer class="v3-footer">
+		<div><strong>Liran Tal</strong><p>Security researcher, author, and open-source maintainer.</p></div><nav
+			aria-label="Social profiles"
+		>
+			<a href={PROFILE.githubURL}>GitHub</a><a href={PROFILE.twitterURL}>X / Twitter</a><a href={PROFILE.linkedinURL}
+				>LinkedIn</a
+			><a href="/rss.xml">RSS</a>
+		</nav><a href="/">Current website</a>
+	</footer>
+</div>

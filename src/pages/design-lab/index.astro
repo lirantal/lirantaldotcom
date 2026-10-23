@@ -1,35 +1,34 @@
 ---
-import '~/components/design-lab/round-two.css';
+import '~/components/design-lab/v3/themes.css';
 import PreviewLayout from '~/components/design-lab/PreviewLayout.astro';
 import ConceptCard from '~/components/design-lab/ConceptCard.astro';
 import { concepts } from '~/components/design-lab/concepts';
 ---
 
-<PreviewLayout title="Round two — choose a direction">
+<PreviewLayout title="Three different approaches">
 	<main id="preview-main" class="gallery" tabindex="-1">
 		<header class="gallery-intro">
-			<p class="gallery-round">Round two</p><h1>More character.<br />A lighter perspective.</h1><p>
-				Three new directions built around Manrope, compact sections, and richer compositions. Explore the homepage,
-				blog, and a complete article in each before choosing what to take forward.
+			<p class="gallery-round">Round three</p><h1>Three ways to<br />organize the work.</h1><p>
+				A redesigned Prism, a structured version of the current website, and a new interactive portfolio. Different
+				hierarchies and navigation models, with Research and Recognition given their own place.
 			</p><a href="/">Compare with the current website</a>
-		</header>
-		<div class="gallery-grid">{concepts.filter((c) => c.round === 2).map((concept) => <ConceptCard {concept} />)}</div>
-		<section class="gallery-guide" aria-label="How to compare">
+		</header><div class="gallery-grid">
+			{concepts.filter((c) => c.round === 3).map((concept) => <ConceptCard {concept} />)}
+		</div><section class="gallery-guide" aria-label="How these options differ">
 			<div>
-				<h2>Same font. Different personalities.</h2><p>
-					Prism layers the work, Atlas connects it, and Lumen leads with the person behind it. Each uses a different
-					arrangement of the same real writing, projects, and photography.
+				<h2>Compare the approach.</h2><p>
+					Prism is a linear portfolio. Structured evolves the familiar site. Navigator lets you choose one area of work
+					at a time. None opens with the newest blog article.
 				</p>
 			</div><div>
-				<h2>Start with light.</h2><p>
-					All three focus on light mode, with closer section spacing and fewer visual separators. A dark variation comes
-					after selecting a direction.
+				<h2>Explore more than the homepage.</h2><p>
+					Each includes Blog and article views. Prism and Navigator open with research-oriented navigation; Structured
+					keeps the current numbered reading order.
 				</p>
 			</div>
-		</section>
-		<details class="previous-round">
-			<summary>Previous round: Fieldnotes, Signal, and After Hours</summary><p>
-				Earlier proposals, kept here for comparison. The new round above responds to your feedback.
+		</section><details class="previous-round">
+			<summary>First-round archive</summary><p>
+				Earlier explorations for reference. Atlas and Lumen have been retired.
 			</p><div class="gallery-grid">
 				{concepts.filter((c) => c.round === 1).map((concept) => <ConceptCard {concept} />)}
 			</div>

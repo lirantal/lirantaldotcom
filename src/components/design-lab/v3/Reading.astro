@@ -1,0 +1,46 @@
+---
+import type { Concept, View } from '../concepts';
+import Shell from './Shell.astro';
+import Content from './Content.astro';
+import Article from './Article.astro';
+interface Props {
+	concept: Concept;
+	view: View;
+}
+const { concept, view } = Astro.props;
+---
+
+<Shell {concept}
+	><main id="preview-main" class="v3-reading-page" tabindex="-1">
+		{
+			view === 'article' ? (
+				<Article concept={concept.id} />
+			) : (
+				<section class="v3-blog-page">
+					<>
+						<header>
+							<>
+								<h1>Blog</h1>
+								<p>Articles on AI agents, Node.js security, developer tooling, and the things I’m building.</p>
+								<div class="v3-section-actions">
+									<>
+										<a href="/blog">Search the full archive</a>
+										<a href="/rss.xml">Follow via RSS</a>
+									</>
+								</div>
+							</>
+						</header>
+						<Content kind="blog" concept={concept.id} limit={6} />
+						<aside class="v3-publications">
+							<>
+								<h2>Other publications</h2>
+								<a href="https://www.nodejs-security.com/blog">Node.js Security</a>
+								<a href="https://snyk.io/blog/author/liran-tal/">Snyk</a>
+							</>
+						</aside>
+					</>
+				</section>
+			)
+		}
+	</main></Shell
+>
