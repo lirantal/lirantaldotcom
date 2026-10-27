@@ -1,5 +1,5 @@
 ---
-import '~/components/design-lab/v3/themes.css';
+import '~/components/design-lab/v4/themes.css';
 import PreviewLayout from '~/components/design-lab/PreviewLayout.astro';
 import ConceptCard from '~/components/design-lab/ConceptCard.astro';
 import { concepts } from '~/components/design-lab/concepts';
@@ -8,27 +8,27 @@ import { concepts } from '~/components/design-lab/concepts';
 <PreviewLayout title="Three different approaches">
 	<main id="preview-main" class="gallery" tabindex="-1">
 		<header class="gallery-intro">
-			<p class="gallery-round">Round three</p><h1>Three ways to<br />organize the work.</h1><p>
-				A redesigned Prism, a structured version of the current website, and a new interactive portfolio. Different
-				hierarchies and navigation models, with Research and Recognition given their own place.
+			<p class="gallery-round">Round four</p><h1>A cleaner direction.<br />Three distinct layouts.</h1><p>
+				A quieter Prism, a precise technical portfolio, and a photographic personal site. Clear buttons, complete
+				sections, and a contrasting footer in each.
 			</p><a href="/">Compare with the current website</a>
 		</header><div class="gallery-grid">
-			{concepts.filter((c) => c.round === 3).map((concept) => <ConceptCard {concept} />)}
+			{concepts.filter((c) => c.round === 4).map((concept) => <ConceptCard {concept} />)}
 		</div><section class="gallery-guide" aria-label="How these options differ">
 			<div>
 				<h2>Compare the approach.</h2><p>
-					Prism is a linear portfolio. Structured evolves the familiar site. Navigator lets you choose one area of work
-					at a time. None opens with the newest blog article.
+					Prism uses full-width chapters. Forma centers the introduction and frames the work. Studio opens with identity
+					and photography. None uses the latest blog article as its hero.
 				</p>
 			</div><div>
 				<h2>Explore more than the homepage.</h2><p>
-					Each includes Blog and article views. Prism and Navigator open with research-oriented navigation; Structured
-					keeps the current numbered reading order.
+					Each includes Blog and article views. Try the article hover and keyboard focus states, then scroll to the
+					contrasting footer. Each RSS action opens the real feed.
 				</p>
 			</div>
 		</section><details class="previous-round">
 			<summary>First-round archive</summary><p>
-				Earlier explorations for reference. Atlas and Lumen have been retired.
+				Earlier explorations for reference. Atlas, Lumen, Structured, and Navigator have been retired.
 			</p><div class="gallery-grid">
 				{concepts.filter((c) => c.round === 1).map((concept) => <ConceptCard {concept} />)}
 			</div>

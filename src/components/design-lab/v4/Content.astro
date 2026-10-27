@@ -3,7 +3,6 @@ import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import { papers } from '~/data/research';
 import { projects, books } from '~/data/portfolio';
-import { community } from '~/data/community';
 import { getSpeaking } from '~/utils/speaking';
 import { fetchPosts } from '~/utils/posts';
 import { findImage } from '~/utils/images';
@@ -13,7 +12,7 @@ import { PROFILE } from '~/config.mjs';
 import Picture from '~/components/core/Picture.astro';
 import stage from '~/assets/images/speaking-hero.jpg';
 interface Props {
-	kind: 'research' | 'open-source' | 'speaking' | 'books' | 'blog' | 'community';
+	kind: 'research' | 'open-source' | 'speaking' | 'books' | 'blog';
 	concept: string;
 	limit?: number;
 	featured?: boolean;
@@ -31,29 +30,29 @@ const featured = useFeatured
 
 {
 	kind === 'research' && (
-		<div class="v3-research-content">
+		<div class="d4-research-content">
 			<>
-				<p class="v3-section-intro">
+				<p class="d4-section-intro">
 					AI agents, developer tooling, and software supply chain security. Selected co-authored preprints, with primary
 					sources.
 				</p>
-				<div class="v3-paper-list">
+				<div class="d4-paper-list">
 					{papers.slice(0, limit).map((paper) => (
 						<article>
-							<p class="v3-meta">{paper.date} · arXiv preprint</p>
+							<p class="d4-meta">{paper.date} · arXiv preprint</p>
 							<h3>
 								<a href={`https://arxiv.org/abs/${paper.id}`}>{paper.title}</a>
 							</h3>
 							<p>{paper.description}</p>
-							<p class="v3-authors">{paper.authors}</p>
-							<div class="v3-small-actions">
+							<p class="d4-authors">{paper.authors}</p>
+							<div class="d4-small-actions">
 								<a href={`https://arxiv.org/pdf/${paper.id}`}>Read PDF</a>
 								<a href={`https://doi.org/10.48550/arXiv.${paper.id}`}>DOI</a>
 							</div>
 						</article>
 					))}
 				</div>
-				<div class="v3-section-actions">
+				<div class="d4-section-actions">
 					<>
 						<a href="/research/papers">All papers</a>
 						<a href="/research/advisories">CVEs & advisories</a>
@@ -68,28 +67,28 @@ const featured = useFeatured
 	kind === 'open-source' && (
 		<div>
 			<>
-				<div class="v3-projects">
+				<div class="d4-projects">
 					{featured.map((project, index) => (
 						<article>
-							<span class="v3-project-symbol">
+							<span class="d4-project-symbol">
 								<Icon
 									name={index === 0 ? 'tabler:shield-check' : index === 1 ? 'tabler:package' : 'tabler:terminal-2'}
 									aria-hidden="true"
 								/>
 							</span>
-							<p class="v3-meta">{project.kind}</p>
+							<p class="d4-meta">{project.kind}</p>
 							<h3>
 								<a href={project.url}>{project.name}</a>
 							</h3>
 							<p>{project.description}</p>
-							<div class="v3-small-actions">
+							<div class="d4-small-actions">
 								<a href={project.url}>GitHub</a>
 								{project.npm && <a href={`https://www.npmjs.com/package/${project.npm}`}>npm</a>}
 							</div>
 						</article>
 					))}
 				</div>
-				<div class="v3-section-actions">
+				<div class="d4-section-actions">
 					<a href={PROFILE.githubURL}>All projects on GitHub</a>
 				</div>
 			</>
@@ -98,7 +97,7 @@ const featured = useFeatured
 }
 {
 	kind === 'speaking' && (
-		<div class="v3-speaking-content">
+		<div class="d4-speaking-content">
 			<>
 				<Image
 					src={stage}
@@ -117,7 +116,7 @@ const featured = useFeatured
 							I bring real-world attacks and practical defenses to conferences, meetups, and workshops. AI security,
 							Node.js, and the software supply chain, explained through code.
 						</p>
-						<div class="v3-section-actions">
+						<div class="d4-section-actions">
 							<>
 								<a href="/speaking/recordings">Watch a talk</a>
 								<a href="/speaking/press-kit">Speaker press kit</a>
@@ -132,7 +131,7 @@ const featured = useFeatured
 }
 {
 	kind === 'books' && (
-		<div class="v3-book-list">
+		<div class="d4-book-list">
 			{books.slice(0, limit).map((book) => (
 				<article>
 					<a href={book.url}>
@@ -147,44 +146,26 @@ const featured = useFeatured
 }
 {
 	kind === 'blog' && (
-		<div class="v3-blog-list">
+		<div class="d4-blog-list">
 			{posts.map((post, index) => (
 				<article>
-					<a
-						class="v3-blog-thumb"
-						tabindex="-1"
-						aria-hidden="true"
-						href={index === 0 ? previewURL(concept, 'article') : getPermalink(post.slug, 'post')}
-					>
-						<Picture src={covers[index]} alt="" widths={[240, 480]} sizes="(max-width: 760px) 96px, 144px" />
+					<a class="d4-blog-card" href={index === 0 ? previewURL(concept, 'article') : getPermalink(post.slug, 'post')}>
+						<div class="d4-blog-thumb">
+							<Picture src={covers[index]} alt="" widths={[320, 640, 960]} sizes="(max-width: 760px) 90vw, 360px" />
+						</div>
+						<div class="d4-blog-copy">
+							<time class="d4-meta" datetime={new Date(post.pubDate).toISOString()}>
+								{date(post.pubDate)}
+							</time>
+							<h3>{post.title}</h3>
+							<p>{post.description}</p>
+							<span class="d4-read">
+								Read article
+								<Icon name="tabler:arrow-up-right" aria-hidden="true" />
+							</span>
+						</div>
 					</a>
-					<div>
-						<p class="v3-meta">
-							<time datetime={new Date(post.pubDate).toISOString()}>{date(post.pubDate)}</time>
-						</p>
-						<h3>
-							<a href={index === 0 ? previewURL(concept, 'article') : getPermalink(post.slug, 'post')}>{post.title}</a>
-						</h3>
-						<p>{post.description}</p>
-					</div>
 				</article>
-			))}
-		</div>
-	)
-}
-{
-	kind === 'community' && (
-		<div class="v3-community-list">
-			{community.slice(0, 2).map((person) => (
-				<figure>
-					<img src={person.avatar} alt="" width="44" height="44" loading="lazy" />
-					<div>
-						<blockquote>“{person.quote}”</blockquote>
-						<figcaption>
-							{person.name}, {person.role} · <a href={person.url}>Original post</a>
-						</figcaption>
-					</div>
-				</figure>
 			))}
 		</div>
 	)

@@ -1,0 +1,49 @@
+---
+import type { Concept } from '../concepts';
+import { previewURL } from '../concepts';
+import { PROFILE } from '~/config.mjs';
+import { Icon } from 'astro-icon/components';
+import './themes.css';
+interface Props {
+	concept: Concept;
+}
+const { concept } = Astro.props;
+---
+
+<div class:list={['d4', `d4-${concept.id}`]}>
+	<header class="d4-header d4-wrap">
+		<a class="d4-brand" href={previewURL(concept.id)}>Liran Tal<span>Security researcher & author</span></a>
+		<nav aria-label="Site navigation">
+			<a href={`${previewURL(concept.id)}#research`}>Research</a>
+			<a href={`${previewURL(concept.id)}#open-source`}>Open source</a>
+			<a href={`${previewURL(concept.id)}#speaking`}>Speaking</a>
+			<a href={`${previewURL(concept.id)}#books`}>Books</a>
+			<a class="d4-button d4-button-small" href={previewURL(concept.id, 'writing')}>Blog</a>
+		</nav>
+	</header>
+	<slot />
+	<footer class="d4-footer">
+		<div class="d4-wrap">
+			<div class="d4-subscribe">
+				<div>
+					<h2>Get new articles.</h2><p>
+						AI security, Node.js, and the software supply chain.<br />Follow the blog in your feed reader.
+					</p>
+				</div>
+				<a class="d4-button" href="/rss.xml"><Icon name="tabler:rss" aria-hidden="true" />Follow via RSS</a>
+			</div>
+			<div class="d4-footer-bottom">
+				<div>
+					<a class="d4-brand" href={previewURL(concept.id)}>Liran Tal</a><p>
+						Security researcher. Author. Open-source maintainer.
+					</p>
+				</div>
+				<nav aria-label="Footer navigation">
+					<a href={PROFILE.githubURL}>GitHub</a><a href={PROFILE.twitterURL}>X / Twitter</a><a
+						href={PROFILE.linkedinURL}>LinkedIn</a
+					><a href="/speaking/press-kit">Bio & press kit</a><a href="/">Current website</a>
+				</nav>
+			</div>
+		</div>
+	</footer>
+</div>

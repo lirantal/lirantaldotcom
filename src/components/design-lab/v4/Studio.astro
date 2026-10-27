@@ -1,0 +1,101 @@
+---
+import Shell from './Shell.astro';
+import Awards from './Awards.astro';
+import Content from './Content.astro';
+import { Image } from 'astro:assets';
+import { PROFILE } from '~/config.mjs';
+import type { Concept } from '../concepts';
+import { previewURL } from '../concepts';
+import portrait from '~/assets/images/liran-tal-portrait.jpg';
+import stage from '~/assets/images/speaking-hero.jpg';
+interface Props {
+	concept: Concept;
+}
+const { concept } = Astro.props;
+---
+
+<Shell {concept}>
+	<main id="preview-main" tabindex="-1">
+		<div class="studio-masthead d4-wrap">
+			<div class="studio-identity">
+				<Image src={portrait} alt="Liran Tal" width={80} height={80} loading="eager" /><div>
+					<strong>Liran Tal</strong><p>Security researcher. Author. Open-source maintainer.</p>
+				</div>
+			</div>
+			<div>
+				<p>I head Developer Relations at <a href="https://snyk.io/contributors/liran-tal/">Snyk</a>.</p><nav
+					class="d4-socials"
+					aria-label="Social profiles"
+				>
+					<a href={PROFILE.githubURL}>GitHub</a><a href={PROFILE.linkedinURL}>LinkedIn</a><a href="/speaking/press-kit"
+						>Bio & press kit</a>
+				</nav>
+			</div>
+		</div>
+		<section class="studio-intro d4-wrap" aria-labelledby="studio-title">
+			<figure>
+				<Image
+					src={stage}
+					alt="Liran Tal presenting at JSNation US 2025"
+					widths={[640, 1200]}
+					sizes="(max-width: 760px) 100vw, 60vw"
+					loading="eager"
+					fetchpriority="high"
+				/><figcaption>JSNation US, 2025</figcaption>
+			</figure>
+			<div class="studio-intro-copy">
+				<h1 id="studio-title">Securing the<br />agentic future.</h1><p class="d4-lede">
+					I research emerging threats and build open-source defenses for AI agents, the software they write, and the
+					tools they trust.
+				</p><div class="d4-actions">
+					<a class="d4-button" href="/research">Explore my research</a><a
+						class="d4-button d4-button-secondary"
+						href={previewURL(concept.id, 'writing')}>Explore the blog</a>
+				</div>
+			</div>
+		</section>
+		<Awards />
+		<section class="d4-section studio-research" id="research" aria-labelledby="research-title">
+			<div class="d4-wrap studio-asymmetric">
+				<header>
+					<h2 id="research-title">Research</h2><p>AI agents. Developer tooling. Software supply chain security.</p><a
+						class="d4-button d4-button-secondary"
+						href="/research">Explore research</a>
+				</header><Content kind="research" concept="studio" limit={2} />
+			</div>
+		</section>
+		<section class="d4-section studio-source" id="open-source" aria-labelledby="source-title">
+			<div class="d4-wrap">
+				<header class="d4-section-heading">
+					<div><h2 id="source-title">Open source</h2><p>Practical defenses, built in the open.</p></div><a
+						class="d4-button"
+						href={PROFILE.githubURL}>View GitHub</a>
+				</header><Content kind="open-source" concept="studio" featured />
+			</div>
+		</section>
+		<section class="d4-section studio-speaking" id="speaking" aria-labelledby="speaking-title">
+			<div class="d4-wrap studio-asymmetric">
+				<header>
+					<h2 id="speaking-title">Speaking</h2><p>From research to the stage.</p><a class="d4-button" href="/speaking"
+						>Invite me to speak</a>
+				</header><Content kind="speaking" concept="studio" />
+			</div>
+		</section>
+		<section class="d4-section studio-books" id="books" aria-labelledby="books-title">
+			<div class="d4-wrap">
+				<header class="d4-section-heading">
+					<h2 id="books-title">Books</h2><a href="/books/nodejs-secure-coding">Node.js Secure Coding</a>
+				</header><Content kind="books" concept="studio" limit={5} />
+			</div>
+		</section>
+		<section class="d4-section studio-blog" id="blog" aria-labelledby="blog-title">
+			<div class="d4-wrap">
+				<header class="d4-section-heading">
+					<div><h2 id="blog-title">Blog</h2><p>Research, code, and the lessons between them.</p></div><a
+						class="d4-button"
+						href={previewURL(concept.id, 'writing')}>Explore the blog</a>
+				</header><Content kind="blog" concept="studio" />
+			</div>
+		</section>
+	</main>
+</Shell>

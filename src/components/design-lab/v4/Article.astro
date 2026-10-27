@@ -15,9 +15,9 @@ const Post = post.Content;
 const image = await findImage(post.image);
 ---
 
-<article class="v3-article">
+<article class="d4-article">
 	<header>
-		<a href={previewURL(concept, 'writing')}>Back to Blog</a><p class="v3-meta">
+		<a href={previewURL(concept, 'writing')}>Back to Blog</a><p class="d4-meta">
 			<time datetime={new Date(post.pubDate).toISOString()}
 				>{
 					new Date(post.pubDate).toLocaleDateString('en-US', {
@@ -26,13 +26,15 @@ const image = await findImage(post.image);
 						year: 'numeric',
 						timeZone: 'UTC',
 					})
-				}</time>
-		</p><h1>{post.title}</h1><p class="v3-lede">{post.description}</p><div class="v3-byline">
+				}</time
+			>
+		</p><h1>{post.title}</h1><p class="d4-lede">{post.description}</p><div class="d4-byline">
 			<Image src={portrait} alt="" width={44} height={44} /><span>By Liran Tal</span><a
-				href={getPermalink(post.slug, 'post')}>Original article</a>
+				href={getPermalink(post.slug, 'post')}>Original article</a
+			>
 		</div>
 	</header><Picture
-		class="v3-article-cover"
+		class="d4-article-cover"
 		src={image}
 		alt={`Cover artwork for ${post.title}`}
 		widths={[640, 1200]}

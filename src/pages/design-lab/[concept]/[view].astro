@@ -1,10 +1,10 @@
 ---
 import PreviewLayout from '~/components/design-lab/PreviewLayout.astro';
 import LegacyPreview from '~/components/design-lab/LegacyPreview.astro';
-import Prism from '~/components/design-lab/v3/Prism.astro';
-import Structured from '~/components/design-lab/v3/Structured.astro';
-import Navigator from '~/components/design-lab/v3/Navigator.astro';
-import Reading from '~/components/design-lab/v3/Reading.astro';
+import Prism from '~/components/design-lab/v4/Prism.astro';
+import Forma from '~/components/design-lab/v4/Forma.astro';
+import Studio from '~/components/design-lab/v4/Studio.astro';
+import Reading from '~/components/design-lab/v4/Reading.astro';
 import { concepts, views } from '~/components/design-lab/concepts';
 import type { Concept, View } from '~/components/design-lab/concepts';
 export function getStaticPaths() {
@@ -23,14 +23,14 @@ const { concept, view } = Astro.props;
 	{
 		concept.round === 1 ? (
 			<LegacyPreview {concept} {view} />
-		) : concept.id === 'navigator' ? (
-			<Navigator {concept} {view} />
 		) : view !== 'home' ? (
 			<Reading {concept} {view} />
 		) : concept.id === 'prism' ? (
 			<Prism {concept} />
+		) : concept.id === 'forma' ? (
+			<Forma {concept} />
 		) : (
-			<Structured {concept} />
+			<Studio {concept} />
 		)
 	}
 </PreviewLayout>

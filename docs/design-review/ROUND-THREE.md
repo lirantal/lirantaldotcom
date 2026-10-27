@@ -1,5 +1,7 @@
 # Third design round
 
+> Historical round. Superseded by [round four](ROUND-FOUR.md). Structured and Navigator are retired; Prism has been redesigned.
+
 ## Brief
 
 The owner rejected the previous round as three cosmetic variations of one layout. Remove Atlas and Lumen. Keep Prism's colored section grouping and general hero direction, but remove the article-led hero and newspaper/widget composition. Give recognition visible, working links and research a complete section. Use literal names: Blog, Research, Open source, Speaking, Books, Recognition. A second proposal should preserve the current website while imposing consistent structure. A third should be a genuinely different design and interaction model. Light mode remains the priority; dark mode follows selection.
