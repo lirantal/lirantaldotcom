@@ -3,9 +3,8 @@
   "compilerOptions": {
     "types": ["astro/client"],
     "allowJs": true,
-    "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["./src/*"]
     }
   }
 }
