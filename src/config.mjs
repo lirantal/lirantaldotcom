@@ -12,6 +12,7 @@ export const NAVIGATION = [
 	{ href: '/#open-source', label: 'Open source' },
 	{ href: '/#books', label: 'Books' },
 	{ href: '/speaking', label: 'Speaking' },
+	{ href: '/hire-me', label: 'Hire me' },
 ];
 
 export const SPEAKING = {
