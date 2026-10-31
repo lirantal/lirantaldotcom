@@ -228,22 +228,28 @@
 }
 /* The first three books retain the original five-column shelf geometry. */
 .site-theme .forma-refined .refined-other-books {
-	--book-cover-height: 230px;
 	--thumbnail-gap: 16px;
 	grid-column: span 2;
 	display: grid;
-	grid-template-columns: repeat(2, max-content);
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	grid-template-rows: repeat(2, minmax(0, 1fr));
 	gap: var(--thumbnail-gap);
+	width: 100%;
+	max-width: 320px;
 	justify-self: center;
-	align-self: start;
+	align-self: stretch;
 }
 .site-theme .forma-refined .refined-other-books a {
 	display: block;
-	width: fit-content;
+	position: relative;
+	min-width: 0;
+	min-height: 0;
 }
 .site-theme .forma-refined .refined-other-books img {
-	height: calc((var(--book-cover-height) - var(--thumbnail-gap)) / 2);
-	width: auto;
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	width: 100%;
 	object-fit: contain;
 }
 .site-theme .forma-refined .refined-other-books a:hover {
@@ -251,9 +257,6 @@
 	outline-offset: 4px;
 }
 @media (max-width: 1050px) {
-	.site-theme .forma-refined .refined-other-books {
-		--book-cover-height: 180px;
-	}
 	.site-theme .forma-refined .refined-projects article {
 		grid-template-columns: minmax(180px, 0.9fr) minmax(0, 1.3fr) calc(2 * var(--project-target-size) + 4px);
 		gap: 20px;
@@ -275,14 +278,10 @@
 		align-self: start;
 	}
 	.site-theme .forma-refined .refined-other-books {
-		--book-cover-height: 210px;
+		aspect-ratio: 1;
+		width: 100%;
 		--thumbnail-gap: 12px;
 		grid-column: auto;
 		justify-self: start;
-	}
-}
-@media (max-width: 370px) {
-	.site-theme .forma-refined .refined-other-books {
-		--book-cover-height: 170px;
 	}
 }

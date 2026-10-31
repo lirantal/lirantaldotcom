@@ -416,3 +416,42 @@
 	max-width: 100%;
 	overflow-x: auto;
 }
+
+/* Text actions share the publication links' visible affordance. */
+.site-theme .forma-section-actions a,
+.site-theme .impact-browse-link {
+	font-weight: 600;
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+.site-theme .home-impact .impact-metrics {
+	text-align: center;
+}
+.site-theme .impact-sources {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 28px;
+	border-top: 1px solid var(--rule);
+	padding-top: 24px;
+}
+.site-theme .impact-sources h3 {
+	font-size: 14px;
+	color: var(--ink);
+	margin-bottom: 8px;
+}
+.site-theme .impact-sources section > p {
+	margin-top: 0;
+}
+.site-theme .impact-sources section > p:last-child {
+	margin-top: 16px;
+}
+.site-theme .impact-browse-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+@media (max-width: 760px) {
+	.site-theme .impact-sources {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}

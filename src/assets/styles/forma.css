@@ -367,19 +367,6 @@
 	color: var(--muted);
 	margin-top: 10px;
 }
-.site-theme .forma-read {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	font-size: 12px;
-	font-weight: 600;
-	margin-top: 16px;
-	color: var(--accent);
-}
-.site-theme .forma-read svg {
-	width: 16px;
-	height: 16px;
-}
 .site-theme .forma-blog-card:hover,
 .site-theme .forma-blog-card:focus-visible {
 	background: var(--surface);
@@ -588,10 +575,6 @@
 }
 .site-theme .forma-refined .forma-blog-copy h3 {
 	font-size: 20px;
-}
-.site-theme .forma-refined .forma-read {
-	margin-top: auto;
-	padding-top: 24px;
 }
 .site-theme .forma-refined .forma-blog-card:is(:hover, :focus-visible) {
 	border-color: var(--ink);

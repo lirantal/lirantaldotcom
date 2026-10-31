@@ -1,7 +1,6 @@
 ---
 import Picture from '~/components/core/Picture.astro';
 import PostTags from '~/components/atoms/Tags.astro';
-import { Icon } from 'astro-icon/components';
 import { fetchPosts } from '~/utils/posts';
 import { findImage } from '~/utils/images';
 import { getPermalink } from '~/utils/permalinks';
@@ -40,10 +39,6 @@ const dates = posts.map((post) => {
 							{showTags && <span class="forma-meta">{post.readingTime}</span>}
 							<h3>{post.title}</h3>
 							<p>{post.description}</p>
-							<span class="forma-read">
-								Read article
-								<Icon name="tabler:arrow-up-right" aria-hidden="true" />
-							</span>
 						</>
 					</div>
 				</a>
