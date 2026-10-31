@@ -8,16 +8,10 @@ const featured = projects.filter((p) => ['lockfile-lint', 'npq', 'Node.js CLI Ap
 	{
 		featured.map((project) => (
 			<article>
-				<header>
-					<>
-						<h3>
-							<>
-								<a href={project.url}>{project.name}</a>
-								<span class="d5-project-kind">{project.kind}</span>
-							</>
-						</h3>
-					</>
-				</header>
+				<h3>
+					<a href={project.url}>{project.name}</a>
+				</h3>
+				<span class="d5-project-kind">{project.kind}</span>
 				<p>{project.description}</p>
 				<nav class="d5-project-sources" aria-label={`${project.name} sources`}>
 					<a href={project.url} aria-label={`${project.name} on GitHub`} title={`${project.name} on GitHub`}>
