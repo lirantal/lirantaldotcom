@@ -26,7 +26,7 @@ for (const file of files.filter((file) => file.endsWith('.html'))) {
 	}
 	const html = source.replace(/<!--[\s\S]*?-->/g, '');
 	pages += 1;
-	for (const tag of html.matchAll(/<(?:a|link|script|img|source)\b[^>]*>/gi)) {
+	for (const tag of html.matchAll(/<(?:a|link|script|img|source|video)\b[^>]*>/gi)) {
 		for (const attr of tag[0].matchAll(/\b(?:href|src)\s*=\s*(["'])(.*?)\1/gi)) {
 			let target;
 			try {
