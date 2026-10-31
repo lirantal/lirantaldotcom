@@ -63,7 +63,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: 8px 28px;
+	gap: 8px 20px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -71,7 +71,7 @@
 .lab-body .d5 .d5-recognition li > a {
 	display: inline-flex;
 	align-items: center;
-	gap: 9px;
+	gap: 5px;
 	font-size: 14px;
 	font-weight: 550;
 	text-decoration: none;
@@ -85,12 +85,25 @@
 	height: 20px;
 	flex-shrink: 0;
 }
-.lab-body .d5 .d5-alumni {
+.lab-body .d5 .d5-alumni,
+.lab-body .d5 .d5-awarded {
 	font-weight: 400;
 	color: var(--muted);
 }
-.lab-body .d5 .d5-all-recognition {
+.lab-body .d5 .d5-recognition-more {
+	display: inline-flex;
+	align-items: center;
+	gap: 16px;
+}
+.lab-body .d5 .d5-recognition-separator {
+	color: var(--muted);
+	font-size: 14px;
+}
+.lab-body .d5 .d5-recognition li.d5-recognition-more > a {
 	font-size: 12px;
+	font-weight: 400;
+	text-decoration: underline;
+	white-space: nowrap;
 }
 .lab-body .d5 .d5-projects {
 	--project-icon-size: 21px;
@@ -184,8 +197,8 @@
 	.lab-body .d5 .d5-recognition li > a {
 		font-size: 13px;
 	}
-	.lab-body .d5 .d5-all-recognition {
-		align-self: flex-start;
+	.lab-body .d5 .d5-recognition-separator {
+		display: none;
 	}
 }
 .lab-body .gallery-grid.current-comparison {
