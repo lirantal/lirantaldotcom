@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import { books } from '~/data/portfolio';
+import essential from '~/assets/images/book-cover-essential-nodejs-security.jpg';
+import bun from '~/assets/images/bun-security-essentials-book-frontcover.png';
+const otherBooks = [
+	...books.slice(3),
+	{
+		title: 'Essential Node.js Security',
+		image: essential,
+		url: 'https://nodejs-security.lemonsqueezy.com/checkout/buy/5d5975e1-4481-40a5-b180-de154cc865b0',
+	},
+	{ title: 'Bun Security Essentials', image: bun, url: 'https://bunsecurity.dev' },
+];
+---
+
+<div class="d4-book-list d5-book-shelf">
+	{
+		books.slice(0, 3).map((book) => (
+			<article>
+				<a href={book.url}>
+					<Image src={book.image} alt={book.title} widths={[180, 360]} sizes="(max-width: 760px) 38vw, 180px" />
+					<>
+						<span>{book.series}</span>
+						<h3>{book.title}</h3>
+					</>
+				</a>
+			</article>
+		))
+	}
+	<div class="d5-other-books" role="group" aria-label="More security books">
+		{
+			otherBooks.map((book) => (
+				<a href={book.url} title={book.title}>
+					<Image src={book.image} alt={book.title} widths={[100, 200]} sizes="(max-width: 1050px) 70px, 90px" />
+				</a>
+			))
+		}
+	</div>
+</div>

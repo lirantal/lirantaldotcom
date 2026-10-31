@@ -108,21 +108,34 @@
 .lab-body .d5 .d5-projects {
 	--project-icon-size: 21px;
 	--project-target-size: 36px;
-	row-gap: 12px;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 0;
+	border: 1px solid var(--rule);
+	border-radius: 6px;
+	background: var(--paper);
 }
 .lab-body .d5 .d5-projects article {
-	padding: 24px;
+	padding: 22px 24px;
 	display: grid;
-	grid-template-rows: subgrid;
-	grid-row: span 4;
-	row-gap: 12px;
+	grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.3fr) calc(2 * var(--project-target-size) + 4px);
+	align-items: center;
+	gap: 28px;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+}
+.lab-body .d5 .d5-projects article + article {
+	border-top: 1px solid var(--rule);
+}
+.lab-body .d5 .d5-projects header {
+	min-width: 0;
 }
 .lab-body .d5 .d5-projects h3 {
 	font-size: 21px;
 }
 .lab-body .d5 .d5-project-kind {
-	justify-self: start;
-	align-self: start;
+	margin-top: 8px;
 	letter-spacing: 0;
 	font-weight: 400;
 	display: inline-block;
@@ -143,8 +156,8 @@
 	align-items: center;
 	gap: 4px;
 	margin-top: 0;
-	align-self: start;
-	margin-inline-start: calc((var(--project-icon-size) - var(--project-target-size)) / 2);
+	justify-self: start;
+	margin-inline-start: 0;
 }
 .lab-body .d5 .d5-project-sources a {
 	display: inline-flex;
@@ -209,5 +222,66 @@
 @media (max-width: 760px) {
 	.lab-body .gallery-grid.current-comparison {
 		grid-template-columns: 1fr;
+	}
+}
+
+/* The first three books retain the original five-column shelf geometry. */
+.lab-body .d5 .d5-other-books {
+	--book-cover-height: 230px;
+	--thumbnail-gap: 16px;
+	grid-column: span 2;
+	display: grid;
+	grid-template-columns: repeat(2, max-content);
+	gap: var(--thumbnail-gap);
+	justify-self: center;
+	align-self: start;
+}
+.lab-body .d5 .d5-other-books a {
+	display: block;
+	width: fit-content;
+}
+.lab-body .d5 .d5-other-books img {
+	height: calc((var(--book-cover-height) - var(--thumbnail-gap)) / 2);
+	width: auto;
+	object-fit: contain;
+}
+.lab-body .d5 .d5-other-books a:hover {
+	outline: 1px solid var(--ink);
+	outline-offset: 4px;
+}
+@media (max-width: 1050px) {
+	.lab-body .d5 .d5-other-books {
+		--book-cover-height: 180px;
+	}
+	.lab-body .d5 .d5-projects article {
+		grid-template-columns: minmax(180px, 0.9fr) minmax(0, 1.3fr) calc(2 * var(--project-target-size) + 4px);
+		gap: 20px;
+	}
+}
+@media (max-width: 760px) {
+	.lab-body .d5 .d5-projects article {
+		grid-template-columns: minmax(0, 1fr) calc(2 * var(--project-target-size) + 4px);
+		gap: 16px;
+		padding: 22px;
+	}
+	.lab-body .d5 .d5-projects article > p {
+		grid-column: 1/-1;
+		grid-row: 2;
+	}
+	.lab-body .d5 .d5-project-sources {
+		grid-column: 2;
+		grid-row: 1;
+		align-self: start;
+	}
+	.lab-body .d5 .d5-other-books {
+		--book-cover-height: 210px;
+		--thumbnail-gap: 12px;
+		grid-column: auto;
+		justify-self: start;
+	}
+}
+@media (max-width: 370px) {
+	.lab-body .d5 .d5-other-books {
+		--book-cover-height: 170px;
 	}
 }

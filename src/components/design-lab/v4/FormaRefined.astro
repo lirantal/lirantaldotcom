@@ -2,6 +2,7 @@
 import Shell from './Shell.astro';
 import CompactAwards from './CompactAwards.astro';
 import CompactProjects from './CompactProjects.astro';
+import RefinedBooks from './RefinedBooks.astro';
 import { Icon } from 'astro-icon/components';
 import Content from './Content.astro';
 import { Image } from 'astro:assets';
@@ -103,7 +104,7 @@ const { concept } = Astro.props;
 			<div class="d4-wrap">
 				<header class="d4-section-heading">
 					<h2 id="books-title">Books</h2><a href="/books/nodejs-secure-coding">Node.js Secure Coding</a>
-				</header><Content kind="books" concept={concept.id} limit={5} />
+				</header><RefinedBooks />
 			</div>
 		</section>
 	</main>
