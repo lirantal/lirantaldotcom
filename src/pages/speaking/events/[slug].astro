@@ -6,7 +6,7 @@ import TypeBadge from '~/components/speaking/TypeBadge.astro';
 import EventRow from '~/components/speaking/EventRow.astro';
 import PhotoGallery from '~/components/speaking/PhotoGallery.astro';
 
-import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { getCanonical } from '~/utils/permalinks';
 import { SPEAKING_BASE, TYPES, formatDate, getSpeaking } from '~/utils/speaking';
 
 export async function getStaticPaths() {
@@ -29,7 +29,7 @@ const meta = {
 	description: `${TYPES[event.type].label} on ${formatDate(event.date, 'long')}${event.remote ? '' : ` in ${event.location}`}${
 		event.title ? `: "${event.title}"` : ''
 	}.`,
-	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+	canonical: getCanonical(Astro.url.pathname),
 };
 ---
 

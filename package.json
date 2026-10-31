@@ -12,6 +12,7 @@
     "astro": "astro",
     "format": "prettier -w .",
     "test": "node --test scripts/tests/*.test.mjs",
+    "check:links": "node scripts/check-internal-links.mjs",
     "lint": "eslint .",
     "lint:eslint": "eslint .",
     "blog:cover": "node scripts/generate-blog-cover.js",

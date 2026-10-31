@@ -6,7 +6,7 @@ import EventRow from '~/components/speaking/EventRow.astro';
 import PhotoGallery from '~/components/speaking/PhotoGallery.astro';
 
 import { SPEAKING } from '~/config.mjs';
-import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { getCanonical } from '~/utils/permalinks';
 import { SPEAKING_BASE, TYPES, countryFlag, formatDate, getSpeaking } from '~/utils/speaking';
 
 export async function getStaticPaths() {
@@ -35,7 +35,7 @@ const meta = {
 	description: `${talk.topic.label} talk by Liran Tal, delivered ${talk.count === 1 ? 'once' : `${talk.count} times`} (${years}).${
 		recording ? ' Recording available.' : ''
 	}`,
-	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+	canonical: getCanonical(Astro.url.pathname),
 };
 ---
 

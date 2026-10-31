@@ -23,7 +23,13 @@ test('postbuild emits heading-led twins for HTML, API pages, and llms indexes in
 			'scripts/generate-markdown-pages.mjs',
 			await fs.readFile(path.join(root, 'scripts/generate-markdown-pages.mjs'))
 		);
+		await write(
+			'scripts/legacy-speaking-redirects.mjs',
+			await fs.readFile(path.join(root, 'scripts/legacy-speaking-redirects.mjs'))
+		);
 		await write('dist/index.html', '<title>Home</title><main><h1>Liran Tal</h1><p>Welcome</p></main>');
+		await write('dist/speaking/events/index.html', '<title>Events</title><main>Events</main>');
+		await write('dist/speaking/talks/example/index.html', '<title>Talk</title><main>Talk</main>');
 		await write(
 			'dist/blog/example/index.html',
 			'<title>Example</title><link rel="canonical" href="https://lirantal.com/blog/example"><main><h2>Article</h2><p>Full text</p></main>'
@@ -51,6 +57,18 @@ test('postbuild emits heading-led twins for HTML, API pages, and llms indexes in
 		];
 		const configPath = path.join(fixture, '.vercel/output/config.json');
 		const config = JSON.parse(await fs.readFile(configPath, 'utf8'));
+		for (const [source, destination] of [
+			['/speaking-events', '/speaking/events'],
+			['/speaking-talks-example', '/speaking/talks/example'],
+		]) {
+			const redirect = config.routes.find((route) => route.status === 308 && new RegExp(route.src).test(source));
+			assert.ok(redirect);
+			assert.equal(redirect.headers.Location.replace('$1', source.match(new RegExp(redirect.src))[1]), destination);
+			assert.ok(config.routes.indexOf(redirect) < config.routes.findIndex((route) => route.handle === 'filesystem'));
+		}
+		assert.ok(
+			!config.routes.some((route) => route.status === 308 && new RegExp(route.src).test('/speaking-talks-unknown'))
+		);
 		for (const twin of twins) {
 			const markdown = await fs.readFile(path.join(fixture, 'dist', twin), 'utf8');
 			assert.match(markdown, /^# .+\n/);

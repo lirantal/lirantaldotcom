@@ -19,6 +19,8 @@ const markdownPath = Astro.url.pathname === '/' ? '/index.md' : `${Astro.url.pat
 	</head>
 
 	<body class="antialiased text-gray-900 dark:text-slate-300 tracking-tight bg-white dark:bg-slate-900">
+		{/* Cloudflare's documented opt-out keeps email links and code examples out of its /cdn-cgi/ rewrite. */}
+		<!--email_off-->
 		<a
 			href="#main"
 			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-primary-700 focus:shadow-lg focus:outline-2 focus:outline-primary-600 dark:focus:bg-slate-800 dark:focus:text-primary-300"
@@ -30,5 +32,6 @@ const markdownPath = Astro.url.pathname === '/' ? '/index.md' : `${Astro.url.pat
 				content-visibility: auto;
 			}
 		</style>
+		<!--/email_off-->
 	</body>
 </html>
