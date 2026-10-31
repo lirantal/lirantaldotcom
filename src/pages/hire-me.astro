@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
 import { PROFILE } from '~/config.mjs';
 import { getCanonical } from '~/utils/permalinks';
@@ -225,9 +226,9 @@ const moreQuestions = [
 				product roles.
 			</p>
 			<div class="mt-7 flex flex-wrap gap-4">
-				<a class="font-semibold" href={PROFILE.linkedinURL}>View my LinkedIn résumé <span aria-hidden="true">↗</span></a
+				<a class="font-semibold" href={PROFILE.linkedinURL}>View my LinkedIn résumé <Icon name="tabler:arrow-up-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" /></a
 				>
-				<a class="self-center" href="#questions">Explore the questions <span aria-hidden="true">↓</span></a>
+				<a class="self-center" href="#questions">Explore the questions <Icon name="tabler:arrow-down" class="inline-block w-4 h-4 align-middle" aria-hidden="true" /></a>
 			</div>
 		</header>
 
@@ -351,7 +352,7 @@ const moreQuestions = [
 														<>
 															{index > 0 && ' · '}
 															<a href={source.url}>
-																{source.label} <span aria-hidden="true">↗</span>
+																{source.label} <Icon name="tabler:arrow-up-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" />
 															</a>
 														</>
 													))}
@@ -373,7 +374,7 @@ const moreQuestions = [
 				the problem you’re solving.
 			</p>
 			<p class="mt-4">
-				<a href={PROFILE.linkedinURL}>Get in touch on LinkedIn <span aria-hidden="true">↗</span></a> · <a
+				<a href={PROFILE.linkedinURL}>Get in touch on LinkedIn <Icon name="tabler:arrow-up-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" /></a> · <a
 					href="/contact">Other contact options</a
 				>
 			</p>

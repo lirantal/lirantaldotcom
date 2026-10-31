@@ -55,7 +55,10 @@
     "turndown": "^7.2.4",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.1",
-    "unist-util-visit": "^5.1.0"
+    "unist-util-visit": "^5.1.0",
+    "@fontsource-variable/newsreader": "^5.3.0",
+    "@fontsource-variable/space-grotesk": "^5.3.0",
+    "@fontsource-variable/manrope": "^5.3.0"
   },
   "engines": {
     "npm": ">=11.10.0",

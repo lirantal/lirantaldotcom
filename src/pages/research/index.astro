@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/ResearchLayout.astro';
 import Section from '~/components/portfolio/Section.astro';
 import PaperList from '~/components/research/PaperList.astro';
@@ -52,7 +53,7 @@ const meta = {
 			</div>
 		</dl>
 		<div class="grid md:grid-cols-[1fr_2fr] gap-4 md:gap-10 mt-6 text-sm">
-			<p><a href={scholarURL}>Citations & h-index on Google Scholar <span aria-hidden="true">↗</span></a></p>
+			<p><a href={scholarURL}>Citations & h-index on Google Scholar <Icon name="tabler:arrow-up-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" /></a></p>
 			<p class="muted">
 				Research snapshot: {dateLabel(researchAsOf)}. Counts cover the work listed here. Citation totals are available
 				on my Google Scholar profile.
@@ -72,7 +73,7 @@ const meta = {
 						<p class="eyebrow">{page.context}</p>
 						<h3>
 							<a href={`/research/${page.slug}`}>
-								{page.label} <span aria-hidden="true">→</span>
+								{page.label} <Icon name="tabler:arrow-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" />
 							</a>
 						</h3>
 						<p class="muted mt-3 text-sm max-w-xl">{page.summary}</p>
@@ -87,7 +88,7 @@ const meta = {
 		title="Recent papers"
 		description="Co-authored research, with the full methods and evidence."
 	>
-		<a slot="link" href="/research/papers">All papers <span aria-hidden="true">→</span></a>
+		<a slot="link" href="/research/papers">All papers <Icon name="tabler:arrow-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" /></a>
 		<PaperList limit={2} />
 	</Section>
 	<Section
@@ -102,7 +103,7 @@ const meta = {
 					GitLab’s Dennis Appelt and Greg Johnson extended my 2019 lockfile injection research to more techniques and
 					ecosystems, presenting their work at Black Hat Europe 2021.
 				</p><p class="mt-4 text-sm">
-					<a href="/research/lockfile-injection">Follow the research trail <span aria-hidden="true">→</span></a>
+					<a href="/research/lockfile-injection">Follow the research trail <Icon name="tabler:arrow-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" /></a>
 				</p>
 			</article>
 			<article>
@@ -110,7 +111,7 @@ const meta = {
 					The npm security best practices I co-authored with Juan Picado became the original basis of OWASP’s NPM
 					Security Cheat Sheet.
 				</p><p class="mt-4 text-sm">
-					<a href="/research/npm-security">Read about the OWASP connection <span aria-hidden="true">→</span></a>
+					<a href="/research/npm-security">Read about the OWASP connection <Icon name="tabler:arrow-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" /></a>
 				</p>
 			</article>
 		</div>

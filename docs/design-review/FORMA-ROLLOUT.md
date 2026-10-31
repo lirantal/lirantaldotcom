@@ -1,0 +1,38 @@
+# Forma Refined production rollout
+
+The owner selected Forma Refined and authorized applying it across the full website in PR #30. Rebase on current main first; preserve Hire Me, latest homepage roles/copy/social treatment, research additions, content, canonical links and every existing route/interaction. Retire the design-lab implementation and routes.
+
+## Plan and tokens
+
+Inter throughout. Light: paper #FFFFFF, ink/accent #171717, secondary #626262, surface #F7F7F7, rule #DFDFDF, footer #181818. Preserve the explicit theme toggle and saved dark preference; dark adapts those roles to the existing soft-black surfaces and light neutral text. Light remains the default regardless of OS preference. Reuse the approved asymmetric hero, rounded transparent portrait, neutral social icons, inline Awarded recognition, 6px controls, framed research, compact project rows, real Blog cards, book shelf and contrasting feed footer. Maintain shared geometry around a 1120px content column.
+
+Homepage: current identity/copy → recognition → Research → featured tools → Blog with Beyond This Blog → Speaking → full Open source impact/source disclosures and all leading projects → Books (three primary + four-cover matrix) → Better Together community. Keep the main page's structured data, machine-readable endpoints, stable anchors and WebMCP registration. Use real recent posts and current datasets rather than mock content.
+
+Extend the same typography, surfaces and controls to Blog archives/tags/categories, actual articles (tags, sharing, reading time, related posts and book promotion retained), Research overview/subpages/filters, Hire Me and FAQs, speaking overview and every talk/event/recording/podcast/press-kit page, recognitions, books, informational pages and shared game chrome. Speaking keeps its rich content, photographs, gradients and semantic badges as deliberate local accents; they do not recolor the entire site's chrome. Do not flatten working interfaces into static mockups.
+
+The design-lab subset is an approved visual reference, not an authoritative inventory. Restore the full impact dashboard and dated package/repository sources; complete project selection; the two external publication references; all attributed community quotes; complete footer columns and latest navigation. Preserve SEO, search/Pagefind, RSS, schema, accessibility, API/Markdown negotiation, filters/deep links and existing redirects.
+
+## Review before implementation
+
+The chosen identity is explicit. No new themes, interviews, specimen content or navigation models are needed. Promote the useful preview components into production components with canonical destinations, consolidate theme tokens into the real layout, and adapt the current page components in place. Main's new Hire Me content and data are source-of-truth. Do not replace main's full content with the shorter preview. Validate light/dark, responsive states, menus, search, filters, disclosures, real pages and route coverage before updating the existing PR. The user authorized the rebase and its necessary force-with-lease push; protect the recorded remote head.
+
+## Implemented design and content review
+
+[Production page comparison](FORMA-PRODUCTION.webp) captures real homepage, Speaking, Blog and Hire Me pages in light/dark mode. [Retained homepage content](FORMA-CONTENT.webp) shows the full impact area, Beyond This Blog, and Better Together. Reusable production components live in `src/components/forma`; the root layout now supplies one real theme, header and complete footer. No mockup toolbar, alternate theme fonts, specimen routes or gallery assets remain.
+
+The complete homepage now includes the chosen asymmetric hero and latest Software engineer / Leading Developer Relations wording; a discoverable Hire Me route; compact Awarded recognition; current preprints including VulnBench 2.0; featured tools; real recent Blog cards and both external publication references; the Speaking overview; dated npm/GitHub impact with package/repository source disclosures; all curated projects; the three unchanged primary books and four-cover matrix; and all four attributed community quotes with local portraits. Main's source datasets, blog content, API/utility scripts and Hire Me FAQ data were checked against the rebased main and preserved.
+
+The neutral shared type, surfaces, controls and reading experience apply to every production route. Speaking deliberately retains its local gradients, stage-photo treatment, calendar and year bars, semantic badges, full archive/detail content, testimonials, recordings, podcasts, press kit and invitation flow. Research retains all topics, preprints, disclosures, status/severity controls and primary sources. Archive tags/categories retain real navigation, reading metadata, Pagefind and pagination; actual articles retain tags, sharing, reading time, code/diagrams, related writing and the book promotion. Informational pages, developer resources, books, recognitions, game chrome and the 404 page use the same shared design.
+
+Two edge cases were corrected during full-site verification: archived posts with missing publication dates now omit the date instead of throwing during ISO formatting, without inventing a date or modifying content; long developer-API signatures wrap within narrow panels while preformatted code remains horizontally scrollable. Decorative arrow spans use SVG icons to avoid missing glyphs under the production font subsets.
+
+## Validation
+
+- Rebased the eight proposal commits onto latest main `9f5c346`; no conflicts. Retained a local backup before rewriting history. Rechecked main before delivery and it remains the same head.
+- `npm run lint`, all eight existing Node tests, and `ASTRO_TELEMETRY_DISABLED=1 npm run build` passed. The final build generated 953 HTML pages and 966 Markdown outputs. All 953 HTML pages have the production header/footer; no design-lab bundle exists.
+- `node scripts/check-internal-links.mjs` passed across all 953 HTML pages and 5,553 deployed files, including Markdown twins, Pagefind, canonical nested routes, assets and the email-rewriting opt-out markers. Production Vercel headers/negotiation routes and redirects are preserved.
+- Browser route checks covered 27 representative routes in light/dark mode at 390 and 1440px, including static informational pages, Hire Me, research, every Speaking page type, actual talk/event details, both games, Blog directory/archive, a real article and a tag archive. No document overflow. Additional 320px checks cover the homepage, Hire Me, Speaking, Blog, developer resources, books, actual and undated legacy articles; menu breakpoint reset is checked across 1023/1024px.
+- Verified mobile menu open/close/Escape, navigation to Hire Me, default light under dark OS preference, saved theme reload, FAQ disclosures, full impact source disclosures, Speaking filters/counts/query reload, event/recording filters, advisory empty/reset states, Blog metadata search, populated Pagefind results/clear, homepage WebMCP registration and actual search execution, article indexing/related links, and themed 404s for retired/unknown routes.
+- Reviewed rendered light/dark and responsive captures. The mechanical design detector reported three warnings, all on owner-approved retained Speaking gradients/calendar accent borders; these are deliberate scope-preserving exceptions, not reasons to strip the rich Speaking presentation.
+
+Existing Astro deprecation warnings and unavailable external embeds/speaking fetches remain non-blocking; the established local Speaking snapshot fallback is retained. This work updates PR #30 for review and does not merge it or deploy production.

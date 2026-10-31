@@ -1,0 +1,287 @@
+/* Proposal-only changes. Forma supplies the type, palette, controls and reading views. */
+.site-theme .forma-refined .refined-intro {
+	display: grid;
+	grid-template-columns: 1.5fr 1fr;
+	align-items: center;
+	gap: 80px;
+	padding-block: 64px 42px;
+}
+.site-theme .forma-refined .refined-intro h1 {
+	font-size: clamp(2.8rem, 5.4vw, 4.6rem);
+}
+.site-theme .forma-refined .refined-intro .forma-lede {
+	font-size: 17px;
+	max-width: 52ch;
+}
+.site-theme .forma-refined .refined-intro .forma-role {
+	font-size: 13px;
+}
+.site-theme .forma-refined .hero-action-links {
+	gap: 10px;
+}
+.site-theme .forma-refined .hero-action-links > span {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	white-space: nowrap;
+}
+.site-theme .forma-refined .hero-action-separator {
+	color: var(--muted);
+}
+.site-theme .forma-refined .refined-profile {
+	justify-self: end;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+}
+.site-theme .forma-refined .refined-portrait {
+	width: 320px;
+	height: auto;
+	max-width: 100%;
+	object-fit: contain;
+	border-radius: 28%;
+	background: transparent;
+}
+.site-theme .forma-refined .refined-socials {
+	display: flex;
+	gap: 12px;
+}
+.site-theme .forma-refined .refined-socials a {
+	width: 44px;
+	height: 44px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 6px;
+	color: var(--ink);
+}
+.site-theme .forma-refined .refined-socials svg {
+	width: 24px;
+	height: 24px;
+}
+.site-theme .forma-refined .refined-socials a:hover {
+	background: var(--surface);
+	color: var(--ink);
+}
+.site-theme .forma-refined .refined-recognition {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 4px;
+	padding-block: 18px 36px;
+}
+.site-theme .forma-refined .refined-recognition ul {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 20px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.site-theme .forma-refined .refined-recognition li > a {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 14px;
+	font-weight: 550;
+	text-decoration: none;
+	min-height: 36px;
+}
+.site-theme .forma-refined .refined-recognition li > a:hover {
+	text-decoration: underline;
+}
+.site-theme .forma-refined .refined-recognition svg {
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+}
+.site-theme .forma-refined .refined-alumni,
+.site-theme .forma-refined .refined-awarded {
+	font-weight: 400;
+	color: var(--muted);
+}
+.site-theme .forma-refined .refined-recognition-more {
+	display: inline-flex;
+	align-items: center;
+	gap: 16px;
+}
+.site-theme .forma-refined .refined-recognition-separator {
+	color: var(--muted);
+	font-size: 14px;
+}
+.site-theme .forma-refined .refined-recognition li.refined-recognition-more > a {
+	font-size: 12px;
+	font-weight: 400;
+	text-decoration: underline;
+	white-space: nowrap;
+}
+.site-theme .forma-refined .refined-projects {
+	--project-icon-size: 21px;
+	--project-target-size: 36px;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 0;
+	border: 1px solid var(--rule);
+	border-radius: 6px;
+	background: var(--paper);
+}
+.site-theme .forma-refined .refined-projects article {
+	padding: 22px 24px;
+	display: grid;
+	grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.3fr) calc(2 * var(--project-target-size) + 4px);
+	align-items: center;
+	gap: 28px;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+}
+.site-theme .forma-refined .refined-projects article + article {
+	border-top: 1px solid var(--rule);
+}
+.site-theme .forma-refined .refined-projects header {
+	min-width: 0;
+}
+.site-theme .forma-refined .refined-projects h3 {
+	font-size: 21px;
+}
+.site-theme .forma-refined .refined-project-kind {
+	margin-top: 8px;
+	letter-spacing: 0;
+	font-weight: 400;
+	display: inline-block;
+	background: var(--surface);
+	border: 1px solid var(--rule);
+	border-radius: 999px;
+	padding: 3px 9px;
+	font-size: 12px;
+	line-height: 1.5;
+	color: var(--muted);
+	white-space: nowrap;
+}
+.site-theme .forma-refined .refined-projects article > p {
+	margin-top: 0;
+}
+.site-theme .forma-refined .refined-project-sources {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	margin-top: 0;
+	justify-self: start;
+	margin-inline-start: 0;
+}
+.site-theme .forma-refined .refined-project-sources a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--project-target-size);
+	height: var(--project-target-size);
+	border-radius: 4px;
+	color: var(--ink);
+}
+.site-theme .forma-refined .refined-project-sources a:hover {
+	background: var(--surface);
+}
+.site-theme .forma-refined .refined-project-sources svg {
+	width: var(--project-icon-size);
+	height: var(--project-icon-size);
+}
+@media (max-width: 1050px) {
+	.site-theme .forma-refined .refined-intro {
+		gap: 42px;
+		grid-template-columns: 1.4fr 1fr;
+	}
+	.site-theme .forma-refined .refined-portrait {
+		width: 280px;
+	}
+}
+@media (max-width: 760px) {
+	.site-theme .forma-refined .refined-intro {
+		grid-template-columns: 1fr;
+		gap: 28px;
+		padding-block: 28px 18px;
+	}
+	.site-theme .forma-refined .refined-intro h1 {
+		font-size: clamp(2.5rem, 9.5vw, 3.8rem);
+	}
+	.site-theme .forma-refined .refined-profile {
+		justify-self: start;
+	}
+	.site-theme .forma-refined .refined-portrait {
+		width: 220px;
+	}
+	.site-theme .forma-refined .refined-recognition {
+		align-items: flex-start;
+		gap: 4px;
+		padding-block: 22px 28px;
+	}
+	.site-theme .forma-refined .refined-recognition ul {
+		gap: 4px 24px;
+	}
+	.site-theme .forma-refined .refined-recognition li > a {
+		font-size: 13px;
+	}
+	.site-theme .forma-refined .refined-recognition-separator {
+		display: none;
+	}
+}
+/* The first three books retain the original five-column shelf geometry. */
+.site-theme .forma-refined .refined-other-books {
+	--thumbnail-gap: 16px;
+	grid-column: span 2;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	grid-template-rows: repeat(2, minmax(0, 1fr));
+	gap: var(--thumbnail-gap);
+	width: 100%;
+	max-width: 320px;
+	justify-self: center;
+	align-self: stretch;
+}
+.site-theme .forma-refined .refined-other-books a {
+	display: block;
+	position: relative;
+	min-width: 0;
+	min-height: 0;
+}
+.site-theme .forma-refined .refined-other-books img {
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+.site-theme .forma-refined .refined-other-books a:hover {
+	outline: 1px solid var(--ink);
+	outline-offset: 4px;
+}
+@media (max-width: 1050px) {
+	.site-theme .forma-refined .refined-projects article {
+		grid-template-columns: minmax(180px, 0.9fr) minmax(0, 1.3fr) calc(2 * var(--project-target-size) + 4px);
+		gap: 20px;
+	}
+}
+@media (max-width: 760px) {
+	.site-theme .forma-refined .refined-projects article {
+		grid-template-columns: minmax(0, 1fr) calc(2 * var(--project-target-size) + 4px);
+		gap: 16px;
+		padding: 22px;
+	}
+	.site-theme .forma-refined .refined-projects article > p {
+		grid-column: 1/-1;
+		grid-row: 2;
+	}
+	.site-theme .forma-refined .refined-project-sources {
+		grid-column: 2;
+		grid-row: 1;
+		align-self: start;
+	}
+	.site-theme .forma-refined .refined-other-books {
+		aspect-ratio: 1;
+		width: 100%;
+		--thumbnail-gap: 12px;
+		grid-column: auto;
+		justify-self: start;
+	}
+}

@@ -7,9 +7,11 @@ const { meta } = Astro.props;
 ---
 
 <Layout {meta}>
-	<Header />
-	<main id="main" tabindex="-1" class="focus:outline-none">
-		<slot />
-	</main>
-	<Footer />
+	<div class:list={['forma', 'forma-refined', { 'speaking-theme': Astro.url.pathname.startsWith('/speaking') }]}>
+		<Header />
+		<main id="main" tabindex="-1" class="focus:outline-none">
+			<slot />
+		</main>
+		<Footer />
+	</div>
 </Layout>

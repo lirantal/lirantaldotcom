@@ -1,0 +1,72 @@
+# Fifth design round: Forma + Forma Refined
+
+## Brief
+
+Create one proposal alongside the unchanged Forma baseline. Retire Prism and Studio from the comparison. The owner chose Forma's Inter typography, monochrome palette, weight/size hierarchy, menu, filled/outlined buttons, side-by-side Research area, Blog listing and article view. Keep these. Use Prism's asymmetric hero composition for the proposal, but remove its social text links and opaque black portrait background. Match the current website's monochrome X, GitHub and LinkedIn icon row under the portrait. Recognition must be compact single-line links, including “GitHub Star (alumni)”, with icons but no arrows or redundant text. Projects should lose generic decorative icons; their categories should be small pills alongside titles, and GitHub/npm source links should become closely grouped accessible icons.
+
+Read and apply the APM-installed Anthropic frontend-design skill. This is a consolidation of annotated choices, not another theme exploration. Production routes are unchanged.
+
+## Plan before implementation
+
+### Forma Refined
+
+Reuse Forma's exact token system: Inter Variable, white `#FFFFFF`, ink/accent `#171717`, muted `#626262`, neutral surface `#F7F7F7`, rule `#DFDFDF`, footer `#181818`. Preserve its menu, button styles, body type scale, Research document frame and source links, Blog cards, and article reading canvas. Copy the approved baseline's section sequence, so differences are easy to assess. Use a left-aligned evergreen thesis with the same content and primary/secondary actions, plus the portrait on the right. The new portrait is an image-tool background-removal derivative of the original JPEG (which contains an opaque black backdrop), stored separately; the original baseline asset remains untouched.
+
+Recognition is a compact wrapping row of icon/name links below the introduction, with the all-recognition action kept nearby. Each source project gets a title/category header, description, and a compact icon source row; there is no generic symbol or standalone category line. Social icon targets are 44px and inherit the neutral text color, with accessible labels, hover titles and visible keyboard focus. All icon-only project links also have project-specific accessible names.
+
+```text
+Forma menu, unchanged
+Prism-style left introduction           Transparent portrait
+Filled research / outlined Blog CTA     X / GitHub / LinkedIn icons
+Recognition: icon + single-line award links; no trailing arrows
+Forma Research: equal side-by-side papers, full sources, top-right CTA
+Forma Open source: compact title + category pill, description, source icons
+Forma Blog / Speaking / Books / contrasting RSS footer
+```
+
+## Review against the brief
+
+The new composition combines the owner's explicitly preferred pieces without introducing another palette, font or interaction model. Forma remains the comparison baseline, including its existing recognition and project components. Conditional proposal markup and scoped styles keep the changes out of that baseline. Both versions use the same Blog/article renderer and Research partial. No new marketing claims, decorative metrics, newsletter backend or dark variation is introduced. The transparent asset can composite on any future theme background.
+
+## Rendered review
+
+[Homepage comparison](round-five-overview.webp) shows the unchanged baseline beside the sole proposal at the same desktop viewport. [Project comparison](round-five-projects.webp) shows both project sections at the same scale.
+
+- The new hero follows Prism's approved asymmetric composition while using Forma's Inter, neutral text, filled research CTA and outlined Blog CTA. The transparent cutout has an alpha channel and remains transparent in Astro's optimized WebP output. Social icons form one neutral row under it, with 44px targets, accessible names and hover titles.
+- Recognition now reads “GitHub Star (alumni)” and “OpenJS Security Pathfinder” beside small icons. The links size to their content and have no outgoing arrows or second descriptive lines. They wrap into compact rows on narrow screens.
+- Project headings now include small neutral category pills in the text flow. Generic symbols and standalone category rows are removed. GitHub/npm icons sit together just below the description; their accessible names identify both the project and destination. The top-right GitHub CTA provides the full collection action.
+- Research retains Forma's equal-width document frame, paper metadata, coauthors, source links and top-right CTA. Blog and article views use the same unchanged reading renderer. The section order, speaking data, authentic book covers and contrasting RSS footer follow Forma.
+
+The main remaining composition tradeoff is the asymmetric introduction: it gives the portrait more presence than the centered baseline, and requires stacking the portrait and introduction on mobile. This is the requested consolidation rather than a third aesthetic direction.
+
+## Verification
+
+`npm run lint` and `ASTRO_TELEMETRY_DISABLED=1 npm run build` passed, including Pagefind and Markdown output. Browser checks against the production build covered both themes' homepage, Blog and article views at 320, 390, 768, 1073, 1192 (the annotation viewport), and 1440 pixels. Checked no document overflow, Inter rendering, light presentation under dark OS preference, two-option comparison navigation, approved section order, side-by-side Research above 760px and stacked papers below it, social target sizes/names/focus, optimized portrait alpha, compact recognition content, category pills/source icons, Blog hover and keyboard focus, whole-article navigation, and readable sections without JavaScript. The gallery contains exactly two cards with decoded thumbnails. Production homepage still responds. Retired preview routes return 404; the sitemap and Pagefind body markers exclude design-lab. The design detector returned no findings.
+
+Captured Forma before editing and compared it afterwards at 390, 1192 and 1440px for all three page types. Homepage and Blog renders matched pixel-for-pixel at every width; both desktop article captures also matched. The 390px article retained identical dimensions, with only 600 differing pixels at code-block corner edges across a 13.2-million-pixel capture. Forma's homepage, original recognition/content partials and Blog/article components are unmodified. Proposal-only markup and `.d5` styles provide the new details. Existing upstream embed-fetch/Astro warnings did not prevent the full build.
+
+Only Forma and Forma Refined remain in the public preview manifest and gallery. Prism, Studio, and earlier explorations are removed from those routes; their historical briefs and comparison artifacts remain in Git history/documentation. No production route or theme selection was changed.
+
+## Follow-up refinements from the next annotations
+
+The owner prefers this direction and requested five local refinements, preserving the approved type sizes and colors. Plan: soften the transparent portrait's hard rectangular edge using a 28% rounded mask rather than a full circle; remove “Liran Tal.” from the supporting role line; place the recognition links on the first row and “View all recognitions” on its own row underneath; align visible project source icons with paragraph text while retaining 36px hit areas; and replace opportunistic inline pill wrapping with consistent dedicated badge rows. Shared grid tracks align titles, badges, descriptions and source icons across the three project cards as titles wrap. This is a refinement of the existing proposal, not an additional theme.
+
+Recognition retains its existing 14px desktop / 13px mobile award links, 12px collection link, colors and weights. The visible “Recognition” prefix is replaced by an accessible section label so it no longer competes with the compact two-line grouping. On narrow screens the award row may wrap naturally, with the collection link always underneath. Project badges retain the same typography, colors and pill treatment; their rows and left edges are deterministic. The portrait asset itself is unchanged: CSS provides the rounded crop.
+
+Follow-up validation: lint and the full production build passed, including Pagefind/Markdown generation. Production-preview browser checks passed at 320, 390, 760, 761, 885, 964, 1073 and 1440px: no overflow; 28% portrait rounding; repeated name removed; recognition collection link always beneath the awards; original recognition text sizes preserved; badge and source-icon left edges match the paragraph; badges and sources share aligned rows across desktop cards; source targets remain 36px with visible keyboard focus. Forma's original hero/recognition and both versions' Blog/article views still render. Reviewed captures at the annotation widths and on mobile, then refreshed the gallery thumbnail and comparison artifacts. The design detector returned no findings.
+
+The next recognition annotation supersedes the two-line grouping: prefix both award names with muted “Awarded”, reduce the icon/text gap from 9px to 5px, and put “All recognitions” after a decorative `|` on the same desktop row. All three links share one wrapping list; on mobile the separator is hidden so it cannot become a stray leading mark after wrapping. Existing award and collection-link text sizes, palette and weights remain intact.
+
+Single-row recognition verification: inspected desktop and mobile captures and checked 320, 390, 761, 885, 964 and 1440px. At desktop widths all three links remain on one row with a visible separator; mobile wraps without overflow or a stray separator. Icon/text gap is 5px, existing link sizes are preserved, and keyboard focus remains visible. Forma baseline is unaffected. Lint and the design detector passed.
+
+The full build (including Pagefind and Markdown generation) and the same recognition checks against the production preview passed. Refreshed the gallery thumbnail and homepage comparison to show the single-row grouping.
+
+## Open-source rows and the extended bookshelf
+
+The next annotations request a clearer alternative to the three tall project boxes and a cover-only matrix for the other books, keeping the first three Node.js Secure Coding entries exactly as they are. Plan: use a single framed list of horizontal project rows, with identity/category at left, description in the middle and source icons at right. Give the source column a consistent width so descriptions and first source icons align even when a project has only a GitHub link. On mobile, place identity/sources above the full-width description. Preserve the approved neutral styling, categories, actual descriptions, accessible source names and keyboard targets.
+
+Interpret the requested matrix as **2×2 for four books**, not sixteen placeholders: HTTP Security Headers, Serverless Security, Essential Node.js Security and Bun Security Essentials. The first three entries reuse their exact existing data, markup, responsive image sizes and five-column shelf tracks; the compact matrix occupies the two remaining tracks. It shows only cover links, with titles supplied through image alt text and link hover titles. Essential's asset and verified checkout link already exist in the repository. Bun's authentic cover is sourced from the owner's Bun Security website source (not a generated illustration), with its established `https://bunsecurity.dev` destination. No production book data or Forma baseline is changed.
+
+Reviewed the [book shelf at the annotation width](round-five-books.webp) and refreshed the [project comparison](round-five-projects.webp). The horizontal rows remove the unused space beneath short project names; fixed source columns keep description and icon starts aligned. The thumbnail group uses the remaining shelf tracks without changing the first three entries' geometry.
+
+Validation: lint, the full build (Pagefind/Markdown included), and production-preview checks passed at 320, 390, 760, 761, 964 and 1440px. Compared the first three books directly with Forma: image position/size/source, title, series, link and title font size match at every width. Confirmed four cover-only links in two columns, authentic decoded artwork including the new Bun cover, accessible names, keyboard focus, project/source alignment, no page overflow, and both themes' Blog/article routes. The design detector returned no findings. This change is confined to Forma Refined; shared production book data and the Forma baseline are unmodified.

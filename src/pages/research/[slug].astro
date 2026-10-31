@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/ResearchLayout.astro';
 import { studies, researchPages } from '~/data/research';
 import { getCanonical } from '~/utils/permalinks';
@@ -37,7 +38,7 @@ const meta = {
 								{section.links.map((link) => (
 									<li>
 										<a href={link.url}>
-											{link.label} <span aria-hidden="true">↗</span>
+											{link.label} <Icon name="tabler:arrow-up-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" />
 										</a>
 									</li>
 								))}
@@ -61,7 +62,7 @@ const meta = {
 					))
 				}
 			</dl>
-			<p class="mt-7 text-sm"><a href="#sources">Sources & attribution <span aria-hidden="true">↓</span></a></p>
+			<p class="mt-7 text-sm"><a href="#sources">Sources & attribution <Icon name="tabler:arrow-down" class="inline-block w-4 h-4 align-middle" aria-hidden="true" /></a></p>
 		</aside>
 	</div>
 	<section id="sources" class="portfolio-section" aria-labelledby="sources-title">
@@ -71,7 +72,7 @@ const meta = {
 				study.sources.map((source) => (
 					<li>
 						<a href={source.url}>
-							{source.label} <span aria-hidden="true">↗</span>
+							{source.label} <Icon name="tabler:arrow-up-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" />
 						</a>
 					</li>
 				))
@@ -85,7 +86,7 @@ const meta = {
 				study.related.map((slug) => (
 					<li>
 						<a href={`/research/${slug}`}>
-							{researchPages.find((page) => page.slug === slug)?.label} <span aria-hidden="true">→</span>
+							{researchPages.find((page) => page.slug === slug)?.label} <Icon name="tabler:arrow-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" />
 						</a>
 					</li>
 				))

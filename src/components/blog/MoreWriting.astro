@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import { fetchPosts } from '~/utils/posts';
 import { getPermalink, getBlogPermalink } from '~/utils/permalinks';
 import { getFormattedDate } from '~/utils/utils';
@@ -12,7 +13,7 @@ const posts = (await fetchPosts()).filter((post) => post.slug !== currentSlug).s
 	<div class="portfolio-section mt-12">
 		<div class="section-heading">
 			<h2 id="more-writing-title">More writing</h2>
-			<a href={getBlogPermalink()}>All writing <span aria-hidden="true">→</span></a>
+			<a href={getBlogPermalink()}>All writing <Icon name="tabler:arrow-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" /></a>
 		</div>
 		<ul>
 			{

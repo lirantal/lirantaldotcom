@@ -1,15 +1,6 @@
 ---
-import Item from '~/components/blog/ListItem.astro';
-
+import PostCards from '~/components/forma/PostCards.astro';
 const { posts } = Astro.props;
 ---
 
-<ul class="divide-y divide-gray-200 dark:divide-slate-700 border-y border-gray-200 dark:border-slate-700">
-	{
-		posts.map((post) => (
-			<li class="py-7 sm:py-8">
-				<Item post={post} />
-			</li>
-		))
-	}
-</ul>
+<PostCards {posts} showTags />

@@ -24,20 +24,17 @@ const { event, ...rest } = Astro.props;
 				</span>
 			</span>
 		</div>
-		<div class="mt-3 flex items-center gap-2 text-xs text-gray-500 dark:text-slate-400">
+		<div class="mt-3 flex items-center gap-2 text-xs speaking-muted">
 			<TypeBadge type={event.type} />
 			<time datetime={event.date.toISOString()}>{formatDate(event.date, 'monthYear')}</time>
 			{event.language !== 'English' && <span>· {event.language}</span>}
 		</div>
-		<h3
-			dir="auto"
-			class="mt-2 font-semibold leading-snug text-gray-900 dark:text-slate-100 group-hover:text-primary-600 dark:group-hover:text-primary-400"
-		>
+		<h3 dir="auto" class="mt-2 font-semibold leading-snug speaking-ink group-hover:underline">
 			{event.title ?? event.name}
 		</h3>
 		{
 			event.title && (
-				<p dir="auto" class="mt-1 text-sm text-gray-500 dark:text-slate-400">
+				<p dir="auto" class="mt-1 text-sm speaking-muted">
 					{event.name}
 				</p>
 			)

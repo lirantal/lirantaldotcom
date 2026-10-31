@@ -61,18 +61,14 @@ const meta = {
 					))
 				}
 			</ul>
-			<p data-filter-empty hidden class="py-16 text-center text-gray-500 dark:text-slate-400">
-				No talks match these filters.
-			</p>
+			<p data-filter-empty hidden class="py-16 text-center speaking-muted">No talks match these filters.</p>
 		</div>
 
 		<aside class="space-y-10">
 			<section>
 				<div class="flex items-baseline justify-between mb-3">
 					<h2 class="font-semibold">Next up</h2>
-					<a href={`${SPEAKING_BASE}/events`} class="text-sm text-primary-700 dark:text-primary-300 hover:underline"
-						>Full schedule</a
-					>
+					<a href={`${SPEAKING_BASE}/events`} class="text-sm speaking-link">Full schedule</a>
 				</div>
 				{
 					upcoming.length ? (
@@ -81,19 +77,19 @@ const meta = {
 								<li>
 									<a
 										href={event.href}
-										class="block rounded-lg border border-gray-200 dark:border-slate-700 p-3 hover:border-primary-400"
+										class="block rounded-lg border border-gray-200 dark:border-slate-700 p-3 hover:border-blue-400"
 									>
-										<span class="text-gray-500 dark:text-slate-400">
+										<span class="speaking-muted">
 											{event.flag} {event.location}
 										</span>
 										<span class="block font-semibold">{event.name}</span>
-										<span class="text-gray-500 dark:text-slate-400">{formatDate(event.date)}</span>
+										<span class="speaking-muted">{formatDate(event.date)}</span>
 									</a>
 								</li>
 							))}
 						</ul>
 					) : (
-						<p class="text-sm text-gray-500 dark:text-slate-400">Nothing announced yet. Your event could be next.</p>
+						<p class="text-sm speaking-muted">Nothing announced yet. Your event could be next.</p>
 					)
 				}
 			</section>
@@ -103,7 +99,7 @@ const meta = {
 					{
 						countries.map((c) => (
 							<li class="flex justify-between">
-								<a href={`${SPEAKING_BASE}/events?country=${c.code}`} class="hover:text-primary-600">
+								<a href={`${SPEAKING_BASE}/events?country=${c.code}`} class="hover:text-blue-600">
 									<span aria-hidden="true">{c.flag}</span> {c.name}
 								</a>
 								<span class="tabular-nums text-gray-500 dark:text-slate-400">{c.count}</span>

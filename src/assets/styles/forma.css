@@ -1,0 +1,987 @@
+.site-theme .forma {
+	font-family: var(--forma-font);
+	font-size: 15px;
+	line-height: 1.75;
+}
+.site-theme .forma ::selection {
+	background: var(--accent);
+	color: var(--on-accent);
+}
+.site-theme .forma-wrap {
+	width: min(1120px, calc(100% - 80px));
+	margin-inline: auto;
+}
+.site-theme .forma :is(h1, h2, h3) {
+	font-family: var(--forma-font);
+	font-weight: 650;
+	letter-spacing: -0.035em;
+	line-height: 1.18;
+	text-wrap: balance;
+}
+.site-theme .forma h1 {
+	font-size: clamp(2.8rem, 5.4vw, 4.6rem);
+}
+.site-theme .forma h2 {
+	font-size: 36px;
+}
+.site-theme .forma h3 {
+	font-size: 22px;
+	letter-spacing: -0.025em;
+	line-height: 1.4;
+}
+.site-theme .forma p {
+	max-width: 72ch;
+}
+.site-theme .forma a {
+	transition:
+		color 160ms,
+		background-color 160ms,
+		border-color 160ms;
+}
+.site-theme .forma :focus-visible {
+	outline: 3px solid var(--accent);
+	outline-offset: 5px;
+}
+.site-theme .forma-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 32px;
+	padding-block: 28px;
+}
+.site-theme .forma-brand {
+	font-weight: 750;
+	font-size: 22px;
+	text-decoration: none;
+	letter-spacing: -0.03em;
+	line-height: 1.4;
+}
+.site-theme .forma-brand span {
+	display: block;
+	font-size: 11px;
+	font-weight: 450;
+	letter-spacing: 0;
+	color: var(--muted);
+	margin-top: 2px;
+}
+.site-theme .forma-header nav {
+	display: flex;
+	align-items: center;
+	gap: 28px;
+	flex-wrap: wrap;
+}
+.site-theme .forma-header nav > a:not(.forma-button) {
+	font-size: 13px;
+	text-decoration: none;
+	padding-block: 10px;
+}
+.site-theme .forma-header nav > a:not(.forma-button):hover {
+	text-decoration: underline;
+}
+.site-theme .forma .forma-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	min-height: 46px;
+	padding: 11px 20px;
+	border: 1px solid var(--accent);
+	border-radius: 6px;
+	background: var(--accent);
+	color: var(--on-accent);
+	font-size: 13px;
+	font-weight: 600;
+	text-decoration: none;
+	line-height: 1.6;
+	text-align: center;
+}
+.site-theme .forma .forma-button:hover {
+	background: var(--ink);
+	border-color: var(--ink);
+	color: var(--on-accent);
+}
+.site-theme .forma .forma-button-secondary {
+	background: transparent;
+	color: var(--ink);
+	border-color: var(--rule);
+}
+.site-theme .forma .forma-button-secondary:hover {
+	background: var(--surface);
+	border-color: var(--ink);
+	color: var(--ink);
+}
+.site-theme .forma .forma-button-small {
+	min-height: 40px;
+	padding: 8px 19px;
+}
+.site-theme .forma-button svg {
+	width: 18px;
+	height: 18px;
+}
+.site-theme .forma-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-top: 28px;
+}
+.site-theme .forma-lede {
+	font-size: 18px;
+	line-height: 1.8;
+	color: var(--muted);
+	margin-top: 24px;
+	max-width: 52ch;
+}
+.site-theme .forma-role {
+	color: var(--muted);
+	font-size: 13px;
+	margin-top: 24px;
+}
+.site-theme .forma-socials {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 22px;
+	font-size: 12px;
+	margin-top: 24px;
+}
+.site-theme .forma-section {
+	padding-block: 68px;
+	scroll-margin-top: 20px;
+}
+.site-theme .forma-section-heading {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 28px;
+	margin-bottom: 32px;
+}
+.site-theme .forma-section-heading p {
+	color: var(--muted);
+	margin-top: 10px;
+}
+.site-theme .forma-section-heading > a {
+	flex-shrink: 0;
+	font-size: 13px;
+}
+.site-theme .forma-section-intro {
+	color: var(--muted);
+	margin-bottom: 28px;
+}
+.site-theme .forma-recognition {
+	padding-block: 28px 42px;
+	display: grid;
+	grid-template-columns: 180px 1fr;
+	align-items: center;
+	gap: 36px;
+}
+.site-theme .forma-recognition-heading h2 {
+	font-size: 18px;
+	letter-spacing: -0.02em;
+}
+.site-theme .forma-recognition-heading > a {
+	font-size: 12px;
+	display: inline-block;
+	margin-top: 10px;
+}
+.site-theme .forma-awards {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 40px;
+}
+.site-theme .forma-award {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	text-decoration: none;
+	padding: 16px 0;
+}
+.site-theme .forma-award > svg {
+	height: 30px;
+	width: 30px;
+	flex-shrink: 0;
+}
+.site-theme .forma-award > svg:last-child {
+	height: 18px;
+	width: 18px;
+	margin-left: auto;
+}
+.site-theme .forma-award strong {
+	display: block;
+	font-size: 20px;
+	font-weight: 650;
+	line-height: 1.4;
+}
+.site-theme .forma-award span span {
+	display: block;
+	font-size: 12px;
+	color: var(--muted);
+	margin-top: 3px;
+}
+.site-theme .forma-award:hover strong {
+	text-decoration: underline;
+}
+.site-theme .forma-paper-list {
+	display: grid;
+	gap: 30px;
+}
+.site-theme .forma-paper-list article {
+	min-width: 0;
+}
+.site-theme .forma-meta {
+	font-size: 12px;
+	color: var(--muted);
+	display: block;
+	margin-bottom: 10px;
+}
+.site-theme .forma-paper-list article > p:not(.forma-meta) {
+	color: var(--muted);
+	font-size: 14px;
+	margin-top: 14px;
+	line-height: 1.8;
+}
+.site-theme .forma-paper-list .forma-authors {
+	font-size: 12px !important;
+}
+.site-theme .forma-paper-list h3 a {
+	text-decoration: none;
+}
+.site-theme .forma-paper-list h3 a:hover {
+	text-decoration: underline;
+}
+.site-theme .forma-small-actions,
+.site-theme .forma-section-actions {
+	display: flex;
+	gap: 22px;
+	flex-wrap: wrap;
+	font-size: 12px;
+	margin-top: 20px;
+}
+.site-theme .forma-section-actions {
+	margin-top: 28px;
+}
+.site-theme .forma-projects {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 36px;
+}
+.site-theme .forma-project-symbol {
+	display: block;
+	margin-bottom: 20px;
+	color: var(--accent);
+}
+.site-theme .forma-project-symbol svg {
+	width: 26px;
+	height: 26px;
+}
+.site-theme .forma-projects h3 > a {
+	text-decoration: none;
+}
+.site-theme .forma-projects h3 > a:hover {
+	text-decoration: underline;
+}
+.site-theme .forma-projects article > p:not(.forma-meta) {
+	font-size: 14px;
+	color: var(--muted);
+	margin-top: 12px;
+}
+.site-theme .forma-speaking-content {
+	display: grid;
+	grid-template-columns: 1.15fr 1fr;
+	gap: 48px;
+	align-items: center;
+}
+.site-theme .forma-speaking-content > img {
+	width: 100%;
+	aspect-ratio: 3/2;
+	object-fit: cover;
+	border-radius: 4px;
+}
+.site-theme .forma-speaking-content h3 {
+	font-size: 32px;
+	line-height: 1.25;
+}
+.site-theme .forma-speaking-content p {
+	font-size: 14px;
+	color: var(--muted);
+	margin-top: 18px;
+}
+.site-theme .forma-book-list {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	gap: 26px;
+}
+.site-theme .forma-book-list a {
+	display: block;
+	text-decoration: none;
+}
+.site-theme .forma-book-list img {
+	height: 230px;
+	width: 100%;
+	object-fit: contain;
+	object-position: left bottom;
+}
+.site-theme .forma-book-list span {
+	display: block;
+	font-size: 11px;
+	color: var(--muted);
+	margin-top: 20px;
+}
+.site-theme .forma-book-list h3 {
+	font-size: 17px;
+	margin-top: 4px;
+}
+.site-theme .forma-book-list a:hover h3 {
+	text-decoration: underline;
+}
+.site-theme .forma-blog-list {
+	display: grid;
+	gap: 18px;
+}
+.site-theme .forma-blog-card {
+	display: grid;
+	grid-template-columns: 200px 1fr;
+	align-items: center;
+	gap: 32px;
+	padding: 20px;
+	border-radius: 6px;
+	text-decoration: none;
+	background: transparent;
+}
+.site-theme .forma-blog-thumb {
+	overflow: hidden;
+	border-radius: 4px;
+}
+.site-theme .forma-blog-thumb img {
+	width: 100%;
+	aspect-ratio: 16/10;
+	object-fit: cover;
+	transition: transform 220ms ease-out;
+}
+.site-theme .forma-blog-copy {
+	min-width: 0;
+}
+.site-theme .forma-blog-copy h3 {
+	font-size: 23px;
+}
+.site-theme .forma-blog-copy p {
+	font-size: 13px;
+	color: var(--muted);
+	margin-top: 10px;
+}
+.site-theme .forma-blog-card:hover,
+.site-theme .forma-blog-card:focus-visible {
+	background: var(--surface);
+	color: var(--ink);
+}
+.site-theme .forma-blog-card:is(:hover, :focus-visible) h3 {
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+.site-theme .forma-blog-card:is(:hover, :focus-visible) img {
+	transform: scale(1.025);
+}
+.site-theme .forma-footer {
+	background: var(--footer);
+	color: #fff;
+	margin-top: 12px;
+}
+.site-theme .forma-subscribe {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 40px;
+	padding-block: 58px 52px;
+}
+.site-theme .forma-subscribe h2 {
+	font-size: 42px;
+}
+.site-theme .forma-subscribe p {
+	font-size: 15px;
+	color: #d4d0dc;
+	margin-top: 16px;
+}
+.site-theme .forma-footer .forma-button {
+	background: #fff;
+	color: var(--footer);
+	border-color: var(--on-accent);
+	flex-shrink: 0;
+}
+.site-theme .forma-footer .forma-button:hover {
+	background: #e4e0ee;
+	color: var(--footer);
+	border-color: #e4e0ee;
+}
+.site-theme .forma-footer-bottom {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 36px;
+	padding-block: 30px 40px;
+}
+.site-theme .forma-footer-bottom .forma-brand {
+	font-size: 18px;
+}
+.site-theme .forma-footer-bottom p {
+	font-size: 12px;
+	color: #d4d0dc;
+	margin-top: 10px;
+}
+.site-theme .forma-footer-bottom nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px 24px;
+	max-width: 470px;
+	font-size: 12px;
+	justify-content: flex-end;
+}
+.site-theme .forma-footer a:hover {
+	color: #fff;
+}
+.site-theme .forma-footer :focus-visible {
+	outline-color: var(--on-accent);
+}
+/* Forma is centered and monochrome. Frames belong to documents, not every section. */
+.site-theme .forma-refined .forma-header {
+	max-width: 1040px;
+}
+.site-theme .forma-refined .forma-brand span {
+	display: none;
+}
+.site-theme .forma-intro {
+	text-align: center;
+	padding-block: 48px 26px;
+}
+.site-theme .forma-person {
+	display: inline-flex;
+	align-items: center;
+	gap: 14px;
+	text-align: left;
+	margin-bottom: 28px;
+	font-size: 14px;
+	font-weight: 600;
+}
+.site-theme .forma-person img {
+	border-radius: 6px;
+}
+.site-theme .forma-person span span {
+	display: block;
+	font-size: 11px;
+	color: var(--muted);
+	font-weight: 400;
+}
+.site-theme .forma-refined .forma-intro h1 {
+	font-size: clamp(2.8rem, 6vw, 4.9rem);
+	letter-spacing: -0.04em;
+}
+.site-theme .forma-intro .forma-lede {
+	margin-inline: auto;
+	max-width: 58ch;
+	font-size: 17px;
+	margin-top: 22px;
+}
+.site-theme .forma-intro .forma-actions {
+	justify-content: center;
+}
+.site-theme .forma-intro .forma-role {
+	font-size: 12px;
+	margin-top: 20px;
+	max-width: none;
+}
+.site-theme .forma-refined .forma-recognition {
+	display: block;
+	padding-block: 22px 24px;
+}
+.site-theme .forma-refined .forma-recognition-heading {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	gap: 20px;
+}
+.site-theme .forma-refined .forma-recognition-heading h2 {
+	font-size: 14px;
+}
+.site-theme .forma-refined .forma-recognition-heading > a {
+	margin: 0;
+	font-size: 11px;
+}
+.site-theme .forma-refined .forma-awards {
+	max-width: 760px;
+	margin: 14px auto 0;
+	gap: 54px;
+}
+.site-theme .forma-refined .forma-award strong {
+	font-size: 17px;
+}
+.site-theme .forma-refined .forma-award > svg {
+	width: 24px;
+	height: 24px;
+}
+.site-theme .forma-research {
+	padding-top: 30px;
+}
+.site-theme .forma-refined .forma-paper-list {
+	grid-template-columns: 1fr 1fr;
+	gap: 0;
+	border: 1px solid var(--rule);
+	border-radius: 6px;
+	overflow: hidden;
+}
+.site-theme .forma-refined .forma-paper-list article {
+	padding: 28px;
+}
+.site-theme .forma-refined .forma-paper-list article + article {
+	border-left: 1px solid var(--rule);
+}
+.site-theme .forma-refined .forma-paper-list h3 {
+	font-size: 21px;
+}
+.site-theme .forma-source,
+.site-theme .forma-speaking {
+	background: var(--surface);
+}
+.site-theme .forma-refined .forma-projects {
+	gap: 20px;
+}
+.site-theme .forma-refined .forma-projects article {
+	background: var(--paper);
+	padding: 26px;
+	border: 1px solid var(--rule);
+	border-radius: 6px;
+}
+.site-theme .forma-refined .forma-project-symbol {
+	margin-bottom: 18px;
+}
+.site-theme .forma-refined .forma-blog-list {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 24px;
+}
+.site-theme .forma-refined .forma-blog-card {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 0;
+	border: 1px solid var(--rule);
+	padding: 0;
+	height: 100%;
+	overflow: hidden;
+}
+.site-theme .forma-refined .forma-blog-thumb {
+	border-radius: 0;
+}
+.site-theme .forma-refined .forma-blog-copy {
+	padding: 24px;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+.site-theme .forma-refined .forma-blog-copy h3 {
+	font-size: 20px;
+}
+.site-theme .forma-refined .forma-blog-card:is(:hover, :focus-visible) {
+	border-color: var(--ink);
+	background: var(--surface);
+}
+.site-theme .forma-refined .forma-speaking-content > img {
+	border-radius: 6px;
+}
+/* Reading pages use a continuous canvas rather than nested containers. */
+.site-theme .forma-reading-page {
+	padding-block: 48px 60px;
+}
+.site-theme .forma-blog-heading {
+	padding-block: 0 44px;
+}
+.site-theme .forma-blog-heading .forma-lede {
+	max-width: 60ch;
+}
+.site-theme .forma-publications {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 24px;
+	align-items: baseline;
+	padding: 26px;
+	background: var(--surface);
+	margin-top: 40px;
+}
+.site-theme .forma-publications h2 {
+	font-size: 22px;
+	margin-right: auto;
+}
+.site-theme .forma-publications > a {
+	font-size: 13px;
+}
+.site-theme .forma-article {
+	max-width: 960px;
+	margin: auto;
+}
+.site-theme .forma-article > header {
+	padding: 0 0 32px;
+}
+.site-theme .forma-article > header > a {
+	font-size: 13px;
+}
+.site-theme .forma-article > header > .forma-meta {
+	margin-top: 28px;
+}
+.site-theme .forma-article h1 {
+	font-size: clamp(2.3rem, 4.5vw, 3.8rem);
+}
+.site-theme .forma-article .forma-lede {
+	max-width: 70ch;
+	font-size: 17px;
+}
+.site-theme .forma-byline {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 14px;
+	font-size: 12px;
+	margin-top: 24px;
+}
+.site-theme .forma-byline img {
+	border-radius: 4px;
+}
+.site-theme .forma-byline > a {
+	margin-left: auto;
+}
+.site-theme .forma-article-cover {
+	width: 100%;
+	aspect-ratio: 2/1;
+	object-fit: cover;
+	border-radius: 4px;
+}
+.site-theme .forma .reading-body {
+	font-family: var(--forma-font);
+	font-size: 17px;
+	line-height: 1.85;
+	max-width: 65ch;
+	margin: 36px auto;
+}
+.site-theme .forma .reading-body h2 {
+	font-size: 29px;
+}
+.site-theme .forma .reading-body h3 {
+	font-size: 23px;
+}
+.site-theme .forma .reading-body blockquote {
+	border: 0;
+	padding: 20px 24px;
+	background: var(--surface);
+	border-radius: 0;
+}
+.site-theme .forma .reading-body pre code {
+	white-space: pre;
+	overflow-wrap: normal;
+	word-break: normal;
+}
+.site-theme .forma .reading-body :is(th, td) {
+	border: 0;
+}
+.site-theme .forma .reading-body tr:nth-child(odd) {
+	background: var(--surface);
+}
+.site-theme .forma-article > footer {
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+	gap: 24px;
+	padding: 24px;
+	background: var(--surface);
+}
+.site-theme .forma-article > footer h2 {
+	font-size: 24px;
+	margin-right: auto;
+}
+.site-theme .forma-article > footer > a {
+	font-size: 13px;
+}
+@media (max-width: 1050px) {
+	.site-theme .forma-wrap {
+		width: calc(100% - 56px);
+	}
+	.site-theme .forma-header nav {
+		gap: 20px;
+	}
+	.site-theme .forma-recognition {
+		grid-template-columns: 140px 1fr;
+		gap: 24px;
+	}
+	.site-theme .forma-awards {
+		gap: 24px;
+	}
+	.site-theme .forma-award strong {
+		font-size: 18px;
+	}
+	.site-theme .forma-book-list {
+		gap: 18px;
+	}
+	.site-theme .forma-book-list img {
+		height: 180px;
+	}
+	.site-theme .forma-refined .forma-blog-copy {
+		padding: 20px;
+	}
+}
+@media (max-width: 760px) {
+	.site-theme .forma-wrap {
+		width: calc(100% - 40px);
+	}
+	.site-theme .forma h1 {
+		font-size: clamp(2.5rem, 9.5vw, 3.8rem);
+	}
+	.site-theme .forma h2 {
+		font-size: 30px;
+	}
+	.site-theme .forma-header {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 20px;
+		padding-block: 24px;
+	}
+	.site-theme .forma-header nav {
+		gap: 8px 12px;
+		justify-content: space-between;
+		width: 100%;
+	}
+	.site-theme .forma-header nav > a:not(.forma-button) {
+		font-size: 12px;
+	}
+	.site-theme .forma-header .forma-button-small {
+		min-height: 36px;
+		padding: 7px 16px;
+		font-size: 12px;
+		margin-left: 0;
+	}
+	.site-theme .forma-brand span {
+		display: none;
+	}
+	.site-theme .forma-lede {
+		font-size: 17px;
+	}
+	.site-theme .forma-section {
+		padding-block: 44px;
+	}
+	.site-theme .forma-section-heading {
+		align-items: flex-start;
+		flex-wrap: wrap;
+		gap: 20px;
+		margin-bottom: 26px;
+	}
+	.site-theme .forma-section-heading p {
+		font-size: 14px;
+	}
+	.site-theme .forma-recognition {
+		display: block;
+		padding-block: 28px;
+	}
+	.site-theme .forma-recognition-heading {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: 16px;
+	}
+	.site-theme .forma-recognition-heading > a {
+		margin-top: 0;
+	}
+	.site-theme .forma-awards {
+		grid-template-columns: 1fr;
+		gap: 0;
+		margin-top: 14px;
+	}
+	.site-theme .forma-award {
+		padding-block: 14px;
+	}
+	.site-theme .forma-award strong {
+		font-size: 20px;
+	}
+	.site-theme .forma-projects {
+		grid-template-columns: 1fr;
+		gap: 32px;
+	}
+	.site-theme .forma-project-symbol {
+		margin-bottom: 10px;
+	}
+	.site-theme .forma-projects .forma-meta {
+		margin-bottom: 4px;
+	}
+	.site-theme .forma-speaking-content {
+		grid-template-columns: 1fr;
+		gap: 26px;
+	}
+	.site-theme .forma-book-list {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 30px 20px;
+	}
+	.site-theme .forma-book-list img {
+		height: 210px;
+	}
+	.site-theme .forma-book-list span {
+		margin-top: 12px;
+	}
+	.site-theme .forma-blog-card {
+		grid-template-columns: 96px minmax(0, 1fr);
+		align-items: start;
+		gap: 18px;
+		padding: 16px 10px;
+	}
+	.site-theme .forma-blog-thumb img {
+		aspect-ratio: 1;
+	}
+	.site-theme .forma-blog-copy h3 {
+		font-size: 19px;
+	}
+	.site-theme .forma-blog-copy p {
+		font-size: 12px;
+	}
+	.site-theme .forma-blog-card .forma-meta {
+		font-size: 11px;
+	}
+	.site-theme .forma-subscribe {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 26px;
+		padding-block: 44px 34px;
+	}
+	.site-theme .forma-subscribe h2 {
+		font-size: 34px;
+	}
+	.site-theme .forma-subscribe p {
+		font-size: 14px;
+	}
+	.site-theme .forma-footer-bottom {
+		flex-direction: column;
+		gap: 24px;
+		padding-block: 22px 34px;
+	}
+	.site-theme .forma-footer-bottom nav {
+		justify-content: flex-start;
+	}
+	.site-theme .forma-intro {
+		padding-block: 20px 14px;
+	}
+	.site-theme .forma-refined .forma-intro h1 {
+		font-size: clamp(2.7rem, 10vw, 4rem);
+	}
+	.site-theme .forma-intro .forma-lede {
+		font-size: 16px;
+	}
+	.site-theme .forma-refined .forma-recognition-heading {
+		justify-content: space-between;
+	}
+	.site-theme .forma-refined .forma-awards {
+		grid-template-columns: 1fr;
+		gap: 0;
+		margin-top: 14px;
+		max-width: 440px;
+	}
+	.site-theme .forma-refined .forma-award strong {
+		font-size: 20px;
+	}
+	.site-theme .forma-research {
+		padding-top: 20px;
+	}
+	.site-theme .forma-refined .forma-paper-list {
+		grid-template-columns: 1fr;
+	}
+	.site-theme .forma-refined .forma-paper-list article {
+		padding: 24px;
+	}
+	.site-theme .forma-refined .forma-paper-list article + article {
+		border-left: 0;
+		border-top: 1px solid var(--rule);
+	}
+	.site-theme .forma-refined .forma-blog-list {
+		grid-template-columns: 1fr;
+		gap: 24px;
+	}
+	.site-theme .forma-refined .forma-blog-thumb img {
+		aspect-ratio: 16/9;
+	}
+	.site-theme .forma-refined .forma-projects {
+		gap: 16px;
+	}
+	.site-theme .forma-reading-page {
+		padding-block: 28px 40px;
+	}
+	.site-theme .forma-blog-heading {
+		padding-bottom: 30px;
+	}
+	.site-theme .forma-publications {
+		padding: 22px;
+		gap: 18px;
+	}
+	.site-theme .forma-publications h2 {
+		width: 100%;
+		font-size: 22px;
+	}
+	.site-theme .forma-article h1 {
+		font-size: clamp(2rem, 8vw, 3rem);
+	}
+	.site-theme .forma-article .forma-lede {
+		font-size: 16px;
+	}
+	.site-theme .forma .reading-body {
+		font-size: 16px;
+	}
+	.site-theme .forma .reading-body h2 {
+		font-size: 26px;
+	}
+	.site-theme .forma .reading-body h3 {
+		font-size: 21px;
+	}
+}
+@media (max-width: 370px) {
+	.site-theme .forma-header nav {
+		gap: 8px 16px;
+	}
+	.site-theme .forma-header nav > a:not(.forma-button) {
+		font-size: 11px;
+	}
+	.site-theme .forma-header .forma-button-small {
+		font-size: 11px;
+		padding-inline: 12px;
+	}
+	.site-theme .forma .forma-button {
+		font-size: 12px;
+		padding-inline: 16px;
+	}
+	.site-theme .forma-blog-card {
+		grid-template-columns: 1fr;
+		padding-inline: 10px;
+	}
+	.site-theme .forma-blog-thumb img {
+		aspect-ratio: 16/9;
+	}
+	.site-theme .forma-book-list img {
+		height: 170px;
+	}
+	.site-theme .forma-refined .forma-paper-list article {
+		padding: 20px;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.site-theme .forma * {
+		transition: none !important;
+		scroll-behavior: auto !important;
+	}
+	.site-theme .forma-blog-card:is(:hover, :focus-visible) img {
+		transform: none;
+	}
+}
+
+@media (max-width: 760px) {
+	.site-theme .forma .forma-recognition-heading h2 {
+		font-size: 18px;
+	}
+	.site-theme .forma .forma-header .forma-button-small {
+		margin-left: 0;
+		padding-inline: 14px;
+	}
+}
+@media (max-width: 370px) {
+	.site-theme .forma-header nav {
+		gap: 8px;
+	}
+	.site-theme .forma .forma-header .forma-button-small {
+		padding-inline: 12px;
+	}
+}

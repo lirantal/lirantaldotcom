@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/ResearchLayout.astro';
 import PaperList from '~/components/research/PaperList.astro';
 import { scholarURL, papers } from '~/data/research';
@@ -20,7 +21,7 @@ const meta = {
 			a preprint listing does not imply peer review.
 		</p>
 		<p class="mt-5 text-sm">
-			<a href={scholarURL}>View publications & citations on Google Scholar <span aria-hidden="true">↗</span></a>
+			<a href={scholarURL}>View publications & citations on Google Scholar <Icon name="tabler:arrow-up-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" /></a>
 		</p>
 	</header>
 	<section aria-label="Co-authored preprints" class="portfolio-section"><PaperList /></section>

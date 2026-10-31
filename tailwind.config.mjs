@@ -38,9 +38,9 @@ export default {
 			}),
 			colors: {
 				primary: {
-					...colors.blue,
-					300: 'var(--color-blue-300)',
-					400: 'var(--color-blue-400)',
+					...colors.neutral,
+					300: 'var(--color-neutral-300)',
+					400: 'var(--color-neutral-200)',
 				},
 				secondary: colors.pink,
 			},

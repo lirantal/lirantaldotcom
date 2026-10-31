@@ -1,0 +1,46 @@
+---
+import { Icon } from 'astro-icon/components';
+import { community } from '~/data/community';
+---
+
+<section class="forma-community grid md:grid-cols-[1fr_2fr] gap-6" aria-labelledby="community-title">
+	<div><p class="eyebrow">From the community</p><h2 id="community-title">Better together.</h2></div>
+	<div>
+		<div class="community-quotes">
+			{
+				community.map((person) => (
+					<div class="community-quote flex gap-4">
+						<img
+							src={person.avatar}
+							alt=""
+							width="44"
+							height="44"
+							loading="lazy"
+							decoding="async"
+							class="w-11 h-11 rounded-full object-cover shrink-0"
+						/>
+						<figure>
+							<blockquote class="inline">“{person.quote}”</blockquote>{' '}
+							<figcaption class="inline text-sm muted">
+								— by <span class="font-medium">{person.name}</span>, {person.role} ·{' '}
+								<a href={person.url} aria-label={`Original post by ${person.name}`}>
+									Original post{' '}
+									<Icon name="tabler:arrow-up-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" />
+								</a>
+							</figcaption>
+						</figure>
+					</div>
+				))
+			}
+		</div>
+		<p class="text-sm mt-6">
+			<a href="/recognitions"
+				>More community feedback & recognitions <Icon
+					name="tabler:arrow-right"
+					class="inline-block w-4 h-4 align-middle"
+					aria-hidden="true"
+				/></a
+			>
+		</p>
+	</div>
+</section>

@@ -5,33 +5,29 @@ import { BOOKING_YEAR, SPEAKING_BASE } from '~/utils/speaking';
 ---
 
 <section class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-	<div
-		class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 to-secondary-600 px-6 py-12 md:px-12 text-white shadow-xl"
-	>
+	<div class="speaking-invitation px-6 py-12 md:px-12">
 		<div class="max-w-2xl">
-			<p class="text-xs font-semibold tracking-[0.2em] uppercase text-white/80">
+			<p class="speaking-label">
 				Booking {BOOKING_YEAR}
 			</p>
 			<h2 class="mt-3 text-3xl md:text-4xl font-bold tracking-tight font-heading">Tell me about your event.</h2>
-			<p class="mt-4 text-lg text-white/90">
+			<p class="mt-4 speaking-lede">
 				Conference keynote, meetup talk, workshop or podcast: send me the audience, the format and the dates, and I'll
 				tailor a session to fit.
 			</p>
 		</div>
 		<div class="mt-8 flex flex-wrap gap-3">
-			<a class="btn bg-white text-gray-900 hover:bg-gray-100 shadow-none" href={SPEAKING.inviteURL}
-				>Invite me to speak <span aria-hidden="true" class="ml-1">↗</span></a
+			<a class="forma-button" href={SPEAKING.inviteURL}
+				>Invite me to speak <Icon
+					name="tabler:arrow-up-right"
+					class="ml-1 inline-block w-4 h-4 align-middle"
+					aria-hidden="true"
+				/></a
 			>
-			<a
-				class="btn border border-white/60 text-white hover:bg-white/10 shadow-none"
-				href={SPEAKING.inviteXURL}
-			>
+			<a class="forma-button forma-button-secondary" href={SPEAKING.inviteXURL}>
 				<Icon name="tabler:brand-x" class="w-5 h-5 mr-2" aria-hidden="true" /> Message me on X
 			</a>
-			<a
-				class="btn border border-white/60 text-white hover:bg-white/10 shadow-none"
-				href={`${SPEAKING_BASE}/talks`}>Browse the talks</a
-			>
+			<a class="forma-button forma-button-secondary" href={`${SPEAKING_BASE}/talks`}>Browse the talks</a>
 		</div>
 	</div>
 </section>
