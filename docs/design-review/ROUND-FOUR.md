@@ -1,5 +1,7 @@
 # Fourth design round
 
+> Historical round. Superseded by [round five](ROUND-FIVE.md). Forma is retained unchanged; Prism and Studio are retired in favor of one Forma Refined proposal.
+
 ## Brief and reference
 
 Prism is the closest direction, but rounded colored containers feel toy-like. The owner wants elegant, professional, clean design; clear button CTAs; visibly distinct sections; a contrasting footer; and article hover states. The reference is https://filiphric.com, specifically its button affordances, section separation, footer contrast, and article interaction—not its content, brand, or layout. Its structure was reviewed through the web reader. Keep literal section names, prominent linked recognition, research as a complete section, an evergreen hero, and a light presentation.

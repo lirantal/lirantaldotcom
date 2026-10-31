@@ -1,0 +1,39 @@
+---
+import { Icon } from 'astro-icon/components';
+import { projects } from '~/data/portfolio';
+const featured = projects.filter((p) => ['lockfile-lint', 'npq', 'Node.js CLI Apps Best Practices'].includes(p.name));
+---
+
+<div class="d4-projects d5-projects">
+	{
+		featured.map((project) => (
+			<article>
+				<header>
+					<>
+						<h3>
+							<>
+								<a href={project.url}>{project.name}</a>
+								<span class="d5-project-kind">{project.kind}</span>
+							</>
+						</h3>
+					</>
+				</header>
+				<p>{project.description}</p>
+				<nav class="d5-project-sources" aria-label={`${project.name} sources`}>
+					<a href={project.url} aria-label={`${project.name} on GitHub`} title={`${project.name} on GitHub`}>
+						<Icon name="tabler:brand-github" aria-hidden="true" />
+					</a>
+					{project.npm && (
+						<a
+							href={`https://www.npmjs.com/package/${project.npm}`}
+							aria-label={`${project.name} on npm`}
+							title={`${project.name} on npm`}
+						>
+							<Icon name="tabler:brand-npm" aria-hidden="true" />
+						</a>
+					)}
+				</nav>
+			</article>
+		))
+	}
+</div>

@@ -1,0 +1,202 @@
+/* Proposal-only changes. Forma supplies the type, palette, controls and reading views. */
+.lab-body .d5 .refined-intro {
+	display: grid;
+	grid-template-columns: 1.5fr 1fr;
+	align-items: center;
+	gap: 80px;
+	padding-block: 64px 42px;
+}
+.lab-body .d5 .refined-intro h1 {
+	font-size: clamp(2.8rem, 5.4vw, 4.6rem);
+}
+.lab-body .d5 .refined-intro .d4-lede {
+	font-size: 17px;
+	max-width: 52ch;
+}
+.lab-body .d5 .refined-intro .d4-role {
+	font-size: 13px;
+}
+.lab-body .d5 .refined-profile {
+	justify-self: end;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+}
+.lab-body .d5 .refined-portrait {
+	width: 320px;
+	height: auto;
+	max-width: 100%;
+	object-fit: contain;
+	background: transparent;
+}
+.lab-body .d5 .d5-socials {
+	display: flex;
+	gap: 12px;
+}
+.lab-body .d5 .d5-socials a {
+	width: 44px;
+	height: 44px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 6px;
+	color: var(--ink);
+}
+.lab-body .d5 .d5-socials svg {
+	width: 24px;
+	height: 24px;
+}
+.lab-body .d5 .d5-socials a:hover {
+	background: var(--surface);
+	color: var(--ink);
+}
+.lab-body .d5 .d5-recognition {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 14px 28px;
+	padding-block: 18px 36px;
+}
+.lab-body .d5 .d5-recognition h2 {
+	font-size: 14px;
+	letter-spacing: -0.02em;
+}
+.lab-body .d5 .d5-recognition ul {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 28px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.lab-body .d5 .d5-recognition li > a {
+	display: inline-flex;
+	align-items: center;
+	gap: 9px;
+	font-size: 14px;
+	font-weight: 550;
+	text-decoration: none;
+	min-height: 36px;
+}
+.lab-body .d5 .d5-recognition li > a:hover {
+	text-decoration: underline;
+}
+.lab-body .d5 .d5-recognition svg {
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+}
+.lab-body .d5 .d5-alumni {
+	font-weight: 400;
+	color: var(--muted);
+}
+.lab-body .d5 .d5-all-recognition {
+	font-size: 12px;
+}
+.lab-body .d5 .d5-projects article {
+	padding: 24px;
+}
+.lab-body .d5 .d5-projects header {
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+	gap: 8px 12px;
+}
+.lab-body .d5 .d5-projects h3 {
+	font-size: 21px;
+}
+.lab-body .d5 .d5-project-kind {
+	margin-left: 8px;
+	vertical-align: middle;
+	letter-spacing: 0;
+	font-weight: 400;
+	display: inline-block;
+	background: var(--surface);
+	border: 1px solid var(--rule);
+	border-radius: 999px;
+	padding: 3px 9px;
+	font-size: 12px;
+	line-height: 1.5;
+	color: var(--muted);
+	white-space: nowrap;
+}
+.lab-body .d5 .d5-projects article > p {
+	margin-top: 12px;
+}
+.lab-body .d5 .d5-project-sources {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	margin-top: 12px;
+}
+.lab-body .d5 .d5-project-sources a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 4px;
+	color: var(--ink);
+}
+.lab-body .d5 .d5-project-sources a:hover {
+	background: var(--surface);
+}
+.lab-body .d5 .d5-project-sources svg {
+	width: 21px;
+	height: 21px;
+}
+@media (max-width: 1050px) {
+	.lab-body .d5 .refined-intro {
+		gap: 42px;
+		grid-template-columns: 1.4fr 1fr;
+	}
+	.lab-body .d5 .refined-portrait {
+		width: 280px;
+	}
+}
+@media (max-width: 760px) {
+	.lab-body .d5 .refined-intro {
+		grid-template-columns: 1fr;
+		gap: 28px;
+		padding-block: 28px 18px;
+	}
+	.lab-body .d5 .refined-intro h1 {
+		font-size: clamp(2.5rem, 9.5vw, 3.8rem);
+	}
+	.lab-body .d5 .refined-profile {
+		justify-self: start;
+	}
+	.lab-body .d5 .refined-portrait {
+		width: 220px;
+	}
+	.lab-body .d5 .d5-recognition {
+		align-items: flex-start;
+		gap: 12px 20px;
+		padding-block: 22px 28px;
+	}
+	.lab-body .d5 .d5-recognition h2 {
+		width: 100%;
+		font-size: 16px;
+	}
+	.lab-body .d5 .d5-recognition ul {
+		gap: 4px 24px;
+	}
+	.lab-body .d5 .d5-recognition li > a {
+		font-size: 13px;
+	}
+	.lab-body .d5 .d5-all-recognition {
+		align-self: center;
+	}
+}
+.lab-body .gallery-grid.current-comparison {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	max-width: 1100px;
+	margin-inline: auto;
+}
+@media (max-width: 760px) {
+	.lab-body .gallery-grid.current-comparison {
+		grid-template-columns: 1fr;
+	}
+}

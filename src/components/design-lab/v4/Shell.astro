@@ -4,13 +4,14 @@ import { previewURL } from '../concepts';
 import { PROFILE } from '~/config.mjs';
 import { Icon } from 'astro-icon/components';
 import './themes.css';
+import './refined.css';
 interface Props {
 	concept: Concept;
 }
 const { concept } = Astro.props;
 ---
 
-<div class:list={['d4', `d4-${concept.id}`]}>
+<div class:list={['d4', 'd4-forma', { d5: concept.id === 'forma-refined' }]}>
 	<header class="d4-header d4-wrap">
 		<a class="d4-brand" href={previewURL(concept.id)}>Liran Tal<span>Security researcher & author</span></a>
 		<nav aria-label="Site navigation">

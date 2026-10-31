@@ -1,9 +1,7 @@
 ---
 import PreviewLayout from '~/components/design-lab/PreviewLayout.astro';
-import LegacyPreview from '~/components/design-lab/LegacyPreview.astro';
-import Prism from '~/components/design-lab/v4/Prism.astro';
 import Forma from '~/components/design-lab/v4/Forma.astro';
-import Studio from '~/components/design-lab/v4/Studio.astro';
+import FormaRefined from '~/components/design-lab/v4/FormaRefined.astro';
 import Reading from '~/components/design-lab/v4/Reading.astro';
 import { concepts, views } from '~/components/design-lab/concepts';
 import type { Concept, View } from '~/components/design-lab/concepts';
@@ -21,16 +19,12 @@ const { concept, view } = Astro.props;
 
 <PreviewLayout {concept} {view} title={view === 'home' ? concept.name : view === 'writing' ? 'Blog' : 'Article'}>
 	{
-		concept.round === 1 ? (
-			<LegacyPreview {concept} {view} />
-		) : view !== 'home' ? (
+		view !== 'home' ? (
 			<Reading {concept} {view} />
-		) : concept.id === 'prism' ? (
-			<Prism {concept} />
 		) : concept.id === 'forma' ? (
 			<Forma {concept} />
 		) : (
-			<Studio {concept} />
+			<FormaRefined {concept} />
 		)
 	}
 </PreviewLayout>

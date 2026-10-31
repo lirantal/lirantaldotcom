@@ -1,0 +1,109 @@
+---
+import Shell from './Shell.astro';
+import CompactAwards from './CompactAwards.astro';
+import CompactProjects from './CompactProjects.astro';
+import { Icon } from 'astro-icon/components';
+import Content from './Content.astro';
+import { Image } from 'astro:assets';
+import { PROFILE } from '~/config.mjs';
+import type { Concept } from '../concepts';
+import { previewURL } from '../concepts';
+import portrait from '~/assets/images/liran-tal-portrait-cutout.png';
+interface Props {
+	concept: Concept;
+}
+const { concept } = Astro.props;
+---
+
+<Shell {concept}>
+	<main id="preview-main" tabindex="-1">
+		<section class="refined-intro d4-wrap" aria-labelledby="refined-title">
+			<div class="refined-introduction">
+				<h1 id="refined-title">Securing the<br />agentic future.</h1>
+				<p class="d4-lede">
+					I research emerging threats and build open-source defenses for AI agents, the software they write, and the
+					tools they trust.
+				</p>
+				<p class="d4-role">
+					Liran Tal. Security researcher, author, and open-source maintainer.<br />I head Developer Relations at <a
+						href="https://snyk.io/contributors/liran-tal/">Snyk</a
+					>.
+				</p>
+				<div class="d4-actions">
+					<a class="d4-button" href="/research">Explore my research</a><a
+						class="d4-button d4-button-secondary"
+						href={previewURL(concept.id, 'writing')}>Explore the blog</a>
+				</div>
+			</div>
+			<div class="refined-profile">
+				<Image
+					class="refined-portrait"
+					src={portrait}
+					alt="Liran Tal"
+					widths={[320, 640]}
+					sizes="(max-width:760px) 220px, 320px"
+					format="webp"
+					loading="eager"
+					fetchpriority="high"
+				/>
+				<nav class="d5-socials" aria-label="Social profiles">
+					<a href={PROFILE.twitterURL} aria-label="X / Twitter" title="X / Twitter"
+						><Icon name="tabler:brand-x" aria-hidden="true" /></a
+					>
+					<a href={PROFILE.githubURL} aria-label="GitHub" title="GitHub"
+						><Icon name="tabler:brand-github" aria-hidden="true" /></a
+					>
+					<a href={PROFILE.linkedinURL} aria-label="LinkedIn" title="LinkedIn"
+						><Icon name="tabler:brand-linkedin" aria-hidden="true" /></a
+					>
+				</nav>
+			</div>
+		</section>
+		<CompactAwards />
+		<section class="d4-section forma-research" id="research" aria-labelledby="research-title">
+			<div class="d4-wrap">
+				<header class="d4-section-heading">
+					<h2 id="research-title">Research</h2><a class="d4-button d4-button-secondary" href="/research"
+						>Explore research</a
+					>
+				</header>
+				<Content kind="research" concept={concept.id} limit={2} />
+			</div>
+		</section>
+		<section class="d4-section forma-source" id="open-source" aria-labelledby="source-title">
+			<div class="d4-wrap">
+				<header class="d4-section-heading">
+					<div>
+						<h2 id="source-title">Open source</h2><p>Tools and resources for developers who care about security.</p>
+					</div><a class="d4-button" href={PROFILE.githubURL}>View GitHub</a>
+				</header><CompactProjects />
+			</div>
+		</section>
+		<section class="d4-section forma-blog" id="blog" aria-labelledby="blog-title">
+			<div class="d4-wrap">
+				<header class="d4-section-heading">
+					<div><h2 id="blog-title">Blog</h2><p>Notes from research and building in the open.</p></div><a
+						class="d4-button"
+						href={previewURL(concept.id, 'writing')}>Explore the blog</a
+					>
+				</header><Content kind="blog" concept={concept.id} />
+			</div>
+		</section>
+		<section class="d4-section forma-speaking" id="speaking" aria-labelledby="speaking-title">
+			<div class="d4-wrap">
+				<header class="d4-section-heading">
+					<h2 id="speaking-title">Speaking</h2><a class="d4-button d4-button-secondary" href="/speaking"
+						>Invite me to speak</a
+					>
+				</header><Content kind="speaking" concept={concept.id} />
+			</div>
+		</section>
+		<section class="d4-section" id="books" aria-labelledby="books-title">
+			<div class="d4-wrap">
+				<header class="d4-section-heading">
+					<h2 id="books-title">Books</h2><a href="/books/nodejs-secure-coding">Node.js Secure Coding</a>
+				</header><Content kind="books" concept={concept.id} limit={5} />
+			</div>
+		</section>
+	</main>
+</Shell>

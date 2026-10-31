@@ -1,37 +1,33 @@
 ---
 import '~/components/design-lab/v4/themes.css';
+import '~/components/design-lab/v4/refined.css';
 import PreviewLayout from '~/components/design-lab/PreviewLayout.astro';
 import ConceptCard from '~/components/design-lab/ConceptCard.astro';
 import { concepts } from '~/components/design-lab/concepts';
 ---
 
-<PreviewLayout title="Three different approaches">
+<PreviewLayout title="Forma and Forma Refined">
 	<main id="preview-main" class="gallery" tabindex="-1">
 		<header class="gallery-intro">
-			<p class="gallery-round">Round four</p><h1>A cleaner direction.<br />Three distinct layouts.</h1><p>
-				A quieter Prism, a precise technical portfolio, and a photographic personal site. Clear buttons, complete
-				sections, and a contrasting footer in each.
+			<p class="gallery-round">Round five</p><h1>Forma.<br />And one refinement.</h1><p>
+				The original Forma stays as the baseline. Forma Refined combines its typography, menu, research and reading
+				layouts with the hero composition and compact details from your annotations.
 			</p><a href="/">Compare with the current website</a>
-		</header><div class="gallery-grid">
-			{concepts.filter((c) => c.round === 4).map((concept) => <ConceptCard {concept} />)}
-		</div><section class="gallery-guide" aria-label="How these options differ">
+		</header>
+		<div class="gallery-grid current-comparison">{concepts.map((concept) => <ConceptCard {concept} />)}</div>
+		<section class="gallery-guide" aria-label="What to compare">
 			<div>
-				<h2>Compare the approach.</h2><p>
-					Prism uses full-width chapters. Forma centers the introduction and frames the work. Studio opens with identity
-					and photography. None uses the latest blog article as its hero.
-				</p>
-			</div><div>
-				<h2>Explore more than the homepage.</h2><p>
-					Each includes Blog and article views. Try the article hover and keyboard focus states, then scroll to the
-					contrasting footer. Each RSS action opens the real feed.
+				<h2>The new proposal.</h2><p>
+					Look for the asymmetric hero, transparent portrait, monochrome social icons, compact recognition, and category
+					pills with source icons in Open source.
 				</p>
 			</div>
-		</section><details class="previous-round">
-			<summary>First-round archive</summary><p>
-				Earlier explorations for reference. Atlas, Lumen, Structured, and Navigator have been retired.
-			</p><div class="gallery-grid">
-				{concepts.filter((c) => c.round === 1).map((concept) => <ConceptCard {concept} />)}
+			<div>
+				<h2>The familiar reading experience.</h2><p>
+					Both use Forma’s side-by-side Research layout, Blog cards, article typography, button styles, and contrasting
+					RSS footer.
+				</p>
 			</div>
-		</details>
+		</section>
 	</main>
 </PreviewLayout>

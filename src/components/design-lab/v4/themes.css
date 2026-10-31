@@ -1,36 +1,18 @@
 /* Isolated exploration. Chapter surfaces replace the previous rounded section kit. */
-.lab-body[data-concept='prism'],
 .lab-body[data-concept='forma'],
-.lab-body[data-concept='studio'] {
-	--display: 'Manrope Variable', sans-serif;
-	--paper: #fff;
-	--ink: #24212d;
-	--muted: #605c6b;
-	--accent: #51378b;
-	--surface: #f2f0f7;
-	--footer: #25212f;
-	--rule: #dfdce7;
-	background: var(--paper);
-	font-family: var(--display);
-	color: var(--ink);
-	color-scheme: light;
-}
-.lab-body[data-concept='forma'] {
+.lab-body[data-concept='forma-refined'] {
 	--display: 'Inter Variable', sans-serif;
+	--paper: #fff;
 	--ink: #171717;
 	--muted: #626262;
 	--accent: #171717;
 	--surface: #f7f7f7;
 	--footer: #181818;
 	--rule: #dfdfdf;
-}
-.lab-body[data-concept='studio'] {
-	--ink: #193343;
-	--muted: #526571;
-	--accent: #174b68;
-	--surface: #eef3f5;
-	--footer: #183545;
-	--rule: #d3dfe5;
+	background: var(--paper);
+	font-family: var(--display);
+	color: var(--ink);
+	color-scheme: light;
 }
 .lab-body .d4 {
 	font-family: var(--display);
@@ -486,51 +468,6 @@
 .lab-body .d4-footer :focus-visible {
 	outline-color: #fff;
 }
-/* Prism keeps its asymmetric introduction; section surfaces span the viewport. */
-.lab-body .prism-intro {
-	display: grid;
-	grid-template-columns: 1.5fr 1fr;
-	align-items: center;
-	gap: 80px;
-	padding-block: 64px 52px;
-}
-.lab-body .prism-portrait {
-	width: 340px;
-	height: 350px;
-	object-fit: cover;
-	justify-self: end;
-	border-radius: 6px;
-}
-.lab-body .prism-intro .d4-lede {
-	max-width: 50ch;
-}
-.lab-body .prism-research {
-	background: var(--surface);
-}
-.lab-body .d4-prism .d4-paper-list article {
-	display: grid;
-	grid-template-columns: 160px minmax(0, 1fr);
-	column-gap: 36px;
-	padding-block: 12px;
-}
-.lab-body .d4-prism .d4-paper-list article > .d4-meta {
-	grid-column: 1;
-	grid-row: 1 / span 4;
-	padding-top: 5px;
-}
-.lab-body .d4-prism .d4-paper-list article > :not(.d4-meta) {
-	grid-column: 2;
-}
-.lab-body .prism-speaking {
-	background: #f6f6f8;
-}
-.lab-body .prism-blog {
-	background: #faf9fc;
-}
-/* On the tinted Blog band the action surface becomes white. */
-.lab-body .prism-blog .d4-blog-card:is(:hover, :focus-visible) {
-	background: #fff;
-}
 /* Forma is centered and monochrome. Frames belong to documents, not every section. */
 .lab-body .d4-forma .d4-header {
 	max-width: 1040px;
@@ -678,158 +615,6 @@
 }
 .lab-body .d4-forma .d4-speaking-content > img {
 	border-radius: 6px;
-}
-/* Studio leads with the person and a wide stage photograph. */
-.lab-body .d4-studio .d4-header .d4-brand span {
-	display: none;
-}
-.lab-body .studio-masthead {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 40px;
-	padding-block: 26px 34px;
-}
-.lab-body .studio-identity {
-	display: flex;
-	align-items: center;
-	gap: 22px;
-}
-.lab-body .studio-identity img {
-	border-radius: 4px;
-}
-.lab-body .studio-identity strong {
-	font-size: 32px;
-	letter-spacing: -0.03em;
-	font-weight: 650;
-}
-.lab-body .studio-masthead p {
-	font-size: 12px;
-	color: var(--muted);
-}
-.lab-body .studio-masthead .d4-socials {
-	margin-top: 10px;
-}
-.lab-body .studio-intro {
-	display: grid;
-	grid-template-columns: 1.15fr 1fr;
-	width: min(1280px, calc(100% - 80px));
-	align-items: stretch;
-	background: var(--surface);
-}
-.lab-body .studio-intro figure {
-	position: relative;
-	min-width: 0;
-}
-.lab-body .studio-intro figure img {
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
-	object-position: 45% center;
-	min-height: 440px;
-}
-.lab-body .studio-intro figcaption {
-	position: absolute;
-	left: 18px;
-	bottom: 16px;
-	padding: 3px 9px;
-	background: #183545;
-	color: #fff;
-	font-size: 10px;
-}
-.lab-body .studio-intro-copy {
-	padding: 48px 44px;
-	align-self: center;
-}
-.lab-body .d4-studio .studio-intro h1 {
-	font-size: clamp(2.6rem, 3.7vw, 3.8rem);
-}
-.lab-body .studio-intro .d4-lede {
-	font-size: 16px;
-	margin-top: 24px;
-}
-.lab-body .studio-intro .d4-actions {
-	gap: 10px;
-}
-.lab-body .studio-intro .d4-button {
-	padding-inline: 15px;
-	font-size: 12px;
-}
-.lab-body .d4-studio .d4-recognition {
-	padding-block: 32px 34px;
-}
-.lab-body .studio-asymmetric {
-	display: grid;
-	grid-template-columns: 230px minmax(0, 1fr);
-	gap: 70px;
-}
-.lab-body .studio-asymmetric > header p {
-	font-size: 14px;
-	color: var(--muted);
-	margin-top: 16px;
-}
-.lab-body .studio-asymmetric > header .d4-button {
-	margin-top: 26px;
-}
-.lab-body .studio-research .d4-section-intro {
-	display: none;
-}
-.lab-body .d4-studio .d4-paper-list {
-	gap: 36px;
-}
-.lab-body .d4-studio .d4-paper-list h3 {
-	font-size: 25px;
-}
-.lab-body .studio-source,
-.lab-body .studio-books {
-	background: var(--surface);
-}
-.lab-body .d4-studio .d4-projects {
-	gap: 48px;
-}
-.lab-body .studio-speaking .d4-speaking-content {
-	display: block;
-}
-.lab-body .studio-speaking .d4-speaking-content > img {
-	display: none;
-}
-.lab-body .studio-speaking .d4-speaking-content > div {
-	display: grid;
-	grid-template-columns: 190px 1fr;
-	gap: 0 34px;
-}
-.lab-body .studio-speaking .d4-speaking-content h3 {
-	grid-row: 1 / span 2;
-	font-size: 34px;
-}
-.lab-body .studio-speaking .d4-speaking-content p {
-	margin-top: 0;
-}
-.lab-body .studio-speaking .d4-speaking-content .d4-section-actions {
-	grid-column: 2;
-}
-.lab-body .d4-studio .d4-blog-list {
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 30px;
-}
-.lab-body .d4-studio .d4-blog-card {
-	display: block;
-	padding: 0;
-	border-radius: 0;
-	height: 100%;
-}
-.lab-body .d4-studio .d4-blog-thumb {
-	border-radius: 0;
-}
-.lab-body .d4-studio .d4-blog-copy {
-	padding: 22px 14px 24px;
-}
-.lab-body .d4-studio .d4-blog-copy h3 {
-	font-size: 22px;
-}
-.lab-body .d4-studio .d4-subscribe p,
-.lab-body .d4-studio .d4-footer-bottom p {
-	color: #d4e0e7;
 }
 /* Reading pages use a continuous canvas rather than nested containers. */
 .lab-body .d4-reading-page {
@@ -979,14 +764,6 @@
 	.lab-body .d4-header nav {
 		gap: 20px;
 	}
-	.lab-body .prism-intro {
-		gap: 42px;
-		grid-template-columns: 1.4fr 1fr;
-	}
-	.lab-body .prism-portrait {
-		width: 280px;
-		height: 310px;
-	}
 	.lab-body .d4-recognition {
 		grid-template-columns: 140px 1fr;
 		gap: 24px;
@@ -1002,23 +779,6 @@
 	}
 	.lab-body .d4-book-list img {
 		height: 180px;
-	}
-	.lab-body .studio-intro {
-		width: calc(100% - 56px);
-		grid-template-columns: 1fr 1fr;
-	}
-	.lab-body .studio-intro-copy {
-		padding: 32px 28px;
-	}
-	.lab-body .studio-asymmetric {
-		grid-template-columns: 190px minmax(0, 1fr);
-		gap: 40px;
-	}
-	.lab-body .studio-speaking .d4-speaking-content > div {
-		display: block;
-	}
-	.lab-body .studio-speaking .d4-speaking-content p {
-		margin-top: 20px;
 	}
 	.lab-body .d4-forma .d4-blog-copy {
 		padding: 20px;
@@ -1158,26 +918,6 @@
 	.lab-body .d4-footer-bottom nav {
 		justify-content: flex-start;
 	}
-	.lab-body .prism-intro {
-		grid-template-columns: 1fr;
-		padding-block: 28px 20px;
-		gap: 30px;
-	}
-	.lab-body .prism-portrait {
-		width: 260px;
-		height: 260px;
-		justify-self: start;
-	}
-	.lab-body .d4-prism .d4-paper-list article {
-		display: block;
-		padding: 0;
-	}
-	.lab-body .d4-prism .d4-paper-list article > .d4-meta {
-		padding: 0;
-	}
-	.lab-body .d4-prism .d4-paper-list h3 {
-		font-size: 21px;
-	}
 	.lab-body .forma-intro {
 		padding-block: 20px 14px;
 	}
@@ -1221,61 +961,6 @@
 	}
 	.lab-body .d4-forma .d4-projects {
 		gap: 16px;
-	}
-	.lab-body .studio-masthead {
-		display: block;
-		padding-block: 14px 26px;
-	}
-	.lab-body .studio-identity {
-		gap: 16px;
-	}
-	.lab-body .studio-identity strong {
-		font-size: 28px;
-	}
-	.lab-body .studio-identity img {
-		width: 64px;
-		height: 64px;
-	}
-	.lab-body .studio-masthead > div + div {
-		margin-top: 20px;
-	}
-	.lab-body .studio-masthead > div + div p {
-		font-size: 11px;
-	}
-	.lab-body .studio-intro {
-		width: 100%;
-		grid-template-columns: 1fr;
-	}
-	.lab-body .studio-intro figure img {
-		min-height: 0;
-		height: auto;
-		aspect-ratio: 16/10;
-	}
-	.lab-body .studio-intro-copy {
-		padding: 32px 20px 38px;
-	}
-	.lab-body .d4-studio .studio-intro h1 {
-		font-size: clamp(2.6rem, 10vw, 4rem);
-	}
-	.lab-body .studio-asymmetric {
-		grid-template-columns: 1fr;
-		gap: 32px;
-	}
-	.lab-body .studio-asymmetric > header .d4-button {
-		margin-top: 20px;
-	}
-	.lab-body .d4-studio .d4-paper-list h3 {
-		font-size: 22px;
-	}
-	.lab-body .d4-studio .d4-blog-list {
-		grid-template-columns: 1fr;
-		gap: 30px;
-	}
-	.lab-body .d4-studio .d4-blog-thumb img {
-		aspect-ratio: 16/9;
-	}
-	.lab-body .d4-studio .d4-projects {
-		gap: 32px;
 	}
 	.lab-body .d4-reading-page {
 		padding-block: 28px 40px;
