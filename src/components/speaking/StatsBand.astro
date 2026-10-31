@@ -19,12 +19,12 @@ const { items } = Astro.props;
 				>
 					<dt class="sr-only">{item.label}</dt>
 					<dd>
-						<span class="block text-4xl md:text-5xl font-bold tracking-tight font-heading text-gray-900 dark:text-slate-100">
+						<span class="block text-4xl md:text-5xl font-bold tracking-tight font-heading speaking-ink">
 							{item.value}
 						</span>
-						<span class="mt-2 block text-sm text-gray-700 dark:text-slate-300">
+						<span class="mt-2 block text-sm speaking-muted">
 							{item.label}
-							{item.note && <span class="text-gray-500 dark:text-slate-500"> · {item.note}</span>}
+							{item.note && <span class="speaking-muted"> · {item.note}</span>}
 						</span>
 					</dd>
 				</div>

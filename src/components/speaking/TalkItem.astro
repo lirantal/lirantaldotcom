@@ -22,9 +22,7 @@ const meta = [
 	<article class="group relative grid sm:grid-cols-[1fr_auto] gap-4 py-6">
 		<div>
 			<div class="flex flex-wrap items-center gap-2">
-				<span class="text-xs font-semibold tracking-[0.15em] uppercase text-blue-600 dark:text-blue-400"
-					>{talk.topic.label}</span
-				>
+				<span class="speaking-label">{talk.topic.label}</span>
 				{
 					pastCount >= 3 && (
 						<span class="rounded-full px-2 py-0.5 text-xs font-semibold bg-secondary-100 text-secondary-800 dark:bg-secondary-900/60 dark:text-secondary-200">
@@ -40,13 +38,10 @@ const meta = [
 					)
 				}
 			</div>
-			<h3 dir="auto" class="mt-2 text-xl font-bold font-heading leading-snug text-gray-900 dark:text-slate-100">
-				<a
-					href={talk.href}
-					class="after:absolute after:inset-0 group-hover:text-blue-600 dark:group-hover:text-blue-400">{talk.title}</a
-				>
+			<h3 dir="auto" class="mt-2 text-xl font-bold font-heading leading-snug speaking-ink">
+				<a href={talk.href} class="after:absolute after:inset-0 group-hover:underline">{talk.title}</a>
 			</h3>
-			<p class="mt-2 text-sm text-gray-500 dark:text-slate-400">{meta.join(' · ')}</p>
+			<p class="mt-2 text-sm speaking-muted">{meta.join(' · ')}</p>
 		</div>
 		<span
 			class:list={[

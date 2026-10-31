@@ -76,7 +76,7 @@ const meta = {
 					[stats.cities, 'Cities'],
 				].map(([value, label]) => (
 					<div class="flex flex-col-reverse">
-						<dt class="text-sm text-gray-500 dark:text-slate-400">{label}</dt>
+						<dt class="text-sm speaking-muted">{label}</dt>
 						<dd class="text-4xl font-bold font-heading">{value}</dd>
 					</div>
 				))
@@ -103,7 +103,7 @@ const meta = {
 	}
 
 	<section class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-		<p class="text-xs font-semibold tracking-[0.2em] uppercase text-blue-600 dark:text-blue-400">
+		<p class="speaking-label">
 			Archive · {past.length} past events
 		</p>
 		<h2 class="mt-2 mb-6 text-3xl font-bold tracking-tight font-heading">Every event</h2>
@@ -115,7 +115,7 @@ const meta = {
 				<div data-filter-section class="mt-10" id={`year-${group.year}`}>
 					<h3 class="flex items-baseline gap-3 border-b border-gray-200 dark:border-slate-800 pb-2">
 						<span class="text-2xl font-bold font-heading">{group.year}</span>
-						<span class="text-sm text-gray-500 dark:text-slate-400">
+						<span class="text-sm speaking-muted">
 							{group.events.length} {group.events.length === 1 ? 'event' : 'events'}
 						</span>
 					</h3>
@@ -128,7 +128,7 @@ const meta = {
 			))
 		}
 
-		<p data-filter-empty hidden class="py-16 text-center text-gray-500 dark:text-slate-400">
+		<p data-filter-empty hidden class="py-16 text-center speaking-muted">
 			No events match these filters. <a href={`${SPEAKING_BASE}/events`} class="text-blue-600 underline">Reset</a>
 		</p>
 	</section>

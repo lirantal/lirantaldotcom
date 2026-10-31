@@ -46,7 +46,7 @@ const meta = {
 	<!-- Hero -->
 	<section class="max-w-6xl mx-auto px-4 sm:px-6 pt-10 md:pt-16 pb-12 grid md:grid-cols-2 gap-10 items-center">
 		<div>
-			<p class="text-xs font-semibold tracking-[0.2em] uppercase text-blue-600 dark:text-blue-400">
+			<p class="speaking-label">
 				Speaking · Booking {BOOKING_YEAR}
 			</p>
 			<h1 class="mt-3 text-5xl md:text-6xl font-bold leading-tighter tracking-tighter font-heading">
@@ -55,23 +55,20 @@ const meta = {
 					>hacked live on stage.</span
 				>
 			</h1>
-			<p class="mt-6 text-lg text-gray-600 dark:text-slate-400">
+			<p class="mt-6 speaking-lede">
 				Talks, workshops and podcasts about AI and agentic security, software supply chain attacks and Node.js secure
 				coding. Most sessions break a real application in front of the audience and then fix it. Every talk is adapted
 				to its audience, in English or Hebrew.
 			</p>
 			<div class="mt-8 flex flex-wrap gap-3">
-				<a class="btn text-white bg-blue-600 hover:bg-blue-800" href={SPEAKING.inviteURL}
+				<a class="forma-button" href={SPEAKING.inviteURL}
 					>Invite me to speak <Icon
 						name="tabler:arrow-up-right"
 						class="ml-1 inline-block w-4 h-4 align-middle"
 						aria-hidden="true"
 					/></a
 				>
-				<a
-					class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-50 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700 dark:hover:bg-slate-700"
-					href={`${SPEAKING_BASE}/talks`}>Browse the talks</a
-				>
+				<a class="forma-button forma-button-secondary" href={`${SPEAKING_BASE}/talks`}>Browse the talks</a>
 			</div>
 		</div>
 		<div class="relative">
@@ -103,14 +100,10 @@ const meta = {
 
 	<!-- Next on the calendar -->
 	<section class="max-w-6xl mx-auto px-4 sm:px-6 py-16 grid md:grid-cols-[1fr_2fr] gap-10">
-		<div class="md:border-l-4 md:border-blue-500 md:pl-6">
-			<p class="text-xs font-semibold tracking-[0.2em] uppercase text-blue-600 dark:text-blue-400">
-				Next on the calendar
-			</p>
+		<div class="md:border-l-4 speaking-calendar-heading md:pl-6">
+			<p class="speaking-label">Next on the calendar</p>
 			<h2 class="mt-2 text-3xl md:text-4xl font-bold tracking-tight font-heading">Come and say hello.</h2>
-			<a
-				href={`${SPEAKING_BASE}/events`}
-				class="mt-4 inline-block text-sm font-semibold text-blue-700 dark:text-blue-300 border-b-2 border-blue-500 pb-0.5"
+			<a href={`${SPEAKING_BASE}/events`} class="mt-4 inline-block text-sm font-semibold speaking-link"
 				>Full schedule and archive</a
 			>
 		</div>
@@ -121,7 +114,7 @@ const meta = {
 
 	<!-- Topics -->
 	<section>
-		<div class="portfolio py-16">
+		<div class="portfolio speaking-topics py-16">
 			<SectionHeading
 				title="Things I talk about."
 				link={`${SPEAKING_BASE}/talks`}
@@ -132,7 +125,7 @@ const meta = {
 					topicsByDeliveries.map((topic) => (
 						<li class="editorial-row grid md:grid-cols-[15rem_minmax(0,1fr)] gap-3 md:gap-10">
 							<div>
-								<p class="text-xs font-semibold tracking-[0.15em] uppercase text-gray-900 dark:text-slate-300">
+								<p class="speaking-label">
 									{topic.talks.length} talks · {topic.deliveries} deliveries
 								</p>
 								<h3 class="mt-2 text-xl font-bold font-heading">
@@ -142,7 +135,7 @@ const meta = {
 							<div class="max-w-[65ch]">
 								<p class="text-sm muted">{topic.description}</p>
 								<p class="mt-3 text-xs muted">
-									Most requested: <span class="text-gray-700 dark:text-slate-300">{topic.flagship.title}</span>
+									Most requested: <span class="speaking-muted">{topic.flagship.title}</span>
 								</p>
 							</div>
 						</li>
@@ -175,15 +168,15 @@ const meta = {
 				{
 					types.map((t) => (
 						<div class="grid grid-cols-[3.5rem_1fr] gap-4 py-4">
-							<dt class="text-3xl font-bold font-heading tabular-nums text-gray-900 dark:text-slate-100">{t.count}</dt>
+							<dt class="text-3xl font-bold font-heading tabular-nums speaking-ink">{t.count}</dt>
 							<dd>
 								<a
 									href={`${SPEAKING_BASE}/${t.type === 'podcast' || t.type === 'article' ? 'podcasts' : `events?type=${t.type}`}`}
-									class="font-semibold hover:text-blue-600 dark:hover:text-blue-400"
+									class="font-semibold hover:underline"
 								>
 									{t.plural}
 								</a>
-								<p class="text-sm text-gray-600 dark:text-slate-400">{t.description}</p>
+								<p class="text-sm speaking-muted">{t.description}</p>
 							</dd>
 						</div>
 					))
@@ -247,8 +240,8 @@ const meta = {
 					{testimonials.map((t) => (
 						<li class="flex flex-col rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6">
 							<blockquote class="text-gray-800 dark:text-slate-200">“{t.description}”</blockquote>
-							<a href={t.href} class="mt-auto pt-4 text-sm text-gray-500 dark:text-slate-400 hover:text-blue-600">
-								<span class="font-semibold text-gray-700 dark:text-slate-300">{t.name}</span> · {t.role}
+							<a href={t.href} class="mt-auto pt-4 text-sm speaking-muted hover:text-blue-600">
+								<span class="font-semibold speaking-muted">{t.name}</span> · {t.role}
 							</a>
 						</li>
 					))}

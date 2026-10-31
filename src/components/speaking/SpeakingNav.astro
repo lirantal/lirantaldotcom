@@ -16,12 +16,9 @@ const path = Astro.url.pathname.replace(/\/$/, '');
 const isActive = (href: string) => (href === SPEAKING_BASE ? path === href : path.startsWith(href));
 ---
 
-<nav aria-label="Speaking" class="border-b border-gray-200 dark:border-slate-800">
+<nav aria-label="Speaking" class="speaking-nav border-b border-gray-200 dark:border-slate-800">
 	<div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center gap-1 overflow-x-auto">
-		<span
-			class="hidden sm:inline text-xs font-semibold tracking-[0.2em] uppercase text-gray-500 dark:text-slate-400 mr-3"
-			>Speaking</span
-		>
+		<span class="hidden sm:inline speaking-label mr-3">Speaking</span>
 		{
 			links.map((link) => (
 				<a
@@ -29,9 +26,7 @@ const isActive = (href: string) => (href === SPEAKING_BASE ? path === href : pat
 					aria-current={isActive(link.href) ? 'page' : undefined}
 					class:list={[
 						'relative border-b-2 px-3 py-3 text-sm font-medium whitespace-nowrap transition-colors',
-						isActive(link.href)
-							? 'border-blue-600 text-blue-700 dark:border-blue-300 dark:text-blue-300'
-							: 'border-transparent text-gray-600 hover:border-gray-400 hover:text-gray-900 dark:text-slate-300 dark:hover:border-slate-400 dark:hover:text-slate-100',
+						isActive(link.href) ? 'speaking-nav-current' : 'border-transparent speaking-muted hover:border-gray-400',
 					]}
 				>
 					{link.label}
@@ -40,7 +35,7 @@ const isActive = (href: string) => (href === SPEAKING_BASE ? path === href : pat
 		}
 		<a
 			href={SPEAKING.inviteURL}
-			class="relative ml-auto px-3 py-3 text-sm font-semibold whitespace-nowrap text-blue-700 hover:bg-blue-50 dark:text-blue-300 dark:hover:bg-slate-800"
+			class="relative ml-auto px-3 py-3 text-sm font-semibold whitespace-nowrap speaking-link"
 			>Invite me <Icon name="tabler:arrow-up-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" /></a
 		>
 	</div>

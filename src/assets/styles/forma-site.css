@@ -178,10 +178,10 @@
 	color: transparent;
 }
 .site-theme .speaking-theme .portfolio {
-	--link: #1d4ed8;
+	--link: var(--ink);
 }
 .dark .site-theme .speaking-theme .portfolio {
-	--link: #92b8ff;
+	--link: var(--ink);
 }
 .site-theme .home-tools,
 .site-theme .home-speaking,
@@ -454,4 +454,64 @@
 	.site-theme .impact-sources {
 		grid-template-columns: minmax(0, 1fr);
 	}
+}
+
+/* Speaking retains expressive titles and media; text and actions share Forma's roles. */
+.site-theme .speaking-theme .speaking-label {
+	color: var(--muted);
+	font-size: 12px;
+	font-weight: 500;
+	letter-spacing: 0;
+	text-transform: none;
+}
+.site-theme .speaking-theme .speaking-muted {
+	color: var(--muted);
+}
+.site-theme .speaking-theme .speaking-ink {
+	color: var(--ink);
+}
+.site-theme .speaking-theme .speaking-lede {
+	color: var(--muted);
+	font-size: 17px;
+	line-height: 1.8;
+	max-width: 65ch;
+}
+.site-theme .speaking-theme .speaking-link {
+	color: var(--ink);
+	font-weight: 600;
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+.site-theme .speaking-theme .speaking-link:hover {
+	color: var(--muted);
+}
+.site-theme .speaking-theme .speaking-nav-current {
+	color: var(--ink);
+	border-color: var(--ink);
+}
+.site-theme .speaking-theme .speaking-nav a:hover {
+	background: var(--surface);
+}
+.site-theme .speaking-theme .speaking-topics h3 {
+	font-size: 21px;
+}
+.site-theme .speaking-theme .speaking-topics .editorial-row p.text-sm {
+	font-size: 14px;
+	line-height: 1.8;
+}
+.site-theme .speaking-theme .speaking-topics .editorial-row p.text-xs {
+	font-size: 12px;
+	line-height: 1.7;
+}
+.site-theme .speaking-theme .speaking-topics .speaking-label {
+	margin-bottom: 8px;
+}
+.site-theme .speaking-theme .speaking-calendar-heading {
+	border-color: var(--rule);
+}
+.site-theme .speaking-theme .speaking-invitation {
+	background: var(--surface);
+	border: 1px solid var(--rule);
+	border-radius: 6px;
+	color: var(--ink);
 }

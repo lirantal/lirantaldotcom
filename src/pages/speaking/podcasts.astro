@@ -35,7 +35,7 @@ const meta = {
 					[languages.length, 'Languages'],
 				].map(([value, label]) => (
 					<div class="flex flex-col-reverse">
-						<dt class="text-sm text-gray-500 dark:text-slate-400">{label}</dt>
+						<dt class="text-sm speaking-muted">{label}</dt>
 						<dd class="text-4xl font-bold font-heading">{value}</dd>
 					</div>
 				))
@@ -83,8 +83,6 @@ const meta = {
 				</div>
 			))
 		}
-		<p data-filter-empty hidden class="py-16 text-center text-gray-500 dark:text-slate-400">
-			Nothing matches these filters.
-		</p>
+		<p data-filter-empty hidden class="py-16 text-center speaking-muted">Nothing matches these filters.</p>
 	</section>
 </Layout>

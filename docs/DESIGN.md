@@ -16,6 +16,8 @@ Use real PageLayout/Header/Footer throughout. `src/components/forma` owns reusab
 
 Homepage refinements retain clickable article cards without a repeated “Read article” label. Use “Read the blog” for blog CTAs, and bold underlined text for secondary section actions. Center the impact metrics; group npm and GitHub date/scope/source disclosures separately, with link icons next to their labels. The four secondary book covers form a compact two-by-two grid spanning the full height of the three primary books, including their titles.
 
+Speaking’s neutral labels, body text, section links, navigation and booking panel follow Forma Refined. Keep the blue-to-pink hero-title gradients, speaker photograph/frame, year bars, calendar event rows, country lists and colored status/type/filter pills. Topic rows retain their layout with neutral 21px titles, 14px descriptions and 12px metadata. The shared booking CTA uses a neutral surface, a filled primary action and outlined secondary actions. `BOOKING_YEAR` is computed six months ahead at build time; static deployments need a rebuild to update it.
+
 ## Direction: editorial, personal, and restrained
 
 Liran chose the **Editorial** concept over the centered alternative: left-aligned writing, a portrait alongside it, visible projects near the top, and clear sections with room to breathe. Keep the existing Inter/blue/neutral identity. Avoid shiny effects, excessive animation, or turning every item into a card. Preserve the established gradients on speaking headings, year bars, the stage-photo frame and invitation panel, the blog title, recognition headings, and 404 text; the owner explicitly requested retaining these accents during review of PR #14.

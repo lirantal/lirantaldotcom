@@ -15,9 +15,7 @@ const { groups, total } = Astro.props;
 		groups.map((group) =>
 			group.kind === 'chips' ? (
 				<div class="flex flex-wrap items-center gap-2" role="group" aria-label={group.label}>
-					<span class="w-14 text-xs font-semibold tracking-widest uppercase text-gray-500 dark:text-slate-400">
-						{group.label}
-					</span>
+					<span class="w-14 speaking-label">{group.label}</span>
 					{[{ value: '', label: 'All', count: total }, ...group.options].map((option) => (
 						<button
 							type="button"
@@ -38,7 +36,7 @@ const { groups, total } = Astro.props;
 		{
 			groups.map((group) =>
 				group.kind === 'select' ? (
-					<label class="text-sm text-gray-600 dark:text-slate-400">
+					<label class="text-sm speaking-muted">
 						<span class="sr-only">{group.label}</span>
 						<select
 							data-filter={group.name}
@@ -54,7 +52,7 @@ const { groups, total } = Astro.props;
 						</select>
 					</label>
 				) : group.kind === 'toggle' ? (
-					<label class="inline-flex items-center gap-2 text-sm text-gray-700 dark:text-slate-300">
+					<label class="inline-flex items-center gap-2 text-sm speaking-muted">
 						<input
 							type="checkbox"
 							data-filter={group.name}
@@ -66,7 +64,7 @@ const { groups, total } = Astro.props;
 				) : null
 			)
 		}
-		<p class="ml-auto text-sm text-gray-500 dark:text-slate-400" aria-live="polite">
+		<p class="ml-auto text-sm speaking-muted" aria-live="polite">
 			Showing <span data-filter-count class="font-semibold tabular-nums">{total}</span> of {total}
 		</p>
 	</div>
