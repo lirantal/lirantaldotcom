@@ -1,0 +1,28 @@
+/* Forma Refined: one production palette, shared with all page types. */
+.site-theme {
+	--forma-font: 'Inter', sans-serif;
+	--paper: #fff;
+	--ink: #171717;
+	--muted: #626262;
+	--accent: #171717;
+	--on-accent: #fff;
+	--surface: #f7f7f7;
+	--rule: #dfdfdf;
+	--footer: #181818;
+	background: var(--paper);
+	color: var(--ink);
+	font-family: var(--forma-font);
+	font-size: 15px;
+	line-height: 1.75;
+	color-scheme: light;
+}
+.dark .site-theme {
+	--paper: #090a0c;
+	--ink: #edf0f4;
+	--muted: #a5adba;
+	--accent: #edf0f4;
+	--on-accent: #171717;
+	--surface: #181a1e;
+	--rule: #353a43;
+	color-scheme: dark;
+}

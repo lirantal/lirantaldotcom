@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import { SPEAKING } from '~/config.mjs';
 import { SPEAKING_BASE } from '~/utils/speaking';
 
@@ -29,7 +30,7 @@ const isActive = (href: string) => (href === SPEAKING_BASE ? path === href : pat
 					class:list={[
 						'relative border-b-2 px-3 py-3 text-sm font-medium whitespace-nowrap transition-colors',
 						isActive(link.href)
-							? 'border-primary-600 text-primary-700 dark:border-primary-300 dark:text-primary-300'
+							? 'border-blue-600 text-blue-700 dark:border-blue-300 dark:text-blue-300'
 							: 'border-transparent text-gray-600 hover:border-gray-400 hover:text-gray-900 dark:text-slate-300 dark:hover:border-slate-400 dark:hover:text-slate-100',
 					]}
 				>
@@ -39,8 +40,8 @@ const isActive = (href: string) => (href === SPEAKING_BASE ? path === href : pat
 		}
 		<a
 			href={SPEAKING.inviteURL}
-			class="relative ml-auto px-3 py-3 text-sm font-semibold whitespace-nowrap text-primary-700 hover:bg-primary-50 dark:text-primary-300 dark:hover:bg-slate-800"
-			>Invite me <span aria-hidden="true">↗</span></a
+			class="relative ml-auto px-3 py-3 text-sm font-semibold whitespace-nowrap text-blue-700 hover:bg-blue-50 dark:text-blue-300 dark:hover:bg-slate-800"
+			>Invite me <Icon name="tabler:arrow-up-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" /></a
 		>
 	</div>
 </nav>

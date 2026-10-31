@@ -24,7 +24,7 @@ const { groups, total } = Astro.props;
 							data-filter={group.name}
 							data-value={option.value}
 							aria-pressed={option.value === '' ? 'true' : 'false'}
-							class="relative rounded-full border border-gray-200 dark:border-slate-700 px-3 py-2 text-sm after:absolute after:inset-x-0 after:-inset-y-1 after:content-[''] text-gray-700 dark:text-slate-300 hover:border-primary-400 aria-pressed:bg-gray-900 aria-pressed:text-white aria-pressed:border-gray-900 dark:aria-pressed:bg-slate-100 dark:aria-pressed:text-gray-900 dark:aria-pressed:border-slate-100"
+							class="relative rounded-full border border-gray-200 dark:border-slate-700 px-3 py-2 text-sm after:absolute after:inset-x-0 after:-inset-y-1 after:content-[''] text-gray-700 dark:text-slate-300 hover:border-blue-400 aria-pressed:bg-gray-900 aria-pressed:text-white aria-pressed:border-gray-900 dark:aria-pressed:bg-slate-100 dark:aria-pressed:text-gray-900 dark:aria-pressed:border-slate-100"
 						>
 							{option.label}
 							{option.count !== undefined && <span class="ml-1 opacity-60 tabular-nums">{option.count}</span>}
@@ -59,7 +59,7 @@ const { groups, total } = Astro.props;
 							type="checkbox"
 							data-filter={group.name}
 							value="yes"
-							class="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+							class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
 						/>
 						{group.label}
 					</label>

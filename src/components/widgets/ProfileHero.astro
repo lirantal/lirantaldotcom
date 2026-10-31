@@ -1,96 +1,55 @@
 ---
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
-import portrait from '~/assets/images/liran-tal-portrait.jpg';
 import { PROFILE } from '~/config.mjs';
+import portrait from '~/assets/images/liran-tal-portrait-cutout.png';
 ---
 
-<section class="pt-12 pb-10 md:pt-20 md:pb-14" aria-labelledby="intro-title">
-	<div class="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center">
-		<div class="flex-1 min-w-0">
-			<p class="eyebrow overflow-hidden">
-				<!-- Clip the leading separator on each wrapped row, keeping dots only between roles. -->
-				<span class="flex flex-wrap -ml-12 gap-y-2">
-					{
-						['Software engineer', 'Security researcher', 'Open-source maintainer'].map((role) => (
-							<span class="inline-flex whitespace-nowrap">
-								<span class="w-12 shrink-0 text-center" aria-hidden="true">
-									·
-								</span>
-								{role}
-							</span>
-						))
-					}
-				</span>
-			</p>
-			<h1 id="intro-title">Securing the <span class="text-primary-600 dark:text-primary-400">agentic future.</span></h1>
-			<p class="mt-5 text-xl md:text-2xl max-w-2xl leading-relaxed muted text-pretty">
-				I research emerging threats and build open-source defenses for AI agents, the software they write, and the tools
-				they trust.
-			</p>
-			<div class="mt-6 text-sm font-medium">
-				<p class="muted">Leading Developer Relations at <a href="https://snyk.io/contributors/liran-tal/">Snyk</a></p>
-				<div class="mt-2 flex flex-wrap gap-x-6 gap-y-3">
-					<a href="/writing">Read my blog <span aria-hidden="true">→</span></a>
-					<a href="/speaking">Invite me to speak <span aria-hidden="true">→</span></a>
-					<a href="/speaking/press-kit">Bio & press kit <span aria-hidden="true">→</span></a>
-				</div>
-				<ul class="mt-5 flex flex-wrap gap-3" aria-label="Awards and recognition" role="list">
-					<li class="inline-flex items-center gap-2 rounded-md border border-[var(--line)] bg-[var(--wash)] px-3 py-2">
-						<Icon name="tabler:award" class="w-4 h-4 shrink-0 muted" aria-hidden="true" />
-						<span
-							><span class="muted font-normal">Awarded</span>
-							<a href="https://stars.github.com/alumni">GitHub Star</a></span
-						>
-					</li>
-					<li class="inline-flex items-center gap-2 rounded-md border border-[var(--line)] bg-[var(--wash)] px-3 py-2">
-						<Icon name="tabler:award" class="w-4 h-4 shrink-0 muted" aria-hidden="true" />
-						<span
-							><span class="muted font-normal">Awarded</span>
-							<a href="/recognitions">OpenJS Security Pathfinder</a></span
-						>
-					</li>
-				</ul>
-			</div>
+<section class="refined-intro forma-wrap" aria-labelledby="refined-title">
+	<div class="refined-introduction">
+		<h1 id="refined-title">Securing the<br />agentic future.</h1>
+		<p class="forma-lede">
+			I research emerging threats and build open-source defenses for AI agents, the software they write, and the tools
+			they trust.
+		</p>
+		<p class="forma-role">
+			Software engineer, security researcher, and open-source maintainer.<br />Leading Developer Relations at <a
+				href="https://snyk.io/contributors/liran-tal/">Snyk</a
+			>.
+		</p>
+		<div class="forma-actions">
+			<a class="forma-button" href="/research">Explore my research</a><a
+				class="forma-button forma-button-secondary"
+				href={'/writing'}>Explore the blog</a
+			>
 		</div>
-		<div class="shrink-0 flex flex-col items-center gap-5">
-			<Image
-				src={portrait}
-				alt="Liran Tal"
-				width={208}
-				height={208}
-				widths={[208, 416]}
-				sizes="208px"
-				loading="eager"
-				fetchpriority="high"
-				class="rounded-full w-28 h-28 md:w-52 md:h-52 object-cover"
-			/>
-			<div class="flex items-center gap-3">
-				<a
-					href={PROFILE.twitterURL}
-					aria-label="X / Twitter"
-					title="X / Twitter"
-					class="profile-social-link inline-flex items-center justify-center w-11 h-11 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-				>
-					<Icon name="tabler:brand-x" class="w-5 h-5" aria-hidden="true" />
-				</a>
-				<a
-					href={PROFILE.githubURL}
-					aria-label="GitHub"
-					title="GitHub"
-					class="profile-social-link inline-flex items-center justify-center w-11 h-11 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-				>
-					<Icon name="tabler:brand-github" class="w-5 h-5" aria-hidden="true" />
-				</a>
-				<a
-					href={PROFILE.linkedinURL}
-					aria-label="LinkedIn"
-					title="LinkedIn"
-					class="profile-social-link inline-flex items-center justify-center w-11 h-11 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-				>
-					<Icon name="tabler:brand-linkedin" class="w-5 h-5" aria-hidden="true" />
-				</a>
-			</div>
+		<div class="forma-small-actions">
+			<a href="/hire-me">Hire me</a><a href="/speaking">Invite me to speak</a><a href="/speaking/press-kit"
+				>Bio & press kit</a
+			>
 		</div>
+	</div>
+	<div class="refined-profile">
+		<Image
+			class="refined-portrait"
+			src={portrait}
+			alt="Liran Tal"
+			widths={[320, 640]}
+			sizes="(max-width:760px) 220px, 320px"
+			format="webp"
+			loading="eager"
+			fetchpriority="high"
+		/>
+		<nav class="refined-socials" aria-label="Social profiles">
+			<a href={PROFILE.twitterURL} aria-label="X / Twitter" title="X / Twitter"
+				><Icon name="tabler:brand-x" aria-hidden="true" /></a
+			>
+			<a href={PROFILE.githubURL} aria-label="GitHub" title="GitHub"
+				><Icon name="tabler:brand-github" aria-hidden="true" /></a
+			>
+			<a href={PROFILE.linkedinURL} aria-label="LinkedIn" title="LinkedIn"
+				><Icon name="tabler:brand-linkedin" aria-hidden="true" /></a
+			>
+		</nav>
 	</div>
 </section>

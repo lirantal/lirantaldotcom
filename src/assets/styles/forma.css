@@ -1,78 +1,62 @@
-/* Isolated exploration. Chapter surfaces replace the previous rounded section kit. */
-.lab-body[data-concept='forma'],
-.lab-body[data-concept='forma-refined'] {
-	--display: 'Inter Variable', sans-serif;
-	--paper: #fff;
-	--ink: #171717;
-	--muted: #626262;
-	--accent: #171717;
-	--surface: #f7f7f7;
-	--footer: #181818;
-	--rule: #dfdfdf;
-	background: var(--paper);
-	font-family: var(--display);
-	color: var(--ink);
-	color-scheme: light;
-}
-.lab-body .d4 {
-	font-family: var(--display);
+.site-theme .forma {
+	font-family: var(--forma-font);
 	font-size: 15px;
 	line-height: 1.75;
 }
-.lab-body .d4 ::selection {
+.site-theme .forma ::selection {
 	background: var(--accent);
-	color: #fff;
+	color: var(--on-accent);
 }
-.lab-body .d4-wrap {
+.site-theme .forma-wrap {
 	width: min(1120px, calc(100% - 80px));
 	margin-inline: auto;
 }
-.lab-body .d4 :is(h1, h2, h3) {
-	font-family: var(--display);
+.site-theme .forma :is(h1, h2, h3) {
+	font-family: var(--forma-font);
 	font-weight: 650;
 	letter-spacing: -0.035em;
 	line-height: 1.18;
 	text-wrap: balance;
 }
-.lab-body .d4 h1 {
+.site-theme .forma h1 {
 	font-size: clamp(2.8rem, 5.4vw, 4.6rem);
 }
-.lab-body .d4 h2 {
+.site-theme .forma h2 {
 	font-size: 36px;
 }
-.lab-body .d4 h3 {
+.site-theme .forma h3 {
 	font-size: 22px;
 	letter-spacing: -0.025em;
 	line-height: 1.4;
 }
-.lab-body .d4 p {
+.site-theme .forma p {
 	max-width: 72ch;
 }
-.lab-body .d4 a {
+.site-theme .forma a {
 	transition:
 		color 160ms,
 		background-color 160ms,
 		border-color 160ms;
 }
-.lab-body .d4 :focus-visible {
+.site-theme .forma :focus-visible {
 	outline: 3px solid var(--accent);
 	outline-offset: 5px;
 }
-.lab-body .d4-header {
+.site-theme .forma-header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 32px;
 	padding-block: 28px;
 }
-.lab-body .d4-brand {
+.site-theme .forma-brand {
 	font-weight: 750;
 	font-size: 22px;
 	text-decoration: none;
 	letter-spacing: -0.03em;
 	line-height: 1.4;
 }
-.lab-body .d4-brand span {
+.site-theme .forma-brand span {
 	display: block;
 	font-size: 11px;
 	font-weight: 450;
@@ -80,21 +64,21 @@
 	color: var(--muted);
 	margin-top: 2px;
 }
-.lab-body .d4-header nav {
+.site-theme .forma-header nav {
 	display: flex;
 	align-items: center;
 	gap: 28px;
 	flex-wrap: wrap;
 }
-.lab-body .d4-header nav > a:not(.d4-button) {
+.site-theme .forma-header nav > a:not(.forma-button) {
 	font-size: 13px;
 	text-decoration: none;
 	padding-block: 10px;
 }
-.lab-body .d4-header nav > a:not(.d4-button):hover {
+.site-theme .forma-header nav > a:not(.forma-button):hover {
 	text-decoration: underline;
 }
-.lab-body .d4 .d4-button {
+.site-theme .forma .forma-button {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -104,255 +88,255 @@
 	border: 1px solid var(--accent);
 	border-radius: 6px;
 	background: var(--accent);
-	color: #fff;
+	color: var(--on-accent);
 	font-size: 13px;
 	font-weight: 600;
 	text-decoration: none;
 	line-height: 1.6;
 	text-align: center;
 }
-.lab-body .d4 .d4-button:hover {
+.site-theme .forma .forma-button:hover {
 	background: var(--ink);
 	border-color: var(--ink);
-	color: #fff;
+	color: var(--on-accent);
 }
-.lab-body .d4 .d4-button-secondary {
+.site-theme .forma .forma-button-secondary {
 	background: transparent;
 	color: var(--ink);
 	border-color: var(--rule);
 }
-.lab-body .d4 .d4-button-secondary:hover {
+.site-theme .forma .forma-button-secondary:hover {
 	background: var(--surface);
 	border-color: var(--ink);
 	color: var(--ink);
 }
-.lab-body .d4 .d4-button-small {
+.site-theme .forma .forma-button-small {
 	min-height: 40px;
 	padding: 8px 19px;
 }
-.lab-body .d4-button svg {
+.site-theme .forma-button svg {
 	width: 18px;
 	height: 18px;
 }
-.lab-body .d4-actions {
+.site-theme .forma-actions {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 12px;
 	margin-top: 28px;
 }
-.lab-body .d4-lede {
+.site-theme .forma-lede {
 	font-size: 18px;
 	line-height: 1.8;
 	color: var(--muted);
 	margin-top: 24px;
 	max-width: 52ch;
 }
-.lab-body .d4-role {
+.site-theme .forma-role {
 	color: var(--muted);
 	font-size: 13px;
 	margin-top: 24px;
 }
-.lab-body .d4-socials {
+.site-theme .forma-socials {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 22px;
 	font-size: 12px;
 	margin-top: 24px;
 }
-.lab-body .d4-section {
+.site-theme .forma-section {
 	padding-block: 68px;
 	scroll-margin-top: 20px;
 }
-.lab-body .d4-section-heading {
+.site-theme .forma-section-heading {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 28px;
 	margin-bottom: 32px;
 }
-.lab-body .d4-section-heading p {
+.site-theme .forma-section-heading p {
 	color: var(--muted);
 	margin-top: 10px;
 }
-.lab-body .d4-section-heading > a {
+.site-theme .forma-section-heading > a {
 	flex-shrink: 0;
 	font-size: 13px;
 }
-.lab-body .d4-section-intro {
+.site-theme .forma-section-intro {
 	color: var(--muted);
 	margin-bottom: 28px;
 }
-.lab-body .d4-recognition {
+.site-theme .forma-recognition {
 	padding-block: 28px 42px;
 	display: grid;
 	grid-template-columns: 180px 1fr;
 	align-items: center;
 	gap: 36px;
 }
-.lab-body .d4-recognition-heading h2 {
+.site-theme .forma-recognition-heading h2 {
 	font-size: 18px;
 	letter-spacing: -0.02em;
 }
-.lab-body .d4-recognition-heading > a {
+.site-theme .forma-recognition-heading > a {
 	font-size: 12px;
 	display: inline-block;
 	margin-top: 10px;
 }
-.lab-body .d4-awards {
+.site-theme .forma-awards {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 40px;
 }
-.lab-body .d4-award {
+.site-theme .forma-award {
 	display: flex;
 	align-items: center;
 	gap: 16px;
 	text-decoration: none;
 	padding: 16px 0;
 }
-.lab-body .d4-award > svg {
+.site-theme .forma-award > svg {
 	height: 30px;
 	width: 30px;
 	flex-shrink: 0;
 }
-.lab-body .d4-award > svg:last-child {
+.site-theme .forma-award > svg:last-child {
 	height: 18px;
 	width: 18px;
 	margin-left: auto;
 }
-.lab-body .d4-award strong {
+.site-theme .forma-award strong {
 	display: block;
 	font-size: 20px;
 	font-weight: 650;
 	line-height: 1.4;
 }
-.lab-body .d4-award span span {
+.site-theme .forma-award span span {
 	display: block;
 	font-size: 12px;
 	color: var(--muted);
 	margin-top: 3px;
 }
-.lab-body .d4-award:hover strong {
+.site-theme .forma-award:hover strong {
 	text-decoration: underline;
 }
-.lab-body .d4-paper-list {
+.site-theme .forma-paper-list {
 	display: grid;
 	gap: 30px;
 }
-.lab-body .d4-paper-list article {
+.site-theme .forma-paper-list article {
 	min-width: 0;
 }
-.lab-body .d4-meta {
+.site-theme .forma-meta {
 	font-size: 12px;
 	color: var(--muted);
 	display: block;
 	margin-bottom: 10px;
 }
-.lab-body .d4-paper-list article > p:not(.d4-meta) {
+.site-theme .forma-paper-list article > p:not(.forma-meta) {
 	color: var(--muted);
 	font-size: 14px;
 	margin-top: 14px;
 	line-height: 1.8;
 }
-.lab-body .d4-paper-list .d4-authors {
+.site-theme .forma-paper-list .forma-authors {
 	font-size: 12px !important;
 }
-.lab-body .d4-paper-list h3 a {
+.site-theme .forma-paper-list h3 a {
 	text-decoration: none;
 }
-.lab-body .d4-paper-list h3 a:hover {
+.site-theme .forma-paper-list h3 a:hover {
 	text-decoration: underline;
 }
-.lab-body .d4-small-actions,
-.lab-body .d4-section-actions {
+.site-theme .forma-small-actions,
+.site-theme .forma-section-actions {
 	display: flex;
 	gap: 22px;
 	flex-wrap: wrap;
 	font-size: 12px;
 	margin-top: 20px;
 }
-.lab-body .d4-section-actions {
+.site-theme .forma-section-actions {
 	margin-top: 28px;
 }
-.lab-body .d4-projects {
+.site-theme .forma-projects {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 36px;
 }
-.lab-body .d4-project-symbol {
+.site-theme .forma-project-symbol {
 	display: block;
 	margin-bottom: 20px;
 	color: var(--accent);
 }
-.lab-body .d4-project-symbol svg {
+.site-theme .forma-project-symbol svg {
 	width: 26px;
 	height: 26px;
 }
-.lab-body .d4-projects h3 > a {
+.site-theme .forma-projects h3 > a {
 	text-decoration: none;
 }
-.lab-body .d4-projects h3 > a:hover {
+.site-theme .forma-projects h3 > a:hover {
 	text-decoration: underline;
 }
-.lab-body .d4-projects article > p:not(.d4-meta) {
+.site-theme .forma-projects article > p:not(.forma-meta) {
 	font-size: 14px;
 	color: var(--muted);
 	margin-top: 12px;
 }
-.lab-body .d4-speaking-content {
+.site-theme .forma-speaking-content {
 	display: grid;
 	grid-template-columns: 1.15fr 1fr;
 	gap: 48px;
 	align-items: center;
 }
-.lab-body .d4-speaking-content > img {
+.site-theme .forma-speaking-content > img {
 	width: 100%;
 	aspect-ratio: 3/2;
 	object-fit: cover;
 	border-radius: 4px;
 }
-.lab-body .d4-speaking-content h3 {
+.site-theme .forma-speaking-content h3 {
 	font-size: 32px;
 	line-height: 1.25;
 }
-.lab-body .d4-speaking-content p {
+.site-theme .forma-speaking-content p {
 	font-size: 14px;
 	color: var(--muted);
 	margin-top: 18px;
 }
-.lab-body .d4-book-list {
+.site-theme .forma-book-list {
 	display: grid;
 	grid-template-columns: repeat(5, minmax(0, 1fr));
 	gap: 26px;
 }
-.lab-body .d4-book-list a {
+.site-theme .forma-book-list a {
 	display: block;
 	text-decoration: none;
 }
-.lab-body .d4-book-list img {
+.site-theme .forma-book-list img {
 	height: 230px;
 	width: 100%;
 	object-fit: contain;
 	object-position: left bottom;
 }
-.lab-body .d4-book-list span {
+.site-theme .forma-book-list span {
 	display: block;
 	font-size: 11px;
 	color: var(--muted);
 	margin-top: 20px;
 }
-.lab-body .d4-book-list h3 {
+.site-theme .forma-book-list h3 {
 	font-size: 17px;
 	margin-top: 4px;
 }
-.lab-body .d4-book-list a:hover h3 {
+.site-theme .forma-book-list a:hover h3 {
 	text-decoration: underline;
 }
-.lab-body .d4-blog-list {
+.site-theme .forma-blog-list {
 	display: grid;
 	gap: 18px;
 }
-.lab-body .d4-blog-card {
+.site-theme .forma-blog-card {
 	display: grid;
 	grid-template-columns: 200px 1fr;
 	align-items: center;
@@ -362,28 +346,28 @@
 	text-decoration: none;
 	background: transparent;
 }
-.lab-body .d4-blog-thumb {
+.site-theme .forma-blog-thumb {
 	overflow: hidden;
 	border-radius: 4px;
 }
-.lab-body .d4-blog-thumb img {
+.site-theme .forma-blog-thumb img {
 	width: 100%;
 	aspect-ratio: 16/10;
 	object-fit: cover;
 	transition: transform 220ms ease-out;
 }
-.lab-body .d4-blog-copy {
+.site-theme .forma-blog-copy {
 	min-width: 0;
 }
-.lab-body .d4-blog-copy h3 {
+.site-theme .forma-blog-copy h3 {
 	font-size: 23px;
 }
-.lab-body .d4-blog-copy p {
+.site-theme .forma-blog-copy p {
 	font-size: 13px;
 	color: var(--muted);
 	margin-top: 10px;
 }
-.lab-body .d4-read {
+.site-theme .forma-read {
 	display: flex;
 	align-items: center;
 	gap: 8px;
@@ -392,69 +376,69 @@
 	margin-top: 16px;
 	color: var(--accent);
 }
-.lab-body .d4-read svg {
+.site-theme .forma-read svg {
 	width: 16px;
 	height: 16px;
 }
-.lab-body .d4-blog-card:hover,
-.lab-body .d4-blog-card:focus-visible {
+.site-theme .forma-blog-card:hover,
+.site-theme .forma-blog-card:focus-visible {
 	background: var(--surface);
 	color: var(--ink);
 }
-.lab-body .d4-blog-card:is(:hover, :focus-visible) h3 {
+.site-theme .forma-blog-card:is(:hover, :focus-visible) h3 {
 	text-decoration: underline;
 	text-underline-offset: 4px;
 }
-.lab-body .d4-blog-card:is(:hover, :focus-visible) img {
+.site-theme .forma-blog-card:is(:hover, :focus-visible) img {
 	transform: scale(1.025);
 }
-.lab-body .d4-footer {
+.site-theme .forma-footer {
 	background: var(--footer);
 	color: #fff;
 	margin-top: 12px;
 }
-.lab-body .d4-subscribe {
+.site-theme .forma-subscribe {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 40px;
 	padding-block: 58px 52px;
 }
-.lab-body .d4-subscribe h2 {
+.site-theme .forma-subscribe h2 {
 	font-size: 42px;
 }
-.lab-body .d4-subscribe p {
+.site-theme .forma-subscribe p {
 	font-size: 15px;
 	color: #d4d0dc;
 	margin-top: 16px;
 }
-.lab-body .d4-footer .d4-button {
+.site-theme .forma-footer .forma-button {
 	background: #fff;
 	color: var(--footer);
-	border-color: #fff;
+	border-color: var(--on-accent);
 	flex-shrink: 0;
 }
-.lab-body .d4-footer .d4-button:hover {
+.site-theme .forma-footer .forma-button:hover {
 	background: #e4e0ee;
 	color: var(--footer);
 	border-color: #e4e0ee;
 }
-.lab-body .d4-footer-bottom {
+.site-theme .forma-footer-bottom {
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
 	gap: 36px;
 	padding-block: 30px 40px;
 }
-.lab-body .d4-footer-bottom .d4-brand {
+.site-theme .forma-footer-bottom .forma-brand {
 	font-size: 18px;
 }
-.lab-body .d4-footer-bottom p {
+.site-theme .forma-footer-bottom p {
 	font-size: 12px;
 	color: #d4d0dc;
 	margin-top: 10px;
 }
-.lab-body .d4-footer-bottom nav {
+.site-theme .forma-footer-bottom nav {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 16px 24px;
@@ -462,24 +446,24 @@
 	font-size: 12px;
 	justify-content: flex-end;
 }
-.lab-body .d4-footer a:hover {
+.site-theme .forma-footer a:hover {
 	color: #fff;
 }
-.lab-body .d4-footer :focus-visible {
-	outline-color: #fff;
+.site-theme .forma-footer :focus-visible {
+	outline-color: var(--on-accent);
 }
 /* Forma is centered and monochrome. Frames belong to documents, not every section. */
-.lab-body .d4-forma .d4-header {
+.site-theme .forma-refined .forma-header {
 	max-width: 1040px;
 }
-.lab-body .d4-forma .d4-brand span {
+.site-theme .forma-refined .forma-brand span {
 	display: none;
 }
-.lab-body .forma-intro {
+.site-theme .forma-intro {
 	text-align: center;
 	padding-block: 48px 26px;
 }
-.lab-body .forma-person {
+.site-theme .forma-person {
 	display: inline-flex;
 	align-items: center;
 	gap: 14px;
@@ -488,102 +472,102 @@
 	font-size: 14px;
 	font-weight: 600;
 }
-.lab-body .forma-person img {
+.site-theme .forma-person img {
 	border-radius: 6px;
 }
-.lab-body .forma-person span span {
+.site-theme .forma-person span span {
 	display: block;
 	font-size: 11px;
 	color: var(--muted);
 	font-weight: 400;
 }
-.lab-body .d4-forma .forma-intro h1 {
+.site-theme .forma-refined .forma-intro h1 {
 	font-size: clamp(2.8rem, 6vw, 4.9rem);
 	letter-spacing: -0.04em;
 }
-.lab-body .forma-intro .d4-lede {
+.site-theme .forma-intro .forma-lede {
 	margin-inline: auto;
 	max-width: 58ch;
 	font-size: 17px;
 	margin-top: 22px;
 }
-.lab-body .forma-intro .d4-actions {
+.site-theme .forma-intro .forma-actions {
 	justify-content: center;
 }
-.lab-body .forma-intro .d4-role {
+.site-theme .forma-intro .forma-role {
 	font-size: 12px;
 	margin-top: 20px;
 	max-width: none;
 }
-.lab-body .d4-forma .d4-recognition {
+.site-theme .forma-refined .forma-recognition {
 	display: block;
 	padding-block: 22px 24px;
 }
-.lab-body .d4-forma .d4-recognition-heading {
+.site-theme .forma-refined .forma-recognition-heading {
 	display: flex;
 	justify-content: center;
 	align-items: baseline;
 	gap: 20px;
 }
-.lab-body .d4-forma .d4-recognition-heading h2 {
+.site-theme .forma-refined .forma-recognition-heading h2 {
 	font-size: 14px;
 }
-.lab-body .d4-forma .d4-recognition-heading > a {
+.site-theme .forma-refined .forma-recognition-heading > a {
 	margin: 0;
 	font-size: 11px;
 }
-.lab-body .d4-forma .d4-awards {
+.site-theme .forma-refined .forma-awards {
 	max-width: 760px;
 	margin: 14px auto 0;
 	gap: 54px;
 }
-.lab-body .d4-forma .d4-award strong {
+.site-theme .forma-refined .forma-award strong {
 	font-size: 17px;
 }
-.lab-body .d4-forma .d4-award > svg {
+.site-theme .forma-refined .forma-award > svg {
 	width: 24px;
 	height: 24px;
 }
-.lab-body .forma-research {
+.site-theme .forma-research {
 	padding-top: 30px;
 }
-.lab-body .d4-forma .d4-paper-list {
+.site-theme .forma-refined .forma-paper-list {
 	grid-template-columns: 1fr 1fr;
 	gap: 0;
 	border: 1px solid var(--rule);
 	border-radius: 6px;
 	overflow: hidden;
 }
-.lab-body .d4-forma .d4-paper-list article {
+.site-theme .forma-refined .forma-paper-list article {
 	padding: 28px;
 }
-.lab-body .d4-forma .d4-paper-list article + article {
+.site-theme .forma-refined .forma-paper-list article + article {
 	border-left: 1px solid var(--rule);
 }
-.lab-body .d4-forma .d4-paper-list h3 {
+.site-theme .forma-refined .forma-paper-list h3 {
 	font-size: 21px;
 }
-.lab-body .forma-source,
-.lab-body .forma-speaking {
+.site-theme .forma-source,
+.site-theme .forma-speaking {
 	background: var(--surface);
 }
-.lab-body .d4-forma .d4-projects {
+.site-theme .forma-refined .forma-projects {
 	gap: 20px;
 }
-.lab-body .d4-forma .d4-projects article {
-	background: #fff;
+.site-theme .forma-refined .forma-projects article {
+	background: var(--paper);
 	padding: 26px;
 	border: 1px solid var(--rule);
 	border-radius: 6px;
 }
-.lab-body .d4-forma .d4-project-symbol {
+.site-theme .forma-refined .forma-project-symbol {
 	margin-bottom: 18px;
 }
-.lab-body .d4-forma .d4-blog-list {
+.site-theme .forma-refined .forma-blog-list {
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 24px;
 }
-.lab-body .d4-forma .d4-blog-card {
+.site-theme .forma-refined .forma-blog-card {
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
@@ -593,40 +577,40 @@
 	height: 100%;
 	overflow: hidden;
 }
-.lab-body .d4-forma .d4-blog-thumb {
+.site-theme .forma-refined .forma-blog-thumb {
 	border-radius: 0;
 }
-.lab-body .d4-forma .d4-blog-copy {
+.site-theme .forma-refined .forma-blog-copy {
 	padding: 24px;
 	display: flex;
 	flex-direction: column;
 	flex: 1;
 }
-.lab-body .d4-forma .d4-blog-copy h3 {
+.site-theme .forma-refined .forma-blog-copy h3 {
 	font-size: 20px;
 }
-.lab-body .d4-forma .d4-read {
+.site-theme .forma-refined .forma-read {
 	margin-top: auto;
 	padding-top: 24px;
 }
-.lab-body .d4-forma .d4-blog-card:is(:hover, :focus-visible) {
+.site-theme .forma-refined .forma-blog-card:is(:hover, :focus-visible) {
 	border-color: var(--ink);
 	background: var(--surface);
 }
-.lab-body .d4-forma .d4-speaking-content > img {
+.site-theme .forma-refined .forma-speaking-content > img {
 	border-radius: 6px;
 }
 /* Reading pages use a continuous canvas rather than nested containers. */
-.lab-body .d4-reading-page {
+.site-theme .forma-reading-page {
 	padding-block: 48px 60px;
 }
-.lab-body .d4-blog-heading {
+.site-theme .forma-blog-heading {
 	padding-block: 0 44px;
 }
-.lab-body .d4-blog-heading .d4-lede {
+.site-theme .forma-blog-heading .forma-lede {
 	max-width: 60ch;
 }
-.lab-body .d4-publications {
+.site-theme .forma-publications {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 24px;
@@ -635,34 +619,34 @@
 	background: var(--surface);
 	margin-top: 40px;
 }
-.lab-body .d4-publications h2 {
+.site-theme .forma-publications h2 {
 	font-size: 22px;
 	margin-right: auto;
 }
-.lab-body .d4-publications > a {
+.site-theme .forma-publications > a {
 	font-size: 13px;
 }
-.lab-body .d4-article {
+.site-theme .forma-article {
 	max-width: 960px;
 	margin: auto;
 }
-.lab-body .d4-article > header {
+.site-theme .forma-article > header {
 	padding: 0 0 32px;
 }
-.lab-body .d4-article > header > a {
+.site-theme .forma-article > header > a {
 	font-size: 13px;
 }
-.lab-body .d4-article > header > .d4-meta {
+.site-theme .forma-article > header > .forma-meta {
 	margin-top: 28px;
 }
-.lab-body .d4-article h1 {
+.site-theme .forma-article h1 {
 	font-size: clamp(2.3rem, 4.5vw, 3.8rem);
 }
-.lab-body .d4-article .d4-lede {
+.site-theme .forma-article .forma-lede {
 	max-width: 70ch;
 	font-size: 17px;
 }
-.lab-body .d4-byline {
+.site-theme .forma-byline {
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
@@ -670,49 +654,49 @@
 	font-size: 12px;
 	margin-top: 24px;
 }
-.lab-body .d4-byline img {
+.site-theme .forma-byline img {
 	border-radius: 4px;
 }
-.lab-body .d4-byline > a {
+.site-theme .forma-byline > a {
 	margin-left: auto;
 }
-.lab-body .d4-article-cover {
+.site-theme .forma-article-cover {
 	width: 100%;
 	aspect-ratio: 2/1;
 	object-fit: cover;
 	border-radius: 4px;
 }
-.lab-body .d4 .reading-body {
-	font-family: var(--display);
+.site-theme .forma .reading-body {
+	font-family: var(--forma-font);
 	font-size: 17px;
 	line-height: 1.85;
 	max-width: 65ch;
 	margin: 36px auto;
 }
-.lab-body .d4 .reading-body h2 {
+.site-theme .forma .reading-body h2 {
 	font-size: 29px;
 }
-.lab-body .d4 .reading-body h3 {
+.site-theme .forma .reading-body h3 {
 	font-size: 23px;
 }
-.lab-body .d4 .reading-body blockquote {
+.site-theme .forma .reading-body blockquote {
 	border: 0;
 	padding: 20px 24px;
 	background: var(--surface);
 	border-radius: 0;
 }
-.lab-body .d4 .reading-body pre code {
+.site-theme .forma .reading-body pre code {
 	white-space: pre;
 	overflow-wrap: normal;
 	word-break: normal;
 }
-.lab-body .d4 .reading-body :is(th, td) {
+.site-theme .forma .reading-body :is(th, td) {
 	border: 0;
 }
-.lab-body .d4 .reading-body tr:nth-child(odd) {
+.site-theme .forma .reading-body tr:nth-child(odd) {
 	background: var(--surface);
 }
-.lab-body .d4-article > footer {
+.site-theme .forma-article > footer {
 	display: flex;
 	align-items: baseline;
 	flex-wrap: wrap;
@@ -720,331 +704,301 @@
 	padding: 24px;
 	background: var(--surface);
 }
-.lab-body .d4-article > footer h2 {
+.site-theme .forma-article > footer h2 {
 	font-size: 24px;
 	margin-right: auto;
 }
-.lab-body .d4-article > footer > a {
+.site-theme .forma-article > footer > a {
 	font-size: 13px;
-}
-/* Gallery-only presentation. */
-.lab-body[data-concept='gallery'] {
-	--display: 'Manrope Variable', sans-serif;
-	--paper: #f8f9fb;
-	--ink: #242833;
-	--muted: #5b6270;
-	--accent: #343b4b;
-	font-family: var(--display);
-}
-.lab-body .gallery-round {
-	font-size: 13px;
-	color: var(--muted);
-	margin-bottom: 18px;
-}
-.lab-body .gallery-guide {
-	border: 0;
-}
-.lab-body .previous-round {
-	margin-top: 28px;
-}
-.lab-body .previous-round summary {
-	cursor: pointer;
-	padding-block: 16px;
-	font-weight: 600;
-}
-.lab-body .previous-round > p {
-	font-size: 13px;
-	color: var(--muted);
-	margin-bottom: 24px;
 }
 @media (max-width: 1050px) {
-	.lab-body .d4-wrap {
+	.site-theme .forma-wrap {
 		width: calc(100% - 56px);
 	}
-	.lab-body .d4-header nav {
+	.site-theme .forma-header nav {
 		gap: 20px;
 	}
-	.lab-body .d4-recognition {
+	.site-theme .forma-recognition {
 		grid-template-columns: 140px 1fr;
 		gap: 24px;
 	}
-	.lab-body .d4-awards {
+	.site-theme .forma-awards {
 		gap: 24px;
 	}
-	.lab-body .d4-award strong {
+	.site-theme .forma-award strong {
 		font-size: 18px;
 	}
-	.lab-body .d4-book-list {
+	.site-theme .forma-book-list {
 		gap: 18px;
 	}
-	.lab-body .d4-book-list img {
+	.site-theme .forma-book-list img {
 		height: 180px;
 	}
-	.lab-body .d4-forma .d4-blog-copy {
+	.site-theme .forma-refined .forma-blog-copy {
 		padding: 20px;
 	}
 }
 @media (max-width: 760px) {
-	.lab-body .d4-wrap {
+	.site-theme .forma-wrap {
 		width: calc(100% - 40px);
 	}
-	.lab-body .d4 h1 {
+	.site-theme .forma h1 {
 		font-size: clamp(2.5rem, 9.5vw, 3.8rem);
 	}
-	.lab-body .d4 h2 {
+	.site-theme .forma h2 {
 		font-size: 30px;
 	}
-	.lab-body .d4-header {
+	.site-theme .forma-header {
 		align-items: flex-start;
 		flex-direction: column;
 		gap: 20px;
 		padding-block: 24px;
 	}
-	.lab-body .d4-header nav {
+	.site-theme .forma-header nav {
 		gap: 8px 12px;
 		justify-content: space-between;
 		width: 100%;
 	}
-	.lab-body .d4-header nav > a:not(.d4-button) {
+	.site-theme .forma-header nav > a:not(.forma-button) {
 		font-size: 12px;
 	}
-	.lab-body .d4-header .d4-button-small {
+	.site-theme .forma-header .forma-button-small {
 		min-height: 36px;
 		padding: 7px 16px;
 		font-size: 12px;
 		margin-left: 0;
 	}
-	.lab-body .d4-brand span {
+	.site-theme .forma-brand span {
 		display: none;
 	}
-	.lab-body .d4-lede {
+	.site-theme .forma-lede {
 		font-size: 17px;
 	}
-	.lab-body .d4-section {
+	.site-theme .forma-section {
 		padding-block: 44px;
 	}
-	.lab-body .d4-section-heading {
+	.site-theme .forma-section-heading {
 		align-items: flex-start;
 		flex-wrap: wrap;
 		gap: 20px;
 		margin-bottom: 26px;
 	}
-	.lab-body .d4-section-heading p {
+	.site-theme .forma-section-heading p {
 		font-size: 14px;
 	}
-	.lab-body .d4-recognition {
+	.site-theme .forma-recognition {
 		display: block;
 		padding-block: 28px;
 	}
-	.lab-body .d4-recognition-heading {
+	.site-theme .forma-recognition-heading {
 		display: flex;
 		justify-content: space-between;
 		align-items: baseline;
 		gap: 16px;
 	}
-	.lab-body .d4-recognition-heading > a {
+	.site-theme .forma-recognition-heading > a {
 		margin-top: 0;
 	}
-	.lab-body .d4-awards {
+	.site-theme .forma-awards {
 		grid-template-columns: 1fr;
 		gap: 0;
 		margin-top: 14px;
 	}
-	.lab-body .d4-award {
+	.site-theme .forma-award {
 		padding-block: 14px;
 	}
-	.lab-body .d4-award strong {
+	.site-theme .forma-award strong {
 		font-size: 20px;
 	}
-	.lab-body .d4-projects {
+	.site-theme .forma-projects {
 		grid-template-columns: 1fr;
 		gap: 32px;
 	}
-	.lab-body .d4-project-symbol {
+	.site-theme .forma-project-symbol {
 		margin-bottom: 10px;
 	}
-	.lab-body .d4-projects .d4-meta {
+	.site-theme .forma-projects .forma-meta {
 		margin-bottom: 4px;
 	}
-	.lab-body .d4-speaking-content {
+	.site-theme .forma-speaking-content {
 		grid-template-columns: 1fr;
 		gap: 26px;
 	}
-	.lab-body .d4-book-list {
+	.site-theme .forma-book-list {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 30px 20px;
 	}
-	.lab-body .d4-book-list img {
+	.site-theme .forma-book-list img {
 		height: 210px;
 	}
-	.lab-body .d4-book-list span {
+	.site-theme .forma-book-list span {
 		margin-top: 12px;
 	}
-	.lab-body .d4-blog-card {
+	.site-theme .forma-blog-card {
 		grid-template-columns: 96px minmax(0, 1fr);
 		align-items: start;
 		gap: 18px;
 		padding: 16px 10px;
 	}
-	.lab-body .d4-blog-thumb img {
+	.site-theme .forma-blog-thumb img {
 		aspect-ratio: 1;
 	}
-	.lab-body .d4-blog-copy h3 {
+	.site-theme .forma-blog-copy h3 {
 		font-size: 19px;
 	}
-	.lab-body .d4-blog-copy p {
+	.site-theme .forma-blog-copy p {
 		font-size: 12px;
 	}
-	.lab-body .d4-blog-card .d4-meta {
+	.site-theme .forma-blog-card .forma-meta {
 		font-size: 11px;
 	}
-	.lab-body .d4-subscribe {
+	.site-theme .forma-subscribe {
 		align-items: flex-start;
 		flex-direction: column;
 		gap: 26px;
 		padding-block: 44px 34px;
 	}
-	.lab-body .d4-subscribe h2 {
+	.site-theme .forma-subscribe h2 {
 		font-size: 34px;
 	}
-	.lab-body .d4-subscribe p {
+	.site-theme .forma-subscribe p {
 		font-size: 14px;
 	}
-	.lab-body .d4-footer-bottom {
+	.site-theme .forma-footer-bottom {
 		flex-direction: column;
 		gap: 24px;
 		padding-block: 22px 34px;
 	}
-	.lab-body .d4-footer-bottom nav {
+	.site-theme .forma-footer-bottom nav {
 		justify-content: flex-start;
 	}
-	.lab-body .forma-intro {
+	.site-theme .forma-intro {
 		padding-block: 20px 14px;
 	}
-	.lab-body .d4-forma .forma-intro h1 {
+	.site-theme .forma-refined .forma-intro h1 {
 		font-size: clamp(2.7rem, 10vw, 4rem);
 	}
-	.lab-body .forma-intro .d4-lede {
+	.site-theme .forma-intro .forma-lede {
 		font-size: 16px;
 	}
-	.lab-body .d4-forma .d4-recognition-heading {
+	.site-theme .forma-refined .forma-recognition-heading {
 		justify-content: space-between;
 	}
-	.lab-body .d4-forma .d4-awards {
+	.site-theme .forma-refined .forma-awards {
 		grid-template-columns: 1fr;
 		gap: 0;
 		margin-top: 14px;
 		max-width: 440px;
 	}
-	.lab-body .d4-forma .d4-award strong {
+	.site-theme .forma-refined .forma-award strong {
 		font-size: 20px;
 	}
-	.lab-body .forma-research {
+	.site-theme .forma-research {
 		padding-top: 20px;
 	}
-	.lab-body .d4-forma .d4-paper-list {
+	.site-theme .forma-refined .forma-paper-list {
 		grid-template-columns: 1fr;
 	}
-	.lab-body .d4-forma .d4-paper-list article {
+	.site-theme .forma-refined .forma-paper-list article {
 		padding: 24px;
 	}
-	.lab-body .d4-forma .d4-paper-list article + article {
+	.site-theme .forma-refined .forma-paper-list article + article {
 		border-left: 0;
 		border-top: 1px solid var(--rule);
 	}
-	.lab-body .d4-forma .d4-blog-list {
+	.site-theme .forma-refined .forma-blog-list {
 		grid-template-columns: 1fr;
 		gap: 24px;
 	}
-	.lab-body .d4-forma .d4-blog-thumb img {
+	.site-theme .forma-refined .forma-blog-thumb img {
 		aspect-ratio: 16/9;
 	}
-	.lab-body .d4-forma .d4-projects {
+	.site-theme .forma-refined .forma-projects {
 		gap: 16px;
 	}
-	.lab-body .d4-reading-page {
+	.site-theme .forma-reading-page {
 		padding-block: 28px 40px;
 	}
-	.lab-body .d4-blog-heading {
+	.site-theme .forma-blog-heading {
 		padding-bottom: 30px;
 	}
-	.lab-body .d4-publications {
+	.site-theme .forma-publications {
 		padding: 22px;
 		gap: 18px;
 	}
-	.lab-body .d4-publications h2 {
+	.site-theme .forma-publications h2 {
 		width: 100%;
 		font-size: 22px;
 	}
-	.lab-body .d4-article h1 {
+	.site-theme .forma-article h1 {
 		font-size: clamp(2rem, 8vw, 3rem);
 	}
-	.lab-body .d4-article .d4-lede {
+	.site-theme .forma-article .forma-lede {
 		font-size: 16px;
 	}
-	.lab-body .d4 .reading-body {
+	.site-theme .forma .reading-body {
 		font-size: 16px;
 	}
-	.lab-body .d4 .reading-body h2 {
+	.site-theme .forma .reading-body h2 {
 		font-size: 26px;
 	}
-	.lab-body .d4 .reading-body h3 {
+	.site-theme .forma .reading-body h3 {
 		font-size: 21px;
 	}
 }
 @media (max-width: 370px) {
-	.lab-body .d4-header nav {
+	.site-theme .forma-header nav {
 		gap: 8px 16px;
 	}
-	.lab-body .d4-header nav > a:not(.d4-button) {
+	.site-theme .forma-header nav > a:not(.forma-button) {
 		font-size: 11px;
 	}
-	.lab-body .d4-header .d4-button-small {
+	.site-theme .forma-header .forma-button-small {
 		font-size: 11px;
 		padding-inline: 12px;
 	}
-	.lab-body .d4 .d4-button {
+	.site-theme .forma .forma-button {
 		font-size: 12px;
 		padding-inline: 16px;
 	}
-	.lab-body .d4-blog-card {
+	.site-theme .forma-blog-card {
 		grid-template-columns: 1fr;
 		padding-inline: 10px;
 	}
-	.lab-body .d4-blog-thumb img {
+	.site-theme .forma-blog-thumb img {
 		aspect-ratio: 16/9;
 	}
-	.lab-body .d4-book-list img {
+	.site-theme .forma-book-list img {
 		height: 170px;
 	}
-	.lab-body .d4-forma .d4-paper-list article {
+	.site-theme .forma-refined .forma-paper-list article {
 		padding: 20px;
 	}
 }
 @media (prefers-reduced-motion: reduce) {
-	.lab-body .d4 * {
+	.site-theme .forma * {
 		transition: none !important;
 		scroll-behavior: auto !important;
 	}
-	.lab-body .d4-blog-card:is(:hover, :focus-visible) img {
+	.site-theme .forma-blog-card:is(:hover, :focus-visible) img {
 		transform: none;
 	}
 }
 
 @media (max-width: 760px) {
-	.lab-body .d4 .d4-recognition-heading h2 {
+	.site-theme .forma .forma-recognition-heading h2 {
 		font-size: 18px;
 	}
-	.lab-body .d4 .d4-header .d4-button-small {
+	.site-theme .forma .forma-header .forma-button-small {
 		margin-left: 0;
 		padding-inline: 14px;
 	}
 }
 @media (max-width: 370px) {
-	.lab-body .d4-header nav {
+	.site-theme .forma-header nav {
 		gap: 8px;
 	}
-	.lab-body .d4 .d4-header .d4-button-small {
+	.site-theme .forma .forma-header .forma-button-small {
 		padding-inline: 12px;
 	}
 }

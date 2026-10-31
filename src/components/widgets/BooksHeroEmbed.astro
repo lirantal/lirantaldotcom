@@ -1,12 +1,11 @@
 ---
+import { Icon } from 'astro-icon/components';
 import { Picture } from 'astro:assets';
 import nodejsBookCover from '~/assets/images/nodejs-secure-coding-book-3d-style.png';
 ---
 
 <section class="body-font">
-	<div
-		class="max-w-2xl mx-auto px-6 py-12 flex flex-col-reverse sm:flex-row items-center gap-8"
-	>
+	<div class="max-w-2xl mx-auto px-6 py-12 flex flex-col-reverse sm:flex-row items-center gap-8">
 		<div class="flex-1 text-center sm:text-left">
 			<p class="mb-6 text-lg leading-relaxed">
 				Liran Tal is the author of the book <a
@@ -21,7 +20,11 @@ import nodejsBookCover from '~/assets/images/nodejs-secure-coding-book-3d-style.
 				class="btn text-white bg-primary-600 hover:bg-primary-800 shadow-none rounded-lg px-5 py-2.5"
 				href="https://www.nodejs-security.com/"
 				target="_blank"
-				>Start Building Secure Node.js Applications <span aria-hidden="true" class="ml-1">↗</span>
+				>Start Building Secure Node.js Applications <Icon
+					name="tabler:arrow-up-right"
+					class="ml-1 inline-block w-4 h-4 align-middle"
+					aria-hidden="true"
+				/>
 			</a>
 		</div>
 		<a href="https://www.nodejs-security.com/" target="_blank" tabindex="-1" aria-hidden="true" class="shrink-0">

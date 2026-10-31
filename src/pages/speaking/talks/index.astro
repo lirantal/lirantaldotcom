@@ -70,7 +70,7 @@ const meta = {
 			<section>
 				<div class="flex items-baseline justify-between mb-3">
 					<h2 class="font-semibold">Next up</h2>
-					<a href={`${SPEAKING_BASE}/events`} class="text-sm text-primary-700 dark:text-primary-300 hover:underline"
+					<a href={`${SPEAKING_BASE}/events`} class="text-sm text-blue-700 dark:text-blue-300 hover:underline"
 						>Full schedule</a
 					>
 				</div>
@@ -81,7 +81,7 @@ const meta = {
 								<li>
 									<a
 										href={event.href}
-										class="block rounded-lg border border-gray-200 dark:border-slate-700 p-3 hover:border-primary-400"
+										class="block rounded-lg border border-gray-200 dark:border-slate-700 p-3 hover:border-blue-400"
 									>
 										<span class="text-gray-500 dark:text-slate-400">
 											{event.flag} {event.location}
@@ -103,7 +103,7 @@ const meta = {
 					{
 						countries.map((c) => (
 							<li class="flex justify-between">
-								<a href={`${SPEAKING_BASE}/events?country=${c.code}`} class="hover:text-primary-600">
+								<a href={`${SPEAKING_BASE}/events?country=${c.code}`} class="hover:text-blue-600">
 									<span aria-hidden="true">{c.flag}</span> {c.name}
 								</a>
 								<span class="tabular-nums text-gray-500 dark:text-slate-400">{c.count}</span>

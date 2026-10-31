@@ -1,0 +1,58 @@
+---
+import Picture from '~/components/core/Picture.astro';
+import PostTags from '~/components/atoms/Tags.astro';
+import { Icon } from 'astro-icon/components';
+import { fetchPosts } from '~/utils/posts';
+import { findImage } from '~/utils/images';
+import { getPermalink } from '~/utils/permalinks';
+const { posts: supplied, limit = 3, showTags = false } = Astro.props;
+const posts = supplied || (await fetchPosts()).slice(0, limit);
+const images = await Promise.all(posts.map((post) => findImage(post.image)));
+const dates = posts.map((post) => {
+	if (!post.pubDate) return null;
+	const date = new Date(post.pubDate);
+	return Number.isFinite(date.getTime())
+		? {
+				iso: date.toISOString(),
+				label: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+			}
+		: null;
+});
+---
+
+<div class="forma-blog-list">
+	{
+		posts.map((post, index) => (
+			<article class:list={[{ 'post-with-tags': showTags }]}>
+				<a class="forma-blog-card" href={getPermalink(post.slug, 'post')}>
+					{images[index] && (
+						<div class="forma-blog-thumb">
+							<Picture src={images[index]} alt="" widths={[320, 640, 960]} sizes="(max-width:760px) 90vw, 360px" />
+						</div>
+					)}
+					<div class="forma-blog-copy">
+						<>
+							{dates[index] && (
+								<time class="forma-meta" datetime={dates[index].iso}>
+									{dates[index].label}
+								</time>
+							)}
+							{showTags && <span class="forma-meta">{post.readingTime}</span>}
+							<h3>{post.title}</h3>
+							<p>{post.description}</p>
+							<span class="forma-read">
+								Read article
+								<Icon name="tabler:arrow-up-right" aria-hidden="true" />
+							</span>
+						</>
+					</div>
+				</a>
+				{showTags && (
+					<div class="post-card-tags">
+						<PostTags tags={post.tags} />
+					</div>
+				)}
+			</article>
+		))
+	}
+</div>

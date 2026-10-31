@@ -28,7 +28,6 @@ export default defineConfig({
 	trailingSlash: 'never',
 	integrations: [
 		sitemap({
-			filter: (page) => !new URL(page).pathname.startsWith('/design-lab'),
 			changefreq: 'daily',
 			lastmod: new Date(),
 		}),

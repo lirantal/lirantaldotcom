@@ -1,23 +1,29 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { projects } from '~/data/portfolio';
-const featured = projects.filter((p) => ['lockfile-lint', 'npq', 'Node.js CLI Apps Best Practices'].includes(p.name));
+interface Props {
+	featured?: boolean;
+}
+const { featured = false } = Astro.props;
+const selected = featured
+	? projects.filter((p) => ['lockfile-lint', 'npq', 'Node.js CLI Apps Best Practices'].includes(p.name))
+	: projects;
 ---
 
-<div class="d4-projects d5-projects">
+<div class="forma-projects refined-projects">
 	{
-		featured.map((project) => (
+		selected.map((project) => (
 			<article>
 				<header>
 					<>
 						<h3>
 							<a href={project.url}>{project.name}</a>
 						</h3>
-						<span class="d5-project-kind">{project.kind}</span>
+						<span class="refined-project-kind">{project.kind}</span>
 					</>
 				</header>
 				<p>{project.description}</p>
-				<nav class="d5-project-sources" aria-label={`${project.name} sources`}>
+				<nav class="refined-project-sources" aria-label={`${project.name} sources`}>
 					<a href={project.url} aria-label={`${project.name} on GitHub`} title={`${project.name} on GitHub`}>
 						<Icon name="tabler:brand-github" aria-hidden="true" />
 					</a>

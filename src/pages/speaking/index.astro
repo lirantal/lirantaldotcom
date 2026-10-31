@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import { Picture } from 'astro:assets';
 import Layout from '~/layouts/SpeakingLayout.astro';
 import StatsBand from '~/components/speaking/StatsBand.astro';
@@ -45,12 +46,12 @@ const meta = {
 	<!-- Hero -->
 	<section class="max-w-6xl mx-auto px-4 sm:px-6 pt-10 md:pt-16 pb-12 grid md:grid-cols-2 gap-10 items-center">
 		<div>
-			<p class="text-xs font-semibold tracking-[0.2em] uppercase text-primary-600 dark:text-primary-400">
+			<p class="text-xs font-semibold tracking-[0.2em] uppercase text-blue-600 dark:text-blue-400">
 				Speaking · Booking {BOOKING_YEAR}
 			</p>
 			<h1 class="mt-3 text-5xl md:text-6xl font-bold leading-tighter tracking-tighter font-heading">
 				Security talks,
-				<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500"
+				<span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-secondary-500"
 					>hacked live on stage.</span
 				>
 			</h1>
@@ -60,8 +61,12 @@ const meta = {
 				to its audience, in English or Hebrew.
 			</p>
 			<div class="mt-8 flex flex-wrap gap-3">
-				<a class="btn text-white bg-primary-600 hover:bg-primary-800" href={SPEAKING.inviteURL}
-					>Invite me to speak <span aria-hidden="true" class="ml-1">↗</span></a
+				<a class="btn text-white bg-blue-600 hover:bg-blue-800" href={SPEAKING.inviteURL}
+					>Invite me to speak <Icon
+						name="tabler:arrow-up-right"
+						class="ml-1 inline-block w-4 h-4 align-middle"
+						aria-hidden="true"
+					/></a
 				>
 				<a
 					class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-50 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700 dark:hover:bg-slate-700"
@@ -71,7 +76,7 @@ const meta = {
 		</div>
 		<div class="relative">
 			<div
-				class="absolute -inset-2 md:-inset-3 rotate-2 rounded-2xl bg-gradient-to-br from-primary-500 to-secondary-500 opacity-80"
+				class="absolute -inset-2 md:-inset-3 rotate-2 rounded-2xl bg-gradient-to-br from-blue-500 to-secondary-500 opacity-80"
 				aria-hidden="true"
 			>
 			</div>
@@ -98,14 +103,14 @@ const meta = {
 
 	<!-- Next on the calendar -->
 	<section class="max-w-6xl mx-auto px-4 sm:px-6 py-16 grid md:grid-cols-[1fr_2fr] gap-10">
-		<div class="md:border-l-4 md:border-primary-500 md:pl-6">
-			<p class="text-xs font-semibold tracking-[0.2em] uppercase text-primary-600 dark:text-primary-400">
+		<div class="md:border-l-4 md:border-blue-500 md:pl-6">
+			<p class="text-xs font-semibold tracking-[0.2em] uppercase text-blue-600 dark:text-blue-400">
 				Next on the calendar
 			</p>
 			<h2 class="mt-2 text-3xl md:text-4xl font-bold tracking-tight font-heading">Come and say hello.</h2>
 			<a
 				href={`${SPEAKING_BASE}/events`}
-				class="mt-4 inline-block text-sm font-semibold text-primary-700 dark:text-primary-300 border-b-2 border-primary-500 pb-0.5"
+				class="mt-4 inline-block text-sm font-semibold text-blue-700 dark:text-blue-300 border-b-2 border-blue-500 pb-0.5"
 				>Full schedule and archive</a
 			>
 		</div>
@@ -174,7 +179,7 @@ const meta = {
 							<dd>
 								<a
 									href={`${SPEAKING_BASE}/${t.type === 'podcast' || t.type === 'article' ? 'podcasts' : `events?type=${t.type}`}`}
-									class="font-semibold hover:text-primary-600 dark:hover:text-primary-400"
+									class="font-semibold hover:text-blue-600 dark:hover:text-blue-400"
 								>
 									{t.plural}
 								</a>
@@ -193,13 +198,13 @@ const meta = {
 						<li class="grid grid-cols-[3rem_1fr_2rem] items-center gap-3 text-sm">
 							<a
 								href={`${SPEAKING_BASE}/events?year=${y.year}`}
-								class="tabular-nums text-gray-600 dark:text-slate-400 hover:text-primary-600"
+								class="tabular-nums text-gray-600 dark:text-slate-400 hover:text-blue-600"
 							>
 								{y.year}
 							</a>
 							<span class="h-4 rounded-r bg-gray-100 dark:bg-slate-800">
 								<span
-									class="block h-full rounded-r bg-gradient-to-r from-primary-500 to-secondary-500"
+									class="block h-full rounded-r bg-gradient-to-r from-blue-500 to-secondary-500"
 									style={`width: ${(y.count / maxYearCount) * 100}%`}
 								/>
 							</span>
@@ -215,7 +220,7 @@ const meta = {
 						<li>
 							<a
 								href={`${SPEAKING_BASE}/events?country=${c.code}`}
-								class="inline-flex items-center gap-1.5 rounded-full border border-gray-200 dark:border-slate-700 px-3 py-1 text-sm hover:border-primary-400"
+								class="inline-flex items-center gap-1.5 rounded-full border border-gray-200 dark:border-slate-700 px-3 py-1 text-sm hover:border-blue-400"
 							>
 								<span aria-hidden="true">{c.flag}</span>
 								{c.name}
@@ -242,7 +247,7 @@ const meta = {
 					{testimonials.map((t) => (
 						<li class="flex flex-col rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6">
 							<blockquote class="text-gray-800 dark:text-slate-200">“{t.description}”</blockquote>
-							<a href={t.href} class="mt-auto pt-4 text-sm text-gray-500 dark:text-slate-400 hover:text-primary-600">
+							<a href={t.href} class="mt-auto pt-4 text-sm text-gray-500 dark:text-slate-400 hover:text-blue-600">
 								<span class="font-semibold text-gray-700 dark:text-slate-300">{t.name}</span> · {t.role}
 							</a>
 						</li>

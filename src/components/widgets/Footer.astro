@@ -1,163 +1,60 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { FOOTER, PROFILE } from '~/config.mjs';
-import { getHomePermalink } from '~/utils/permalinks';
-
 const currentYear = new Date().getFullYear();
+const social = [
+	['RSS', '/rss.xml', 'tabler:rss'],
+	['X / Twitter', PROFILE.twitterURL, 'tabler:brand-x'],
+	['GitHub', PROFILE.githubURL, 'tabler:brand-github'],
+	['LinkedIn', PROFILE.linkedinURL, 'tabler:brand-linkedin'],
+	['Mastodon', PROFILE.mastodonURL, 'mdi:mastodon'],
+];
 ---
 
-<footer class="border-t border-gray-200 dark:border-slate-800">
-	<div class="max-w-6xl mx-auto px-5 sm:px-6">
-		<div class="footer-columns grid grid-cols-2 gap-x-6 gap-y-8 py-10 md:py-12">
-			<div class="col-span-2 lg:col-span-1">
-				<div class="mb-2">
-					<a class="inline-block font-bold text-xl" href={getHomePermalink()}>Liran Tal</a>
-
-					<ul class="text-sm">
-						<li>
-							<a
-								class="inline-block py-1.5 text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 ease-in-out"
-								href="/recognitions"
-							>
-								Recognitions
-							</a>
-						</li>
-						<li>
-							<a class="inline-block py-1.5 text-gray-600 hover:text-gray-700 dark:text-gray-400" href="/about">About</a
-							>
-						</li>
-						<li>
-							<a class="inline-block py-1.5 text-gray-600 hover:text-gray-700 dark:text-gray-400" href="/contact"
-								>Contact</a
-							>
-						</li>
-						<li>
-							<a class="inline-block py-1.5 text-gray-600 hover:text-gray-700 dark:text-gray-400" href="/developers"
-								>Developers</a
-							>
-						</li>
-						<li>
-							<a class="inline-block py-1.5 text-gray-600 hover:text-gray-700 dark:text-gray-400" href="/privacy"
-								>Privacy</a
-							>
-						</li>
-					</ul>
-				</div>
-				<div class="text-sm text-gray-600">
-					<!-- @TODO 
-					<a
-						class="text-gray-600 hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
-						href="#">Terms</a
-					> ·
-					<a
-						class="text-gray-600 hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
-						href="#">Privacy Policy</a
-					> -->
-				</div>
+<footer class="forma-footer">
+	<div class="forma-wrap">
+		<div class="forma-subscribe">
+			<div>
+				<h2>Get new articles.</h2><p>
+					AI security, Node.js, and the software supply chain.<br />Follow the blog in your feed reader.
+				</p>
+			</div><a class="forma-button" href="/rss.xml"><Icon name="tabler:rss" aria-hidden="true" />Follow via RSS</a>
+		</div>
+		<div class="site-footer-columns">
+			<div>
+				<a class="forma-brand" href="/">Liran Tal</a><nav aria-label="About this site">
+					<a href="/hire-me">Hire me</a><a href="/recognitions">Recognitions</a><a href="/about">About</a><a
+						href="/contact">Contact</a
+					><a href="/developers">Developers</a><a href="/privacy">Privacy</a>
+				</nav>
 			</div>
-
 			{
-				FOOTER.columns.map((column) => {
-					return (
+				FOOTER.columns.map((column) => (
+					<div>
 						<>
-							<div class="min-w-0">
-								<div class="text-gray-800 dark:text-gray-300 font-medium mb-2">{column.title}</div>
-								<ul class="text-sm">
-									{column.items.map((item) => {
-										return (
-											<li>
-												<a
-													class="inline-block py-1.5 text-gray-600 hover:text-gray-700 dark:text-gray-400 transition duration-150 	ease-in-out"
-													href={item.link}
-												>
-													{item.icon ? <Icon name={item.icon} class="inline-flex w-5 h-5" /> : ''}
-													{item.title}
-												</a>
-											</li>
-										);
-									})}
-								</ul>
-							</div>
+							<h3>{column.title}</h3>
+							<ul>
+								{column.items.map((item) => (
+									<li>
+										<a href={item.link}>{item.title}</a>
+									</li>
+								))}
+							</ul>
 						</>
-					);
-				})
+					</div>
+				))
 			}
 		</div>
-		<div class="md:flex md:items-center md:justify-between border-t border-gray-200 dark:border-slate-800 py-6 md:py-8">
-			<ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0">
-				<li>
-					<a
-						class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-300 rounded-lg text-sm p-3 inline-flex items-center"
-						aria-label="RSS"
-						href="/rss.xml"
-					>
-						<Icon name="tabler:rss" class="w-5 h-5" />
-					</a>
-				</li>
-				<li>
-					<a
-						class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-300 rounded-lg text-sm p-3 inline-flex items-center"
-						aria-label="LinkedIn"
-						href={PROFILE.linkedinURL}
-					>
-						<Icon name="tabler:brand-linkedin" class="w-5 h-5" />
-					</a>
-				</li>
-				<li>
-					<a
-						class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-300 rounded-lg text-sm p-3 inline-flex items-center"
-						aria-label="X"
-						href={PROFILE.twitterURL}
-					>
-						<Icon name="tabler:brand-x" class="w-5 h-5" />
-					</a>
-				</li>
-				<li>
-					<a
-						class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-300 rounded-lg text-sm p-3 inline-flex items-center"
-						aria-label="GitHub"
-						href={PROFILE.githubURL}
-					>
-						<Icon name="tabler:brand-github" class="w-5 h-5" />
-					</a>
-				</li>
-				<li>
-					<a
-						class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-300 rounded-lg text-sm p-3 inline-flex items-center"
-						aria-label="Mastodon"
-						href={PROFILE.mastodonURL}
-						rel="me"
-					>
-						<Icon name="mdi:mastodon" class="w-5 h-5" />
-					</a>
-				</li>
-			</ul>
-
-			<div class="text-xs text-gray-700 mr-4 dark:text-slate-400">
-				<div class="mb-2">© {currentYear} Liran Tal</div>
-			</div>
+		<div class="forma-footer-bottom">
+			<p>© {currentYear} Liran Tal</p><nav class="footer-socials" aria-label="Social profiles">
+				{
+					social.map(([name, url, icon]) => (
+						<a href={url} aria-label={name} title={name} rel={name === 'Mastodon' ? 'me' : undefined}>
+							<Icon name={icon} aria-hidden="true" />
+						</a>
+					))
+				}
+			</nav>
 		</div>
 	</div>
 </footer>
-
-<style>
-	@media (min-width: 1024px) {
-		.footer-columns {
-			grid-template-columns: 0.85fr 1.3fr 1.25fr 1.2fr 1fr;
-		}
-	}
-	footer a {
-		overflow-wrap: anywhere;
-	}
-	footer a:hover {
-		text-decoration: underline;
-		text-underline-offset: 0.2em;
-	}
-	footer a:focus-visible {
-		outline: 2px solid var(--color-blue-700);
-		outline-offset: 4px;
-	}
-	:global(.dark) footer a:focus-visible {
-		outline-color: var(--color-blue-300);
-	}
-</style>

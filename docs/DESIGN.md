@@ -4,6 +4,16 @@ This guide records the editorial direction chosen with Liran during [PR #12](htt
 
 The decisions below are the baseline for future work, not a ban on iteration. When a design choice changes, update its rationale here rather than preserving contradictory rules. CSS and components remain the source of truth for current values.
 
+## Current production direction: Forma Refined
+
+The owner selected Forma Refined for a full-site rollout in PR #30, rebased onto main at `9f5c346`. [The rollout plan and validation](design-review/FORMA-ROLLOUT.md) describe the scope. This supersedes the earlier Inter/blue editorial and exploration rules below; those sections remain historical context. Speaking retains its specifically approved rich color accents and components within the new neutral shared chrome.
+
+Use the shared `forma-tokens.css` roles: paper `#FFFFFF`, ink/accent `#171717`, muted `#626262`, surface `#F7F7F7`, rule `#DFDFDF`, footer `#181818`. Inter's existing preloaded variable font and font-display policy are retained. Default light mode and explicit saved dark preference remain intact; the theme tokens adapt to the soft-black palette in dark mode. Buttons are clear filled/outlined controls; content frames and controls use restrained rounding. Neutral shared links are underlined where the text needs an affordance, while speaking-specific blue/gradient and semantic severity/type colors remain local.
+
+The homepage uses the approved asymmetric hero and transparent rounded portrait/social row with latest main's Software engineer wording and Hire Me link. Research and real Blog cards follow the chosen hierarchy. Keep the featured tools, full dated npm/GitHub impact panel with disclosures, complete project list, Beyond This Blog publication references, three primary books plus four cover thumbnails, and all Better Together quotes/attribution. Reuse real content data rather than a reduced specimen set. Stable homepage anchors and the WebMCP registration/Person schema remain present.
+
+Use real PageLayout/Header/Footer throughout. `src/components/forma` owns reusable production cards, recognition, projects, books, impact and community. Archive/tag/category results retain Pagefind, pagination, reading metadata and tag navigation. Articles retain tags, sharing, readable code/prose, diagrams, related writing and the book promotion. Hire Me keeps its newest FAQ/experience content. Speaking keeps its overview, calendar, event/talk details, recordings, podcasts, press kit, filters and invitation flow; Research keeps all topics and disclosure filters. Footer retains all navigational groups and a contrasting RSS CTA. The mockup routes, toolbar, alternate fonts and gallery assets are retired.
+
 ## Direction: editorial, personal, and restrained
 
 Liran chose the **Editorial** concept over the centered alternative: left-aligned writing, a portrait alongside it, visible projects near the top, and clear sections with room to breathe. Keep the existing Inter/blue/neutral identity. Avoid shiny effects, excessive animation, or turning every item into a card. Preserve the established gradients on speaking headings, year bars, the stage-photo frame and invitation panel, the blog title, recognition headings, and 404 text; the owner explicitly requested retaining these accents during review of PR #14.

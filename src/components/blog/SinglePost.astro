@@ -1,52 +1,44 @@
 ---
+import { Image } from 'astro:assets';
 import Picture from '~/components/core/Picture.astro';
 import PostTags from '~/components/atoms/Tags.astro';
 import SocialShare from '~/components/atoms/SocialShare.astro';
-
 import { getFormattedDate } from '~/utils/utils';
-
+import portrait from '~/assets/images/liran-tal-portrait-cutout.png';
 const { post } = Astro.props;
 const Content = post.Content;
+const date = new Date(post.pubDate);
+const dateTime = post.pubDate && Number.isFinite(date.getTime()) ? date.toISOString() : undefined;
 ---
 
-<section class="py-4 sm:py-4 lg:py-4 mx-auto">
-	<article data-pagefind-body>
-		<header class="max-w-6xl mx-auto px-5 sm:px-6 pt-8 sm:pt-12">
-			<p class="text-sm text-gray-600 dark:text-slate-400 mb-3">
-				<time datetime={post.pubDate}>{getFormattedDate(post.pubDate)}</time> ~ {post.readingTime}
+<section class="forma-reading-page forma-wrap">
+	<article class="forma-article" data-pagefind-body>
+		<header>
+			<a href="/writing">Back to Blog</a><p class="forma-meta">
+				{dateTime && <time datetime={dateTime}>{getFormattedDate(post.pubDate)}</time>}{dateTime ? ' · ' : ''}{
+					post.readingTime
+				}
 			</p>
-			<h1 class="max-w-4xl text-4xl md:text-5xl font-bold leading-tighter tracking-tighter mb-4 font-heading">
-				{post.title}
-			</h1>
-
-			<div class="mt-5 mb-2">
-				<PostTags tags={post.tags} />
-			</div>
-			<SocialShare {...post} />
-
-			{
-				post.image && (
-					<Picture
-						src={post.image}
-						class="w-full mt-6 mb-6 rounded-md bg-gray-400 dark:bg-slate-700"
-						widths={[480, 900, 1200]}
-						sizes="(max-width: 1152px) calc(100vw - 48px), 1104px"
-						alt={post.description}
-						aspectRatio="16:9"
-						loading="eager"
-						fetchpriority="high"
-					/>
-				)
-			}
+			<h1>{post.title}</h1><p class="forma-lede">{post.description}</p>
+			<div class="forma-byline"><Image src={portrait} alt="" width={44} height={44} /><span>By Liran Tal</span></div>
+			<div class="mt-5"><PostTags tags={post.tags} /><SocialShare {...post} /></div>
 		</header>
-		<div
-			class="mx-auto px-6 sm:px-6 max-w-2xl prose prose-lg dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary-700 dark:prose-a:text-primary-300 prose-img:rounded-md prose-img:shadow-lg mt-8"
-		>
-			{Content ? <Content /> : <Fragment set:html={post.body} />}
-		</div>
+		{
+			post.image && (
+				<Picture
+					class="forma-article-cover"
+					src={post.image}
+					alt={`Cover artwork for ${post.title}`}
+					widths={[640, 1200]}
+					sizes="(max-width:760px) 100vw, 960px"
+					loading="eager"
+					fetchpriority="high"
+				/>
+			)
+		}
+		<div class="reading-body prose dark:prose-invert">{Content ? <Content /> : <Fragment set:html={post.body} />}</div>
 	</article>
 </section>
-
 <script>
 	import '~/scripts/mermaid-post-client';
 </script>

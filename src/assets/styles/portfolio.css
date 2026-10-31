@@ -1,9 +1,9 @@
 /* Shared editorial styling for the portfolio and its Blog / press pages. */
 .portfolio {
-	--ink-muted: #526075;
-	--line: #e2e8f0;
-	--link: #1d4ed8;
-	--wash: #f8fafc;
+	--ink-muted: var(--muted);
+	--line: var(--rule);
+	--link: var(--accent);
+	--wash: var(--surface);
 	max-width: 72rem;
 	margin-inline: auto;
 	padding-inline: 1.5rem;
@@ -12,7 +12,7 @@
 .dark .portfolio {
 	--ink-muted: var(--color-slate-400);
 	--line: var(--color-slate-700);
-	--link: var(--color-blue-400);
+	--link: var(--accent);
 	--wash: var(--color-slate-800);
 }
 .portfolio a:not(.book-cover) {

@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/ResearchLayout.astro';
 import {
 	advisories,
@@ -26,7 +27,7 @@ const meta = {
 			Vulnerabilities I have received public credit for disclosing, across developer tooling, JavaScript packages,
 			runtimes, and MCP servers. Each record links to the original advisory and its remediation details.
 		</p>
-		<p class="mt-5 text-sm"><a href={advisorySource}>View my credits on GitHub <span aria-hidden="true">↗</span></a></p>
+		<p class="mt-5 text-sm"><a href={advisorySource}>View my credits on GitHub <Icon name="tabler:arrow-up-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" /></a></p>
 		<dl class="research-metrics grid grid-cols-3 gap-4 mt-8">
 			<div><dt class="muted text-sm">Active advisories</dt><dd>{activeAdvisories.length}</dd></div>
 			<div><dt class="muted text-sm">Critical severity</dt><dd>{criticalAdvisories.length}</dd></div>
@@ -96,7 +97,7 @@ const meta = {
 						<div>
 							<h3>
 								<a href={advisory.url}>
-									{advisory.title.replaceAll('`', '')} <span aria-hidden="true">↗</span>
+									{advisory.title.replaceAll('`', '')} <Icon name="tabler:arrow-up-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" />
 								</a>
 							</h3>
 							<p class="muted text-sm mt-3">

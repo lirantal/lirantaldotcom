@@ -6,15 +6,15 @@ This file is for **coding agents** (Cursor, Copilot, etc.): project facts, conve
 
 Read **[docs/DESIGN.md](docs/DESIGN.md)** before changing layout, shared colors, or portfolio content. It records the owner-approved editorial direction, component patterns, palette, rationale, and visual-review lessons from PR #12. Keep detailed design decisions there; update it when a later review changes them.
 
-- Preserve the restrained **Inter / blue / neutral editorial style**, clear numbered section headings, and colored, underlined portfolio text links.
-- Keep the homepage bio short. Group the DevRel line, internal actions, and recognition badges together; keep social logos in one row under the portrait. The full bio belongs in the speaking press kit.
+- Use the selected **Forma Refined** design: Inter, a neutral black/gray/white palette, explicit filled/outlined CTAs, clear section names, and restrained 6px component corners. Keep the richer Speaking accents scoped to Speaking.
+- Keep the latest homepage content and role wording. The asymmetric hero uses a rounded transparent portrait, neutral social icons below it, and compact inline Awarded recognition links. Preserve full impact/source disclosures, Beyond This Blog, and Better Together. The full bio belongs in the press kit.
 - **Light is the default**, regardless of OS preference. Honor an explicit saved dark-mode choice. The approved **soft-black** palette uses shared tokens in `base.css`, not independent per-page palettes.
 - Verify content claims with sources: dated npm downloads are not unique users; arXiv entries are co-authored preprints, not automatically peer-reviewed papers.
 - For visual changes, inspect rendered light/dark and responsive states. For shared theme or interaction changes, also check affected search, prose, focus, menu, and filter states. Build success alone does not verify appearance.
 
-### Anthropic frontend-design exploration
+### Selected Forma Refined design
 
-The [frontend-design skill](.agents/skills/frontend-design/SKILL.md) is installed through APM; restore with `apm install --frozen --target agent-skills`. Read it and apply its plan/review/build/critique process to an explicit brief. The owner requested distinct theme mockups under `/design-lab`; those isolated routes may explore different type, palettes, and layouts. [The brief and review](docs/design-review/FRONTEND-CONCEPTS.md) record the scope. The latest [round-five brief](docs/design-review/ROUND-FIVE.md) keeps Forma unchanged and compares it with one Forma Refined proposal: Forma's Inter/monochrome/menu/research/reading styles, Prism's asymmetric hero, a transparent portrait with monochrome social icons beneath, compact recognition links, and project category pills/source icons. Only these two options remain in the gallery. Production routes retain the approved design until a direction is selected.
+The [frontend-design skill](.agents/skills/frontend-design/SKILL.md) is installed through APM; restore with `apm install --frozen --target agent-skills`. The owner selected Forma Refined for the entire website in PR #30. [The rollout brief](docs/design-review/FORMA-ROLLOUT.md) and [design guide](docs/DESIGN.md) are authoritative. Design-lab routes and components are retired; production components live in `src/components/forma`, with shared tokens and styles in `src/assets/styles/forma*.css`. Preserve latest main content, every existing route, rich Speaking components, search/filters, SEO and machine-readable functionality. Historical theme rounds are references, not active alternatives.
 
 ### Design reviews with the impeccable skill
 
@@ -24,7 +24,7 @@ The [impeccable](https://github.com/pbakaus/impeccable) design skill is installe
 - **`audit <target>`**: technical checks (accessibility, performance, theming, responsive).
 - **`polish <target>`**: refinement pass that preserves the incumbent design; it reads the latest critique report.
 
-Start each session with `.agents/skills/impeccable/scripts/impeccable context --target <file>`; there is no `PRODUCT.md`, so it treats `docs/DESIGN.md` and the code as the brief. The deterministic detector is `.agents/skills/impeccable/scripts/impeccable detect --json <files-or-url>`; URL scans need a Chromium, e.g. `IMPECCABLE_BROWSER=$(ls -d ~/.agent-browser/browsers/chrome-*/chrome | head -1)` in an orb. Inter, the numbered headings, and eyebrow labels are owner-approved, so treat `overused-font` and `kicker-above-heading` findings as sanctioned rather than defects.
+Start each session with `.agents/skills/impeccable/scripts/impeccable context --target <file>`; there is no `PRODUCT.md`, so it treats `docs/DESIGN.md` and the code as the brief. The deterministic detector is `.agents/skills/impeccable/scripts/impeccable detect --json <files-or-url>`; URL scans need a Chromium, e.g. `IMPECCABLE_BROWSER=$(ls -d ~/.agent-browser/browsers/chrome-*/chrome | head -1)` in an orb. Inter and the retained Speaking gradients, calendar accent, and meaningful labels are owner-approved. Treat mechanical warnings on those explicitly retained choices as sanctioned; the selected homepage uses literal, unnumbered section names.
 
 ## What this repo is
 

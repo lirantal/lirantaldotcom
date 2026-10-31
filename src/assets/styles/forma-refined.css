@@ -1,29 +1,29 @@
 /* Proposal-only changes. Forma supplies the type, palette, controls and reading views. */
-.lab-body .d5 .refined-intro {
+.site-theme .forma-refined .refined-intro {
 	display: grid;
 	grid-template-columns: 1.5fr 1fr;
 	align-items: center;
 	gap: 80px;
 	padding-block: 64px 42px;
 }
-.lab-body .d5 .refined-intro h1 {
+.site-theme .forma-refined .refined-intro h1 {
 	font-size: clamp(2.8rem, 5.4vw, 4.6rem);
 }
-.lab-body .d5 .refined-intro .d4-lede {
+.site-theme .forma-refined .refined-intro .forma-lede {
 	font-size: 17px;
 	max-width: 52ch;
 }
-.lab-body .d5 .refined-intro .d4-role {
+.site-theme .forma-refined .refined-intro .forma-role {
 	font-size: 13px;
 }
-.lab-body .d5 .refined-profile {
+.site-theme .forma-refined .refined-profile {
 	justify-self: end;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 12px;
 }
-.lab-body .d5 .refined-portrait {
+.site-theme .forma-refined .refined-portrait {
 	width: 320px;
 	height: auto;
 	max-width: 100%;
@@ -31,11 +31,11 @@
 	border-radius: 28%;
 	background: transparent;
 }
-.lab-body .d5 .d5-socials {
+.site-theme .forma-refined .refined-socials {
 	display: flex;
 	gap: 12px;
 }
-.lab-body .d5 .d5-socials a {
+.site-theme .forma-refined .refined-socials a {
 	width: 44px;
 	height: 44px;
 	display: inline-flex;
@@ -44,22 +44,22 @@
 	border-radius: 6px;
 	color: var(--ink);
 }
-.lab-body .d5 .d5-socials svg {
+.site-theme .forma-refined .refined-socials svg {
 	width: 24px;
 	height: 24px;
 }
-.lab-body .d5 .d5-socials a:hover {
+.site-theme .forma-refined .refined-socials a:hover {
 	background: var(--surface);
 	color: var(--ink);
 }
-.lab-body .d5 .d5-recognition {
+.site-theme .forma-refined .refined-recognition {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 4px;
 	padding-block: 18px 36px;
 }
-.lab-body .d5 .d5-recognition ul {
+.site-theme .forma-refined .refined-recognition ul {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -68,7 +68,7 @@
 	margin: 0;
 	padding: 0;
 }
-.lab-body .d5 .d5-recognition li > a {
+.site-theme .forma-refined .refined-recognition li > a {
 	display: inline-flex;
 	align-items: center;
 	gap: 5px;
@@ -77,35 +77,35 @@
 	text-decoration: none;
 	min-height: 36px;
 }
-.lab-body .d5 .d5-recognition li > a:hover {
+.site-theme .forma-refined .refined-recognition li > a:hover {
 	text-decoration: underline;
 }
-.lab-body .d5 .d5-recognition svg {
+.site-theme .forma-refined .refined-recognition svg {
 	width: 20px;
 	height: 20px;
 	flex-shrink: 0;
 }
-.lab-body .d5 .d5-alumni,
-.lab-body .d5 .d5-awarded {
+.site-theme .forma-refined .refined-alumni,
+.site-theme .forma-refined .refined-awarded {
 	font-weight: 400;
 	color: var(--muted);
 }
-.lab-body .d5 .d5-recognition-more {
+.site-theme .forma-refined .refined-recognition-more {
 	display: inline-flex;
 	align-items: center;
 	gap: 16px;
 }
-.lab-body .d5 .d5-recognition-separator {
+.site-theme .forma-refined .refined-recognition-separator {
 	color: var(--muted);
 	font-size: 14px;
 }
-.lab-body .d5 .d5-recognition li.d5-recognition-more > a {
+.site-theme .forma-refined .refined-recognition li.refined-recognition-more > a {
 	font-size: 12px;
 	font-weight: 400;
 	text-decoration: underline;
 	white-space: nowrap;
 }
-.lab-body .d5 .d5-projects {
+.site-theme .forma-refined .refined-projects {
 	--project-icon-size: 21px;
 	--project-target-size: 36px;
 	display: grid;
@@ -115,7 +115,7 @@
 	border-radius: 6px;
 	background: var(--paper);
 }
-.lab-body .d5 .d5-projects article {
+.site-theme .forma-refined .refined-projects article {
 	padding: 22px 24px;
 	display: grid;
 	grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.3fr) calc(2 * var(--project-target-size) + 4px);
@@ -125,16 +125,16 @@
 	border-radius: 0;
 	background: transparent;
 }
-.lab-body .d5 .d5-projects article + article {
+.site-theme .forma-refined .refined-projects article + article {
 	border-top: 1px solid var(--rule);
 }
-.lab-body .d5 .d5-projects header {
+.site-theme .forma-refined .refined-projects header {
 	min-width: 0;
 }
-.lab-body .d5 .d5-projects h3 {
+.site-theme .forma-refined .refined-projects h3 {
 	font-size: 21px;
 }
-.lab-body .d5 .d5-project-kind {
+.site-theme .forma-refined .refined-project-kind {
 	margin-top: 8px;
 	letter-spacing: 0;
 	font-weight: 400;
@@ -148,10 +148,10 @@
 	color: var(--muted);
 	white-space: nowrap;
 }
-.lab-body .d5 .d5-projects article > p {
+.site-theme .forma-refined .refined-projects article > p {
 	margin-top: 0;
 }
-.lab-body .d5 .d5-project-sources {
+.site-theme .forma-refined .refined-project-sources {
 	display: flex;
 	align-items: center;
 	gap: 4px;
@@ -159,7 +159,7 @@
 	justify-self: start;
 	margin-inline-start: 0;
 }
-.lab-body .d5 .d5-project-sources a {
+.site-theme .forma-refined .refined-project-sources a {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -168,65 +168,54 @@
 	border-radius: 4px;
 	color: var(--ink);
 }
-.lab-body .d5 .d5-project-sources a:hover {
+.site-theme .forma-refined .refined-project-sources a:hover {
 	background: var(--surface);
 }
-.lab-body .d5 .d5-project-sources svg {
+.site-theme .forma-refined .refined-project-sources svg {
 	width: var(--project-icon-size);
 	height: var(--project-icon-size);
 }
 @media (max-width: 1050px) {
-	.lab-body .d5 .refined-intro {
+	.site-theme .forma-refined .refined-intro {
 		gap: 42px;
 		grid-template-columns: 1.4fr 1fr;
 	}
-	.lab-body .d5 .refined-portrait {
+	.site-theme .forma-refined .refined-portrait {
 		width: 280px;
 	}
 }
 @media (max-width: 760px) {
-	.lab-body .d5 .refined-intro {
+	.site-theme .forma-refined .refined-intro {
 		grid-template-columns: 1fr;
 		gap: 28px;
 		padding-block: 28px 18px;
 	}
-	.lab-body .d5 .refined-intro h1 {
+	.site-theme .forma-refined .refined-intro h1 {
 		font-size: clamp(2.5rem, 9.5vw, 3.8rem);
 	}
-	.lab-body .d5 .refined-profile {
+	.site-theme .forma-refined .refined-profile {
 		justify-self: start;
 	}
-	.lab-body .d5 .refined-portrait {
+	.site-theme .forma-refined .refined-portrait {
 		width: 220px;
 	}
-	.lab-body .d5 .d5-recognition {
+	.site-theme .forma-refined .refined-recognition {
 		align-items: flex-start;
 		gap: 4px;
 		padding-block: 22px 28px;
 	}
-	.lab-body .d5 .d5-recognition ul {
+	.site-theme .forma-refined .refined-recognition ul {
 		gap: 4px 24px;
 	}
-	.lab-body .d5 .d5-recognition li > a {
+	.site-theme .forma-refined .refined-recognition li > a {
 		font-size: 13px;
 	}
-	.lab-body .d5 .d5-recognition-separator {
+	.site-theme .forma-refined .refined-recognition-separator {
 		display: none;
 	}
 }
-.lab-body .gallery-grid.current-comparison {
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	max-width: 1100px;
-	margin-inline: auto;
-}
-@media (max-width: 760px) {
-	.lab-body .gallery-grid.current-comparison {
-		grid-template-columns: 1fr;
-	}
-}
-
 /* The first three books retain the original five-column shelf geometry. */
-.lab-body .d5 .d5-other-books {
+.site-theme .forma-refined .refined-other-books {
 	--book-cover-height: 230px;
 	--thumbnail-gap: 16px;
 	grid-column: span 2;
@@ -236,44 +225,44 @@
 	justify-self: center;
 	align-self: start;
 }
-.lab-body .d5 .d5-other-books a {
+.site-theme .forma-refined .refined-other-books a {
 	display: block;
 	width: fit-content;
 }
-.lab-body .d5 .d5-other-books img {
+.site-theme .forma-refined .refined-other-books img {
 	height: calc((var(--book-cover-height) - var(--thumbnail-gap)) / 2);
 	width: auto;
 	object-fit: contain;
 }
-.lab-body .d5 .d5-other-books a:hover {
+.site-theme .forma-refined .refined-other-books a:hover {
 	outline: 1px solid var(--ink);
 	outline-offset: 4px;
 }
 @media (max-width: 1050px) {
-	.lab-body .d5 .d5-other-books {
+	.site-theme .forma-refined .refined-other-books {
 		--book-cover-height: 180px;
 	}
-	.lab-body .d5 .d5-projects article {
+	.site-theme .forma-refined .refined-projects article {
 		grid-template-columns: minmax(180px, 0.9fr) minmax(0, 1.3fr) calc(2 * var(--project-target-size) + 4px);
 		gap: 20px;
 	}
 }
 @media (max-width: 760px) {
-	.lab-body .d5 .d5-projects article {
+	.site-theme .forma-refined .refined-projects article {
 		grid-template-columns: minmax(0, 1fr) calc(2 * var(--project-target-size) + 4px);
 		gap: 16px;
 		padding: 22px;
 	}
-	.lab-body .d5 .d5-projects article > p {
+	.site-theme .forma-refined .refined-projects article > p {
 		grid-column: 1/-1;
 		grid-row: 2;
 	}
-	.lab-body .d5 .d5-project-sources {
+	.site-theme .forma-refined .refined-project-sources {
 		grid-column: 2;
 		grid-row: 1;
 		align-self: start;
 	}
-	.lab-body .d5 .d5-other-books {
+	.site-theme .forma-refined .refined-other-books {
 		--book-cover-height: 210px;
 		--thumbnail-gap: 12px;
 		grid-column: auto;
@@ -281,7 +270,7 @@
 	}
 }
 @media (max-width: 370px) {
-	.lab-body .d5 .d5-other-books {
+	.site-theme .forma-refined .refined-other-books {
 		--book-cover-height: 170px;
 	}
 }

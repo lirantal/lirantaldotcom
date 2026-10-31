@@ -4,16 +4,14 @@ const { eyebrow, title, highlight, description } = Astro.props;
 ---
 
 <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 md:pt-16 pb-8">
-	<p class="text-xs font-semibold tracking-[0.2em] uppercase text-primary-600 dark:text-primary-400">
+	<p class="text-xs font-semibold tracking-[0.2em] uppercase text-blue-600 dark:text-blue-400">
 		{eyebrow}
 	</p>
 	<h1 class="mt-3 text-4xl md:text-6xl font-bold leading-tighter tracking-tighter font-heading max-w-4xl">
 		{title}
 		{
 			highlight && (
-				<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">
-					{highlight}
-				</span>
+				<span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-secondary-500">{highlight}</span>
 			)
 		}
 	</h1>

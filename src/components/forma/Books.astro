@@ -14,7 +14,7 @@ const otherBooks = [
 ];
 ---
 
-<div class="d4-book-list d5-book-shelf">
+<div class="forma-book-list refined-book-shelf">
 	{
 		books.slice(0, 3).map((book) => (
 			<article>
@@ -28,7 +28,7 @@ const otherBooks = [
 			</article>
 		))
 	}
-	<div class="d5-other-books" role="group" aria-label="More security books">
+	<div class="refined-other-books" role="group" aria-label="More security books">
 		{
 			otherBooks.map((book) => (
 				<a href={book.url} title={book.title}>

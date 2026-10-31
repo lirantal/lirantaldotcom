@@ -16,13 +16,13 @@
 		--pagefind-ui-scale: 0.8;
 		min-height: calc(64px * var(--pagefind-ui-scale));
 		--pagefind-ui-font: 'Inter', ui-sans-serif, system-ui, sans-serif;
-		--pagefind-ui-primary: #1d4ed8;
-		--pagefind-ui-text: #334155;
-		--pagefind-ui-background: #fff;
-		--pagefind-ui-border: #94a3b8;
+		--pagefind-ui-primary: var(--ink);
+		--pagefind-ui-text: var(--ink);
+		--pagefind-ui-background: var(--paper);
+		--pagefind-ui-border: var(--rule);
 		--pagefind-ui-border-width: 1px;
 		--pagefind-ui-border-radius: 6px;
-		--pagefind-ui-tag: #f1f5f9;
+		--pagefind-ui-tag: var(--surface);
 	}
 	#search .pagefind-ui {
 		--pagefind-ui-scale: inherit;
@@ -31,7 +31,7 @@
 		font-weight: 400;
 	}
 	#search .pagefind-ui__search-input::placeholder {
-		color: #526075;
+		color: var(--muted);
 		opacity: 1;
 	}
 	#search .pagefind-ui__search-input:focus-visible {
@@ -47,17 +47,17 @@
 		color: var(--color-slate-400);
 	}
 	.dark #search {
-		--pagefind-ui-primary: var(--color-blue-400);
+		--pagefind-ui-primary: var(--ink);
 		--pagefind-ui-text: var(--color-slate-300);
 		--pagefind-ui-background: var(--color-slate-800);
 		--pagefind-ui-border: var(--color-slate-700);
 		--pagefind-ui-tag: var(--color-slate-700);
 	}
 	.dark #search .pagefind-ui__result-link {
-		color: var(--color-blue-400);
+		color: var(--ink);
 	}
 	.dark #search mark {
 		color: var(--color-slate-900);
-		background-color: var(--color-blue-400);
+		background-color: var(--ink);
 	}
 </style>

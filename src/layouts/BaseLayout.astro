@@ -1,5 +1,9 @@
 ---
 import '~/assets/styles/base.css';
+import '~/assets/styles/forma-tokens.css';
+import '~/assets/styles/forma.css';
+import '~/assets/styles/forma-refined.css';
+import '~/assets/styles/forma-site.css';
 
 import MetaTags from '~/components/core/MetaTags.astro';
 import BasicScripts from '~/components/core/BasicScripts.astro';
@@ -10,7 +14,7 @@ const markdownPath = Astro.url.pathname === '/' ? '/index.md' : `${Astro.url.pat
 ---
 
 <!doctype html>
-<html lang="en" class="motion-safe:scroll-smooth 2xl:text-[20px]">
+<html lang="en" class="motion-safe:scroll-smooth">
 	<head>
 		<MetaTags {...meta} />
 		<link rel="alternate" type="text/markdown" href={new URL(markdownPath, SITE.origin).toString()} />
@@ -18,7 +22,7 @@ const markdownPath = Astro.url.pathname === '/' ? '/index.md' : `${Astro.url.pat
 		<BasicScripts />
 	</head>
 
-	<body class="antialiased text-gray-900 dark:text-slate-300 tracking-tight bg-white dark:bg-slate-900">
+	<body class="site-theme antialiased">
 		{/* Cloudflare's documented opt-out keeps email links and code examples out of its /cdn-cgi/ rewrite. */}
 		<!--email_off-->
 		<a
