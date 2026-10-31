@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import TurndownService from 'turndown';
+import { legacySpeakingRedirects } from './legacy-speaking-redirects.mjs';
 
 const root = path.resolve(new URL('..', import.meta.url).pathname);
 const site = await getSiteDirectory();
@@ -163,6 +164,8 @@ async function configureVercelOutput(routes) {
 
 	const config = JSON.parse(await fs.readFile(configFile, 'utf8'));
 	const existingRoutes = Array.isArray(config.routes) ? config.routes : [];
+	const speakingRedirects = legacySpeakingRedirects(routes.map((route) => route.source));
+	const speakingRedirectSources = new Set(speakingRedirects.map((route) => route.src));
 	const agentViewRoute = {
 		src: '^/$',
 		methods: ['GET', 'HEAD'],
@@ -224,6 +227,7 @@ async function configureVercelOutput(routes) {
 	];
 	const routesWithoutOldMarkdownNegotiation = existingRoutes.filter(
 		(route) =>
+			!speakingRedirectSources.has(route.src) &&
 			!(route.dest?.startsWith('/_markdown/') && route.headers?.['x-markdown-tokens']) &&
 			!(route.dest === '/_errors/api-not-found.json') &&
 			!(
@@ -238,6 +242,7 @@ async function configureVercelOutput(routes) {
 
 	config.routes = [
 		...routesWithoutOldMarkdownNegotiation.slice(0, insertAt),
+		...speakingRedirects,
 		agentViewRoute,
 		...markdownNegotiationRoutes,
 		...routesWithoutOldMarkdownNegotiation.slice(insertAt, notFoundInsertAt),
