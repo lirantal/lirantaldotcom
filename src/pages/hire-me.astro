@@ -1,0 +1,301 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { PROFILE } from '~/config.mjs';
+import { getCanonical } from '~/utils/permalinks';
+import '~/assets/styles/portfolio.css';
+
+const meta = {
+	title: 'Hire Liran Tal — Developer Relations, Developer Experience and Product',
+	description:
+		'Developer relations leadership, developer experience and product work from Liran Tal: experience, examples and answers for hiring teams.',
+	canonical: getCanonical('/hire-me'),
+};
+
+const questions = [
+	{
+		question: 'Tell me about yourself.',
+		answer:
+			'I’m a developer advocate, open-source maintainer, author and security researcher. At Snyk, I lead Developer Relations and Community, combining people management with hands-on research, education and engineering. My work ranges from founding growth and community programs to building open-source tools and investigating AI security. I like working where a developer’s experience meets a product’s ambitions: getting hands-on, explaining what matters and bringing what I learn back to the people building it.',
+	},
+	{
+		question: 'What roles are you looking for?',
+		answer:
+			'I’m interested in roles where I can lead by example, contribute hands-on and make a tangible impact on the product and its developers. That could mean a leadership role such as VP of Developer Relations, a senior developer experience or advocacy role, or product management focused on developer and agentic experiences, grassroots adoption and product-led growth. I’m at my best when I can set direction, build alongside the team and help developers succeed.',
+	},
+	{
+		question: 'What would you bring to a DevRel leadership role?',
+		answer:
+			'I lead Developer Relations and Community at Snyk, managing and growing Staff Developer Advocates and Security Relations leads across the US, Europe and APJ while remaining hands-on. I’ve mentored and promoted advocates, founded programs and worked across product and field teams. I bring technical depth, developer empathy and an eye for business outcomes, with clear priorities and room for people to do their best work.',
+	},
+	{
+		question: 'Are you still hands-on?',
+		answer: [
+			'Yes. My current role combines people management and individual contribution, roughly 60/40. I architected Snyk VulnBench end-to-end, from the agent harness and vulnerable code corpus to the reporting pipeline.',
+			'I’ve published three technical books on Node.js secure coding and disclosed over 40 CVEs through my own bug bounty work and security research. I routinely build intentionally vulnerable educational apps to demonstrate MCP server weaknesses and Agent Skills attack vectors.',
+			'I also build internal programs and engineering projects using coding agents including Claude Code, Cursor and Codex, and maintain open-source tools. Staying close to code makes the strategy and education better.',
+		],
+	},
+	{
+		question: 'Tell me about a community program you built.',
+		answer: [
+			'I founded Snyk Ambassadors and SnykLIVE from zero. The ambassador program began with eight people selected from 96 applicants; it continues today under Snyk’s Customer Advocacy team, with ambassadors across major customer accounts and worldwide events.',
+			'SnykLIVE started as the team’s first video-based community presence and grew into an established, high-output production on Snyk’s YouTube channel. I also contributed to The Big Fix, Snyk’s community security fix-a-thon, which won a DevRel Award for Best DevRel Initiative. In 2023, participants contributed more than 597,000 security fixes.',
+		],
+		sources: [{ label: 'The Big Fix results', url: 'https://snyk.io/blog/fixing-half-a-million-vulnerabilities/' }],
+	},
+	{
+		question: 'Can you give an example of a developer-led growth initiative?',
+		answer: [
+			'I conceived and built a WebPageTest integration that brought Snyk vulnerability data and HTTP security header analysis into a tool developers already used. Within five months it became Snyk’s top referral traffic source; over two years it was the company’s second-largest referral source.',
+			'I also pioneered Snyk Advisor through its growth phase. By Q1 2022 it drove 37% of Snyk’s new website visitors and more than 500 monthly signups. Its package-health insights have since reached more developer surfaces, including the API and the official Snyk MCP Server.',
+			'We built Vuln Cost, a VS Code extension that surfaced dependency vulnerabilities as developers coded. It was available by April 2020; an archived Marketplace listing recorded 28,500 installs. Its capabilities carried into the official Snyk Security extension.',
+		],
+		sources: [
+			{ label: 'Vuln Cost on GitHub', url: 'https://github.com/snyk/vulncost' },
+			{
+				label: 'Package health in Snyk MCP',
+				url: 'https://snyk.io/blog/llms-resurrecting-open-source-dormant-majority/',
+			},
+		],
+	},
+	{
+		question: 'How have you used AI to improve a team’s work?',
+		answer: [
+			'In 2023 I built ContentGPT, an AI-assisted platform for outlines, drafting, keyword planning, FAQs and security-incident articles. It reduced production time and helped the team produce more than the external content agency it replaced. That approach carried into the team’s later Claude Code-based content tooling.',
+			'I also built an internal tool using the Mastra AI framework to help evaluate hundreds of conference CFP submissions, filtering, prioritizing and moderating proposals to support the content program. Separately, I architected Snyk VulnBench to evaluate how reliably AI coding agents and LLMs find real vulnerabilities.',
+		],
+	},
+	{
+		question: 'How do you turn technical research into developer value?',
+		answer:
+			'My work on npm lockfile security is one example. I researched how lockfiles can be abused, explained the risk in a Snyk article and maintain lockfile-lint, a tool developers can use to check for untrusted sources. The point is to connect an insight to a practical action, not leave developers with a scary headline.',
+	},
+	{
+		question: 'How do you approach developer experience and product management?',
+		answer:
+			'I start by using the product and looking for friction from discovery through continued use. At Snyk, my hands-on research and user-zero feedback have helped improve Snyk Code detection, including secret-detection rules and false positives and false negatives in code analysis. I’ve also shared ongoing feedback on the Snyk CLI and its developer experience. I bring those observations together with developer feedback and product data, then work with engineering and design to prioritize improvements and check the results.',
+	},
+	{
+		question: 'How do you think about product-led growth?',
+		answer:
+			'I pioneered Snyk Advisor from launch through its breakout growth phase, then mentored the teammate who carried it forward. It became Snyk’s largest website traffic generator within three months and, by Q1 2022, drove 37% of new website visitors and more than 500 monthly signups before graduating into the core product. That experience shaped how I think about growth: make something genuinely useful, connect it to a clear path to value and measure what happens.',
+	},
+	{
+		question: 'How would you measure DevRel?',
+		answer: [
+			'At Snyk, I measure programs against what each is trying to accomplish. For AI advocacy and community, we track meetup RSVPs and returning participants, as well as membership growth across meetups, events and newsletter sign-ups. For AI Security Engineer certification, we count certified developers and badges earned, and track whether they came through events, the online platform or virtual webinars.',
+			'For forward research and security evaluations, we track citations, analyst mentions and LLM share of voice for our work. For Growth Engineering, we look at adoption, popularity and the signals those initiatives bring into the product. Snyk Advisor, for example, had targets for indexed pages, new visitors and acquired users.',
+			'I use those measures alongside developer feedback to understand whether a program is earning attention, helping people and creating useful outcomes for the product.',
+		],
+	},
+	{
+		question: 'How do you work with product, engineering and marketing?',
+		answer:
+			'I see DevRel as a bridge. At Snyk, research and user-zero feedback informed the product, while competitive intelligence and positioning helped field teams in conversations with security and platform teams. I can work through technical details with engineering, bring developer feedback to product and turn research into useful stories with marketing. Shared goals and honest feedback make that work.',
+	},
+	{
+		question: 'What does developer trust mean to you?',
+		answer:
+			'Show your work, be truthful about limitations and make the material useful even when someone does not buy a product. As a maintainer and security researcher, I know developers notice when an example has not been tested or when a claim goes further than the evidence. Trust is earned in those details.',
+	},
+];
+
+const moreQuestions = [
+	{
+		question: 'What kinds of developers and products do you know best?',
+		answer:
+			'My work spans JavaScript and Node.js developers, open-source maintainers, application security practitioners and people building with AI agents and developer tools. I’m especially interested in products where technical depth and an accessible developer experience both matter.',
+	},
+	{
+		question: 'Can you speak and teach to different audiences?',
+		answer:
+			'Yes. I’ve taken part in more than 250 speaking engagements across conferences, meetups and podcasts, as well as webinars and workshops. I often use live demonstrations to make a technical problem concrete and adapt the explanation to the audience.',
+	},
+	{
+		question: 'What would you focus on first in a new role?',
+		answer:
+			'I’d listen to the team and its developers, use the product myself, review the existing data and learn what the business needs to achieve. From there I’d identify a small set of opportunities, agree on outcomes and build a plan with the people who will execute it.',
+	},
+	{
+		question: 'How do you balance community needs with business goals?',
+		answer:
+			'I look for the overlap: helping developers solve real problems can build the trust and adoption a business needs. When interests diverge, I think it is important to be transparent about the trade-off and bring evidence from the community into the decision.',
+	},
+	{
+		question: 'Do you only work on security?',
+		answer:
+			'I’m excited by the tools and platforms developers use to build: agentic coding and AI experiences, developer tooling, web infrastructure and cloud platforms. I enjoy getting hands-on with emerging technology, making it accessible to developers and helping shape products around their needs. Security is a deep area of expertise I bring to that work, alongside developer education, product thinking, community and technical storytelling.',
+	},
+];
+---
+
+<Layout {meta}>
+	<article class="portfolio mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:py-16">
+		<header class="max-w-3xl">
+			<p class="eyebrow">Developer relations · Developer experience · Product</p>
+			<h1>Hire me</h1>
+			<p class="muted mt-6 text-xl leading-relaxed">
+				I’m Liran Tal. I help developers succeed with products: building trust through useful tools, education and
+				community, and bringing their experience back into the product.
+			</p>
+			<p class="muted mt-4">
+				At Snyk I lead Developer Relations and Community, combining people leadership with hands-on research, open
+				source, education and growth. I’m interested in bringing that mix to DevRel leadership, developer experience and
+				product roles.
+			</p>
+			<div class="mt-7 flex flex-wrap gap-4">
+				<a class="font-semibold" href={PROFILE.linkedinURL}>View my LinkedIn résumé <span aria-hidden="true">↗</span></a
+				>
+				<a class="self-center" href="#questions">Explore the questions <span aria-hidden="true">↓</span></a>
+			</div>
+		</header>
+
+		<section class="mt-16" aria-labelledby="numbers-heading">
+			<h2 id="numbers-heading">Numbers at a glance</h2>
+			<p class="muted mt-3">A few signals of how I reach developers and build things they can use.</p>
+			<ul class="mt-6 grid gap-4 sm:grid-cols-3">
+				<li class="surface">
+					<p class="text-3xl font-bold">37% of new visitors</p><p class="muted mt-2 text-sm">
+						Snyk Advisor brought in 37% of Snyk’s new website visitors by Q1 2022, alongside 500+ monthly signups. I led
+						it from launch through its growth phase.
+					</p>
+				</li>
+				<li class="surface">
+					<p class="text-3xl font-bold">Node Weekly top articles</p>
+					<p class="muted mt-2 text-sm">
+						My Snyk articles ranked #3 among Node Weekly’s most-clicked links of <a
+							href="https://nodeweekly.com/issues/560">2024</a
+						> and #7 among its most popular links of <a href="https://nodeweekly.com/issues/467">2022</a>.
+					</p>
+				</li>
+				<li class="surface">
+					<p class="text-3xl font-bold">250+ speaking engagements</p><p class="muted mt-2 text-sm">
+						From <a href="https://gitnation.com/contents/weaponizing-llms-to-hack-javascript-ai-applications"
+							>JSNation US</a
+						> to <a href="https://www.youtube.com/watch?v=pRr7fYJJLEI">Open Source Summit Europe</a>, I use live demos
+						and practical stories to bring security to developer communities. <a href="/speaking"
+							>Explore speaking archive</a
+						>.
+					</p>
+				</li>
+			</ul>
+		</section>
+
+		<section class="mt-16" aria-labelledby="experience-heading">
+			<h2 id="experience-heading">Experience in practice</h2>
+			<p class="muted mt-3">How I bring developer communities, useful education and product work together at Snyk.</p>
+			<ul class="mt-6 space-y-6 muted">
+				<li>
+					<strong>Community-led security guidance:</strong> I worked with OWASP Cheat Sheet Series leaders Jim Manico and
+					Jakub Maćkowski on the <a href="https://github.com/OWASP/CheatSheetSeries/pull/705"
+						>OWASP npm security cheat sheet</a
+					>, bringing into the community a guide I originally co-authored at Snyk with Verdaccio core maintainer Juan
+					Picado. I also collaborated with Linux Foundation Director of Open Source Supply Chain Security David A.
+					Wheeler on <a href="https://best.openssf.org/labs/">OpenSSF Secure Coding Labs</a>, supporting hands-on
+					security education.
+				</li>
+				<li>
+					<strong>Responsible disclosure across the ecosystem:</strong> As a volunteer in the <a
+						href="https://github.com/nodejs/security-wg">Node.js Ecosystem Security Working Group</a
+					>, I helped triage hundreds of reports and work with maintainers and researchers. I advocated for Snyk to <a
+						href="https://snyk.io/blog/snyk-takes-on-node-js-ecosystem-vulnerability-disclosure-program/"
+						>take on the ecosystem disclosure program</a
+					>, providing a path to verify, coordinate and disclose vulnerabilities.
+				</li>
+				<li>
+					<strong>Independent community reach:</strong> My JavaScript and Node.js articles and open-source projects, including
+					<a href="https://nodeweekly.com/issues/587">npq</a>, have regularly featured in Node Weekly over the years. My
+					Snyk articles ranked #7 among its most popular links in <a href="https://nodeweekly.com/issues/467">2022</a> and
+					#3 in <a href="https://nodeweekly.com/issues/560">2024</a>. Across my time at Snyk I’ve published more than
+					322 articles, turning research and developer questions into practical guidance.
+				</li>
+				<li>
+					<strong>Tools developers can use:</strong> I build tools that turn security insights into practical workflows:
+					<a href="https://github.com/lirantal/lockfile-lint">lockfile-lint</a> and
+					<a href="https://github.com/lirantal/is-website-vulnerable">is-website-vulnerable</a>;
+					<a href="https://github.com/lirantal/anti-trojan-source">anti-trojan-source</a> and its
+					<a href="https://github.com/lirantal/eslint-plugin-anti-trojan-source">ESLint plugin</a> for detecting Trojan Source
+					attacks;
+					<a href="https://github.com/lirantal/url-sheriff">url-sheriff</a> for URL validation and SSRF protection; and
+					<a href="https://aibom.vercel.app/">an AI-BOM visual viewer</a> for exploring AI bills of materials.
+				</li>
+				<li>
+					<strong>From developer value to growth:</strong> I led Snyk Advisor from launch through its growth phase, and built
+					an integration that brought security insights into WebPageTest. Both Growth Engineering initiatives met developers
+					where they already worked and connected useful experiences to product discovery.
+				</li>
+				<li>
+					<strong>Research developers can act on:</strong> I architected <a href="https://arxiv.org/abs/2606.15762"
+						>Snyk VulnBench</a
+					>, co-authored ToxicSkills, and translated MCP security findings into <a
+						href="https://snyk.io/articles/building-secure-mcp-servers/"
+						>practical guidance for building secure MCP servers</a
+					>. My <a href="https://github.com/advisories/GHSA-m35w-xx8c-6xc7">Doris MCP disclosure</a> showed how a read-only
+					mode could be bypassed; I’ve also published <a href="/blog/mcp-server-security-evaluation-framework"
+						>a framework for evaluating MCP server security</a
+					>.
+				</li>
+			</ul>
+		</section>
+
+		<div id="questions" class="mt-16">
+			{
+				[
+					{
+						id: 'recruiter-questions',
+						title: 'Questions from recruiters, hiring managers and future teammates',
+						items: questions,
+					},
+					{ id: 'more-questions', title: 'More questions people ask before hiring me', items: moreQuestions },
+				].map((section) => (
+					<section class="mb-14" aria-labelledby={section.id}>
+						<h2 id={section.id}>{section.title}</h2>
+						<ul class="mt-6 space-y-3">
+							{section.items.map((item) => (
+								<li>
+									<details class="group rounded-xl border border-gray-200 bg-gray-50 dark:border-slate-700 dark:bg-slate-800/40">
+										<summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500">
+											{item.question}
+											<span aria-hidden="true" class="text-primary-600 group-open:rotate-45 text-xl">
+												+
+											</span>
+										</summary>
+										<div class="muted px-5 pb-5 leading-relaxed space-y-3">
+											{(Array.isArray(item.answer) ? item.answer : [item.answer]).map((paragraph) => (
+												<p>{paragraph}</p>
+											))}
+											{item.sources && (
+												<p class="text-sm">
+													{item.sources.map((source, index) => (
+														<>
+															{index > 0 && ' · '}
+															<a href={source.url}>
+																{source.label} <span aria-hidden="true">↗</span>
+															</a>
+														</>
+													))}
+												</p>
+											)}
+										</div>
+									</details>
+								</li>
+							))}
+						</ul>
+					</section>
+				))
+			}
+		</div>
+		<section class="surface" aria-labelledby="contact-heading">
+			<h2 id="contact-heading">Let’s build what developers and their AI agents will love</h2>
+			<p class="muted mt-3">
+				If you’re building for developers and think there could be a fit, I’d love to hear about the role, the team and
+				the problem you’re solving.
+			</p>
+			<p class="mt-4">
+				<a href={PROFILE.linkedinURL}>Get in touch on LinkedIn <span aria-hidden="true">↗</span></a> · <a
+					href="/contact">Other contact options</a
+				>
+			</p>
+		</section>
+	</article>
+</Layout>
