@@ -16,6 +16,18 @@
 .site-theme .forma-refined .refined-intro .forma-role {
 	font-size: 13px;
 }
+.site-theme .forma-refined .hero-action-links {
+	gap: 10px;
+}
+.site-theme .forma-refined .hero-action-links > span {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	white-space: nowrap;
+}
+.site-theme .forma-refined .hero-action-separator {
+	color: var(--muted);
+}
 .site-theme .forma-refined .refined-profile {
 	justify-self: end;
 	display: flex;
