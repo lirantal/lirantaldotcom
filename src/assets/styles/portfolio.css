@@ -21,6 +21,13 @@
 	text-decoration-color: color-mix(in srgb, var(--link) 45%, transparent);
 	text-underline-offset: 0.23em;
 }
+/* Match the footer social icons while retaining 44px link targets. */
+.portfolio a.profile-social-link {
+	color: var(--color-gray-500);
+}
+.dark .portfolio a.profile-social-link {
+	color: var(--color-gray-400);
+}
 .portfolio a:hover {
 	text-decoration-color: currentColor;
 }
@@ -164,6 +171,9 @@
 		align-items: start;
 		flex-direction: column;
 		gap: 1rem;
+	}
+	.portfolio .section-heading > div {
+		flex: initial;
 	}
 	.portfolio .portfolio-section {
 		padding-block: 2.5rem;

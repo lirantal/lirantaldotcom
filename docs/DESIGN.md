@@ -27,6 +27,8 @@ The current sequence in [index.astro](../src/pages/index.astro) is:
 
 Speaking moved first because it offers a strong visual entry into the work and a useful path for event organizers. Keep the section IDs stable: navigation and external links use anchors such as `/#open-source`. Numbers express reading order; they are not part of the URL.
 
+Homepage section headings omit generic subtitles. Let the talks, articles, research summary, projects, and books supply the context; add a subtitle only when it contributes specific information beyond the heading and section content.
+
 The header logo is a plain "Liran Tal" wordmark in bold Inter, without an emoji.
 The header omits the duplicate GitHub icon; the profile's social row remains the connection point.
 
@@ -42,11 +44,11 @@ Public Markdown images also need space reserved before download. `remark-image-d
 
 [ProfileHero.astro](../src/components/widgets/ProfileHero.astro) owns this composition:
 
-- **Identity:** spaced dot separators between “Security researcher”, “Author”, and “Open-source maintainer”. Retain the separators; spacing alone made the roles feel disconnected. The current wrapping treatment clips a leading separator on a new row.
+- **Identity:** spaced dot separators between “Software engineer”, “Security researcher”, and “Open-source maintainer”, in that order. “Maintainer” emphasizes hands-on responsibility for the projects below. Retain the separators; spacing alone made the roles feel disconnected. The current wrapping treatment clips a leading separator on a new row.
 - **Introduction:** “Securing the agentic future.” leads with the work; the header retains the personal name. The supporting paragraph is “I research emerging threats and build open-source defenses for AI agents, the software they write, and the tools they trust.” Let both wrap naturally without forcing an exact line count across screen widths.
-- **Professional context:** “I head Developer Relations at Snyk”, immediately followed by Read my blog, Invite me to speak, and Bio & press kit.
+- **Professional context:** “Leading Developer Relations at Snyk”, immediately followed by Read my blog, Invite me to speak, and Bio & press kit.
 - **Recognition:** directly below that block, quiet bordered badges with an award icon and the wording “Awarded GitHub Star” and “Awarded OpenJS Security Pathfinder”. Keep the award names linked. There is no separate “Industry recognition” strip.
-- **Social profiles:** one horizontal row of X, GitHub, and LinkedIn logos beneath the portrait. No visible names or outgoing arrows here; keep accessible names, hover titles, visible keyboard focus, and generous click targets (currently 44 × 44px). X is important to Liran's public activity; do not omit it.
+- **Social profiles:** one horizontal row of X, GitHub, and LinkedIn logos beneath the portrait. Match the footer’s 20px icons, gray-500 light / gray-400 dark colors, and neutral hover backgrounds. No visible names or outgoing arrows here; keep accessible names, hover titles, visible keyboard focus, and generous click targets (currently 44 × 44px). X is important to Liran's public activity; do not omit it.
 - **Responsive order:** on narrow screens, show the introduction before the portrait and social links so the visible sequence matches the markup and keyboard focus order. On desktop, keep the portrait and social row alongside the introduction.
 
 This grouping distinguishes navigating the site, learning about professional credentials, and connecting elsewhere without adding more headings. An earlier mixed row of internal actions and social links, a triangle of social links, and a detached job/awards strip all made those relationships harder to read.
@@ -57,7 +59,7 @@ The full bio belongs in the [speaker press kit](../src/pages/speaking/press-kit.
 
 | Pattern | Use and reasoning | Owner |
 | --- | --- | --- |
-| Numbered section heading | Large, bold, uppercase semantic `h2`, e.g. “02 / Blog & articles”. The descriptive sentence is secondary. Small eyebrow labels alone did not separate the sections clearly enough. | [Section.astro](../src/components/portfolio/Section.astro) |
+| Numbered section heading | Large, bold, uppercase semantic `h2`, e.g. “02 / Blog & articles”. Descriptions are optional and omitted on the homepage. Small eyebrow labels alone did not separate the sections clearly enough. | [Section.astro](../src/components/portfolio/Section.astro) |
 | Editorial row | Titles, dates, descriptions, and thin dividing rules for writing and papers. Prefer this to a grid of boxed cards for content that people read sequentially. | `.editorial-row` in [portfolio.css](../src/assets/styles/portfolio.css) |
 | Quiet surface | Subtle fill, thin border, modest rounding for a publication sidebar or download summary. Reserve stronger grouping for related information, not every link. | `.surface` in `portfolio.css` |
 | Recognition badge | Small neutral surface, award icon, muted “Awarded”, linked award name. Wrap naturally on narrow screens. | `ProfileHero.astro` |
