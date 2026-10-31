@@ -8,6 +8,15 @@ import serverless from '~/assets/images/book-cover-serverless-security.jpeg';
 export const papers = [
 	{
 		title:
+			'How Deterministic SAST and AI Security Agents Divide the Work: Coverage, Harness Policy and Cost in Snyk VulnBench 2.0',
+		id: '2610.38617',
+		date: 'October 2026',
+		authors: 'Liran Tal, Chris Liu, Charlotte Fereday, Sebastian Roth, and Brian Clark',
+		description:
+			'An evaluation of deterministic SAST and AI security agents on 108 vulnerabilities across 20 open-source applications, examining coverage, harness policy, and cost. Snyk Code and Claude Code’s strongest evaluated configuration together covered 101 of 108 vulnerabilities.',
+	},
+	{
+		title:
 			'VulnBump: A Benchmark for Fixing Vulnerable Dependencies in Real Projects While Keeping the Build and Tests Green',
 		id: '2610.17374',
 		date: 'October 2026',
