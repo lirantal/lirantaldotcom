@@ -6,7 +6,7 @@ import BlogList from '~/components/blog/List.astro';
 import Pagination from '~/components/atoms/Pagination.astro';
 
 import { fetchPosts } from '~/utils/posts';
-import { getCanonical, getPermalink, cleanSlug, TAG_BASE } from '~/utils/permalinks';
+import { getCanonical, cleanSlug, TAG_BASE } from '~/utils/permalinks';
 
 export async function getStaticPaths({ paginate }) {
 	if (BLOG?.disabled || BLOG?.tag?.disabled) return [];
@@ -43,7 +43,7 @@ const currentPage = page.currentPage ?? 1;
 const meta = {
 	title: `Posts by tag '${tag}' ${currentPage > 1 ? `— Page ${currentPage} ` : ''}— ${SITE.name}`,
 	description: SITE.description,
-	canonical: getCanonical(getPermalink(tag, 'tag')),
+	canonical: getCanonical(page.url.current),
 	noindex: false,
 };
 ---

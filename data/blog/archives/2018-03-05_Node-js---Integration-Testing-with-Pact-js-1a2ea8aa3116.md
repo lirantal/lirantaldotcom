@@ -136,7 +136,7 @@ test.cb('should generate a list of TODOs for the main screen', t => {
   _//   })_
 
   const reqOptions = {  
-    url: \`http://localhost:${MOCK\_SERVER\_PORT}/projects?projectTypes=1\`,  
+    url: `http://localhost:${MOCK_SERVER_PORT}/projects?projectTypes=1`,
     method: 'GET',  
     json: true  
   }

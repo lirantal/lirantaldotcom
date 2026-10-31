@@ -23,3 +23,7 @@ jobs:
         run: npm install --no-package-lock
       - name: Run regression tests
         run: npm test
+      - name: Build and check internal links in the deploy bundle
+        run: npm run build && npm run check:links
+        env:
+          ASTRO_TELEMETRY_DISABLED: '1'

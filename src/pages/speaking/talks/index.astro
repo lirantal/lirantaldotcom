@@ -5,7 +5,7 @@ import StatsBand from '~/components/speaking/StatsBand.astro';
 import TalkItem from '~/components/speaking/TalkItem.astro';
 import Filters from '~/components/speaking/Filters.astro';
 
-import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { getCanonical } from '~/utils/permalinks';
 import { SPEAKING_BASE, formatDate, getSpeaking } from '~/utils/speaking';
 
 const { talks, topics, stats, upcoming, countries } = await getSpeaking();
@@ -14,7 +14,7 @@ const mostDelivered = [...talks].sort((a, b) => b.past.length - a.past.length)[0
 const meta = {
 	title: 'Talk catalogue: security talks by Liran Tal',
 	description: `${stats.uniqueTalks} talks on AI security, software supply chain security, Node.js and web security, delivered ${stats.talksDelivered} times in ${stats.countries} countries.`,
-	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+	canonical: getCanonical(Astro.url.pathname),
 };
 ---
 

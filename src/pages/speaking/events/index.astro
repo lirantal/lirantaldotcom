@@ -5,7 +5,7 @@ import CalendarEvent from '~/components/speaking/CalendarEvent.astro';
 import EventRow from '~/components/speaking/EventRow.astro';
 import Filters from '~/components/speaking/Filters.astro';
 
-import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { getCanonical } from '~/utils/permalinks';
 import { SPEAKING_BASE, getSpeaking } from '~/utils/speaking';
 
 const { upcoming, past, stats, types, years, countries } = await getSpeaking();
@@ -57,7 +57,7 @@ const filterAttrs = (e) => ({
 const meta = {
 	title: 'Speaking schedule: upcoming and past events | Liran Tal',
 	description: `Every conference, meetup, webinar, workshop and podcast Liran Tal has spoken at: ${stats.appearances} events in ${stats.countries} countries since ${stats.firstYear}.`,
-	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+	canonical: getCanonical(Astro.url.pathname),
 };
 ---
 

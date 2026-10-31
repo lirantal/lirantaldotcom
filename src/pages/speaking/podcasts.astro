@@ -4,7 +4,7 @@ import PageIntro from '~/components/speaking/PageIntro.astro';
 import EventRow from '~/components/speaking/EventRow.astro';
 import Filters from '~/components/speaking/Filters.astro';
 
-import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { getCanonical } from '~/utils/permalinks';
 import { TYPES, getSpeaking } from '~/utils/speaking';
 
 const { media } = await getSpeaking();
@@ -16,7 +16,7 @@ const languages = [...new Set(media.map((e) => e.language))];
 const meta = {
 	title: 'Podcasts and guest articles | Liran Tal',
 	description: `${count((e) => e.type === 'podcast')} podcast episodes and guest articles featuring Liran Tal on application security, open source and developer relations.`,
-	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+	canonical: getCanonical(Astro.url.pathname),
 };
 ---
 

@@ -4,7 +4,7 @@ import PageIntro from '~/components/speaking/PageIntro.astro';
 import VideoCard from '~/components/speaking/VideoCard.astro';
 import Filters from '~/components/speaking/Filters.astro';
 
-import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { getCanonical } from '~/utils/permalinks';
 import { TYPES, getSpeaking } from '~/utils/speaking';
 
 const { videos } = await getSpeaking();
@@ -22,7 +22,7 @@ const languages = [...new Set(videos.map((e) => e.language))].map((language) => 
 const meta = {
 	title: 'Recordings: watch talks by Liran Tal',
 	description: `${videos.length} recorded conference talks, meetups, webinars and podcast episodes by Liran Tal on AI security, supply chain security and Node.js security.`,
-	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+	canonical: getCanonical(Astro.url.pathname),
 };
 ---
 

@@ -10,7 +10,7 @@ import recognitions from '~/data/recognitions.json';
 import '~/assets/styles/portfolio.css';
 
 import { SPEAKING } from '~/config.mjs';
-import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { getCanonical } from '~/utils/permalinks';
 import { BOOKING_YEAR, SPEAKING_BASE, getSpeaking } from '~/utils/speaking';
 
 const { stats, upcoming, past, topics, videos, types, years, countries } = await getSpeaking();
@@ -37,7 +37,7 @@ const testimonials = [
 const meta = {
 	title: 'Speaking: talks, workshops and podcasts by Liran Tal',
 	description: `${stats.talksDelivered} talks across ${stats.countries} countries since ${stats.firstYear}: AI and agentic security, software supply chain security and Node.js secure coding.`,
-	canonical: getCanonical(getPermalink(Astro.url.pathname)),
+	canonical: getCanonical(Astro.url.pathname),
 };
 ---
 
