@@ -48,3 +48,14 @@ test('rejects missing postbuild assets and malformed URLs', async (t) => {
 	assert.match(result.stderr, /pagefind-ui\.js/);
 	assert.match(result.stderr, /invalid URL/);
 });
+
+test('requires email obfuscation opt-out around email links and code examples', async (t) => {
+	const content = '<a href="mailto:author@example.com">Contact</a><pre>admin@im.example.com</pre>';
+	const unprotected = await check(t, { 'index.html': `<body>${content}</body>` });
+	assert.equal(unprotected.status, 1);
+	assert.match(unprotected.stderr, /outside Cloudflare email_off markers/);
+	const protectedResult = await check(t, {
+		'index.html': `<body><!--email_off-->${content}<!--/email_off--></body>`,
+	});
+	assert.equal(protectedResult.status, 0, protectedResult.stderr);
+});

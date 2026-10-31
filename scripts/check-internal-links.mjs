@@ -18,7 +18,13 @@ let pages = 0;
 for (const file of files.filter((file) => file.endsWith('.html'))) {
 	const relative = path.relative(site, file).split(path.sep).join('/');
 	const route = `/${relative.replace(/(^|\/)index\.html$/, '$1').replace(/\.html$/, '')}`;
-	const html = (await fs.readFile(file, 'utf8')).replace(/<!--[\s\S]*?-->/g, '');
+	const source = await fs.readFile(file, 'utf8');
+	const body = source.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1] ?? '';
+	const unprotected = body.replace(/<!--email_off-->[\s\S]*?<!--\/email_off-->/g, '');
+	if (/[\w.%+-]+@[\w.-]+\.[a-z]{2,}/i.test(unprotected)) {
+		failures.add(`${route} → email address outside Cloudflare email_off markers`);
+	}
+	const html = source.replace(/<!--[\s\S]*?-->/g, '');
 	pages += 1;
 	for (const tag of html.matchAll(/<(?:a|link|script|img|source)\b[^>]*>/gi)) {
 		for (const attr of tag[0].matchAll(/\b(?:href|src)\s*=\s*(["'])(.*?)\1/gi)) {
