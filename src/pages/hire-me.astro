@@ -20,7 +20,7 @@ const questions = [
 	{
 		question: 'What roles are you looking for?',
 		answer:
-			'I’m interested in leadership roles such as VP of Developer Relations, senior developer experience and advocacy roles, and product management roles focused on developer or consumer experiences, grassroots adoption and product-led growth. The common thread is building something useful, earning trust and helping people succeed with it.',
+			'I’m interested in leadership roles such as VP of Developer Relations, senior developer experience and advocacy roles, and product management roles focused on developer or agentic experiences, grassroots adoption and product-led growth. The common thread is building something useful, earning trust and helping people succeed with it.',
 	},
 	{
 		question: 'What would you bring to a DevRel leadership role?',
@@ -29,23 +29,41 @@ const questions = [
 	},
 	{
 		question: 'Are you still hands-on?',
-		answer:
-			'Yes. My current role combines people management and individual contribution, roughly 60/40. I architected Snyk VulnBench end-to-end, from the agent harness and vulnerable code corpus to the reporting pipeline. I also maintain open-source tools, investigate vulnerabilities, write and speak. Staying close to code makes the strategy and education better.',
+		answer: [
+			'Yes. My current role combines people management and individual contribution, roughly 60/40. I architected Snyk VulnBench end-to-end, from the agent harness and vulnerable code corpus to the reporting pipeline.',
+			'I’ve published three technical books on Node.js secure coding and disclosed over 40 CVEs through my own bug bounty work and security research. I routinely build intentionally vulnerable educational apps to demonstrate MCP server weaknesses and Agent Skills attack vectors.',
+			'I also build internal programs and engineering projects using coding agents including Claude Code, Cursor and Codex, and maintain open-source tools. Staying close to code makes the strategy and education better.',
+		],
 	},
 	{
 		question: 'Tell me about a community program you built.',
-		answer:
-			'I founded Snyk Ambassadors and SnykLIVE from zero. The ambassador program selected eight people from 96 applicants, and SnykLIVE became the team’s first video-based community presence. Both gave us ways to connect with developers beyond a single event or article and create space for community voices.',
+		answer: [
+			'I founded Snyk Ambassadors and SnykLIVE from zero. The ambassador program began with eight people selected from 96 applicants; it continues today under Snyk’s Customer Advocacy team, with ambassadors across major customer accounts and worldwide events.',
+			'SnykLIVE started as the team’s first video-based community presence and grew into an established, high-output production on Snyk’s YouTube channel. I also contributed to The Big Fix, Snyk’s community security fix-a-thon, which won a DevRel Award for Best DevRel Initiative. In 2023, participants contributed more than 597,000 security fixes.',
+		],
+		sources: [{ label: 'The Big Fix results', url: 'https://snyk.io/blog/fixing-half-a-million-vulnerabilities/' }],
 	},
 	{
 		question: 'Can you give an example of a developer-led growth initiative?',
-		answer:
-			'I conceived and built a WebPageTest integration that brought Snyk vulnerability data and HTTP security header analysis into a tool developers already used. Within five months it became Snyk’s top referral traffic source; over two years it was the company’s second-largest referral source. The useful integration came first, and the growth followed.',
+		answer: [
+			'I conceived and built a WebPageTest integration that brought Snyk vulnerability data and HTTP security header analysis into a tool developers already used. Within five months it became Snyk’s top referral traffic source; over two years it was the company’s second-largest referral source.',
+			'I also pioneered Snyk Advisor through its growth phase. By Q1 2022 it drove 37% of Snyk’s new website visitors and more than 500 monthly signups. Its package-health insights have since reached more developer surfaces, including the API and the official Snyk MCP Server.',
+			'We built Vuln Cost, a VS Code extension that surfaced dependency vulnerabilities as developers coded. It was available by April 2020; an archived Marketplace listing recorded 28,500 installs. Its capabilities carried into the official Snyk Security extension.',
+		],
+		sources: [
+			{ label: 'Vuln Cost on GitHub', url: 'https://github.com/snyk/vulncost' },
+			{
+				label: 'Package health in Snyk MCP',
+				url: 'https://snyk.io/blog/llms-resurrecting-open-source-dormant-majority/',
+			},
+		],
 	},
 	{
 		question: 'How have you used AI to improve a team’s work?',
-		answer:
-			'In 2023 I built ContentGPT, an AI-assisted platform for outlines, drafting, keyword planning, FAQs and security-incident articles. It reduced production time and helped the team produce more than the external content agency it replaced. That approach carried into the team’s later Claude Code-based content tooling. I also architected Snyk VulnBench to evaluate how reliably AI coding agents and LLMs find real vulnerabilities.',
+		answer: [
+			'In 2023 I built ContentGPT, an AI-assisted platform for outlines, drafting, keyword planning, FAQs and security-incident articles. It reduced production time and helped the team produce more than the external content agency it replaced. That approach carried into the team’s later Claude Code-based content tooling.',
+			'I also built an internal tool using the Mastra AI framework to help evaluate hundreds of conference CFP submissions, filtering, prioritizing and moderating proposals to support the content program. Separately, I architected Snyk VulnBench to evaluate how reliably AI coding agents and LLMs find real vulnerabilities.',
+		],
 	},
 	{
 		question: 'How do you turn technical research into developer value?',
@@ -234,7 +252,23 @@ const moreQuestions = [
 												+
 											</span>
 										</summary>
-										<p class="muted px-5 pb-5 leading-relaxed">{item.answer}</p>
+										<div class="muted px-5 pb-5 leading-relaxed space-y-3">
+											{(Array.isArray(item.answer) ? item.answer : [item.answer]).map((paragraph) => (
+												<p>{paragraph}</p>
+											))}
+											{item.sources && (
+												<p class="text-sm">
+													{item.sources.map((source, index) => (
+														<>
+															{index > 0 && ' · '}
+															<a href={source.url}>
+																{source.label} <span aria-hidden="true">↗</span>
+															</a>
+														</>
+													))}
+												</p>
+											)}
+										</div>
 									</details>
 								</li>
 							))}
