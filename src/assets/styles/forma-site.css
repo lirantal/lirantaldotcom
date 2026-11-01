@@ -200,6 +200,11 @@
 	gap: 32px;
 	margin-top: 20px;
 }
+.site-theme .beyond-blog h3 {
+	font-size: 16px;
+	font-weight: 500;
+	color: var(--muted);
+}
 .site-theme .beyond-blog h4 {
 	font-weight: 650;
 	font-size: 17px;
@@ -212,11 +217,6 @@
 	font-size: 14px;
 	color: var(--muted);
 	margin-top: 10px;
-}
-.site-theme .beyond-blog > a {
-	display: inline-block;
-	margin-top: 20px;
-	font-size: 12px;
 }
 .site-theme .home-impact .impact-metrics {
 	font-variant-numeric: tabular-nums;
@@ -439,6 +439,10 @@
 	font-size: 14px;
 	color: var(--ink);
 	margin-bottom: 8px;
+}
+.site-theme .impact-period {
+	font-weight: 400;
+	color: var(--muted);
 }
 .site-theme .impact-sources section > p {
 	margin-top: 0;
