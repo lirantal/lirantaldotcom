@@ -199,14 +199,22 @@
 @media (max-width: 760px) {
 	.site-theme .forma-refined .refined-intro {
 		grid-template-columns: 1fr;
-		gap: 28px;
+		gap: 24px;
 		padding-block: 28px 18px;
+		text-align: center;
+	}
+	.site-theme .forma-refined .refined-intro .forma-lede {
+		margin-inline: auto;
+	}
+	.site-theme .forma-refined .refined-intro .forma-actions,
+	.site-theme .forma-refined .hero-action-links {
+		justify-content: center;
 	}
 	.site-theme .forma-refined .refined-intro h1 {
 		font-size: clamp(2.5rem, 9.5vw, 3.8rem);
 	}
 	.site-theme .forma-refined .refined-profile {
-		justify-self: start;
+		justify-self: center;
 	}
 	.site-theme .forma-refined .refined-portrait {
 		width: 220px;
