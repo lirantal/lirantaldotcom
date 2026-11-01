@@ -1904,6 +1904,22 @@
       ]
     },
     {
+      "date": "2023-07-02T00:00:00.000Z",
+      "tags": "post",
+      "name": "מפתחים מחוץ לקופסה",
+      "url": "https://outside-the-box.dev/",
+      "type": "podcast",
+      "title": "האם אי איי הוזה, ואיך להתמודד עם זה? עם לירן טל",
+      "slides_url": null,
+      "recording_url": "https://www.youtube.com/watch?v=o-Y4KtwHT4M",
+      "city": null,
+      "country": null,
+      "country_code": null,
+      "language": "Hebrew",
+      "recognitions": null,
+      "images": null
+    },
+    {
       "date": "2023-06-28T00:00:00.000Z",
       "tags": "post",
       "name": "NodeTLV",
@@ -2220,38 +2236,6 @@
         "https://raw.githubusercontent.com/lirantal/public-speaking/main/images/2023/2023-05-09-3.jpg",
         "https://raw.githubusercontent.com/lirantal/public-speaking/main/images/2023/2023-05-09-4.jpg",
         "https://raw.githubusercontent.com/lirantal/public-speaking/main/images/2023/2023-05-09-5.jpg"
-      ]
-    },
-    {
-      "date": "2023-05-02T00:00:00.000Z",
-      "tags": "post",
-      "name": "The Secure Developer Podcast",
-      "url": "https://www.thesecuredeveloper.com/",
-      "type": "podcast",
-      "title": "Ep. #29, The State of Open Source & Docker Security",
-      "slides_url": null,
-      "recording_url": "https://www.heavybit.com/library/podcasts/the-secure-developer/ep-29-the-state-of-open-source-docker-security/",
-      "youtube_urls": [
-        "https://www.youtube.com/watch?v=hcPd6ESlFCM"
-      ],
-      "city": null,
-      "country": null,
-      "country_code": null,
-      "language": "English",
-      "recognitions": {
-        "twitter": [
-          null
-        ],
-        "linkedin": [
-          null,
-          null,
-          null
-        ]
-      },
-      "images": [
-        null,
-        null,
-        null
       ]
     },
     {
@@ -3952,7 +3936,7 @@
     {
       "date": "2022-01-17T00:00:00.000Z",
       "tags": "post",
-      "name": "AWS Startup Showcase Season 2 Episode 1",
+      "name": "AWS Startup Showcase Season 2 Episode 1 | CUBE Conversation",
       "url": "https://siliconangle.com/2022/01/17/snyks-approach-application-security-remedies-shift-left-shortcomings-awsshowcases2e1/",
       "type": "webinar",
       "title": "How Snyk’s approach to application security remedies shift-left shortcomings",
@@ -6827,6 +6811,39 @@
       ]
     },
     {
+      "date": "2019-05-02T00:00:00.000Z",
+      "tags": "post",
+      "name": "The Secure Developer Podcast",
+      "url": "https://www.thesecuredeveloper.com/",
+      "type": "podcast",
+      "title": "Ep. #29, The State Of Open Source And Docker Security With Liran Tal",
+      "slides_url": null,
+      "recording_url": "https://metacast.app/podcast/the-secure-developer/Pcz1HOeI/the-state-of-open-source-and-docker-security-with-liran-tal/73gr1MNx",
+      "alternate_recording_url": "https://www.heavybit.com/library/podcasts/the-secure-developer/ep-29-the-state-of-open-source-docker-security/",
+      "youtube_urls": [
+        "https://www.youtube.com/watch?v=hcPd6ESlFCM"
+      ],
+      "city": null,
+      "country": null,
+      "country_code": null,
+      "language": "English",
+      "recognitions": {
+        "twitter": [
+          null
+        ],
+        "linkedin": [
+          null,
+          null,
+          null
+        ]
+      },
+      "images": [
+        null,
+        null,
+        null
+      ]
+    },
+    {
       "date": "2019-04-10T00:00:00.000Z",
       "tags": "post",
       "name": "JSHeroes",
@@ -7711,8 +7728,8 @@
     }
   ],
   "stats": {
-    "total": 272,
-    "total_podcast": 44,
+    "total": 273,
+    "total_podcast": 45,
     "total_conference": 119,
     "total_webinar": 41,
     "total_meetup": 55,
@@ -7720,5 +7737,5 @@
     "total_workshop": 10,
     "total_other": 0
   },
-  "generatedAt": "2026-10-23T23:24:10.116Z"
+  "generatedAt": "2026-11-01T20:08:24.604Z"
 }
