@@ -426,6 +426,7 @@
 }
 .site-theme .home-impact .impact-metrics {
 	text-align: center;
+	row-gap: 48px;
 }
 .site-theme .impact-sources {
 	display: grid;

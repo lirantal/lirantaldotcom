@@ -2,10 +2,10 @@
 import { Icon } from 'astro-icon/components';
 import downloads from '~/data/npm-downloads.json';
 import github from '~/data/github-impact.json';
+import contributions from '~/data/github-contributions.json';
 const totalDownloads = downloads.packages.reduce((sum, p) => sum + p.downloads, 0);
 const downloadLabel = `${(totalDownloads / 1_000_000).toFixed(2)}M`;
 const totalStars = github.repositories.reduce((sum, r) => sum + r.stars, 0);
-const totalForks = github.repositories.reduce((sum, r) => sum + r.forks, 0);
 const dateLabel = (value: string) =>
 	new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 ---
@@ -23,41 +23,31 @@ const dateLabel = (value: string) =>
 			</dd><p class="text-xs muted mt-1">{github.repositories.length} featured repositories</p>
 		</div>
 		<div>
-			<dt class="muted text-sm">GitHub forks</dt><dd class="text-4xl font-bold tracking-tight mt-1">
-				{totalForks.toLocaleString('en-US')}
-			</dd><p class="text-xs muted mt-1">{github.repositories.length} featured repositories</p>
+			<dt class="muted text-sm">GitHub contributions</dt><dd class="text-4xl font-bold tracking-tight mt-1">
+				<a href={contributions.source}>{contributions.total.toLocaleString('en-US')}</a>
+			</dd><p class="text-xs muted mt-1">{contributions.year} · as of {dateLabel(contributions.asOf)}</p>
 		</div>
 	</dl>
 	<div class="impact-sources text-sm muted">
 		<section aria-labelledby="npm-source-title">
 			<h3 id="npm-source-title">npm downloads</h3>
 			<p>
-				{dateLabel(downloads.start)} – {dateLabel(downloads.end)}. Package downloads, not unique developers; totals
-				include dependency installs.
+				{dateLabel(downloads.start)} – {dateLabel(downloads.end)}. Includes dependency installs.
 			</p>
-			<details class="mt-3 group">
-				<summary
-					class="inline-flex items-center gap-2 list-none [&::-webkit-details-marker]:hidden cursor-pointer text-primary-700 dark:text-primary-300 underline underline-offset-4"
-				>
-					<span>Packages & source counts</span>
-					<span aria-hidden="true" class="group-open:hidden">+</span>
-					<span aria-hidden="true" class="hidden group-open:inline">−</span>
-				</summary>
-				<ul class="mt-3 space-y-2">
-					{
-						downloads.packages.map((pkg) => (
-							<li class="flex flex-wrap justify-between gap-x-4">
-								<>
-									<a href={`https://api.npmjs.org/downloads/point/${downloads.start}:${downloads.end}/${pkg.name}`}>
-										{pkg.name}
-									</a>
-									<span>{pkg.downloads.toLocaleString('en-US')}</span>
-								</>
-							</li>
-						))
-					}
-				</ul>
-			</details>
+			<ul class="mt-3 space-y-2">
+				{
+					downloads.packages.map((pkg) => (
+						<li class="flex flex-wrap justify-between gap-x-4">
+							<>
+								<a href={`https://api.npmjs.org/downloads/point/${downloads.start}:${downloads.end}/${pkg.name}`}>
+									{pkg.name}
+								</a>
+								<span>{pkg.downloads.toLocaleString('en-US')}</span>
+							</>
+						</li>
+					))
+				}
+			</ul>
 			<p class="mt-3">
 				<a href="https://www.npmjs.com/~lirantal" class="impact-browse-link">
 					<span>Browse all my npm packages</span><Icon
@@ -71,33 +61,22 @@ const dateLabel = (value: string) =>
 		<section aria-labelledby="github-source-title">
 			<h3 id="github-source-title">GitHub stars &amp; forks</h3>
 			<p class="mt-3">
-				GitHub snapshot: {dateLabel(github.asOf)}. Stars and forks across the six featured repositories, not unique
-				people or all my projects.
+				Snapshot: {dateLabel(github.asOf)}.
 			</p>
-			<details class="mt-3 group">
-				<summary
-					class="inline-flex items-center gap-2 list-none [&::-webkit-details-marker]:hidden cursor-pointer text-primary-700 dark:text-primary-300 underline underline-offset-4"
-				>
-					<span>Repositories & source counts</span><span aria-hidden="true" class="group-open:hidden">+</span><span
-						aria-hidden="true"
-						class="hidden group-open:inline">−</span
-					>
-				</summary>
-				<ul class="mt-3 space-y-2">
-					{
-						github.repositories.map((repo) => (
-							<li class="flex flex-wrap justify-between gap-x-4">
-								<>
-									<a href={repo.url}>{repo.name}</a>
-									<span>
-										{repo.stars.toLocaleString('en-US')} stars · {repo.forks.toLocaleString('en-US')} forks
-									</span>
-								</>
-							</li>
-						))
-					}
-				</ul>
-			</details>
+			<ul class="mt-3 space-y-2">
+				{
+					github.repositories.map((repo) => (
+						<li class="flex flex-wrap justify-between gap-x-4">
+							<>
+								<a href={repo.url}>{repo.name}</a>
+								<span>
+									{repo.stars.toLocaleString('en-US')} stars · {repo.forks.toLocaleString('en-US')} forks
+								</span>
+							</>
+						</li>
+					))
+				}
+			</ul>
 		</section>
 	</div>
 </div>
