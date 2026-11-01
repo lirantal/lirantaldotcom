@@ -30,18 +30,15 @@ const dateLabel = (value: string) =>
 	</dl>
 	<div class="impact-sources text-sm muted">
 		<section aria-labelledby="npm-source-title">
-			<h3 id="npm-source-title">npm downloads</h3>
-			<p>
-				{dateLabel(downloads.start)} – {dateLabel(downloads.end)}. Includes dependency installs.
-			</p>
+			<h3 id="npm-source-title">
+				npm downloads <span class="impact-period">monthly, {downloads.end.slice(0, 4)}</span>
+			</h3>
 			<ul class="mt-3 space-y-2">
 				{
 					downloads.packages.map((pkg) => (
 						<li class="flex flex-wrap justify-between gap-x-4">
 							<>
-								<a href={`https://api.npmjs.org/downloads/point/${downloads.start}:${downloads.end}/${pkg.name}`}>
-									{pkg.name}
-								</a>
+								<a href={`https://www.npmjs.com/package/${pkg.name}`}>{pkg.name}</a>
 								<span>{pkg.downloads.toLocaleString('en-US')}</span>
 							</>
 						</li>
@@ -59,10 +56,9 @@ const dateLabel = (value: string) =>
 			</p>
 		</section>
 		<section aria-labelledby="github-source-title">
-			<h3 id="github-source-title">GitHub stars &amp; forks</h3>
-			<p class="mt-3">
-				Snapshot: {dateLabel(github.asOf)}.
-			</p>
+			<h3 id="github-source-title">
+				GitHub stars &amp; forks <span class="impact-period">snapshot, {github.asOf.slice(0, 4)}</span>
+			</h3>
 			<ul class="mt-3 space-y-2">
 				{
 					github.repositories.map((repo) => (
