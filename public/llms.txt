@@ -19,6 +19,8 @@ The public site is read-only and requires no authentication. It does not provide
 - [Developer resources](https://lirantal.com/developers)
 - [Blog and articles](https://lirantal.com/writing)
 - [Research overview](https://lirantal.com/research)
+- [Media coverage and interviews](https://lirantal.com/media)
+- [Research reports and chapters](https://lirantal.com/research/reports)
 - [Research papers](https://lirantal.com/research/papers)
 - [CVEs and security advisories](https://lirantal.com/research/advisories)
 - [Recent blog posts as JSON](https://lirantal.com/api/posts.json)

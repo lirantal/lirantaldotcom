@@ -144,11 +144,26 @@ export const publications = [
 
 export const externalWriting = [
 	{
+		title: 'Agent Skills Are Supply Chain Components',
+		publication: 'Tessl · Guest article',
+		date: 'October 8, 2026',
+		url: 'https://tessl.io/blog/agent-skills-are-supply-chain-components',
+		description:
+			'Why reusable agent skills need provenance, review, scanning, and the security discipline of software supply chains.',
+	},
+	{
 		title: 'Building Secure MCP Servers: A Developer’s Guide to Avoiding Critical Vulnerabilities',
 		publication: 'Snyk Articles',
 		date: 'January 2026',
 		url: 'https://snyk.io/articles/building-secure-mcp-servers/',
 		description: 'Command injection, path traversal, and the pitfalls of read-only database access in MCP servers.',
+	},
+	{
+		title: "These Aren't the Tools You're Looking For: The Hidden Dangers of MCP",
+		publication: 'Tessl · Guest article',
+		date: 'December 10, 2025',
+		url: 'https://tessl.io/blog/these-aren-t-the-tools-you-re-looking-for-the-hidden-dangers-of-mcp',
+		description: 'MCP security risks spanning toxic data flows, tool poisoning, and classic code vulnerabilities.',
 	},
 	{
 		title: 'Argument Injection vulnerability in git-blame@1.4.0',
@@ -163,6 +178,14 @@ export const externalWriting = [
 		date: 'July 2025',
 		url: 'https://snyk.io/blog/cursor-ide-malware-extension-compromise-in-usd500k-crypto-heist/',
 		description: 'A look at malicious extensions and the trust developers place in their tools.',
+	},
+	{
+		title: 'Securing the Modern Software Supply Chain',
+		publication: 'Infosecurity Magazine · Guest opinion',
+		date: 'December 2, 2021',
+		url: 'https://www.infosecurity-magazine.com/opinions/securing-the-modern-software/',
+		description:
+			'Practical defenses for software supply chains, including dependency confusion, package installation scripts, registry authentication, and protecting sensitive information.',
 	},
 ];
 

@@ -4,6 +4,8 @@ Liran Tal's research portfolio. Papers are selected co-authored arXiv preprints,
 
 - [Research overview](https://lirantal.com/research)
 - [Papers, author credits, PDFs, and DOIs](https://lirantal.com/research/papers)
+- [Industry reports and chapters, with contribution credits](https://lirantal.com/research/reports)
+- [Media coverage and interviews](https://lirantal.com/media)
 - [Patents and published applications](https://lirantal.com/research/patents)
 - [CVEs and security advisories](https://lirantal.com/research/advisories)
 - [Lockfile injection research and Black Hat follow-on work](https://lirantal.com/research/lockfile-injection)

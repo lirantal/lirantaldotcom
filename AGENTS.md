@@ -127,6 +127,8 @@ Post page layout: **`SinglePost.astro`** (title, tags, share, cover `Picture`, M
 | `/` | `src/pages/index.astro` | Short **ProfileHero**, featured projects, speaking, Blog & articles, research, open source, books, and community quote |
 | `/writing` | `src/pages/writing.astro` | Blog directory (labeled **Blog**), recent local posts, archive and RSS links, publication links, and selected external articles |
 | `/speaking/press-kit` | `src/pages/speaking/press-kit.astro` | Short/full bios, downloadable bio and portrait, organizer details |
+| `/media` | `src/pages/media.astro` | Verified media coverage, interviews, and community references from `src/data/media.ts`; editorial highlights prefer established media outlets |
+| `/research/reports` | `src/pages/research/reports.astro` | Industry reports and chapters, with explicit contribution credits |
 | `/recognitions` | `src/pages/recognitions.astro` | `RecognitionAwards` + static `Changelog.astro` with progressive category filters |
 | `/books/nodejs-secure-coding` | `src/pages/books/nodejs-secure-coding.astro` | Long book landing; book covers from `~/assets/images/book-cover-*` |
 | `/games/chatgpt-chat-meme-generator` | `src/pages/games/...` | iframe embed |
@@ -143,6 +145,15 @@ There is **no separate `/about` route**; the full bio lives in **`public/press/l
 - **`src/data/npm-downloads.json`** is a dated snapshot for five selected maintained packages. Counts come from `https://api.npmjs.org/downloads/point/<start>:<end>/<package>`. To refresh, fetch `last-month` for every listed package and replace all counts and both dates together, only when every response succeeds and covers the same window. The displayed total is computed from this file. It measures package downloads (including dependency installs), not people; no npm API calls happen during builds or page visits.
 - **`src/assets/styles/portfolio.css`** scopes editorial styles to `.portfolio` on the homepage, Blog directory, and press kit. Existing blog and speaking layouts retain their styles.
 - The local **`liran-tal-portrait.jpg`** comes from `https://github.com/lirantal.png`; **`path-traversal-book-cover-light.png`** comes from `https://www.nodejs-security.com/images/book/book-path-traversal-cover-light.png`. The **Code Injection** cover also comes from nodejs-security.com. Other covers and the stage photo reuse existing assets. Keep authentic cover art; the current shelf order and image treatment are documented in `docs/DESIGN.md`.
+
+## Media and external publications
+
+- `src/data/media.ts` records verified coverage and interviews, including publication date when available, language, original Hebrew title, exact involvement, and sponsorship disclosures. `MediaList.astro` renders the homepage selection and `/media` archive. Featured ranks prefer established media outlets over community blogs; never infer an endorsement from a citation.
+- TheMarker’s March 20, 2025 article metadata and quoted/mentioned role were confirmed by Liran on November 1, 2026; credit Ran Bar-Zik as the writer. The New Stack’s October 30, 2026 entry was verified from the publisher’s indexed article text; preserve its HPE sponsorship disclosure and describe the involvement as a featured talk.
+- Thomas Gentilhomme’s French book reference is corroborated by `https://github.com/lirantal/npq` (media coverage section). Google Docs could not be read directly; use the project’s English title label and a limited npq reference claim, with no invented quotation or publication date. OSTechNix’s npq walkthrough was published December 20, 2019 and updated December 14, 2022; the archive uses its original publication date.
+- `src/data/media-pending.json` preserves supplied links whose contents could not be verified. These are not rendered publicly. Verify the article title, date, and involvement before moving an item into media coverage or external writing.
+- Authored guest articles belong in `externalWriting` in `src/data/portfolio.ts` and appear on `/writing`, separately from reporting about Liran. For the Infosecurity Magazine opinion (December 2, 2021), the publisher blocked automated access; Liran supplied the article text, title, date, and explicit authorship confirmation on November 1, 2026.
+- `src/data/research-reports.ts` holds reports and chapters, rendered by `ReportList.astro`. Keep co-author credits and distinguish authorship of one report analysis from authorship of the entire report. Reports do not increase the preprint count.
 
 ## Speaking pages
 

@@ -1,0 +1,21 @@
+---
+import { researchReports } from '~/data/research-reports';
+import { dateLabel } from '~/data/research';
+---
+
+<div>
+	{
+		researchReports.map((report) => (
+			<article class="editorial-row">
+				<p class="muted text-sm mb-3">
+					{report.publisher} · <time datetime={report.date}>{dateLabel(report.date)}</time> · {report.role}
+				</p>
+				<h3>
+					<a href={report.url}>{report.title}</a>
+				</h3>
+				<p class="muted mt-3 max-w-[65ch]">{report.description}</p>
+				<p class="muted text-sm mt-3">{report.credits}</p>
+			</article>
+		))
+	}
+</div>
