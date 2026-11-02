@@ -24,6 +24,14 @@ The external-publications panel uses the quieter 16px, medium-weight heading “
 
 Speaking’s neutral labels, body text, section links, navigation and booking panel follow Forma Refined. Keep the blue-to-pink hero-title gradients, speaker photograph/frame, year bars, calendar event rows, country lists and colored status/type/filter pills. Topic rows retain their layout with neutral 21px titles, 14px descriptions and 12px metadata. The shared booking CTA uses a neutral surface, a filled primary action and outlined secondary actions. `BOOKING_YEAR` is computed six months ahead at build time; static deployments need a rebuild to update it.
 
+### Social sharing images
+
+The approved OpenGraph family uses light Forma Refined colors, Inter, a white content area and a pale gray identity rail separated by a fine vertical rule. Every card has the original portrait in a 200px circular crop, followed by “Liran Tal”, “Developer Relations”, and “& Security Research”. The homepage has no “Home” subtitle. Section labels and real titles distinguish blog articles, speaking, talks, events, research, preprints, reports, and media. Full paper co-author credits and preprint status must remain visible. Long titles fit using font measurements rather than truncation.
+
+`src/utils/social-cards.ts` selects the card from the local page path (not a syndicated canonical URL). `src/utils/render-social-card.ts` renders the shared design at build time; `src/pages/og/[...card].png.ts` emits 1200 × 630 PNGs with content-versioned URLs. Update `SOCIAL_CARD_VERSION` when changing the layout, portrait, or fonts. No runtime image service or external font/image requests are required. Blog frontmatter images remain the article/list covers; social cards are independent. Explicit `meta.image` overrides remain supported.
+
+Papers currently link directly to arXiv; local card files under `/og/papers/<arxiv-id>-<hash>.png` are generated for reuse, but this site cannot alter arXiv’s sharing metadata. The local `/research/papers` listing has its own card. Inspect generated cards after changes and run `npm run check:social` after the production build to verify deployed images and OG/Twitter metadata.
+
 ## Direction: editorial, personal, and restrained
 
 Liran chose the **Editorial** concept over the centered alternative: left-aligned writing, a portrait alongside it, visible projects near the top, and clear sections with room to breathe. Keep the existing Inter/blue/neutral identity. Avoid shiny effects, excessive animation, or turning every item into a card. Preserve the established gradients on speaking headings, year bars, the stage-photo frame and invitation panel, the blog title, recognition headings, and 404 text; the owner explicitly requested retaining these accents during review of PR #14.

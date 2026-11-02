@@ -25,19 +25,19 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const postImage = await findImage(post.image);
 
 const meta = {
 	title: `${post.title} — ${SITE.name}`,
 	description: post.description,
 	canonical: post.canonical || getCanonical(getPermalink(post.slug, 'post')),
-	image: await findImage(post.image),
 	ogTitle: post.title,
 	ogType: 'article',
 };
 ---
 
 <Layout {meta}>
-	<SinglePost post={{ ...post, image: meta.image }} />
+	<SinglePost post={{ ...post, image: postImage }} />
 	<MoreWriting currentSlug={post.slug} />
 	<hr class="w-48 h-1 my-1 mx-auto bg-gray-100 border-0 rounded md:my-1 dark:bg-gray-700" />
 	<BooksHeroEmbed />
