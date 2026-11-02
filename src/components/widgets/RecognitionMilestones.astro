@@ -27,10 +27,11 @@ const highlights = appearances.filter((item) => item.featured);
 						<a
 							class="trending-badge"
 							href={item.source}
-							aria-label={`View archive: #${item.rank} trending developer, ${item.scope}, ${formatDate(item.date)}`}
+							aria-label={`View archive: Liran Tal, #${item.rank} trending developer, ${item.scope}, ${formatDate(item.date)}`}
 						>
 							<Icon name="tabler:laurel-wreath" aria-hidden="true" />
 							<span class="badge-rank">#{item.rank}</span>
+							<span class="badge-name">Liran Tal</span>
 							<span class="badge-title">Trending developer</span>
 							<span class="badge-scope">{item.scope}</span>
 							<time datetime={item.date}>{formatDate(item.date)}</time>
@@ -149,10 +150,14 @@ const highlights = appearances.filter((item) => item.featured);
 		line-height: 1.5;
 		letter-spacing: -0.06em;
 	}
+	.badge-name {
+		font-size: 16px;
+		font-weight: 700;
+		margin-top: 8px;
+	}
 	.badge-title {
 		font-size: 13px;
 		font-weight: 600;
-		margin-top: 8px;
 	}
 	.badge-scope {
 		font-size: 14px;
