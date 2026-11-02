@@ -13,7 +13,7 @@ export type MediaEntry = {
 	featured?: number;
 };
 
-// Curated from the linked articles, checked November 1, 2026.
+// Curated from the linked articles, checked November 1–2, 2026.
 // Featured ranks are editorial: established outlets precede community blogs.
 // Missing publication dates stay omitted rather than being inferred from incident dates.
 export const mediaEntries: MediaEntry[] = [
@@ -130,6 +130,30 @@ export const mediaEntries: MediaEntry[] = [
 		url: 'https://freesoftwaremagazine.com/articles/interview_liran_tal_author_daloradius/',
 		description:
 			'An interview with Tony Mobily about creating daloRADIUS, its early development, and the open-source community supporting it.',
+	},
+	{
+		id: 'safeguard-vulnbench',
+		title: 'Can an LLM find the same bug twice? What repeatability benchmarking reveals',
+		outlet: 'Safeguard',
+		date: '2026-07-07',
+		language: 'English',
+		section: 'cited',
+		role: 'Research cited',
+		url: 'https://safeguard.sh/resources/blog/llm-code-review-repeatability-vulnerability-benchmarking',
+		description:
+			'Safeguard’s research team discusses our co-authored Snyk VulnBench JS 1.0 benchmark on the repeatability of LLM vulnerability scanning and mentions me by name.',
+	},
+	{
+		id: 'cramhacks-lifecycle-scripts',
+		title: "Lessons Learned from 2024's Supply Chain Attacks",
+		outlet: 'CramHacks',
+		date: '2025-02-27',
+		language: 'English',
+		section: 'cited',
+		role: 'Guidance cited',
+		url: 'https://www.cramhacks.com/p/lessons-learned-from-2024-s-supply-chain-attacks',
+		description:
+			'Kyle Kelly cites my npm ignore-scripts guidance when discussing lifecycle-script risks and defenses against software supply chain attacks.',
 	},
 	{
 		id: 'internet-israel-frontend',

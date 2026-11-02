@@ -222,6 +222,10 @@ export const studies: Study[] = [
 				links: [
 					{ label: 'Snyk VulnBench JS 1.0', url: 'https://arxiv.org/abs/2606.15762' },
 					{ label: 'VulnBump', url: 'https://arxiv.org/abs/2610.17374' },
+					{
+						label: 'VulnBench JS 1.0 discussion · Safeguard (third-party coverage)',
+						url: 'https://safeguard.sh/resources/blog/llm-code-review-repeatability-vulnerability-benchmarking',
+					},
 				],
 			},
 		],
