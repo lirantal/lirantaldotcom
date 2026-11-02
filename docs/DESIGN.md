@@ -118,6 +118,8 @@ The portfolio wrapper is at most 72rem wide, with 1.5rem horizontal padding (1.2
 
 The Recognitions page separates Awards, Milestones, and Appreciation, with in-page links to each. Preserve the existing `community-heading` anchor and all community posts and filters. Milestones currently features GitHub Trending: a neutral surface pairs the introduction with locally rendered laurel badges, followed by archived appearances in newest-first date order. Use shared Forma tokens in both themes and stack the feature on smaller screens.
 
+The bottom of the feature’s introductory surface contains a horizontal row of compact repository badges beneath the introduction and developer badges. Keep them in newest-first order and allow wrapping on smaller screens. Each badge includes its project, language scope or roundup label, date, and evidence link; the roundup uses a star rather than a numeric rank.
+
 `src/data/github-trending.ts` owns dates, repository/developer identity, language filters, ranks, and evidence links. Badges derive from those records, with no third-party badge images, requests, or Trendshift profile links. Every rank is scoped to its captured daily list; the February 2020 roundup has no numeric rank and its date is the publication date. Keep immutable GitHub archive links, distinguish all-language from language-specific rankings, and describe 2018 as the earliest evidence found rather than a proven first appearance. Add future milestones only with dated evidence.
 
 ### Research hub and archives

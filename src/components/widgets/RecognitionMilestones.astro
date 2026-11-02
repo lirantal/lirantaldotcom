@@ -6,6 +6,7 @@ const dateFormat = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeZ
 const formatDate = (date: string) => dateFormat.format(new Date(`${date}T00:00:00Z`));
 const appearances = [...trendingAppearances].sort((a, b) => b.date.localeCompare(a.date));
 const highlights = appearances.filter((item) => item.featured);
+const repositoryHighlights = appearances.filter((item) => item.kind === 'Repository');
 ---
 
 <section class="portfolio-section milestones" aria-labelledby="milestones-heading">
@@ -39,6 +40,29 @@ const highlights = appearances.filter((item) => item.featured);
 					))
 				}
 			</div>
+			<ul class="repository-badges" aria-label="Repository milestones" role="list">
+				{
+					repositoryHighlights.map((item) => (
+						<li>
+							<a
+								class="repository-badge"
+								href={item.source}
+								aria-label={`View evidence: ${item.name}, ${item.rank === null ? 'featured in a weekly roundup' : `#${item.rank} trending repository, ${item.scope}`}, ${formatDate(item.date)}`}
+							>
+								<span class="repository-badge-mark" aria-hidden="true">
+									<Icon name={item.rank === null ? 'tabler:star' : 'tabler:laurel-wreath'} />
+									{item.rank !== null && <span>#{item.rank}</span>}
+								</span>
+								<span class="repository-badge-copy">
+									<span class="repository-badge-name">{item.name}</span>
+									<span>{item.rank === null ? 'Featured · Weekly roundup' : `${item.scope} repository`}</span>
+									<time datetime={item.date}>{formatDate(item.date)}</time>
+								</span>
+							</a>
+						</li>
+					))
+				}
+			</ul>
 		</div>
 		<div id="trending-history" class="trending-history">
 			<h4>Archived appearances</h4>
@@ -167,6 +191,59 @@ const highlights = appearances.filter((item) => item.featured);
 		font-size: 12px;
 		color: var(--muted);
 		margin-top: 8px;
+	}
+	.repository-badges {
+		grid-column: 1 / -1;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+	.repository-badges li {
+		flex: 1 1 220px;
+		min-width: 0;
+	}
+	.repository-badge {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		height: 100%;
+		padding: 14px 12px;
+		border: 1px solid var(--rule);
+		border-radius: 6px;
+		background: var(--paper);
+		text-decoration: none !important;
+	}
+	.repository-badge:hover {
+		border-color: var(--ink);
+	}
+	.repository-badge-mark {
+		display: grid;
+		place-items: center;
+		flex: 0 0 56px;
+		font-size: 17px;
+		font-weight: 700;
+		letter-spacing: -0.06em;
+	}
+	.repository-badge-mark :global(svg),
+	.repository-badge-mark > span {
+		grid-area: 1 / 1;
+	}
+	.repository-badge-mark :global(svg) {
+		width: 56px;
+		height: 56px;
+	}
+	.repository-badge-copy {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		font-size: 11px;
+		color: var(--muted);
+	}
+	.repository-badge-copy .repository-badge-name {
+		font-size: 13px;
+		font-weight: 650;
+		color: var(--ink);
+		overflow-wrap: anywhere;
 	}
 	.trending-history {
 		padding: 32px 40px;
