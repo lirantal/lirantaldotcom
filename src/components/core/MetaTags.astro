@@ -1,20 +1,14 @@
 ---
 import { AstroSeo } from '@astrolib/seo';
 import { GoogleAnalytics } from '@astrolib/analytics';
-import { getImage } from 'astro:assets';
-
-import defaultImageSrc from '~/assets/images/default.png';
+import { getSocialImage } from '~/utils/social-cards';
 
 import { SITE } from '~/config.mjs';
 import Fonts from '../atoms/Fonts.astro';
 import ExtraMetaTags from '../atoms/ExtraMetaTags.astro';
 import VercelAnalytics from './VercelAnalytics.astro';
 
-const defaultOg = await getImage({
-	src: defaultImageSrc,
-	width: 1200,
-	height: 628,
-});
+const defaultOg = await getSocialImage(Astro.url.pathname);
 
 const {
 	title = SITE.name,
@@ -64,7 +58,10 @@ const image = resolveOgImageUrl(_image, Astro.site);
 			? [
 					{
 						url: image.toString(),
-						alt: ogTitle,
+						alt: _image?.alt || ogTitle,
+						...(typeof _image === 'object' && _image?.width && _image?.height
+							? { width: _image.width, height: _image.height }
+							: {}),
 					},
 				]
 			: undefined,
@@ -76,13 +73,14 @@ const image = resolveOgImageUrl(_image, Astro.site);
 	}}
 />
 
+{image && <meta name="twitter:image" content={image.toString()} />}
+{image && <meta name="twitter:image:alt" content={_image?.alt || ogTitle} />}
+
 <Fonts />
 
 {SITE.googleSiteVerificationId && <meta name="google-site-verification" content={SITE.googleSiteVerificationId} />}
 
-{SITE.googleAnalyticsId && (
-		<GoogleAnalytics id={String(SITE.googleAnalyticsId)} partytown={false} />
-	)}
+{SITE.googleAnalyticsId && <GoogleAnalytics id={String(SITE.googleAnalyticsId)} partytown={false} />}
 
 <VercelAnalytics />
 

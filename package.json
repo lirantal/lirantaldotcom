@@ -17,7 +17,8 @@
     "lint:eslint": "eslint .",
     "blog:cover": "node scripts/generate-blog-cover.js",
     "blog:compress-images": "node scripts/compress-large-blog-images.mjs",
-    "subfont": "if [ -d dist/client ]; then subfont -ir --no-fallbacks --silent --root dist/client; else subfont -ir --no-fallbacks --silent --root dist; fi"
+    "subfont": "if [ -d dist/client ]; then subfont -ir --no-fallbacks --silent --root dist/client; else subfont -ir --no-fallbacks --silent --root dist; fi",
+    "check:social": "node scripts/check-social-cards.mjs"
   },
   "devDependencies": {
     "@astrojs/mdx": "^5.0.4",
@@ -58,7 +59,13 @@
     "unist-util-visit": "^5.1.0",
     "@fontsource-variable/newsreader": "^5.3.0",
     "@fontsource-variable/space-grotesk": "^5.3.0",
-    "@fontsource-variable/manrope": "^5.3.0"
+    "@fontsource-variable/manrope": "^5.3.0",
+    "satori": "^0.35.0",
+    "@resvg/resvg-js": "^2.6.2",
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/noto-sans-hebrew": "^5.3.0",
+    "bidi-js": "^1.1.0",
+    "@shuding/opentype.js": "^1.4.0-beta.0"
   },
   "engines": {
     "npm": ">=11.10.0",
