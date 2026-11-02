@@ -3,6 +3,7 @@ import { fetchPosts } from './posts';
 import { getPermalink } from './permalinks';
 import { getSpeaking, formatDate } from './speaking';
 import { papers, studies } from '~/data/research';
+import { blogArchivePaths, isPrefixedBlogArchive } from './social-card-archives.mjs';
 
 export type SocialCard = {
 	key: string;
@@ -44,7 +45,7 @@ async function loadSocialCards(): Promise<SocialCard[]> {
 		},
 		{
 			key: 'blog',
-			paths: ['/writing', '/blog'],
+			paths: ['/writing', ...blogArchivePaths(posts)],
 			section: 'Blog',
 			title: 'Writing for the\ndeveloper community.',
 			detail: 'Developer advocacy, open source, and security.',
@@ -179,7 +180,7 @@ async function loadSocialCards(): Promise<SocialCard[]> {
 export async function getSocialImage(pathname: string) {
 	const path = decodeURI(pathname).replace(/\/$/, '') || '/';
 	const cards = await getSocialCards();
-	const fallback = /^\/(blog|tag|category)(\/|$)/.test(path)
+	const fallback = isPrefixedBlogArchive(path)
 		? 'blog'
 		: path.startsWith('/speaking/')
 			? 'speaking'

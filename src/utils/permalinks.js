@@ -1,6 +1,6 @@
 import slugify from 'limax';
 
-import { SITE, BLOG } from '~/config.mjs';
+import { SITE, BLOG } from '../config.mjs';
 
 const trim = (str, ch) => {
 	let start = 0,
