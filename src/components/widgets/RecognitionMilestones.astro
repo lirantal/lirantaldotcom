@@ -1,0 +1,361 @@
+---
+import { Icon } from 'astro-icon/components';
+import TrendingLaurel from './TrendingLaurel.astro';
+import { trendingAppearances } from '~/data/github-trending';
+
+const dateFormat = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeZone: 'UTC' });
+const formatDate = (date: string) => dateFormat.format(new Date(`${date}T00:00:00Z`));
+const appearances = [...trendingAppearances].sort((a, b) => b.date.localeCompare(a.date));
+const highlights = appearances.filter((item) => item.featured);
+const repositoryHighlights = appearances.filter((item) => item.kind === 'Repository');
+---
+
+<section class="portfolio-section milestones" aria-labelledby="milestones-heading">
+	<h2 id="milestones-heading" class="mb-6">02 / Milestones</h2>
+	<article class="trending-feature" aria-labelledby="trending-heading">
+		<div class="trending-intro">
+			<div class="trending-story">
+				<Icon name="tabler:brand-github" class="github-mark" aria-hidden="true" />
+				<h3 id="trending-heading">Featured on GitHub Trending</h3>
+				<p>
+					From Docker tooling to Node.js best practices, my open-source work has appeared on GitHub Trending since at
+					least 2018. I’ve also appeared among trending developers across all languages and within PHP.
+				</p>
+			</div>
+			<div class="trending-badges" aria-label="Selected developer milestones">
+				{
+					highlights.map((item) => (
+						<a
+							class="trending-badge"
+							href={item.source}
+							aria-label={`View archive: Liran Tal, #${item.rank} trending developer, ${item.scope}, ${formatDate(item.date)}`}
+						>
+							<span class="badge-emblem" aria-hidden="true">
+								<TrendingLaurel />
+								<span class="badge-rank">#{item.rank}</span>
+							</span>
+							<span class="badge-name">Liran Tal</span>
+							<span class="badge-title">Trending developer</span>
+							<span class="badge-scope">{item.scope}</span>
+							<time datetime={item.date}>{formatDate(item.date)}</time>
+						</a>
+					))
+				}
+			</div>
+			<ul class="repository-badges" aria-label="Repository milestones" role="list">
+				{
+					repositoryHighlights.map((item) => (
+						<li>
+							<a
+								class="repository-badge"
+								href={item.source}
+								aria-label={`View evidence: ${item.name}, ${item.rank === null ? 'featured in a weekly roundup' : `#${item.rank} trending repository, ${item.scope}`}, ${formatDate(item.date)}`}
+							>
+								<span class="repository-badge-mark" aria-hidden="true">
+									{item.rank === null ? <Icon name="tabler:star" /> : <TrendingLaurel class="compact-wreath" />}
+									{item.rank !== null && <span>#{item.rank}</span>}
+								</span>
+								<span class="repository-badge-copy">
+									<span class="repository-badge-name">{item.name}</span>
+									<span>{item.rank === null ? 'Featured · Weekly roundup' : `${item.scope} repository`}</span>
+									<time datetime={item.date}>{formatDate(item.date)}</time>
+								</span>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+		<div id="trending-history" class="trending-history">
+			<h4>Archived appearances</h4>
+			<ol class="appearance-list" role="list">
+				{
+					appearances.map((item) => (
+						<li class="appearance">
+							<time datetime={item.date}>{formatDate(item.date)}</time>
+							<div class="appearance-detail">
+								<span class="appearance-kind">{item.kind}</span>
+								<h5>{item.name}</h5>
+								<p>
+									{item.scope}
+									{item.rank !== null && ' · Daily list'}
+								</p>
+								{item.note && <p class="appearance-note">{item.note}</p>}
+							</div>
+							<div class="appearance-result">
+								{item.rank !== null ? (
+									<span class="rank-label">#{item.rank}</span>
+								) : (
+									<span class="roundup-label">Featured</span>
+								)}
+								<a
+									href={item.source}
+									aria-label={`${item.rank === null ? 'Read roundup' : 'View archive'}: ${item.name}, ${item.scope}, ${formatDate(item.date)}`}
+								>
+									{item.rank === null ? 'Read roundup' : 'View archive'}
+								</a>
+							</div>
+						</li>
+					))
+				}
+			</ol>
+			<p class="archive-note">
+				Selected historical appearances, preserved by independent archives. Ranks reflect each captured list and its
+				language filter. Coverage is incomplete; 2018 is the earliest evidence found, not necessarily my first
+				appearance.
+			</p>
+		</div>
+	</article>
+</section>
+
+<style>
+	.trending-feature {
+		border: 1px solid var(--rule);
+		border-radius: 6px;
+		overflow: hidden;
+	}
+	.trending-intro {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+		gap: 40px;
+		padding: 40px;
+		background: var(--surface);
+	}
+	.github-mark {
+		width: 32px;
+		height: 32px;
+		margin-bottom: 20px;
+	}
+	.trending-story h3 {
+		font-size: clamp(1.6rem, 3vw, 2rem);
+		max-width: 17ch;
+		margin-bottom: 16px;
+	}
+	.trending-story p {
+		color: var(--muted);
+		max-width: 47ch;
+		margin-bottom: 20px;
+	}
+	.trending-badges {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 16px;
+	}
+	.trending-badge {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		min-width: 0;
+		padding: 28px 12px 24px;
+		border: 1px solid var(--rule);
+		border-radius: 6px;
+		background: var(--paper);
+		text-align: center;
+		text-decoration: none !important;
+	}
+	.trending-badge:hover {
+		border-color: var(--ink);
+	}
+	.badge-emblem {
+		display: grid;
+		place-items: center;
+		width: min(112px, 100%);
+		aspect-ratio: 5 / 4;
+	}
+	.badge-emblem :global(svg),
+	.badge-rank {
+		grid-area: 1 / 1;
+	}
+	.badge-emblem :global(svg) {
+		width: 100%;
+		height: 100%;
+	}
+	.badge-rank {
+		font-size: 28px;
+		font-weight: 700;
+		font-variant-numeric: tabular-nums;
+		line-height: 1;
+	}
+	.badge-name {
+		font-size: 16px;
+		font-weight: 700;
+		margin-top: 8px;
+	}
+	.badge-title {
+		font-size: 13px;
+		font-weight: 600;
+	}
+	.badge-scope {
+		font-size: 14px;
+		font-weight: 600;
+	}
+	.trending-badge time {
+		font-size: 12px;
+		color: var(--muted);
+		margin-top: 8px;
+	}
+	.repository-badges {
+		grid-column: 1 / -1;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+	.repository-badges li {
+		flex: 1 1 220px;
+		min-width: 0;
+	}
+	.repository-badge {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		height: 100%;
+		padding: 14px 12px;
+		border: 1px solid var(--rule);
+		border-radius: 6px;
+		background: var(--paper);
+		text-decoration: none !important;
+	}
+	.repository-badge:hover {
+		border-color: var(--ink);
+	}
+	.repository-badge-mark {
+		display: grid;
+		place-items: center;
+		flex: 0 0 72px;
+		font-size: 15px;
+		font-weight: 700;
+		font-variant-numeric: tabular-nums;
+		line-height: 1;
+	}
+	.repository-badge-mark :global(svg),
+	.repository-badge-mark > span {
+		grid-area: 1 / 1;
+	}
+	.repository-badge-mark :global(svg) {
+		width: 56px;
+		height: 56px;
+	}
+	.repository-badge-mark :global(svg.compact-wreath) {
+		width: 72px;
+		height: 58px;
+	}
+	.repository-badge-copy {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		font-size: 11px;
+		color: var(--muted);
+	}
+	.repository-badge-copy .repository-badge-name {
+		font-size: 13px;
+		font-weight: 650;
+		color: var(--ink);
+		overflow-wrap: anywhere;
+	}
+	.trending-history {
+		padding: 32px 40px;
+		scroll-margin-top: 6rem;
+	}
+	.trending-history h4 {
+		font-size: 18px;
+		font-weight: 650;
+		margin-bottom: 20px;
+	}
+	.appearance {
+		display: grid;
+		grid-template-columns: 130px minmax(0, 1fr) auto;
+		align-items: start;
+		gap: 24px;
+		padding: 22px 0;
+		border-top: 1px solid var(--rule);
+	}
+	.appearance > time,
+	.appearance-kind,
+	.appearance-detail p,
+	.archive-note {
+		font-size: 13px;
+		color: var(--muted);
+	}
+	.appearance > time {
+		padding-top: 3px;
+	}
+	.appearance h5 {
+		font-size: 17px;
+		font-weight: 600;
+		overflow-wrap: anywhere;
+	}
+	.appearance-note {
+		max-width: 60ch;
+		margin-top: 8px;
+	}
+	.appearance-result {
+		display: flex;
+		flex-direction: column;
+		align-items: end;
+		gap: 8px;
+	}
+	.rank-label,
+	.roundup-label {
+		padding: 2px 12px;
+		border: 1px solid var(--rule);
+		border-radius: 6px;
+		font-weight: 650;
+		font-size: 18px;
+		font-variant-numeric: tabular-nums;
+	}
+	.roundup-label {
+		font-size: 13px;
+	}
+	.appearance-result a {
+		font-size: 13px;
+	}
+	.archive-note {
+		border-top: 1px solid var(--rule);
+		padding-top: 20px;
+		max-width: 85ch;
+	}
+	@media (max-width: 900px) {
+		.trending-intro {
+			grid-template-columns: 1fr;
+			gap: 28px;
+		}
+		.trending-story h3,
+		.trending-story p {
+			max-width: 55ch;
+		}
+		.trending-badges {
+			max-width: 440px;
+		}
+	}
+	@media (max-width: 600px) {
+		.trending-intro,
+		.trending-history {
+			padding: 24px 20px;
+		}
+		.trending-badges {
+			gap: 10px;
+		}
+		.trending-badge {
+			padding-inline: 6px;
+		}
+		.appearance {
+			grid-template-columns: minmax(0, 1fr) auto;
+			gap: 8px 16px;
+		}
+		.appearance > time {
+			grid-column: 1 / -1;
+		}
+		.appearance-detail,
+		.appearance-result {
+			grid-column: 1 / -1;
+		}
+		.appearance-result {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: 4px;
+		}
+	}
+</style>
