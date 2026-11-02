@@ -120,7 +120,7 @@ The Recognitions page separates Awards, Milestones, and Appreciation, with in-pa
 
 The bottom of the feature’s introductory surface contains a horizontal row of compact repository badges beneath the introduction and developer badges. Keep them in newest-first order and allow wrapping on smaller screens. Each badge includes its project, language scope or roundup label, date, and evidence link; the roundup uses a star rather than a numeric rank.
 
-Compact ranked badges use a wider, open-center laurel with separate branches and tabular numerals. Reserve clear space around the hash and both digits instead of squeezing a two-digit rank into the large badge icon’s small central opening.
+Both developer and compact repository badges share `TrendingLaurel.astro`, an open-center laurel with separate branches and tabular numerals. Center each rank with a grid overlay, keeping clear space around the hash and digits. Scale the larger emblem down to its available width on mobile instead of positioning the number with a fixed offset.
 
 The introductory feature has no redundant anchor link to the immediately following history. On the homepage, place a short GitHub Trending link on a second line beneath the GitHub Star award. Derive its rank and year from the latest archived developer appearance across all languages, use the same laurel icon at the existing 20px recognition-icon size, and link to the Milestones section. Keep the other award links aligned with the first line.
 

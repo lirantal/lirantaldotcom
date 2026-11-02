@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import TrendingLaurel from './TrendingLaurel.astro';
 import { trendingAppearances } from '~/data/github-trending';
 
 const dateFormat = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeZone: 'UTC' });
@@ -29,8 +30,10 @@ const repositoryHighlights = appearances.filter((item) => item.kind === 'Reposit
 							href={item.source}
 							aria-label={`View archive: Liran Tal, #${item.rank} trending developer, ${item.scope}, ${formatDate(item.date)}`}
 						>
-							<Icon name="tabler:laurel-wreath" aria-hidden="true" />
-							<span class="badge-rank">#{item.rank}</span>
+							<span class="badge-emblem" aria-hidden="true">
+								<TrendingLaurel />
+								<span class="badge-rank">#{item.rank}</span>
+							</span>
 							<span class="badge-name">Liran Tal</span>
 							<span class="badge-title">Trending developer</span>
 							<span class="badge-scope">{item.scope}</span>
@@ -49,16 +52,7 @@ const repositoryHighlights = appearances.filter((item) => item.kind === 'Reposit
 								aria-label={`View evidence: ${item.name}, ${item.rank === null ? 'featured in a weekly roundup' : `#${item.rank} trending repository, ${item.scope}`}, ${formatDate(item.date)}`}
 							>
 								<span class="repository-badge-mark" aria-hidden="true">
-									{item.rank === null ? (
-										<Icon name="tabler:star" />
-									) : (
-										<svg viewBox="0 0 80 64" fill="none" class="compact-wreath">
-											<g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-												<path d="M17 10C5 23 7 43 23 55M63 10c12 13 10 33-6 45" />
-												<path d="M14 17C6 17 3 10 6 5c7 1 11 6 8 12ZM10 29C2 27 1 21 3 17c7 2 10 6 7 12ZM12 42C4 41 2 35 3 31c8 0 12 5 9 11ZM21 53C13 57 8 52 7 48c7-4 13-2 14 5ZM66 17c8 0 11-7 8-12-7 1-11 6-8 12ZM70 29c8-2 9-8 7-12-7 2-10 6-7 12ZM68 42c8-1 10-7 9-11-8 0-12 5-9 11ZM59 53c8 4 13-1 14-5-7-4-13-2-14 5Z" />
-											</g>
-										</svg>
-									)}
+									{item.rank === null ? <Icon name="tabler:star" /> : <TrendingLaurel class="compact-wreath" />}
 									{item.rank !== null && <span>#{item.rank}</span>}
 								</span>
 								<span class="repository-badge-copy">
@@ -153,7 +147,6 @@ const repositoryHighlights = appearances.filter((item) => item.kind === 'Reposit
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		position: relative;
 		min-width: 0;
 		padding: 28px 12px 24px;
 		border: 1px solid var(--rule);
@@ -165,18 +158,25 @@ const repositoryHighlights = appearances.filter((item) => item.kind === 'Reposit
 	.trending-badge:hover {
 		border-color: var(--ink);
 	}
-	.trending-badge svg {
-		width: 112px;
-		height: 112px;
-		stroke-width: 1;
+	.badge-emblem {
+		display: grid;
+		place-items: center;
+		width: min(112px, 100%);
+		aspect-ratio: 5 / 4;
+	}
+	.badge-emblem :global(svg),
+	.badge-rank {
+		grid-area: 1 / 1;
+	}
+	.badge-emblem :global(svg) {
+		width: 100%;
+		height: 100%;
 	}
 	.badge-rank {
-		position: absolute;
-		top: 52px;
-		font-size: 36px;
+		font-size: 28px;
 		font-weight: 700;
-		line-height: 1.5;
-		letter-spacing: -0.06em;
+		font-variant-numeric: tabular-nums;
+		line-height: 1;
 	}
 	.badge-name {
 		font-size: 16px;
@@ -237,7 +237,7 @@ const repositoryHighlights = appearances.filter((item) => item.kind === 'Reposit
 		width: 56px;
 		height: 56px;
 	}
-	.repository-badge-mark svg.compact-wreath {
+	.repository-badge-mark :global(svg.compact-wreath) {
 		width: 72px;
 		height: 58px;
 	}
