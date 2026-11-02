@@ -4,7 +4,8 @@ import { trendingAppearances } from '~/data/github-trending';
 
 const dateFormat = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeZone: 'UTC' });
 const formatDate = (date: string) => dateFormat.format(new Date(`${date}T00:00:00Z`));
-const highlights = trendingAppearances.filter((item) => item.featured).reverse();
+const appearances = [...trendingAppearances].sort((a, b) => b.date.localeCompare(a.date));
+const highlights = appearances.filter((item) => item.featured);
 ---
 
 <section class="portfolio-section milestones" aria-labelledby="milestones-heading">
@@ -42,7 +43,7 @@ const highlights = trendingAppearances.filter((item) => item.featured).reverse()
 			<h4>Archived appearances</h4>
 			<ol class="appearance-list" role="list">
 				{
-					trendingAppearances.map((item) => (
+					appearances.map((item) => (
 						<li class="appearance">
 							<time datetime={item.date}>{formatDate(item.date)}</time>
 							<div class="appearance-detail">
