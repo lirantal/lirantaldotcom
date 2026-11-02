@@ -25,6 +25,7 @@ export const SPEAKING = {
 };
 
 export const FOOTER = {
+	media: { title: 'Media & interviews', link: '/media' },
 	columns: [
 		{
 			title: 'Open Source Projects',

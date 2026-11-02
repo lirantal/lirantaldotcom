@@ -300,6 +300,12 @@ export const researchPages = [
 		context: 'Co-authored preprints',
 		summary: 'Research on agent skills, the repeatability of AI security review, and vulnerability remediation.',
 	},
+	{
+		slug: 'reports',
+		label: 'Reports & chapters',
+		context: 'Industry research · 2019 & 2022',
+		summary: 'Contributions to HTTP Archive’s Web Almanac and Snyk’s State of Open Source Security report.',
+	},
 	studies[0],
 	{
 		slug: 'advisories',

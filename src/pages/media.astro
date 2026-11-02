@@ -1,0 +1,46 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import MediaList from '~/components/forma/MediaList.astro';
+import { mediaEntries, mediaSections } from '~/data/media';
+import { getCanonical } from '~/utils/permalinks';
+import '~/assets/styles/portfolio.css';
+const meta = {
+	title: 'Liran Tal — Media & interviews',
+	description:
+		'Selected media coverage, interviews, and references to Liran Tal’s security research and open-source work, including Dark Reading, Geektime, and Computing.',
+	canonical: getCanonical('/media'),
+};
+---
+
+<Layout {meta}>
+	<div class="portfolio pb-16">
+		<header class="page-intro">
+			<h1>Media & interviews</h1>
+			<p class="muted mt-6">
+				Reporting on my research, conversations about my work, and references from the developer community.
+			</p>
+			<nav aria-label="On this page" class="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+				{mediaSections.map((section) => <a href={`#${section.id}`}>{section.title}</a>)}
+			</nav>
+		</header>
+		{
+			mediaSections.map((section) => (
+				<section id={section.id} class="portfolio-section" aria-labelledby={`${section.id}-title`}>
+					<div class="section-heading">
+						<div>
+							<>
+								<h2 id={`${section.id}-title`}>{section.title}</h2>
+								<p class="muted mt-3">{section.description}</p>
+							</>
+						</div>
+					</div>
+					<MediaList entries={mediaEntries.filter((entry) => entry.section === section.id)} />
+				</section>
+			))
+		}
+		<p class="muted text-sm">
+			For articles I authored, explore <a href="/writing#elsewhere-title">writing published elsewhere</a>. Reports and
+			chapters are collected under <a href="/research/reports">Research</a>.
+		</p>
+	</div>
+</Layout>

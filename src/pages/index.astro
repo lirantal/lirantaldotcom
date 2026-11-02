@@ -11,6 +11,8 @@ import Books from '~/components/forma/Books.astro';
 import Community from '~/components/forma/Community.astro';
 import PostCards from '~/components/forma/PostCards.astro';
 import PaperList from '~/components/research/PaperList.astro';
+import MediaList from '~/components/forma/MediaList.astro';
+import { featuredMedia } from '~/data/media';
 import { publications } from '~/data/portfolio';
 import { getSpeaking } from '~/utils/speaking';
 import stage from '~/assets/images/speaking-hero.jpg';
@@ -49,9 +51,9 @@ const meta = {
 				vulnerability disclosures, patents, and research that became practical defenses.
 			</p>
 			<PaperList limit={2} /><div class="forma-section-actions">
-				<a href="/research/papers">All papers</a><a href="/research/advisories">CVEs & advisories</a><a
-					href="/research/lockfile-injection">Lockfile injection research</a
-				>
+				<a href="/research/papers">All papers</a><a href="/research/reports">Reports & chapters</a><a
+					href="/research/advisories">CVEs & advisories</a
+				><a href="/research/lockfile-injection">Lockfile injection research</a>
 			</div>
 		</div>
 	</section>
@@ -137,6 +139,16 @@ const meta = {
 				Practical guides built around real vulnerabilities, with code to break, fixes to understand, and techniques to
 				take back to your own projects.
 			</p><Books />
+		</div>
+	</section>
+	<section class="forma-section" id="media" aria-labelledby="media-title">
+		<div class="forma-wrap">
+			<header class="forma-section-heading">
+				<h2 id="media-title">Selected media & interviews</h2><a
+					class="forma-button forma-button-secondary"
+					href="/media">View all media</a>
+			</header>
+			<MediaList entries={featuredMedia} compact />
 		</div>
 	</section>
 	<section class="forma-section home-community"><div class="forma-wrap"><Community /></div></section>

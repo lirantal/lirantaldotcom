@@ -1,0 +1,23 @@
+---
+import Layout from '~/layouts/ResearchLayout.astro';
+import ReportList from '~/components/research/ReportList.astro';
+import { getCanonical } from '~/utils/permalinks';
+const meta = {
+	title: 'Reports & chapters by Liran Tal',
+	description:
+		'Contributions to HTTP Archive’s Web Almanac 2022 Security chapter and Snyk’s State of Open Source Security 2019 report, with publication credits and original sources.',
+	canonical: getCanonical('/research/reports'),
+};
+---
+
+<Layout {meta}>
+	<header class="research-intro">
+		<h1>Reports & chapters</h1>
+		<p class="lede">
+			Research contributions to industry reports and the Web Almanac, with the original publications and my role in
+			each.
+		</p>
+	</header>
+	<section aria-label="Reports and chapters" class="portfolio-section"><ReportList headingLevel="h2" /></section>
+	<p class="text-sm"><a href="/media">Explore media coverage & interviews</a></p>
+</Layout>

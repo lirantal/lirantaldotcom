@@ -1,0 +1,99 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { MediaEntry } from '~/data/media';
+interface Props {
+	entries: MediaEntry[];
+	compact?: boolean;
+}
+const { entries, compact = false } = Astro.props;
+const languageCodes = { English: 'en', Hebrew: 'he', French: 'fr' } as const;
+const dateLabel = (date: string) =>
+	new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
+		month: 'short',
+		day: 'numeric',
+		year: 'numeric',
+		timeZone: 'UTC',
+	});
+---
+
+<div class="media-list">
+	{
+		entries.map((entry) => (
+			<article>
+				<div class="media-context">
+					<p class="media-outlet">{entry.outlet}</p>
+					{entry.date && <time datetime={entry.date}>{dateLabel(entry.date)}</time>}
+					<p>
+						{entry.role} · {entry.language}
+					</p>
+				</div>
+				<div>
+					<h3>
+						<a href={entry.url} hreflang={languageCodes[entry.language]}>
+							{entry.title}{' '}
+							<Icon name="tabler:arrow-up-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" />
+						</a>
+					</h3>
+					{!compact && entry.originalTitle && (
+						<p
+							class="media-original"
+							lang={languageCodes[entry.language]}
+							dir={entry.language === 'Hebrew' ? 'rtl' : 'ltr'}
+						>
+							{entry.originalTitle}
+						</p>
+					)}
+					<p class="media-description">{entry.description}</p>
+					{entry.disclosure && <p class="media-disclosure">{entry.disclosure}</p>}
+				</div>
+			</article>
+		))
+	}
+</div>
+<style>
+	.media-list article {
+		display: grid;
+		grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+		gap: 2rem;
+		padding-block: 1.75rem;
+		border-top: 1px solid var(--rule);
+	}
+	.media-context {
+		color: var(--muted);
+		font-size: 0.8rem;
+		line-height: 1.7;
+	}
+	.media-context .media-outlet {
+		color: var(--ink);
+		font-size: 0.95rem;
+		font-weight: 650;
+		margin-bottom: 0.3rem;
+	}
+	.media-list h3 {
+		font-size: 1.25rem;
+	}
+	.media-list h3 a {
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+	.media-description {
+		color: var(--muted);
+		margin-top: 0.75rem;
+		max-width: 65ch;
+	}
+	.media-original,
+	.media-disclosure {
+		color: var(--muted);
+		font-size: 0.8rem;
+		margin-top: 0.75rem;
+	}
+	.media-original {
+		text-align: start;
+	}
+	@media (max-width: 639px) {
+		.media-list article {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 0.75rem;
+		}
+	}
+</style>
