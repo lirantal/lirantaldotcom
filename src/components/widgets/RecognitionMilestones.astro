@@ -49,7 +49,16 @@ const repositoryHighlights = appearances.filter((item) => item.kind === 'Reposit
 								aria-label={`View evidence: ${item.name}, ${item.rank === null ? 'featured in a weekly roundup' : `#${item.rank} trending repository, ${item.scope}`}, ${formatDate(item.date)}`}
 							>
 								<span class="repository-badge-mark" aria-hidden="true">
-									<Icon name={item.rank === null ? 'tabler:star' : 'tabler:laurel-wreath'} />
+									{item.rank === null ? (
+										<Icon name="tabler:star" />
+									) : (
+										<svg viewBox="0 0 80 64" fill="none" class="compact-wreath">
+											<g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+												<path d="M17 10C5 23 7 43 23 55M63 10c12 13 10 33-6 45" />
+												<path d="M14 17C6 17 3 10 6 5c7 1 11 6 8 12ZM10 29C2 27 1 21 3 17c7 2 10 6 7 12ZM12 42C4 41 2 35 3 31c8 0 12 5 9 11ZM21 53C13 57 8 52 7 48c7-4 13-2 14 5ZM66 17c8 0 11-7 8-12-7 1-11 6-8 12ZM70 29c8-2 9-8 7-12-7 2-10 6-7 12ZM68 42c8-1 10-7 9-11-8 0-12 5-9 11ZM59 53c8 4 13-1 14-5-7-4-13-2-14 5Z" />
+											</g>
+										</svg>
+									)}
 									{item.rank !== null && <span>#{item.rank}</span>}
 								</span>
 								<span class="repository-badge-copy">
@@ -214,10 +223,11 @@ const repositoryHighlights = appearances.filter((item) => item.kind === 'Reposit
 	.repository-badge-mark {
 		display: grid;
 		place-items: center;
-		flex: 0 0 56px;
-		font-size: 17px;
+		flex: 0 0 72px;
+		font-size: 15px;
 		font-weight: 700;
-		letter-spacing: -0.06em;
+		font-variant-numeric: tabular-nums;
+		line-height: 1;
 	}
 	.repository-badge-mark :global(svg),
 	.repository-badge-mark > span {
@@ -226,6 +236,10 @@ const repositoryHighlights = appearances.filter((item) => item.kind === 'Reposit
 	.repository-badge-mark :global(svg) {
 		width: 56px;
 		height: 56px;
+	}
+	.repository-badge-mark svg.compact-wreath {
+		width: 72px;
+		height: 58px;
 	}
 	.repository-badge-copy {
 		display: flex;
