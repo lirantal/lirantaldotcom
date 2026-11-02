@@ -2,6 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 import Changelog from '~/components/widgets/Changelog.astro';
 import RecognitionAwards from '~/components/widgets/RecognitionAwards.astro';
+import RecognitionMilestones from '~/components/widgets/RecognitionMilestones.astro';
 import '~/assets/styles/portfolio.css';
 import { getCanonical } from '~/utils/permalinks';
 
@@ -26,10 +27,12 @@ const meta = {
 			</p>
 			<nav aria-label="On this page" class="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm">
 				<a href="#awards-heading">Awards ↓</a>
-				<a href="#community-heading">Appreciation & milestones ↓</a>
+				<a href="#milestones-heading">Milestones ↓</a>
+				<a href="#community-heading">Appreciation ↓</a>
 			</nav>
 		</header>
 		<RecognitionAwards />
+		<RecognitionMilestones />
 		<Changelog />
 	</div>
 </Layout>
