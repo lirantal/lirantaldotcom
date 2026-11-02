@@ -120,6 +120,8 @@ The Recognitions page separates Awards, Milestones, and Appreciation, with in-pa
 
 The bottom of the feature’s introductory surface contains a horizontal row of compact repository badges beneath the introduction and developer badges. Keep them in newest-first order and allow wrapping on smaller screens. Each badge includes its project, language scope or roundup label, date, and evidence link; the roundup uses a star rather than a numeric rank.
 
+The introductory feature has no redundant anchor link to the immediately following history. On the homepage, place a short GitHub Trending link on a second line beneath the GitHub Star award. Derive its rank and year from the latest archived developer appearance across all languages, use the same laurel icon at the existing 20px recognition-icon size, and link to the Milestones section. Keep the other award links aligned with the first line.
+
 `src/data/github-trending.ts` owns dates, repository/developer identity, language filters, ranks, and evidence links. Badges derive from those records, with no third-party badge images, requests, or Trendshift profile links. Every rank is scoped to its captured daily list; the February 2020 roundup has no numeric rank and its date is the publication date. Keep immutable GitHub archive links, distinguish all-language from language-specific rankings, and describe 2018 as the earliest evidence found rather than a proven first appearance. Add future milestones only with dated evidence.
 
 ### Research hub and archives

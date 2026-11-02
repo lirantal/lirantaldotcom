@@ -1,15 +1,34 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { trendingAppearances } from '~/data/github-trending';
+
+const latestDeveloperAppearance = trendingAppearances
+	.filter((item) => item.kind === 'Developer' && item.scope === 'All languages')
+	.sort((a, b) => b.date.localeCompare(a.date))[0];
+const dateFormat = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'UTC' });
 ---
 
 <section class="refined-recognition forma-wrap" aria-label="Recognition">
 	<ul aria-label="Awards and recognition" role="list">
-		<li>
+		<li class="refined-github-recognition">
 			<a href="https://stars.github.com/alumni"
 				><Icon name="tabler:brand-github" aria-hidden="true" /><span
 					><span class="refined-awarded">Awarded</span> GitHub Star <span class="refined-alumni">(alumni)</span></span
 				></a
 			>
+			{
+				latestDeveloperAppearance && (
+					<a
+						href="/recognitions#milestones-heading"
+						aria-label={`Ranked #${latestDeveloperAppearance.rank} among GitHub Trending developers across all languages on ${dateFormat.format(new Date(`${latestDeveloperAppearance.date}T00:00:00Z`))}; view milestones`}
+					>
+						<Icon name="tabler:laurel-wreath" aria-hidden="true" />
+						<span>
+							#{latestDeveloperAppearance.rank} GitHub Trending · {latestDeveloperAppearance.date.slice(0, 4)}
+						</span>
+					</a>
+				)
+			}
 		</li>
 		<li>
 			<a href="/recognitions"

@@ -74,11 +74,16 @@
 .site-theme .forma-refined .refined-recognition ul {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: center;
+	align-items: flex-start;
 	gap: 8px 20px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
+}
+.site-theme .forma-refined .refined-github-recognition {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 }
 .site-theme .forma-refined .refined-recognition li > a {
 	display: inline-flex;
