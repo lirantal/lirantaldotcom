@@ -16,8 +16,8 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '24'
-      - name: Use the required npm version
-        run: npm install --global npm@11.10.0
+      - name: Set up pinned npm
+        run: bash "${{ github.workspace }}/.github/scripts/setup-npm.sh"
       - name: Install dependencies
         # This repository does not commit a package lockfile.
         run: npm install --no-package-lock
