@@ -8,6 +8,7 @@ import portrait from '~/assets/images/liran-tal-portrait.jpg';
 import { PROFILE } from '~/config.mjs';
 import { getCanonical } from '~/utils/permalinks';
 import '~/assets/styles/portfolio.css';
+import CopyBioButton from '~/components/portfolio/CopyBioButton.astro';
 
 // The downloadable text and displayed long bio share one source.
 const longBio = readFileSync('public/press/liran-tal-bio.txt', 'utf8')
@@ -33,16 +34,21 @@ const meta = {
 		</header>
 		<div class="grid md:grid-cols-[2fr_1fr] gap-10 md:gap-16 pb-14">
 			<div>
-				<section aria-labelledby="short-bio-title" class="surface mb-10">
+				<section aria-labelledby="short-bio-title" class="surface mb-10 short-bio">
+					<div class="short-bio-copy">
+						<CopyBioButton text={shortBio} label="Copy short bio" />
+					</div>
 					<p class="eyebrow">For introductions</p>
 					<h2 id="short-bio-title">Short bio</h2>
 					<p class="mt-5 select-text max-w-[65ch]">{shortBio}</p>
 				</section>
 				<section aria-labelledby="full-bio-title">
 					<div class="section-heading">
-						<h2 id="full-bio-title">Full bio</h2><a href="/press/liran-tal-bio.txt" download="liran-tal-bio.txt"
-							>Download bio (.txt) ↓</a
-						>
+						<h2 id="full-bio-title">Full bio</h2>
+						<div class="section-actions bio-actions">
+							<a href="/press/liran-tal-bio.txt" download="liran-tal-bio.txt">Download bio (.txt) ↓</a>
+							<CopyBioButton text={longBio.join('\n\n')} label="Copy full bio" />
+						</div>
 					</div>
 					{longBio.map((paragraph) => <p class="muted mb-5 select-text max-w-[65ch]">{paragraph}</p>)}
 				</section>
@@ -58,12 +64,12 @@ const meta = {
 					<h2 class="!text-xl">At a glance</h2>
 					<dl class="text-sm mt-4 space-y-4">
 						<div><dt class="font-semibold">Name</dt><dd class="muted">Liran Tal</dd></div>
+						<div><dt class="font-semibold">Title</dt><dd class="muted">Director of Developer Relations, Snyk</dd></div>
 						<div>
 							<dt class="font-semibold">Focus</dt><dd class="muted">
 								AI & agentic security, Node.js secure coding, software supply chain security
 							</dd>
 						</div>
-						<div><dt class="font-semibold">Languages</dt><dd class="muted">English and Hebrew</dd></div>
 					</dl>
 					<p class="mt-5 text-sm">
 						<a href={PROFILE.linkedinURL}
@@ -88,3 +94,30 @@ const meta = {
 		</div>
 	</div>
 </Layout>
+
+<style>
+	.short-bio {
+		position: relative;
+	}
+	.short-bio > .eyebrow {
+		padding-right: 3rem;
+	}
+	.short-bio-copy {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+	}
+	.portfolio .bio-actions {
+		align-items: center;
+		gap: 0.75rem;
+	}
+	@media (hover: hover) and (pointer: fine) {
+		.short-bio-copy {
+			opacity: 0;
+		}
+		.short-bio:hover .short-bio-copy,
+		.short-bio:focus-within .short-bio-copy {
+			opacity: 1;
+		}
+	}
+</style>

@@ -83,6 +83,8 @@ This grouping distinguishes navigating the site, learning about professional cre
 
 The full bio belongs in the [speaker press kit](../src/pages/speaking/press-kit.astro), not the homepage. Its display and download both read [liran-tal-bio.txt](../public/press/liran-tal-bio.txt); edit that source once. The short organizer bio lives in [portfolio.ts](../src/data/portfolio.ts). Use personal first-person wording on the homepage and third-person wording in reusable speaker bios.
 
+The press kit includes the CFP title “Director of Developer Relations, Snyk” in At a glance, with no Languages field. Copy controls use the same bio sources: the short-bio icon sits at the card's top right and appears on hover or keyboard focus, while touch screens keep it visible. The full-bio icon stays beside its download link. Both controls have accessible names, visible focus, and success or failure feedback; copied text contains only the bio, with paragraph breaks retained.
+
 ## Reuse these visual patterns
 
 | Pattern | Use and reasoning | Owner |

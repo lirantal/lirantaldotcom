@@ -1,0 +1,72 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+	text: string;
+	label: string;
+}
+
+const { text, label } = Astro.props;
+---
+
+<button type="button" class="copy-bio" data-copy-bio={text} aria-label={label} title={label}>
+	<Icon name="tabler:copy" class="copy-icon" width={18} height={18} aria-hidden="true" />
+	<Icon name="tabler:check" class="copied-icon" width={18} height={18} aria-hidden="true" />
+	<span class="sr-only" role="status" aria-live="polite"></span>
+</button>
+
+<script>
+	document.querySelectorAll<HTMLButtonElement>('[data-copy-bio]').forEach((button) => {
+		let resetTimer: ReturnType<typeof setTimeout>;
+		button.addEventListener('click', async () => {
+			const status = button.querySelector('[role="status"]');
+			if (!status) return;
+			clearTimeout(resetTimer);
+			try {
+				await navigator.clipboard.writeText(button.dataset.copyBio ?? '');
+				button.dataset.copied = 'true';
+				button.title = 'Copied!';
+				status.textContent = 'Bio copied to clipboard.';
+			} catch {
+				delete button.dataset.copied;
+				status.textContent = 'Could not copy. Please select and copy the bio text.';
+				button.title = 'Could not copy. Please select and copy the bio text.';
+			}
+			resetTimer = setTimeout(() => {
+				delete button.dataset.copied;
+				button.title = button.getAttribute('aria-label') ?? '';
+				status.textContent = '';
+			}, 3000);
+		});
+	});
+</script>
+
+<style>
+	.copy-bio {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		width: 44px;
+		height: 44px;
+		border: 1px solid var(--line);
+		border-radius: 6px;
+		background: var(--wash);
+		color: var(--link);
+		cursor: pointer;
+	}
+	.copy-bio:hover {
+		border-color: currentColor;
+	}
+	.copy-bio:focus-visible {
+		outline: 2px solid var(--link);
+		outline-offset: 3px;
+	}
+	.copied-icon,
+	.copy-bio[data-copied] .copy-icon {
+		display: none;
+	}
+	.copy-bio[data-copied] .copied-icon {
+		display: block;
+	}
+</style>
