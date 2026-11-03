@@ -12,15 +12,15 @@ const { text, label } = Astro.props;
 <button type="button" class="copy-bio" data-copy-bio={text} aria-label={label} title={label}>
 	<Icon name="tabler:copy" class="copy-icon" width={18} height={18} aria-hidden="true" />
 	<Icon name="tabler:check" class="copied-icon" width={18} height={18} aria-hidden="true" />
-	<span class="sr-only" role="status" aria-live="polite"></span>
 </button>
+<span class="sr-only" role="status" aria-live="polite" data-copy-bio-status></span>
 
 <script>
 	document.querySelectorAll<HTMLButtonElement>('[data-copy-bio]').forEach((button) => {
 		let resetTimer: ReturnType<typeof setTimeout>;
 		button.addEventListener('click', async () => {
-			const status = button.querySelector('[role="status"]');
-			if (!status) return;
+			const status = button.nextElementSibling;
+			if (!status?.matches('[data-copy-bio-status]')) return;
 			clearTimeout(resetTimer);
 			try {
 				await navigator.clipboard.writeText(button.dataset.copyBio ?? '');
