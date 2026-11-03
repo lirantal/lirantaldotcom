@@ -77,5 +77,6 @@
     "mermaid": "^11.14.0",
     "solid-js": "^1.9.10",
     "pagefind": "^1.5.2"
-  }
+  },
+  "packageManager": "npm@11.21.0"
 }
