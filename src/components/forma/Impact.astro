@@ -15,17 +15,17 @@ const dateLabel = (value: string) =>
 		<div>
 			<dt class="muted text-sm">npm downloads</dt><dd class="text-4xl font-bold tracking-tight mt-1">
 				{downloadLabel}
-			</dd><p class="text-xs muted mt-1">{downloads.packages.length} selected maintained packages</p>
+			</dd><dd class="text-xs muted mt-1">{downloads.packages.length} selected maintained packages</dd>
 		</div>
 		<div>
 			<dt class="muted text-sm">GitHub stars</dt><dd class="text-4xl font-bold tracking-tight mt-1">
 				{totalStars.toLocaleString('en-US')}
-			</dd><p class="text-xs muted mt-1">{github.repositories.length} featured repositories</p>
+			</dd><dd class="text-xs muted mt-1">{github.repositories.length} featured repositories</dd>
 		</div>
 		<div>
 			<dt class="muted text-sm">GitHub contributions</dt><dd class="text-4xl font-bold tracking-tight mt-1">
 				<a href={contributions.source}>{contributions.total.toLocaleString('en-US')}</a>
-			</dd><p class="text-xs muted mt-1">{contributions.year} · as of {dateLabel(contributions.asOf)}</p>
+			</dd><dd class="text-xs muted mt-1">{contributions.year} · as of {dateLabel(contributions.asOf)}</dd>
 		</div>
 	</dl>
 	<div class="impact-sources text-sm muted">

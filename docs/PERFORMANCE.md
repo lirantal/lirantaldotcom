@@ -61,6 +61,10 @@ Validation completed: production builds, 29 fast Node tests, eight Chromium beha
 
 Vercel preview and custom-domain checks remain separate from this local evidence. Record the PR deployment identity and any remaining network or deployment-protection limitations after publishing the branch. Cloudflare cache configuration and URL/device/country field breakdowns require access to that account; no dashboard settings were changed by these repository commits.
 
+## PageSpeed accessibility follow-up
+
+The November 5, 2026 [mobile PageSpeed sample](https://pagespeed.web.dev/analysis/https-lirantal-com/qmhzwma0eg?form_factor=mobile) reported 97 performance, 1.4s LCP, 0ms TBT, and zero CLS. Its definition-list and Agentic Browsing failures identified the same markup issue in `src/components/forma/Impact.astro`: supporting captions were paragraph siblings of the metric terms and definitions. Each metric group now has one `dt` followed by two `dd` elements (value and supporting context), preserving the caption classes and visual layout. Keep supporting text within a definition when editing these groups; a grouping `div` inside `dl` must itself contain valid term/definition groups. Axe's `definition-list` audit reproduced the failure before the fix and passed afterward at 390px, 1000px, and 1440px in light/dark modes; text, typography, and element geometry were unchanged. Re-run PageSpeed after deployment to confirm its accessibility and experimental Agentic Browsing results. The 450ms render-blocking estimate is a diagnostic opportunity, not a measured reduction to subtract from LCP; preserve the existing critical styles and font-loading policy unless further measurements justify a change.
+
 ## Validation workflow
 
 - Use Node 24+, install the declared dependencies, and run `ASTRO_TELEMETRY_DISABLED=1 npm run build`. Run the full production command so Pagefind, Markdown twins, and Vercel routing are generated.
