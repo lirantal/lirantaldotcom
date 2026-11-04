@@ -54,6 +54,8 @@ Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Pro
 
 ## Global configuration
 
+- **Performance:** read **[docs/PERFORMANCE.md](docs/PERFORMANCE.md)** before changing responsive images, Mermaid loading, or cache headers. It records measured baselines, optimization rationale, regression checks, and preview-versus-production limitations.
+
 - **`src/config.mjs`** — `SITE` (name, title, description, origin, base path), `BLOG` (paths, posts per page), `PROFILE` (social URLs), `FOOTER` (link columns). Prefer editing this for site-wide strings and footer links rather than hardcoding in components.
 - **`src/utils/permalinks.js`** — URL helpers: `getPermalink`, `getBlogPermalink`, `getHomePermalink`, `getCanonical`. Blog routes are derived from `BLOG.blog.pathname`, `BLOG.post.pathname`, `BLOG.tag.pathname`, `BLOG.category.pathname` (all under `config.mjs` → currently `blog`, `blog`, `tag`, `category`).
 - Pass existing route paths (`Astro.url.pathname`, `page.url.current`) directly to `getCanonical`. `getPermalink` slugifies its input and collapses path separators, so it must not wrap an existing route. Paginated archives should use the current page URL. Run `npm run check:links` after `npm run build` to check internal HTML references, canonical URLs, Markdown twins, and assets against the Vercel deploy bundle; CI runs both commands.
