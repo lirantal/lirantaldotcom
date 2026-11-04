@@ -164,6 +164,20 @@ async function configureVercelOutput(routes) {
 
 	const config = JSON.parse(await fs.readFile(configFile, 'utf8'));
 	const existingRoutes = Array.isArray(config.routes) ? config.routes : [];
+	// The adapter can place asset headers after the filesystem handler, where
+	// existing files bypass them. Apply a single policy before static serving.
+	const assetCacheSource = '^/_astro/(.*)$';
+	const adapterAssetRoute = existingRoutes.find((route) => route.src === assetCacheSource);
+	const assetCacheRoute = {
+		...adapterAssetRoute,
+		src: assetCacheSource,
+		headers: {
+			...adapterAssetRoute?.headers,
+			'cache-control': 'public, max-age=31536000, immutable',
+			'Cloudflare-CDN-Cache-Control': 'public, max-age=31536000, immutable',
+		},
+		continue: true,
+	};
 	const speakingRedirects = legacySpeakingRedirects(routes.map((route) => route.source));
 	const speakingRedirectSources = new Set(speakingRedirects.map((route) => route.src));
 	const agentViewRoute = {
@@ -227,6 +241,7 @@ async function configureVercelOutput(routes) {
 	];
 	const routesWithoutOldMarkdownNegotiation = existingRoutes.filter(
 		(route) =>
+			route.src !== assetCacheSource &&
 			!speakingRedirectSources.has(route.src) &&
 			!(route.dest?.startsWith('/_markdown/') && route.headers?.['x-markdown-tokens']) &&
 			!(route.dest === '/_errors/api-not-found.json') &&
@@ -241,6 +256,7 @@ async function configureVercelOutput(routes) {
 		filesystemRouteIndex === -1 ? routesWithoutOldMarkdownNegotiation.length : filesystemRouteIndex + 1;
 
 	config.routes = [
+		assetCacheRoute,
 		...routesWithoutOldMarkdownNegotiation.slice(0, insertAt),
 		...speakingRedirects,
 		agentViewRoute,

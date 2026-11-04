@@ -36,6 +36,31 @@ The previous two candidates (640 and 1200px), combined with a mobile `100vw` hin
 
 The browser suite decodes the actual selected image and checks pixel widths at 390px/1×, 390px/1.75×, 412px/1.75×, 1000px/1×, and 1440px/1×, as well as the rendered aspect ratio and priority. Do not infer selected image resolution from `naturalWidth` alone: browsers can report a density-corrected value. Inspect `currentSrc`, its decoded bitmap dimensions, and transferred bytes.
 
+## 4. Fingerprinted asset caching
+
+`vercel.json` explicitly sets `Cache-Control` and `Cloudflare-CDN-Cache-Control` to `public, max-age=31536000, immutable` only for `/_astro/`. Astro/Vite fingerprints files in that directory, so changed content gets a new URL. The adapter generates the same browser policy, but inspection of the real build found it **after** `{ handle: 'filesystem' }`, where existing static files can bypass it. `scripts/generate-markdown-pages.mjs` now moves that policy before filesystem handling, adds Cloudflare's dedicated edge directive, and removes duplicate asset policies on repeat runs. The root configuration records the same intended contract. Keep plain public images, Pagefind entry points, HTML, JSON APIs, agent mode, Markdown twins, and discovery files outside this rule. Never use a blanket “Cache Everything” rule for HTML: the same URL can negotiate HTML or Markdown, and `/?mode=agent` has separate semantics.
+
+The production baseline returned a four-hour browser cache policy for sampled assets even though the adapter generated a year-long immutable rule. The unreachable generated rule is a concrete ordering defect; it does not establish Cloudflare’s effective dashboard configuration. Cloudflare Browser Cache TTL and Cache Rules may override origin headers, and a dedicated CDN header does not override every dashboard rule. After deploying, compare the exact hashed asset on Vercel preview versus the custom domain. Inspect `Cache-Control`, `Age`, `CF-Cache-Status`, and `x-vercel-cache` over repeated requests. If the custom domain still returns four hours, inspect Cloudflare's matching cache rules and Browser Cache TTL; prefer respecting the origin for `/_astro/*`. Verify an actual MISS-to-HIT transition where possible; repeated proxy-served headers alone do not establish independent edge-cache observations.
+
+The fast regression suite protects the narrow cache scope and confirms the Markdown postbuild preserves the adapter cache route before filesystem handling, keeps negotiation separate, and remains idempotent. The optional agent-query fixture now copies its redirect helper, fixing a pre-existing test-fixture import failure so those routing checks can run as well. GitHub Actions runs the Chromium performance behavior suite after the production build.
+
+## Implementation validation: November 5, 2026
+
+Compared baseline commit `8f2238b` and the optimized production builds using the same installed dependencies, Chromium, mobile Lighthouse defaults, and local static server implementation. Medians of three alternating baseline/optimized runs:
+
+| Page | Score before → after | LCP before → after | TBT before → after | Initial transfer before → after |
+| --- | --- | --- | --- | --- |
+| Homepage | 90 → 94 | 3.30 → 2.85 s | 0 → 0 ms | 439 → 361 KiB |
+| Second Brain article | 86 → 95 | 2.70 → 2.70 s | 357 → 0 ms | 1,124 → 331 KiB |
+
+CLS was 0 in every comparison. Local static serving does not gzip text or emulate CDN latency, so these scores are useful for comparing the two revisions, not as production performance predictions. The Mermaid savings apply to initial navigation: its code and rendering still incur a cost if the reader scrolls to a diagram. No claim is made that this resolves Cloudflare's historical field LCP.
+
+The browser selected the new 440px AVIF portrait at 28,533 bytes versus the production baseline's 109,476-byte WebP, a 74% reduction. A 3× mobile viewport selected 660px at 52,932 bytes. Both themes and the 280px intermediate/320px desktop slots decoded correctly without overflow. Cover selection checks verified 360/640/768/960px choices at the tested viewport/density combinations while preserving eager loading and the 2:1 displayed crop.
+
+Validation completed: production builds, 29 fast Node tests, eight Chromium behavior tests, lint, internal links across 956 pages/7,379 deployed files, OG/Twitter metadata across 956 pages/708 PNGs, and the Impeccable source detector (no findings). Rendered portrait and diagram captures were inspected in light/dark modes. The real generated Vercel config now has exactly one asset policy before filesystem handling, and repeat postbuilds preserve it. The browser suite runs in CI; `npm test` now includes the previously separate Node suites.
+
+Vercel preview and custom-domain checks remain separate from this local evidence. Record the PR deployment identity and any remaining network or deployment-protection limitations after publishing the branch. Cloudflare cache configuration and URL/device/country field breakdowns require access to that account; no dashboard settings were changed by these repository commits.
+
 ## Validation workflow
 
 - Use Node 24+, install the declared dependencies, and run `ASTRO_TELEMETRY_DISABLED=1 npm run build`. Run the full production command so Pagefind, Markdown twins, and Vercel routing are generated.
