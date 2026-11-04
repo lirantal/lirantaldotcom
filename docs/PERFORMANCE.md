@@ -28,6 +28,14 @@ Source fences remain in place until SVG generation succeeds. Rendering uses an i
 
 Do not restore an eager import, preload the Mermaid bundle, render every diagram at DOMContentLoaded, or reset all diagrams to raw source when changing themes. Verify the deferred download, scrolling, theme changes, failure fallback, and observer-less behavior using the browser regression suite.
 
+## 3. Article cover sizes
+
+`src/components/blog/SinglePost.astro` offers 360, 480, 640, 768, 960, and 1200px candidates through the existing AVIF/WebP Picture wrapper. The `sizes` attribute describes the actual article width: viewport minus 40px up to 760px, viewport minus 56px until the 960px article cap is reached at 1016px, and 960px above that. Keep these hints aligned with `.forma-wrap` and `.forma-article` if the layout changes.
+
+The previous two candidates (640 and 1200px), combined with a mobile `100vw` hint, caused the Second Brain mobile Lighthouse run to select 1200px for a 372px slot. Lighthouse estimated 24 KiB of avoidable transfer. Intermediate widths reduce overfetch without reducing the maximum existing resolution or changing compression, crop, layout, alt text, or loading priority. This is scoped to article covers; other Picture consumers retain their own sizing policies. Remote string images remain subject to the existing plain-image fallback.
+
+The browser suite decodes the actual selected image and checks pixel widths at 390px/1×, 390px/1.75×, 412px/1.75×, 1000px/1×, and 1440px/1×, as well as the rendered aspect ratio and priority. Do not infer selected image resolution from `naturalWidth` alone: browsers can report a density-corrected value. Inspect `currentSrc`, its decoded bitmap dimensions, and transferred bytes.
+
 ## Validation workflow
 
 - Use Node 24+, install the declared dependencies, and run `ASTRO_TELEMETRY_DISABLED=1 npm run build`. Run the full production command so Pagefind, Markdown twins, and Vercel routing are generated.

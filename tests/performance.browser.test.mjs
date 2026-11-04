@@ -104,6 +104,42 @@ test('ordinary articles never load Mermaid', async (t) => {
 	assert.equal(requests.length, 0);
 });
 
+test('article covers choose a fitting source while preserving eager loading and layout', async (t) => {
+	for (const [width, dpr, expected] of [
+		[390, 1, 360],
+		[390, 1.75, 640],
+		[412, 1.75, 768],
+		[1000, 1, 960],
+		[1440, 1, 960],
+	]) {
+		const page = await pageFor(t, { viewport: { width, height: 900 }, deviceScaleFactor: dpr });
+		await page.goto(base + plainPath);
+		const cover = page.locator('.forma-article-cover');
+		await cover.evaluate((img) => img.decode());
+		const data = await cover.evaluate(async (img) => {
+			const bitmap = await window.createImageBitmap(await (await fetch(img.currentSrc)).blob());
+			const selectedWidth = bitmap.width;
+			bitmap.close();
+			return {
+				selectedWidth,
+				width: img.getBoundingClientRect().width,
+				height: img.getBoundingClientRect().height,
+				loading: img.loading,
+				priority: img.fetchPriority,
+				sizes: img.sizes,
+				sourceSizes: [...img.closest('picture').querySelectorAll('source')].map((source) => source.sizes),
+			};
+		});
+		assert.equal(data.selectedWidth, expected);
+		assert.equal(data.width, Math.min(960, width - (width <= 760 ? 40 : width <= 1050 ? 56 : 80)));
+		assert.equal(data.height, data.width / 2);
+		assert.equal(data.loading, 'eager');
+		assert.equal(data.priority, 'high');
+		assert.ok(data.sourceSizes.every((sizes) => sizes === data.sizes));
+		await page.close();
+	}
+});
+
 test('a failed Mermaid download preserves readable diagram source', async (t) => {
 	const page = await pageFor(t);
 	await page.route('**/mermaid.core*.js', (route) => route.abort());
