@@ -1,0 +1,90 @@
+---
+import ranks from '~/data/gitranks.json';
+import { dateLabel } from '~/data/open-source';
+const number = (value: number) => value.toLocaleString('en-US');
+---
+
+<div class="oss-rankings">
+	{
+		ranks.rankings.map((rank) => (
+			<article>
+				<h3>{rank.label}</h3>
+				<p class="oss-rank-value">
+					<a href={ranks.source}>
+						#{number(rank.global.position)} <span>worldwide</span>
+					</a>
+				</p>
+				<p class="oss-rank-population">
+					of {number(rank.global.population)} ranked profiles · {rank.global.percentileLabel.toLowerCase()}
+				</p>
+				<p class="oss-rank-country">
+					<a href={`https://gitranks.com/country/Israel/${rank.id}/1`}>#{number(rank.israel.position)} in Israel</a>{' '}
+					<span>of {number(rank.israel.population)}</span>
+				</p>
+				<p class="oss-rank-score">
+					<strong>{number(rank.score)}</strong>
+					{` ${rank.scoreLabel}${'repositories' in rank ? ` across ${rank.repositories} repositories` : ''}.`}
+				</p>
+			</article>
+		))
+	}
+</div>
+<p class="oss-caption">
+	GitRanks snapshot supplied by Liran Tal on {dateLabel(ranks.capturedAt)}; the profile reports an update on {
+		dateLabel(ranks.profileUpdatedAt)
+	}. Positions and ranking populations change. <a href={ranks.source}>View the source profile</a>.
+</p>
+
+<style>
+	.oss-rankings {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 32px;
+	}
+	.oss-rankings article {
+		border-top: 1px solid var(--rule);
+		padding-top: 24px;
+	}
+	.oss-rankings .oss-rank-value {
+		margin-top: 16px;
+		font-size: 34px;
+		font-weight: 650;
+		line-height: 1.3;
+		font-variant-numeric: tabular-nums;
+		letter-spacing: -0.035em;
+	}
+	.oss-rankings .oss-rank-value span {
+		display: block;
+		font-size: 13px;
+		font-weight: 400;
+		letter-spacing: 0;
+		margin-top: 6px;
+	}
+	.oss-rankings .oss-rank-population {
+		color: var(--muted);
+		font-size: 12px;
+		margin-top: 10px;
+	}
+	.oss-rankings .oss-rank-country {
+		font-size: 14px;
+		margin-top: 20px;
+	}
+	.oss-rankings .oss-rank-country span {
+		display: block;
+		color: var(--muted);
+		font-size: 12px;
+	}
+	.oss-rankings .oss-rank-score {
+		font-size: 14px;
+		color: var(--muted);
+		margin-top: 20px;
+	}
+	.oss-rankings strong {
+		color: var(--ink);
+	}
+	@media (max-width: 760px) {
+		.oss-rankings {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+</style>

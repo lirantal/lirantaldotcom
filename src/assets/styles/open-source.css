@@ -1,0 +1,356 @@
+/* Extend Forma's shared tokens; the open-source area has no separate palette. */
+.oss-nav {
+	border-bottom: 1px solid var(--rule);
+}
+.oss-nav > div {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 24px;
+}
+.oss-nav a {
+	padding-block: 14px;
+	border-bottom: 2px solid transparent;
+	font-size: 13px;
+	text-decoration: none;
+}
+.oss-nav a[aria-current] {
+	border-color: var(--ink);
+	font-weight: 600;
+}
+.oss-nav a:hover {
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+.oss-area {
+	padding-bottom: 64px;
+	overflow-wrap: anywhere;
+}
+.oss-area a:not(.forma-button),
+.oss-invitation p a {
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+.oss-intro {
+	padding-block: 64px 40px;
+}
+.oss-intro h1 {
+	max-width: 19ch;
+}
+.oss-intro > p {
+	margin-top: 24px;
+	font-size: 18px;
+	color: var(--muted);
+	max-width: 66ch;
+}
+.oss-ranking-note {
+	margin-top: 32px;
+	padding-left: 24px;
+	border-left: 1px solid var(--rule);
+}
+.oss-ranking-note > p:first-child {
+	font-size: 16px;
+	max-width: 75ch;
+}
+.oss-language-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-variant-numeric: tabular-nums;
+	text-align: left;
+}
+.oss-language-table th,
+.oss-language-table td {
+	border-bottom: 1px solid var(--rule);
+	padding: 18px 12px;
+	vertical-align: top;
+}
+.oss-language-table th:first-child {
+	padding-left: 0;
+}
+.oss-language-table thead th {
+	color: var(--muted);
+	font-size: 13px;
+	font-weight: 500;
+}
+.oss-language-table td span {
+	display: block;
+	font-size: 12px;
+	color: var(--muted);
+	margin-top: 4px;
+}
+.oss-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px 24px;
+	margin-top: 28px;
+}
+.oss-actions > a:not(.forma-button) {
+	font-weight: 600;
+	font-size: 14px;
+}
+.oss-section {
+	padding-top: 48px;
+	scroll-margin-top: 96px;
+}
+.oss-section + .oss-section {
+	margin-top: 20px;
+}
+.oss-section-heading {
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 16px 32px;
+	margin-bottom: 24px;
+}
+.oss-section-heading > a {
+	font-size: 14px;
+	font-weight: 600;
+}
+.oss-section > p {
+	color: var(--muted);
+	margin-bottom: 24px;
+}
+.oss-stats {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 24px;
+	border-block: 1px solid var(--rule);
+	padding-block: 24px;
+	font-variant-numeric: tabular-nums;
+}
+.oss-stats dt {
+	color: var(--muted);
+	font-size: 13px;
+	margin-bottom: 8px;
+}
+.oss-stats dd {
+	font-size: 36px;
+	line-height: 1.2;
+	font-weight: 650;
+	letter-spacing: -0.035em;
+}
+.oss-caption {
+	color: var(--muted);
+	font-size: 12px;
+	margin-top: 16px;
+	max-width: 85ch;
+}
+.oss-intro > .oss-caption {
+	font-size: 13px;
+}
+.oss-feature {
+	display: grid;
+	grid-template-columns: 1.6fr 1fr;
+	gap: 48px;
+}
+.oss-feature h2 {
+	max-width: 22ch;
+}
+.oss-feature p {
+	color: var(--muted);
+	margin-top: 18px;
+}
+.oss-feature aside {
+	border-left: 1px solid var(--rule);
+	padding-left: 32px;
+	align-self: center;
+}
+.oss-feature aside p {
+	font-size: 13px;
+}
+.oss-feature aside > a {
+	font-weight: 600;
+}
+.oss-explore {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 32px;
+}
+.oss-explore article {
+	border-top: 1px solid var(--rule);
+	padding-top: 24px;
+}
+.oss-explore h3 {
+	font-size: 20px;
+}
+.oss-explore p {
+	color: var(--muted);
+	margin-top: 14px;
+	font-size: 14px;
+}
+.oss-project {
+	display: grid;
+	grid-template-columns: 1fr 1.7fr;
+	gap: 24px 48px;
+	border-top: 1px solid var(--rule);
+	padding-block: 28px;
+	scroll-margin-top: 96px;
+}
+.oss-project h3 {
+	font-size: 20px;
+}
+.oss-project p {
+	color: var(--muted);
+	margin-top: 10px;
+}
+.oss-project .oss-role {
+	font-size: 13px;
+}
+.oss-project .oss-project-kind {
+	font-size: 12px;
+	margin-top: 10px;
+}
+.oss-source-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px 24px;
+	margin-top: 18px;
+	font-size: 13px;
+}
+.oss-source-links a {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+.oss-source-links svg {
+	width: 16px;
+	height: 16px;
+}
+.oss-story {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+	gap: 24px 48px;
+	border-top: 1px solid var(--rule);
+	padding-block: 36px;
+	scroll-margin-top: 96px;
+}
+.site-theme .forma .oss-story h2 {
+	font-size: 24px;
+}
+.oss-story header p {
+	color: var(--muted);
+	font-size: 13px;
+	margin-top: 12px;
+}
+.oss-story p + p {
+	margin-top: 16px;
+}
+.oss-story .oss-context {
+	font-size: 13px;
+	color: var(--muted);
+}
+.oss-story ul {
+	display: grid;
+	gap: 10px;
+	margin-top: 20px;
+	font-size: 14px;
+}
+.oss-story .oss-repo-count {
+	font-variant-numeric: tabular-nums;
+	font-weight: 600;
+	color: var(--ink);
+}
+.oss-jump-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 24px;
+	font-size: 14px;
+	margin-top: 24px;
+}
+.oss-measures {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 32px 48px;
+}
+.oss-measures article {
+	border-top: 1px solid var(--rule);
+	padding-top: 24px;
+}
+.oss-measures h3 {
+	font-size: 20px;
+}
+.oss-measures p {
+	margin-top: 14px;
+	color: var(--muted);
+}
+.oss-invitation {
+	padding-block: 48px;
+	background: var(--surface);
+	border-top: 1px solid var(--rule);
+}
+.oss-invitation > div {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 24px 48px;
+}
+.site-theme .forma .oss-invitation h2 {
+	font-size: 28px;
+}
+.oss-invitation p {
+	margin-top: 12px;
+}
+.oss-dashboard .impact-metrics {
+	text-align: center;
+	font-variant-numeric: tabular-nums;
+}
+@media (max-width: 760px) {
+	.oss-nav > div {
+		column-gap: 20px;
+	}
+	.oss-nav a {
+		padding-block: 12px;
+	}
+	.oss-intro {
+		padding-block: 40px 32px;
+	}
+	.oss-intro > p {
+		font-size: 16px;
+	}
+	.oss-feature,
+	.oss-project,
+	.oss-story {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 20px;
+	}
+	.oss-feature aside {
+		border-left: 0;
+		border-top: 1px solid var(--rule);
+		padding: 20px 0 0;
+	}
+	.oss-explore,
+	.oss-measures {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.oss-section {
+		padding-top: 36px;
+	}
+	.oss-stats {
+		gap: 24px 16px;
+	}
+	.oss-stats dd {
+		font-size: 28px;
+	}
+	.site-theme .forma .oss-invitation h2 {
+		font-size: 24px;
+	}
+}
+@media (max-width: 480px) {
+	.oss-stats {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.oss-stats > div {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 20px;
+	}
+	.oss-stats dt {
+		margin-bottom: 0;
+	}
+	.oss-dashboard .impact-metrics {
+		row-gap: 48px;
+	}
+}

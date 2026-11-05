@@ -1,0 +1,53 @@
+---
+import { openSourceHighlights } from '~/data/open-source';
+interface Props {
+	entries?: typeof openSourceHighlights;
+}
+const { entries = openSourceHighlights } = Astro.props;
+---
+
+<div class="oss-highlights">
+	{
+		entries.map((highlight) => (
+			<article>
+				<h3>
+					<a href={highlight.href}>{highlight.title}</a>
+				</h3>
+				<p>{highlight.text}</p>
+			</article>
+		))
+	}
+</div>
+
+<style>
+	.oss-highlights {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 32px;
+	}
+	.oss-highlights article {
+		padding-block: 12px;
+	}
+	.oss-highlights h3 {
+		font-size: 18px;
+	}
+	.oss-highlights a {
+		text-decoration: underline;
+		text-underline-offset: 4px;
+	}
+	.oss-highlights p {
+		margin-top: 12px;
+		font-size: 14px;
+		color: var(--muted);
+		max-width: 38ch;
+	}
+	@media (max-width: 760px) {
+		.oss-highlights {
+			grid-template-columns: 1fr;
+			gap: 12px;
+		}
+		.oss-highlights p {
+			max-width: 65ch;
+		}
+	}
+</style>

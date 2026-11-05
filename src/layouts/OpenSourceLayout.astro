@@ -1,0 +1,36 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import { openSourcePages } from '~/data/open-source';
+import '~/assets/styles/open-source.css';
+
+const { meta } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '');
+---
+
+<PageLayout {meta}>
+	<nav class="oss-nav" aria-label="Open source">
+		<div class="forma-wrap">
+			{
+				openSourcePages.map((page) => (
+					<a href={page.href} aria-current={path === page.href ? 'page' : undefined}>
+						{page.label}
+					</a>
+				))
+			}
+		</div>
+	</nav>
+	<div class="forma-wrap oss-area"><slot /></div>
+	<aside class="oss-invitation" aria-labelledby="oss-invitation-title">
+		<div class="forma-wrap">
+			<div>
+				<h2 id="oss-invitation-title">There’s room to contribute.</h2>
+				<p class="muted">Try a tool, improve a guide, report a bug, or help someone get started.</p>
+			</div>
+			<a
+				class="forma-button"
+				href={path === '/open-source/projects' ? '/open-source/contributions' : '/open-source/projects'}
+				>{path === '/open-source/projects' ? 'See upstream contributions' : 'Find a project'}</a
+			>
+		</div>
+	</aside>
+</PageLayout>

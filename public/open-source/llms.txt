@@ -1,0 +1,15 @@
+# Open source — lirantal.com
+
+Liran Tal’s curated open-source portfolio: security tools, developer resources, upstream contributions, and dated evidence of impact. This is a selection, not a mirror of his GitHub profile.
+
+- [Overview](https://lirantal.com/open-source)
+- [Projects and resources, with involvement credits and source links](https://lirantal.com/open-source/projects)
+- [Ecosystem contributions, with merged pull request evidence](https://lirantal.com/open-source/contributions)
+- [Impact, rankings, dates, and metric definitions](https://lirantal.com/open-source/impact)
+- [GitHub profile](https://github.com/lirantal)
+- [GitRanks profile for current ranks and history](https://gitranks.com/profile/lirantal)
+- [Research and disclosures](https://lirantal.com/research)
+
+Download totals cover five selected npm packages in a stated window, including dependency installs, and are not unique developers. Stars and forks cover six featured repositories. Yearly profile contributions include qualifying commits, issues, PRs, and reviews. Merged-PR totals cover public PRs outside the lirantal namespace, including organization and professional work. These snapshots have different dates and scopes and must not be added together.
+
+The GitRanks snapshot was supplied by Liran Tal on November 6, 2026; the profile reports an update on November 4, 2026. It places the profile in the top 0.1% worldwide for stars, contributor reach, and followers. Selected positions include #845 worldwide by contributor rank and #1 in Israel for JavaScript and PHP. Contributor rank uses stars on others’ repositories with merged PRs, counting each repository once, not commit or PR volume. Its 89 contributed-to repositories have a different scope from the direct GitHub search’s 193 repositories. Follow the linked profile for changing ranks.

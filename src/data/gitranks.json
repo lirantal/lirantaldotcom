@@ -1,0 +1,55 @@
+{
+  "profileUpdatedAt": "2026-11-04",
+  "capturedAt": "2026-11-06",
+  "source": "https://gitranks.com/profile/lirantal",
+  "methodology": "https://gitranks.com/methodology",
+  "provenance": "Profile and ranking text supplied by Liran Tal on November 6, 2026; direct profile retrieval was unavailable. The profile excerpt reports a November 4, 2026 update. Ranks are a captured snapshot, not live positions.",
+  "rankings": [
+    {
+      "id": "stars",
+      "label": "Stars rank",
+      "global": { "position": 1197, "population": 1708811, "percentileLabel": "Top 0.1%", "tier": "Legend 3" },
+      "israel": { "position": 6, "population": 3132, "percentileLabel": "Top 0.5%", "tier": "Legend 3" },
+      "score": 20671,
+      "scoreLabel": "stars on owned repositories",
+      "repositories": 144
+    },
+    {
+      "id": "contributions",
+      "label": "Contributor rank",
+      "global": { "position": 845, "population": 3371962, "percentileLabel": "Top 0.1%", "tier": "Legend 4" },
+      "israel": { "position": 10, "population": 5940, "percentileLabel": "Top 0.5%", "tier": "Legend 3" },
+      "score": 1104888,
+      "scoreLabel": "stars on others’ repositories with merged PRs",
+      "repositories": 89
+    },
+    {
+      "id": "followers",
+      "label": "Followers rank",
+      "global": { "position": 2404, "population": 2572879, "percentileLabel": "Top 0.1%", "tier": "Legend 3" },
+      "israel": { "position": 4, "population": 4328, "percentileLabel": "Top 0.1%", "tier": "Legend 3" },
+      "score": 2588,
+      "scoreLabel": "followers"
+    }
+  ],
+  "languages": [
+    {
+      "name": "JavaScript",
+      "score": 13773,
+      "global": { "position": 238, "populationLabel": "757.7K", "percentileLabel": "Top 0.1%", "tier": "Legend 4" },
+      "israel": { "position": 1, "populationLabel": "2.7K", "percentileLabel": "Top 0.1%", "tier": "Legend 5" }
+    },
+    {
+      "name": "PHP",
+      "score": 909,
+      "global": { "position": 708, "populationLabel": "115.2K", "percentileLabel": "Top 1%", "tier": "Legend 1" },
+      "israel": { "position": 1, "populationLabel": "215", "percentileLabel": "Top 0.5%", "tier": "Legend 5" }
+    },
+    {
+      "name": "TypeScript",
+      "score": 443,
+      "global": { "position": 6072, "populationLabel": "301.8K", "percentileLabel": "Top 3%", "tier": "Elite 3" },
+      "israel": { "position": 26, "populationLabel": "1.3K", "percentileLabel": "Top 2%", "tier": "Elite 3" }
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+---
+import Layout from '~/layouts/OpenSourceLayout.astro';
+import impact from '~/data/open-source-impact.json';
+import { contributionStories, contributionCount, dateLabel } from '~/data/open-source';
+import { getCanonical } from '~/utils/permalinks';
+const meta = {
+	title: 'Open-source ecosystem contributions — Liran Tal',
+	description:
+		'Selected upstream contributions by Liran Tal to Node.js core, the security working group, OWASP, CNCF, Fastify, Yarn, Pact, and AI tooling.',
+	canonical: getCanonical('/open-source/contributions'),
+};
+---
+
+<Layout {meta}>
+	<section class="oss-intro" aria-labelledby="contributions-title">
+		<h1 id="contributions-title">Contributing beyond my own projects.</h1>
+		<p>
+			A fix in a runtime, a working example, a disclosure process, a better guide. These are selected contributions to
+			projects and communities I rely on, with evidence of what actually changed.
+		</p>
+		<p class="oss-caption">
+			The {dateLabel(impact.asOf)} GitHub snapshot records {impact.mergedPullRequests.total} merged PRs across {
+				impact.mergedPullRequests.repositories
+			} repositories outside my namespace, including professional work. The stories below are a curated selection. <a
+				href="/open-source/impact#sources">How these counts were collected</a
+			>
+		</p>
+		<nav class="oss-jump-links" aria-label="Contribution stories">
+			{contributionStories.map((story) => <a href={`#${story.id}`}>{story.repository}</a>)}
+		</nav>
+	</section>
+	{
+		contributionStories.map((story) => (
+			<article class="oss-story" id={story.id} aria-labelledby={`${story.id}-title`}>
+				<header>
+					<>
+						<h2 id={`${story.id}-title`}>{story.title}</h2>
+						<p>{story.role}</p>
+					</>
+					<p class="oss-repo-count">
+						{contributionCount(story.repository)} merged PRs in {story.repository}
+					</p>
+				</header>
+				<div>
+					<>
+						<p>{story.description}</p>
+						<p class="oss-context">{story.context}</p>
+					</>
+					<ul>
+						{story.sources.map((source) => (
+							<li>
+								<a href={source.url}>{source.label}</a>
+							</li>
+						))}
+					</ul>
+				</div>
+			</article>
+		))
+	}
+	<p class="oss-caption">
+		Repository counts are as of {dateLabel(impact.asOf)} and cover all matching merged PRs in each named repository. Where
+		a story mentions several projects, its count applies only to the named repository.
+	</p>
+</Layout>

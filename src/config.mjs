@@ -9,7 +9,7 @@ export const PROFILE = {
 export const NAVIGATION = [
 	{ href: '/writing', label: 'Blog' },
 	{ href: '/research', label: 'Research' },
-	{ href: '/#open-source', label: 'Open source' },
+	{ href: '/open-source', label: 'Open source' },
 	{ href: '/#books', label: 'Books' },
 	{ href: '/speaking', label: 'Speaking' },
 	{ href: '/hire-me', label: 'Hire me' },
@@ -30,6 +30,10 @@ export const FOOTER = {
 		{
 			title: 'Open Source Projects',
 			items: [
+				{
+					title: 'Open-source overview',
+					link: '/open-source',
+				},
 				{
 					title: 'dockly',
 					link: 'https://github.com/lirantal/dockly',
