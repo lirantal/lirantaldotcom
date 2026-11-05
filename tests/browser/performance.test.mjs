@@ -60,6 +60,44 @@ test('portrait preserves responsive geometry, priority, and themes', async (t) =
 	}
 });
 
+test('homepage and writing page register one usable WebMCP search without eagerly fetching posts', async (t) => {
+	for (const path of ['/', '/writing']) {
+		const page = await pageFor(t);
+		const indexRequests = [];
+		page.on('request', (request) => {
+			if (new URL(request.url()).pathname === '/api/posts.json') indexRequests.push(request.url());
+		});
+		await page.addInitScript(() => {
+			window.__blogSearchTools = [];
+			Object.defineProperty(document, 'modelContext', {
+				configurable: true,
+				value: {
+					registerTool: (tool) => {
+						window.__blogSearchTools.push(tool);
+					},
+				},
+			});
+		});
+		assert.equal((await page.goto(base + path)).status(), 200);
+		await page.waitForFunction(() => window.__blogSearchTools.length === 1);
+		assert.equal(indexRequests.length, 0);
+		const search = await page.evaluate(async () => {
+			const tool = window.__blogSearchTools[0];
+			return { name: tool.name, result: await tool.execute({ query: 'security' }) };
+		});
+		assert.equal(search.name, 'search_blog_posts');
+		assert.ok(search.result.results.length > 0);
+		assert.equal(indexRequests.length, 1);
+		if (path === '/writing') {
+			await page.locator('#blog-search-query').fill('security');
+			await page.locator('#blog-agent-search button').click();
+			await page.locator('#blog-search-results li').first().waitFor();
+			assert.equal(indexRequests.length, 1, 'The form reuses the index fetched by the tool');
+		}
+		await page.close();
+	}
+});
+
 test('Mermaid stays off the initial load and renders near the viewport in both themes', async (t) => {
 	const page = await pageFor(t);
 	const requests = mermaidRequests(page);

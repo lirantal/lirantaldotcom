@@ -10,6 +10,7 @@ import Impact from '~/components/forma/Impact.astro';
 import Books from '~/components/forma/Books.astro';
 import Community from '~/components/forma/Community.astro';
 import PostCards from '~/components/forma/PostCards.astro';
+import BlogSearchRegistration from '~/components/blog/BlogSearchRegistration.astro';
 import PaperList from '~/components/research/PaperList.astro';
 import MediaList from '~/components/forma/MediaList.astro';
 import { featuredMedia } from '~/data/media';
@@ -153,6 +154,4 @@ const meta = {
 	</section>
 	<section class="forma-section home-community"><div class="forma-wrap"><Community /></div></section>
 </Layout>
-<script>
-	import '~/scripts/register-blog-search.js';
-</script>
+<BlogSearchRegistration />
