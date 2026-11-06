@@ -22,6 +22,7 @@ const questions = [
 	},
 	{
 		question: 'How did you get into tech?',
+		id: 'career-origin',
 		answer: [
 			'I fell in love with computers at ten, writing QBasic on DOS 3 and doodling lines of code in my school notebooks when I should have been paying attention in class. As a teenager I ran my own single-node dial-up BBS on RemoteAccess and DESQview from 1996 to 2001, then fell hard for Linux with Red Hat 5 on a laptop I still own. I did old-school sysadmin work for friends and for my own home servers, lived on IRC, and may have been active in a hacking group that shall remain unnamed.',
 			'My first job was technical support at an ISP, where I was promoted twice in my first year. From there I moved through Linux and networking, telecom and kernel work, and engineering management. Along the way I contributed to and translated open-source projects, wrote for FreeSoftwareMagazine and founded daloRADIUS in 2007. That path is why I care about developer experience at every level: I’ve been the person on the support line, the sysadmin, the kernel developer and the manager.',
@@ -29,6 +30,11 @@ const questions = [
 	},
 	{
 		question: 'What roles are you looking for?',
+		teaser: {
+			text: 'I ran a dial-up BBS in the ’90s. Community management came with modem noises.',
+			label: 'The origin story',
+			href: '#career-origin',
+		},
 		answer: [
 			'Roles where I can set direction, build alongside the team and make a tangible difference to a product and the developers who use it. That could be a leadership role such as VP or Head of Developer Relations, a senior developer experience or advocacy role, or product management for developer and agentic experiences, grassroots adoption and product-led growth.',
 			'I’m most interested in developer tools, AI and agent platforms, and infrastructure, where technical depth is the price of entry and developer trust decides adoption. The problem and the team matter more to me than the title.',
@@ -70,6 +76,12 @@ const questions = [
 	},
 	{
 		question: 'Can you give an example of a developer-led growth initiative?',
+		id: 'advisor-growth',
+		teaser: {
+			text: 'Snyk Advisor brought in 37% of Snyk’s new website visitors by Q1 2021. Package health checks have surprisingly good distribution.',
+			label: 'The growth story',
+			href: '#advisor-growth',
+		},
 		answer: [
 			'My favorite is Snyk Advisor, which I led from launch through its breakout growth phase. It gave developers a free, searchable health score for open-source packages, covering security, maintenance, popularity and community, right at the moment they were choosing a dependency. Within three months it was Snyk’s largest website traffic generator, and by Q1 2021 it drove 37% of new website visitors and more than 500 monthly signups.',
 			'Before that, I conceived and built a WebPageTest integration that brought Snyk vulnerability data and HTTP security header analysis into a tool web developers already used every day. Within five months it was Snyk’s top referral traffic source, and over two years it stayed the company’s second-largest. Both follow the pattern I look for: meet developers where they already work and make the first useful moment free.',
@@ -108,6 +120,11 @@ const questions = [
 	},
 	{
 		question: 'How is developer relations changing with AI agents?',
+		teaser: {
+			text: 'I found a way around an MCP server’s read-only mode. We had different definitions of “read-only.”',
+			label: 'Inspect the disclosure',
+			href: 'https://github.com/advisories/GHSA-m35w-xx8c-6xc7',
+		},
 		answer: [
 			'The developer increasingly has an AI agent as a co-worker, and often as the first reader of your docs. That changes the job. Your product has to be discoverable and usable by agents through MCP servers, agent skills, clean APIs and docs a model can follow, and your advice has to hold up when an agent acts on it unsupervised.',
 			'It also raises the bar on evidence. At Snyk I research how reliably AI agents perform security tasks (<a href="https://snyk.io/blog/snyk-vulnbench-js-1-0-llm-security-review-repeatability/">VulnBench</a>) and what goes wrong in the agent ecosystem, from malicious skills to vulnerable MCP servers. DevRel teams that can test, measure and publish what agents actually do will earn the trust that marketing claims no longer get.',
@@ -143,6 +160,11 @@ const questions = [
 	},
 	{
 		question: 'Where do you disagree with how most companies run DevRel?',
+		teaser: {
+			text: 'I wrote three books on Node.js secure coding. Apparently, one warning wasn’t enough.',
+			label: 'Meet the books',
+			href: '/#books',
+		},
 		answer: [
 			'Mostly on what counts as output. Top-of-funnel content, another tutorial or another explainer, is rarely a good return anymore, especially when an AI agent reads it before a developer does. The work that compounds is what developers and their agents actually run: demos and apps, an MCP server or agent skill that users connect, and benchmarks and evals that show how tools really behave. In 2014 content was king. In 2026, code is.',
 			'I also disagree with measuring DevRel like a marketing channel. When I reset my team’s strategy at Snyk, we moved from top-of-funnel goals to activation and retention, and built our own tracking for citations and LLM share of voice to see whether our work is actually being referenced. If a program can’t show that it changed what developers do, it’s a cost, not a channel.',
@@ -192,6 +214,11 @@ const moreQuestions = [
 	},
 	{
 		question: 'What would you focus on first in a new role?',
+		teaser: {
+			text: '250+ speaking engagements. Still voluntarily doing live demos.',
+			label: 'Explore the speaking archive',
+			href: '/speaking',
+		},
 		answer: [
 			'Listen first, then ship something. In the first weeks I’d talk with the team, customers and developers, use the product myself end to end, and review the data to understand what the business needs. From there I’d pick a small set of bets with clear outcomes, agree on them with the people who will execute, and aim for one visible early win. A real fix, a tool or a program in market builds more credibility than a strategy deck.',
 		],
@@ -334,33 +361,57 @@ const moreQuestions = [
 						<h2 id={section.id}>{section.title}</h2>
 						<ul class="mt-6 space-y-3">
 							{section.items.map((item) => (
-								<li>
-									<details class="group rounded-xl border border-gray-200 bg-gray-50 dark:border-slate-700 dark:bg-slate-800/40">
-										<summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500">
-											{item.question}
-											<span aria-hidden="true" class="text-primary-600 group-open:rotate-45 text-xl">
-												+
-											</span>
-										</summary>
-										<div class="muted px-5 pb-5 leading-relaxed space-y-3">
-											{(Array.isArray(item.answer) ? item.answer : [item.answer]).map((paragraph) => (
-												<p set:html={paragraph} />
-											))}
-											{item.sources && (
-												<p class="text-sm">
-													{item.sources.map((source, index) => (
-														<>
-															{index > 0 && ' · '}
-															<a href={source.url}>
-																{source.label} <Icon name="tabler:arrow-up-right" class="inline-block w-4 h-4 align-middle" aria-hidden="true" />
-															</a>
-														</>
-													))}
-												</p>
-											)}
-										</div>
-									</details>
-								</li>
+								<>
+									<li>
+										<details class="group rounded-xl border border-gray-200 bg-gray-50 dark:border-slate-700 dark:bg-slate-800/40">
+											<summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500">
+												{item.question}
+												<span aria-hidden="true" class="text-primary-600 group-open:rotate-45 text-xl">
+													+
+												</span>
+											</summary>
+											<div id={item.id} class="question-answer muted px-5 pb-5 leading-relaxed space-y-3">
+												{(Array.isArray(item.answer) ? item.answer : [item.answer]).map((paragraph) => (
+													<p set:html={paragraph} />
+												))}
+												{item.sources && (
+													<p class="text-sm">
+														{item.sources.map((source, index) => (
+															<>
+																{index > 0 && ' · '}
+																<a href={source.url}>
+																	{source.label}{' '}
+																	<Icon
+																		name="tabler:arrow-up-right"
+																		class="inline-block w-4 h-4 align-middle"
+																		aria-hidden="true"
+																	/>
+																</a>
+															</>
+														))}
+													</p>
+												)}
+											</div>
+										</details>
+									</li>
+									{item.teaser && (
+										<li class="question-teaser">
+											<aside aria-label="A little more about me">
+												<p class="question-teaser-text">{item.teaser.text}</p>
+												<a class="mt-3 inline-block text-sm" href={item.teaser.href}>
+													{item.teaser.label}
+													<Icon
+														name={
+															item.teaser.href.startsWith('https:') ? 'tabler:arrow-up-right' : 'tabler:arrow-right'
+														}
+														class="ml-1 inline-block h-4 w-4 align-middle"
+														aria-hidden="true"
+													/>
+												</a>
+											</aside>
+										</li>
+									)}
+								</>
 							))}
 						</ul>
 					</section>
@@ -381,3 +432,22 @@ const moreQuestions = [
 		</section>
 	</article>
 </Layout>
+
+<style>
+	.question-answer {
+		scroll-margin-top: 6rem;
+	}
+
+	.question-teaser {
+		padding: 1.75rem 1.25rem;
+	}
+
+	.question-teaser-text {
+		max-width: 52ch;
+		color: var(--ink);
+		font-size: clamp(1.125rem, 2.2vw, 1.5rem);
+		font-weight: 600;
+		line-height: 1.5;
+		text-wrap: pretty;
+	}
+</style>
