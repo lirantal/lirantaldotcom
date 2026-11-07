@@ -3,6 +3,7 @@ import Layout from '~/layouts/OpenSourceLayout.astro';
 import Highlights from '~/components/open-source/Highlights.astro';
 import impact from '~/data/open-source-impact.json';
 import ranks from '~/data/gitranks.json';
+import projectImpact from '~/data/project-impact.json';
 import { dateLabel, openSourceProjectHighlights } from '~/data/open-source';
 import { getCanonical } from '~/utils/permalinks';
 
@@ -89,6 +90,10 @@ const meta = {
 	<section class="oss-section" aria-labelledby="beyond-title">
 		<div class="oss-section-heading"><h2 id="beyond-title">Featured projects & resources</h2></div>
 		<Highlights entries={openSourceProjectHighlights} />
+		<p class="oss-caption">
+			Project metrics captured {dateLabel(projectImpact.asOf)}. <a href="/open-source/impact#project-metrics"
+				>Sources & definitions</a>
+		</p>
 	</section>
 	<section class="oss-section" aria-labelledby="community-title">
 		<div class="oss-section-heading">

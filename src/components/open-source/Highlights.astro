@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { openSourceHighlights } from '~/data/open-source';
+import ProjectImpact from './ProjectImpact.astro';
 interface Props {
 	entries?: typeof openSourceHighlights;
 }
@@ -31,6 +32,7 @@ const { entries = openSourceHighlights } = Astro.props;
 				) : (
 					<p>{highlight.text}</p>
 				)}
+				{highlight.projectURL && <ProjectImpact url={highlight.projectURL} name={highlight.title} />}
 			</article>
 		))
 	}

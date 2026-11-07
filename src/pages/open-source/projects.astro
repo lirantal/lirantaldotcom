@@ -1,7 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/OpenSourceLayout.astro';
-import { projectGroups } from '~/data/open-source';
+import { dateLabel, projectGroups } from '~/data/open-source';
+import projectImpact from '~/data/project-impact.json';
+import ProjectImpact from '~/components/open-source/ProjectImpact.astro';
 import { getCanonical } from '~/utils/permalinks';
 const meta = {
 	title: 'Open-source projects & resources — Liran Tal',
@@ -21,6 +23,10 @@ const meta = {
 		<nav class="oss-jump-links" aria-label="Project categories">
 			{projectGroups.map((group) => <a href={`#${group.id}`}>{group.title}</a>)}
 		</nav>
+		<p class="oss-caption">
+			Project metrics captured {dateLabel(projectImpact.asOf)}. <a href="/open-source/impact#project-metrics"
+				>Sources & definitions</a>
+		</p>
 	</section>
 	{
 		projectGroups.map((group) => (
@@ -30,12 +36,13 @@ const meta = {
 				</div>
 				<p>{group.description}</p>
 				{group.projects.map((project) => (
-					<article class="oss-project">
+					<article class="oss-project" id={project.url.split('/').at(-1)}>
 						<header>
 							<h3>
 								<a href={project.url}>{project.name}</a>
 							</h3>
 							<p class="oss-project-kind">{project.kind}</p>
+							<ProjectImpact url={project.url} name={project.name} />
 						</header>
 						<div>
 							<p class="oss-role">{project.role}</p>

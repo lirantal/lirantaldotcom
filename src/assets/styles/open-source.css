@@ -136,6 +136,11 @@
 	margin-top: 16px;
 	max-width: 85ch;
 }
+.oss-project,
+#project-metrics,
+#start-title {
+	scroll-margin-top: 96px;
+}
 .oss-intro > .oss-caption {
 	font-size: 13px;
 }

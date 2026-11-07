@@ -5,6 +5,7 @@ import Rankings from '~/components/open-source/Rankings.astro';
 import impact from '~/data/open-source-impact.json';
 import ranks from '~/data/gitranks.json';
 import { dateLabel, gitRanks } from '~/data/open-source';
+import projectImpact from '~/data/project-impact.json';
 import { getCanonical } from '~/utils/permalinks';
 const meta = {
 	title: 'Open-source impact & rankings — Liran Tal',
@@ -101,6 +102,13 @@ const meta = {
 	<section class="oss-section" id="sources" aria-labelledby="sources-title">
 		<div class="oss-section-heading"><h2 id="sources-title">Data sources & metric definitions</h2></div>
 		<div class="oss-measures">
+			<article id="project-metrics">
+				<h3>Project callouts</h3><p>
+					The project listings show GitHub repository stars and npm’s reported monthly downloads, captured {
+						dateLabel(projectImpact.asOf)
+					}. Each figure links to its GitHub API or npm registry source.
+				</p>
+			</article>
 			<article>
 				<h3>Package downloads</h3><p>
 					Downloads across the five selected npm packages during the displayed date window, including dependency

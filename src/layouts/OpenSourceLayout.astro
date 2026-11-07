@@ -23,13 +23,11 @@ const path = Astro.url.pathname.replace(/\/$/, '');
 	<aside class="oss-invitation" aria-labelledby="oss-invitation-title">
 		<div class="forma-wrap">
 			<div>
-				<h2 id="oss-invitation-title">Contribute to an open-source project</h2>
-				<p class="muted">Try a tool, improve a guide, report a bug, or help someone get started.</p>
+				<h2 id="oss-invitation-title">An open invitation to contribute</h2>
+				<p class="muted">Join my open-source projects: try a tool, improve a guide, or help shape what comes next.</p>
 			</div>
-			<a
-				class="forma-button"
-				href={path === '/open-source/projects' ? '/open-source/contributions' : '/open-source/projects'}
-				>{path === '/open-source/projects' ? 'See upstream contributions' : 'Find a project'}</a
+			<a class="forma-button" href={path === '/open-source/projects' ? '#start-title' : '/open-source/projects'}
+				>{path === '/open-source/projects' ? 'How to contribute' : 'Find a project'}</a
 			>
 		</div>
 	</aside>

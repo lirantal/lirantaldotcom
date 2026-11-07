@@ -241,6 +241,7 @@ type OpenSourceHighlight = {
 	href: string;
 	icon?: string;
 	textIcon?: string;
+	projectURL?: string;
 	items?: { text: string; href?: string; icon?: string }[];
 };
 
@@ -285,20 +286,23 @@ export const openSourceHighlights: OpenSourceHighlight[] = [
 	},
 ];
 
-export const openSourceProjectHighlights = [
+export const openSourceProjectHighlights: OpenSourceHighlight[] = [
 	{
-		title: 'daloRADIUS',
-		text: 'Original creator of a FreeRADIUS management application for networks, hotspots, and ISP deployments.',
-		href: '/open-source/projects#tools',
+		title: 'npq',
+		text: 'Check package health and security signals before installing npm dependencies.',
+		href: '/open-source/projects#npq',
+		projectURL: 'https://github.com/lirantal/npq',
 	},
 	{
-		title: 'blessed-contrib',
-		text: 'Helping maintain the terminal dashboard toolkit created by Yaron Naveh, with charts, maps, tables, and more.',
-		href: '/open-source/projects#tools',
+		title: 'dockly',
+		text: 'Manage Docker containers, images, networks, and services from an interactive terminal interface.',
+		href: '/open-source/projects#dockly',
+		projectURL: 'https://github.com/lirantal/dockly',
 	},
 	{
 		title: 'Node.js CLI Apps Best Practices',
 		text: 'A shared reference for making command-line applications more reliable and easier to use.',
-		href: '/open-source/projects#practices',
+		href: '/open-source/projects#nodejs-cli-apps-best-practices',
+		projectURL: 'https://github.com/lirantal/nodejs-cli-apps-best-practices',
 	},
 ];
