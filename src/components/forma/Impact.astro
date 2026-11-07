@@ -46,8 +46,7 @@ const dateLabel = (value: string) =>
 				}
 			</ul>
 			<p class="mt-3 impact-disclosure">
-				{dateLabel(downloads.start)}–{dateLabel(downloads.end)}. Downloads, not unique developers; includes dependency
-				installs. Five selected maintained packages.
+				{dateLabel(downloads.start)}–{dateLabel(downloads.end)}. Includes dependency installs.
 			</p>
 			<details class="impact-disclosure mt-3">
 				<summary class="cursor-pointer">Download data sources</summary>
@@ -91,13 +90,9 @@ const dateLabel = (value: string) =>
 					))
 				}
 			</ul>
-			<p class="mt-3 impact-disclosure">As of {dateLabel(github.asOf)}. {github.scope}</p>
+			<p class="mt-3 impact-disclosure">As of {dateLabel(github.asOf)}.</p>
 		</section>
 	</div>
-	<p class="text-xs muted mt-5">
-		GitHub contributions include qualifying commits, issues, pull requests, and reviews, not only commits. Counts are
-		dated snapshots, not live counters.
-	</p>
 </div>
 
 <style>

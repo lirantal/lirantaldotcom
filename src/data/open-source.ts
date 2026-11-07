@@ -40,12 +40,12 @@ const existing = (name: string, role = 'Creator & maintainer'): Project => {
 	return { ...project, role };
 };
 
-// Purpose-led selections, not an inventory of every repository or a freshness claim.
+// Curated projects grouped by purpose.
 export const projectGroups: { id: string; title: string; description: string; projects: Project[] }[] = [
 	{
 		id: 'security',
-		title: 'Security defenses',
-		description: 'Put security checks into the places developers already work: installs, pull requests, and editors.',
+		title: 'Security tools',
+		description: 'Tools for checking package installs, lockfiles, website dependencies, and source code.',
 		projects: [
 			existing('lockfile-lint'),
 			existing('npq'),
@@ -72,7 +72,7 @@ export const projectGroups: { id: string; title: string; description: string; pr
 	{
 		id: 'tools',
 		title: 'Developer tools & infrastructure',
-		description: 'From managing networks to building terminal interfaces and inspecting AI tooling.',
+		description: 'Tools for Docker, FreeRADIUS deployments, terminal dashboards, and MCP configuration.',
 		projects: [
 			existing('dockly'),
 			{
@@ -105,9 +105,8 @@ export const projectGroups: { id: string; title: string; description: string; pr
 	},
 	{
 		id: 'practices',
-		title: 'Shared practices & learning',
-		description:
-			'Make the lessons reusable, whether they become a team checklist, a community guide, or a security reference.',
+		title: 'Security guides & CLI best practices',
+		description: 'Community guides covering Node.js command-line apps, npm security, and MCP servers and clients.',
 		projects: [
 			existing('Node.js CLI Apps Best Practices'),
 			{
@@ -133,12 +132,12 @@ export const projectGroups: { id: string; title: string; description: string; pr
 export const contributionStories = [
 	{
 		id: 'nodejs-core',
-		title: 'Hardening Node.js core',
+		title: 'Node.js core security hardening',
 		repository: 'nodejs/node',
 		role: 'Upstream contributor',
 		description:
 			'Added a regression test and a fix for incomplete prototype-pollution hardening in child_process. The change covered process-spawning paths missed by earlier hardening.',
-		context: 'Merged July 21, 2024. This is defense-in-depth hardening under Node.js’s documented threat model.',
+		context: 'Merged July 21, 2024.',
 		sources: [
 			{ label: 'The hardening fix · #53781', url: 'https://github.com/nodejs/node/pull/53781' },
 			{ label: 'Build troubleshooting documentation · #53808', url: 'https://github.com/nodejs/node/pull/53808' },
@@ -146,11 +145,11 @@ export const contributionStories = [
 	},
 	{
 		id: 'security-wg',
-		title: 'Making ecosystem security a shared practice',
+		title: 'Node.js Ecosystem Security Working Group',
 		repository: 'nodejs/security-wg',
-		role: 'Historical working-group member & vulnerability triage contributor',
+		role: 'Working-group member & vulnerability triage contributor',
 		description:
-			'Work in the Node.js Security Working Group included vulnerability records, disclosure processes, bug-bounty guidance, and meeting documentation. This was sustained ecosystem work alongside individual fixes.',
+			'I contributed vulnerability records, disclosure processes, bug-bounty guidance, and meeting documentation to the Node.js Foundation’s Ecosystem Security Working Group.',
 		context: 'The working-group repository records my addition to the vulnerability triage team on January 5, 2018.',
 		sources: [
 			{ label: 'Joining the vulnerability triage team · #78', url: 'https://github.com/nodejs/security-wg/pull/78' },
@@ -159,11 +158,11 @@ export const contributionStories = [
 	},
 	{
 		id: 'owasp',
-		title: 'Helping developers learn security through OWASP',
+		title: 'OWASP NodeGoat & CWE project leadership',
 		repository: 'OWASP/NodeGoat',
 		role: 'NodeGoat project co-lead · CWE project lead',
 		description:
-			'I co-lead OWASP NodeGoat, contributing intentionally vulnerable examples and fixes, including NoSQL injection and regular-expression denial of service. My profile also records project leadership for OWASP’s CWE command-line tool and JavaScript SDK.',
+			'I co-lead OWASP NodeGoat and lead OWASP’s CWE command-line tool and JavaScript SDK projects. My NodeGoat contributions include NoSQL injection and regular-expression denial-of-service examples, alongside fixes and documentation.',
 		context:
 			'The npm security guidance I co-authored with Juan Picado became the original basis of the evolving OWASP NPM Security Cheat Sheet.',
 		sources: [
@@ -175,11 +174,11 @@ export const contributionStories = [
 	},
 	{
 		id: 'cncf',
-		title: 'Documenting software supply chain security',
+		title: 'CNCF supply chain security guidance',
 		repository: 'cncf/tag-security',
 		role: 'Contributor & supply chain section reviewer',
 		description:
-			'Contributed to CNCF TAG Security’s supply chain work, including documented incidents involving Packagist and Ruby. Recording the details makes real attacks useful to the next team designing a defense.',
+			'I contributed to CNCF TAG Security’s supply chain guidance and documented incidents involving Packagist and Ruby.',
 		context: 'The repository records my addition as a reviewer for the supply chain security section in 2022.',
 		sources: [
 			{ label: 'Reviewer contribution · #973', url: 'https://github.com/cncf/tag-security/pull/973' },
@@ -188,12 +187,11 @@ export const contributionStories = [
 	},
 	{
 		id: 'frameworks',
-		title: 'Improving the tools developers build on',
+		title: 'Fastify, Yarn, Pact & Trigger.dev contributions',
 		repository: 'fastify/fastify',
 		role: 'Upstream contributor',
 		description:
-			'Contributions include a Firebase Functions guide for Fastify, Yarn plugin tutorials, Pact contract-testing examples, and an Astro integration for Trigger.dev. Documentation and working examples are part of making software usable.',
-		context: 'Selected contributions across several projects, with the exact changes linked below.',
+			'I contributed a Firebase Functions guide for Fastify, expanded Yarn plugin tutorials, added Pact contract-testing examples, and built an Astro integration for Trigger.dev.',
 		sources: [
 			{ label: 'Fastify Firebase Functions guide · #5318', url: 'https://github.com/fastify/fastify/pull/5318' },
 			{ label: 'Yarn plugin tutorial · #1846', url: 'https://github.com/yarnpkg/berry/pull/1846' },
@@ -203,31 +201,35 @@ export const contributionStories = [
 	},
 	{
 		id: 'maintenance',
-		title: 'Doing the maintenance that keeps projects useful',
+		title: 'Co-leading MEAN.js',
 		repository: 'meanjs/mean',
-		role: 'Long-running project contributions',
+		role: 'MEAN.js project co-lead',
 		description:
-			'MEAN.js work spans dependency upgrades and Docker setup. Contributions to blessed-contrib include dependency fixes, terminal widget behavior, and supported-version guidance. Useful software needs this continuing attention.',
-		context:
-			'These examples describe the recorded work, rather than claiming every project is actively maintained today.',
+			'I joined MEAN.js as a co-lead, helping maintain a full-stack JavaScript framework that served as a foundation for projects at work and across the open-source community. My contributions included dependency upgrades and Docker development setup.',
+		sources: [{ label: 'MEAN.js Docker setup · #1249', url: 'https://github.com/meanjs/mean/pull/1249' }],
+	},
+	{
+		id: 'blessed-contrib',
+		title: 'Maintaining blessed-contrib',
+		repository: 'yaronn/blessed-contrib',
+		role: 'Maintainer & contributor',
+		description:
+			'I help maintain blessed-contrib, the Node.js terminal dashboard toolkit created by Yaron Naveh. My contributions include dependency fixes, terminal widget behavior, and Node.js version guidance.',
 		sources: [
-			{ label: 'MEAN.js Docker setup · #1249', url: 'https://github.com/meanjs/mean/pull/1249' },
 			{ label: 'blessed-contrib widget enhancement · #214', url: 'https://github.com/yaronn/blessed-contrib/pull/214' },
 			{ label: 'Supported Node.js version · #233', url: 'https://github.com/yaronn/blessed-contrib/pull/233' },
 		],
 	},
 	{
 		id: 'ai',
-		title: 'Bringing the same approach to AI tooling',
+		title: 'Developer Relations & DX for AI tooling',
 		repository: 'snyk/agent-scan',
-		role: 'Contributor · includes work at Snyk',
+		role: 'Developer Relations at Snyk · upstream contributor',
 		description:
-			'Contributed OpenClaw skill-path and Amp client support to Agent Scan. Alongside this upstream work, I build MCP inspection tools and share practices for MCP servers, clients, and coding agents.',
-		context:
-			'Organization contributions can overlap with my professional work. Research papers and benchmark contributions have their own credits in the research area.',
+			'Through my Developer Relations work at Snyk, I improved Agent Scan’s support for OpenClaw skills and the Amp client. I also build MCP configuration inspection tools and publish guidance to help developers build and debug MCP servers and clients.',
 		sources: [
 			{ label: 'Agent Scan client support · #175', url: 'https://github.com/snyk/agent-scan/pull/175' },
-			{ label: 'AI security research', url: '/research/ai-security' },
+			{ label: 'MCP configuration inspection with ls-mcp', url: 'https://github.com/lirantal/ls-mcp' },
 			{ label: 'MCP best practices', url: 'https://github.com/lirantal/awesome-mcp-best-practices' },
 		],
 	},
@@ -244,7 +246,7 @@ type OpenSourceHighlight = {
 
 export const openSourceHighlights: OpenSourceHighlight[] = [
 	{
-		title: 'Node.js core',
+		title: 'Node.js contributions',
 		icon: 'mdi:nodejs',
 		text: 'A merged fix for child_process prototype-pollution hardening.',
 		textIcon: 'tabler:git-merge',
@@ -258,7 +260,7 @@ export const openSourceHighlights: OpenSourceHighlight[] = [
 		],
 	},
 	{
-		title: 'OWASP guidance',
+		title: 'OWASP leadership & guidance',
 		icon: 'owasp',
 		text: 'Co-authored npm security practices that became the basis of an OWASP cheat sheet.',
 		textIcon: 'tabler:book-2',
@@ -272,7 +274,7 @@ export const openSourceHighlights: OpenSourceHighlight[] = [
 		],
 	},
 	{
-		title: 'JavaScript & PHP in Israel',
+		title: 'JavaScript & PHP rankings in Israel',
 		icon: 'mdi:language-javascript',
 		text:
 			ranks.languages

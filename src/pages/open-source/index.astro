@@ -16,7 +16,7 @@ const meta = {
 
 <Layout {meta}>
 	<section class="oss-intro" aria-labelledby="oss-title">
-		<h1 id="oss-title">Useful tools.<br />Safer ecosystems.</h1>
+		<h1 id="oss-title">Open source</h1>
 		<p>
 			I build tools, contribute fixes upstream, and turn security lessons into resources other developers can use. The
 			work spans Node.js, software supply chains, terminal applications, network infrastructure, and now AI agents.
@@ -35,8 +35,7 @@ const meta = {
 		<div><dt>On GitHub since</dt><dd>{impact.profile.joined.slice(0, 4)}</dd></div>
 	</dl>
 	<p class="oss-caption">
-		Public GitHub snapshot, {dateLabel(impact.asOf)}. Includes organization and work-related repositories. These are
-		merged pull requests, not commits. <a href="/open-source/impact#sources">Scope & sources</a>
+		GitHub snapshot: {dateLabel(impact.asOf)}. <a href="/open-source/impact#sources">Data sources</a>
 	</p>
 	<aside class="oss-ranking-note" aria-label="GitRanks highlights">
 		<p>
@@ -44,35 +43,29 @@ const meta = {
 			and followers. In its language rankings, I’m <strong>#1 in Israel for JavaScript and PHP</strong>.
 		</p>
 		<p class="oss-caption">
-			Profile updated {dateLabel(ranks.profileUpdatedAt)}; snapshot supplied {dateLabel(ranks.capturedAt)}. <a
-				href="/open-source/impact#gitranks">Explore the rankings & methodology</a
+			GitRanks snapshot: {dateLabel(ranks.capturedAt)}. <a href="/open-source/impact#gitranks"
+				>Explore the rankings & methodology</a
 			>.
 		</p>
 	</aside>
 	<section class="oss-section" aria-labelledby="core-title">
 		<div class="oss-feature surface">
 			<div>
-				<h2 id="core-title">A fix in Node.js core.</h2>
+				<h2 id="core-title">Node.js child_process hardening</h2>
 				<p>
 					Earlier prototype-pollution hardening had missed some <code>child_process</code> paths. I contributed a regression
 					test and a fix to make that behavior consistent.
 				</p>
-				<p>
-					The pull request was merged in July 2024. It is one example of the work behind the numbers: follow the
-					behavior, reproduce the problem, and contribute a change where it can help other developers.
-				</p>
+				<p>The pull request was merged on July 21, 2024.</p>
 			</div>
 			<aside>
 				<a href="https://github.com/nodejs/node/pull/53781">Read Node.js PR #53781</a>
-				<p>
-					Defense-in-depth hardening, with the behavior and Node.js threat-model context documented in the pull request.
-				</p>
 				<p><a href="/open-source/contributions#nodejs-core">More about this contribution</a></p>
 			</aside>
 		</div>
 	</section>
 	<section class="oss-section" aria-labelledby="explore-title">
-		<div class="oss-section-heading"><h2 id="explore-title">Explore the work</h2></div>
+		<div class="oss-section-heading"><h2 id="explore-title">Open-source areas</h2></div>
 		<div class="oss-explore">
 			<article>
 				<h3><a href="/open-source/projects">Projects & resources</a></h3><p>
@@ -94,21 +87,22 @@ const meta = {
 		</div>
 	</section>
 	<section class="oss-section" aria-labelledby="beyond-title">
-		<div class="oss-section-heading"><h2 id="beyond-title">Selected work</h2></div>
+		<div class="oss-section-heading"><h2 id="beyond-title">Featured projects & resources</h2></div>
 		<Highlights entries={openSourceProjectHighlights} />
 	</section>
 	<section class="oss-section" aria-labelledby="community-title">
 		<div class="oss-section-heading">
-			<h2 id="community-title">Built with the community</h2><a href="/recognitions">Recognition & community stories</a>
+			<h2 id="community-title">Open-source leadership & recognition</h2><a href="/recognitions"
+				>Recognition & community stories</a
+			>
 		</div>
 		<p>
 			My work includes historical membership in the Node.js Ecosystem Security Working Group, co-leadership of OWASP
-			NodeGoat, and leadership of OWASP’s CWE tooling. Guides, disclosure processes, and teaching examples matter
-			alongside executable code.
+			NodeGoat, and leadership of OWASP’s CWE tooling.
 		</p>
 		<p>
 			I received GitHub Star recognition in 2021, 2022, and 2023, and the OpenJS Foundation’s Security Pathfinder award
-			in 2022. The recognition belongs in the context of the people and projects that made the work possible.
+			in 2022.
 		</p>
 		<div class="oss-actions">
 			<a href="/research">Security research & disclosures</a><a href="/speaking">Talks & workshops</a><a

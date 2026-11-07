@@ -68,7 +68,7 @@ async function loadSocialCards(): Promise<SocialCard[]> {
 			key: 'open-source',
 			paths: ['/open-source'],
 			section: 'Open source',
-			title: 'Useful tools.\nSafer ecosystems.',
+			title: 'Open source',
 			detail: 'Projects, upstream contributions, and community resources.',
 		},
 		{

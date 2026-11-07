@@ -16,16 +16,13 @@ const meta = {
 
 <Layout {meta}>
 	<section class="oss-intro" aria-labelledby="impact-title">
-		<h1 id="impact-title">Impact, with context.</h1>
-		<p>
-			Downloads show how packages get installed. Stars show interest. Merged pull requests show accepted changes.
-			Together they tell more of the story than any single counter.
-		</p>
+		<h1 id="impact-title">Impact & rankings</h1>
+		<p>npm package downloads, GitHub contributions, and GitRanks standings across my open-source work.</p>
 	</section>
 	<section class="oss-dashboard" aria-label="Package and GitHub impact"><Impact /></section>
 	<section class="oss-section" aria-labelledby="breadth-title">
 		<div class="oss-section-heading">
-			<h2 id="breadth-title">The breadth of upstream work</h2><a href="/open-source/contributions"
+			<h2 id="breadth-title">Merged pull requests & repositories</h2><a href="/open-source/contributions"
 				>Read selected contribution stories</a
 			>
 		</div>
@@ -37,8 +34,7 @@ const meta = {
 			<div><dt>On GitHub since</dt><dd>{impact.profile.joined.slice(0, 4)}</dd></div>
 		</dl>
 		<p class="oss-caption">
-			As of {dateLabel(impact.asOf)}. Includes organization and work-related repositories; not a count of exclusively
-			volunteer work.
+			GitHub snapshot: {dateLabel(impact.asOf)}.
 		</p>
 	</section>
 	<section class="oss-section" id="gitranks" aria-labelledby="gitranks-title">
@@ -48,17 +44,13 @@ const meta = {
 			>
 		</div>
 		<p>
-			In the captured GitRanks snapshot, my profile is in the top 0.1% worldwide in all three rankings. The contributor
-			score reflects the reach of projects I contributed to: over a million stars across 89 repositories, rather than
-			stars earned by my own code.
+			GitRanks places my profile in the top 0.1% worldwide for owned-repository stars, contributor reach, and followers.
 		</p>
 		<Rankings />
 		<p class="oss-caption">
-			Contributor rank counts each repository owned by others once, measuring reach rather than PR volume. GitRanks’ 89
-			contributed-to repositories have different coverage from the 193 in the direct GitHub search above. Its
-			owned-repository star total also covers more than the six featured repositories in the dashboard. See <a
-				href={gitRanks.methodology}>GitRanks’ methodology</a
-			> for inclusion rules and refresh frequency; the independent service does not count private contributions.
+			Contributor rank counts each contributed-to repository once. <a href={gitRanks.methodology}
+				>GitRanks’ methodology</a
+			> explains the ranking criteria.
 		</p>
 	</section>
 	<section class="oss-section" id="languages" aria-labelledby="languages-title">
@@ -68,8 +60,8 @@ const meta = {
 			>
 		</div>
 		<p>
-			The same snapshot places me #1 in Israel for both JavaScript and PHP. Here are three languages spanning my
-			open-source work, from longstanding network tools to Node.js and AI developer tooling.
+			Ranked #1 in Israel for both JavaScript and PHP, with contributions spanning network tools, Node.js, and AI
+			developer tooling.
 		</p>
 		<table class="oss-language-table">
 			<caption class="sr-only">Selected GitRanks language positions, captured {dateLabel(ranks.capturedAt)}</caption>
@@ -101,41 +93,36 @@ const meta = {
 			>
 		</table>
 		<p class="oss-caption">
-			Language rankings distribute stars on owned repositories by their language breakdown; they are not based on lines
-			I personally wrote. Country ranks use GitHub profile locations and apply only to the profiles GitRanks includes.
-			Source: <a href="https://gitranks.com/profile/lirantal/languages/country">GitRanks language rankings for Israel</a
-			> and <a href={gitRanks.methodology}>methodology</a>.
+			Language scores weight owned-repository stars by each repository’s language breakdown. <a
+				href="https://gitranks.com/profile/lirantal/languages/country">View the Israel language rankings</a
+			>.
 		</p>
 	</section>
 	<section class="oss-section" id="sources" aria-labelledby="sources-title">
-		<div class="oss-section-heading"><h2 id="sources-title">What the numbers cover</h2></div>
+		<div class="oss-section-heading"><h2 id="sources-title">Data sources & metric definitions</h2></div>
 		<div class="oss-measures">
 			<article>
 				<h3>Package downloads</h3><p>
-					A common dated window for five selected maintained npm packages, including their dependency installs. These
-					are downloads, not unique developers, and not a lifetime total. Follow each package’s linked API record in the
-					dashboard for the exact window.
+					Downloads across the five selected npm packages during the displayed date window, including dependency
+					installs. Package API records are linked in the dashboard.
 				</p>
 			</article>
 			<article>
 				<h3>Repository stars & forks</h3><p>
-					A dated snapshot of six featured repositories. Stars and forks are separate measures of interest and reuse.
-					They do not represent all of my projects, unique people, or production deployments.
+					Stars and forks for the six featured repositories listed in the dashboard, captured on the snapshot date.
 				</p>
 			</article>
 			<article>
 				<h3>Yearly GitHub contributions</h3><p>
-					The total displayed on my public GitHub contribution calendar for the stated year and snapshot date. GitHub
-					combines qualifying commits, issues, pull requests, and reviews; this is not a commit count or a count of
-					changes merged upstream.
+					GitHub’s contribution calendar combines qualifying commits, issues, pull requests, and reviews for the
+					displayed year and snapshot date.
 				</p>
 			</article>
 			<article>
 				<h3>Merged upstream PRs</h3><p>
-					The public GitHub search <code>{impact.mergedPullRequests.query}</code> returned {
-						impact.mergedPullRequests.total
-					} unique PRs over {impact.mergedPullRequests.pagesFetched} pages, with complete results. The repository total counts
-					distinct repositories in those results. The namespace filter includes organizations I work with, including Snyk.
+					The GitHub search <code>{impact.mergedPullRequests.query}</code> covers public merged PRs I authored outside the
+					lirantal namespace, including organization repositories. The repository total counts distinct repositories in those
+					results.
 				</p><p>
 					<a href={impact.mergedPullRequests.source}>Repeat the GitHub search</a> · <a
 						href={impact.mergedPullRequests.apiSource}>GitHub API source</a
@@ -144,10 +131,7 @@ const meta = {
 			</article>
 		</div>
 		<p class="oss-caption">
-			Snapshots are collected at different times and measure different things, so their totals should not be added
-			together. None of these numbers is fetched when you visit the site. <a href="/recognitions#milestones-heading"
-				>Archived GitHub Trending appearances</a
-			> have their own dates, language filters, and evidence.
+			<a href="/recognitions#milestones-heading">GitHub Trending appearances</a> are documented in the recognition milestones.
 		</p>
 	</section>
 </Layout>

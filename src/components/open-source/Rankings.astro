@@ -30,9 +30,9 @@ const number = (value: number) => value.toLocaleString('en-US');
 	}
 </div>
 <p class="oss-caption">
-	GitRanks snapshot supplied by Liran Tal on {dateLabel(ranks.capturedAt)}; the profile reports an update on {
-		dateLabel(ranks.profileUpdatedAt)
-	}. Positions and ranking populations change. <a href={ranks.source}>View the source profile</a>.
+	GitRanks snapshot: {dateLabel(ranks.capturedAt)}. Profile updated {dateLabel(ranks.profileUpdatedAt)}. <a
+		href={ranks.source}>View the source profile</a
+	>.
 </p>
 
 <style>
