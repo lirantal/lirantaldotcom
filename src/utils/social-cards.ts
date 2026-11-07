@@ -65,6 +65,13 @@ async function loadSocialCards(): Promise<SocialCard[]> {
 			detail: 'AI agents and software supply chain security.',
 		},
 		{
+			key: 'open-source',
+			paths: ['/open-source'],
+			section: 'Open source',
+			title: 'Open source',
+			detail: 'Projects, upstream contributions, and community resources.',
+		},
+		{
 			key: 'papers',
 			paths: ['/research/papers'],
 			section: 'Research / Preprints',
@@ -113,6 +120,19 @@ async function loadSocialCards(): Promise<SocialCard[]> {
 			detail: 'Developer advocacy, open source, and security.',
 		},
 	];
+	for (const [slug, title] of Object.entries({
+		projects: 'Projects & resources',
+		contributions: 'Ecosystem contributions',
+		impact: 'Impact & rankings',
+	})) {
+		cards.push({
+			key: `open-source/${slug}`,
+			paths: [`/open-source/${slug}`],
+			section: 'Open source',
+			title,
+			detail: 'Security tools, shared practices, and upstream work.',
+		});
+	}
 	for (const [slug, label] of Object.entries({
 		talks: 'Talks',
 		events: 'Events',

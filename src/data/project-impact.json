@@ -1,0 +1,124 @@
+{
+  "asOf": "2026-11-07",
+  "downloadMetric": "npm registry search downloads.monthly",
+  "repositories": [
+    {
+      "url": "https://github.com/lirantal/lockfile-lint",
+      "stars": 870,
+      "source": "https://api.github.com/repos/lirantal/lockfile-lint",
+      "npm": {
+        "name": "lockfile-lint",
+        "monthlyDownloads": 1726567,
+        "updatedAt": "2026-11-07T09:18:16.209Z",
+        "source": "https://registry.npmjs.org/-/v1/search?text=lockfile-lint&size=1"
+      }
+    },
+    {
+      "url": "https://github.com/lirantal/npq",
+      "stars": 1795,
+      "source": "https://api.github.com/repos/lirantal/npq",
+      "npm": {
+        "name": "npq",
+        "monthlyDownloads": 29394,
+        "updatedAt": "2026-11-07T09:19:30.150Z",
+        "source": "https://registry.npmjs.org/-/v1/search?text=npq&size=1"
+      }
+    },
+    {
+      "url": "https://github.com/lirantal/anti-trojan-source",
+      "stars": 91,
+      "source": "https://api.github.com/repos/lirantal/anti-trojan-source",
+      "npm": {
+        "name": "anti-trojan-source",
+        "monthlyDownloads": 146134,
+        "updatedAt": "2026-11-07T09:15:30.232Z",
+        "source": "https://registry.npmjs.org/-/v1/search?text=anti-trojan-source&size=1"
+      }
+    },
+    {
+      "url": "https://github.com/lirantal/is-website-vulnerable",
+      "stars": 2041,
+      "source": "https://api.github.com/repos/lirantal/is-website-vulnerable",
+      "npm": {
+        "name": "is-website-vulnerable",
+        "monthlyDownloads": 2468,
+        "updatedAt": "2026-11-04T13:14:43.119Z",
+        "source": "https://registry.npmjs.org/-/v1/search?text=is-website-vulnerable&size=1"
+      }
+    },
+    {
+      "url": "https://github.com/lirantal/eslint-plugin-anti-trojan-source",
+      "stars": 80,
+      "source": "https://api.github.com/repos/lirantal/eslint-plugin-anti-trojan-source",
+      "npm": {
+        "name": "eslint-plugin-anti-trojan-source",
+        "monthlyDownloads": 113370,
+        "updatedAt": "2026-11-07T09:17:32.279Z",
+        "source": "https://registry.npmjs.org/-/v1/search?text=eslint-plugin-anti-trojan-source&size=1"
+      }
+    },
+    {
+      "url": "https://github.com/lirantal/dockly",
+      "stars": 4037,
+      "source": "https://api.github.com/repos/lirantal/dockly",
+      "npm": {
+        "name": "dockly",
+        "monthlyDownloads": 896,
+        "updatedAt": "2026-11-04T13:16:01.659Z",
+        "source": "https://registry.npmjs.org/-/v1/search?text=dockly&size=1"
+      }
+    },
+    {
+      "url": "https://github.com/lirantal/daloradius",
+      "stars": 920,
+      "source": "https://api.github.com/repos/lirantal/daloradius",
+      "npm": null
+    },
+    {
+      "url": "https://github.com/yaronn/blessed-contrib",
+      "stars": 15770,
+      "source": "https://api.github.com/repos/yaronn/blessed-contrib",
+      "npm": {
+        "name": "blessed-contrib",
+        "monthlyDownloads": 644993,
+        "updatedAt": "2026-11-07T09:14:45.654Z",
+        "source": "https://registry.npmjs.org/-/v1/search?text=blessed-contrib&size=1"
+      }
+    },
+    {
+      "url": "https://github.com/lirantal/ls-mcp",
+      "stars": 84,
+      "source": "https://api.github.com/repos/lirantal/ls-mcp",
+      "npm": {
+        "name": "ls-mcp",
+        "monthlyDownloads": 130,
+        "updatedAt": "2026-10-31T20:11:12.340Z",
+        "source": "https://registry.npmjs.org/-/v1/search?text=ls-mcp&size=1"
+      }
+    },
+    {
+      "url": "https://github.com/lirantal/nodejs-cli-apps-best-practices",
+      "stars": 4144,
+      "source": "https://api.github.com/repos/lirantal/nodejs-cli-apps-best-practices",
+      "npm": null
+    },
+    {
+      "url": "https://github.com/lirantal/npm-security-best-practices",
+      "stars": 1265,
+      "source": "https://api.github.com/repos/lirantal/npm-security-best-practices",
+      "npm": null
+    },
+    {
+      "url": "https://github.com/lirantal/awesome-nodejs-security",
+      "stars": 3056,
+      "source": "https://api.github.com/repos/lirantal/awesome-nodejs-security",
+      "npm": null
+    },
+    {
+      "url": "https://github.com/lirantal/awesome-mcp-best-practices",
+      "stars": 87,
+      "source": "https://api.github.com/repos/lirantal/awesome-mcp-best-practices",
+      "npm": null
+    }
+  ]
+}

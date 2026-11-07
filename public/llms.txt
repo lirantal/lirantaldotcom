@@ -19,6 +19,10 @@ The public site is read-only and requires no authentication. It does not provide
 - [Developer resources](https://lirantal.com/developers)
 - [Blog and articles](https://lirantal.com/writing)
 - [Research overview](https://lirantal.com/research)
+- [Open-source overview](https://lirantal.com/open-source)
+- [Open-source projects and resources](https://lirantal.com/open-source/projects)
+- [Ecosystem contributions](https://lirantal.com/open-source/contributions)
+- [Open-source impact and rankings](https://lirantal.com/open-source/impact)
 - [Media coverage and interviews](https://lirantal.com/media)
 - [Research reports and chapters](https://lirantal.com/research/reports)
 - [Research papers](https://lirantal.com/research/papers)
@@ -46,6 +50,7 @@ The public site is read-only and requires no authentication. It does not provide
 - [Writing and article archive](https://lirantal.com/writing/llms.txt)
 - [Speaking and events](https://lirantal.com/speaking/llms.txt)
 - [Research and disclosures](https://lirantal.com/research/llms.txt)
+- [Open source and ecosystem contributions](https://lirantal.com/open-source/llms.txt)
 
 ## Content formats
 

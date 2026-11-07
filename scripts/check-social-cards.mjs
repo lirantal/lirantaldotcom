@@ -11,6 +11,7 @@ export function expectedCardPrefix(route) {
 		'/writing': 'blog',
 		'/speaking': 'speaking',
 		'/research': 'research',
+		'/open-source': 'open-source',
 		'/research/papers': 'papers',
 		'/research/reports': 'reports',
 		'/research/advisories': 'advisories',
@@ -21,6 +22,7 @@ export function expectedCardPrefix(route) {
 	};
 	for (const slug of ['talks', 'events', 'recordings', 'podcasts', 'press-kit'])
 		sections[`/speaking/${slug}`] = `speaking/${slug}`;
+	for (const slug of ['projects', 'contributions', 'impact']) sections[`/open-source/${slug}`] = `open-source/${slug}`;
 	if (sections[route]) return `/og/${sections[route]}-`;
 	const blogPath = BLOG_BASE ? `/${BLOG_BASE}` : '';
 	if (route === blogPath || new RegExp(`^${blogPath}/[0-9]+$`).test(route)) return '/og/blog-';

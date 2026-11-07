@@ -7,6 +7,7 @@ import ProfileHero from '~/components/widgets/ProfileHero.astro';
 import Recognition from '~/components/forma/Recognition.astro';
 import Projects from '~/components/forma/Projects.astro';
 import Impact from '~/components/forma/Impact.astro';
+import OpenSourceHighlights from '~/components/open-source/Highlights.astro';
 import Books from '~/components/forma/Books.astro';
 import Community from '~/components/forma/Community.astro';
 import PostCards from '~/components/forma/PostCards.astro';
@@ -63,7 +64,7 @@ const meta = {
 			<header class="forma-section-heading">
 				<h2 id="tools-title">Tools & resources I maintain</h2><a
 					class="forma-button forma-button-secondary"
-					href="#open-source">More projects & impact</a
+					href="/open-source/projects">More projects & resources</a
 				>
 			</header><Projects featured />
 		</div>
@@ -122,11 +123,13 @@ const meta = {
 	<section class="forma-section home-impact" id="open-source" aria-labelledby="source-title">
 		<div class="forma-wrap">
 			<header class="forma-section-heading">
-				<h2 id="source-title">Open source</h2><a class="forma-button forma-button-secondary" href={PROFILE.githubURL}
-					>All projects on GitHub</a
-				>
+				<h2 id="source-title">Open source</h2><a class="forma-button" href="/open-source">Explore open source</a>
 			</header>
-			<Impact /><Projects />
+			<Impact /><OpenSourceHighlights />
+			<div class="forma-section-actions">
+				<a href="/open-source/contributions">Ecosystem contributions</a><a href="/open-source/impact"
+					>Impact & rankings</a>
+			</div>
 		</div>
 	</section>
 	<section class="forma-section" id="books" aria-labelledby="books-title">
@@ -147,7 +150,8 @@ const meta = {
 			<header class="forma-section-heading">
 				<h2 id="media-title">Selected media & interviews</h2><a
 					class="forma-button forma-button-secondary"
-					href="/media">View all media</a>
+					href="/media">View all media</a
+				>
 			</header>
 			<MediaList entries={featuredMedia} compact />
 		</div>

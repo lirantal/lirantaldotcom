@@ -1,0 +1,145 @@
+---
+import Layout from '~/layouts/OpenSourceLayout.astro';
+import Impact from '~/components/forma/Impact.astro';
+import Rankings from '~/components/open-source/Rankings.astro';
+import impact from '~/data/open-source-impact.json';
+import ranks from '~/data/gitranks.json';
+import { dateLabel, gitRanks } from '~/data/open-source';
+import projectImpact from '~/data/project-impact.json';
+import { getCanonical } from '~/utils/permalinks';
+const meta = {
+	title: 'Open-source impact & rankings — Liran Tal',
+	description:
+		'Dated npm download and GitHub contribution data, repository stars, and GitRanks context for Liran Tal’s open-source work, with source links and scope.',
+	canonical: getCanonical('/open-source/impact'),
+};
+---
+
+<Layout {meta}>
+	<section class="oss-intro" aria-labelledby="impact-title">
+		<h1 id="impact-title">Impact & rankings</h1>
+		<p>npm package downloads, GitHub contributions, and GitRanks standings across my open-source work.</p>
+	</section>
+	<section class="oss-dashboard" aria-label="Package and GitHub impact"><Impact /></section>
+	<section class="oss-section" aria-labelledby="breadth-title">
+		<div class="oss-section-heading">
+			<h2 id="breadth-title">Merged pull requests & repositories</h2><a href="/open-source/contributions"
+				>Read selected contribution stories</a
+			>
+		</div>
+		<dl class="oss-stats">
+			<div>
+				<dt>Merged PRs outside my namespace</dt><dd>{impact.mergedPullRequests.total.toLocaleString('en-US')}</dd>
+			</div>
+			<div><dt>Repositories those PRs reached</dt><dd>{impact.mergedPullRequests.repositories}</dd></div>
+			<div><dt>On GitHub since</dt><dd>{impact.profile.joined.slice(0, 4)}</dd></div>
+		</dl>
+		<p class="oss-caption">
+			GitHub snapshot: {dateLabel(impact.asOf)}.
+		</p>
+	</section>
+	<section class="oss-section" id="gitranks" aria-labelledby="gitranks-title">
+		<div class="oss-section-heading">
+			<h2 id="gitranks-title">Top 0.1% worldwide on GitRanks</h2><a href={gitRanks.profile}
+				>Explore my GitRanks profile</a
+			>
+		</div>
+		<p>
+			GitRanks places my profile in the top 0.1% worldwide for owned-repository stars, contributor reach, and followers.
+		</p>
+		<Rankings />
+		<p class="oss-caption">
+			Contributor rank counts each contributed-to repository once. <a href={gitRanks.methodology}
+				>GitRanks’ methodology</a
+			> explains the ranking criteria.
+		</p>
+	</section>
+	<section class="oss-section" id="languages" aria-labelledby="languages-title">
+		<div class="oss-section-heading">
+			<h2 id="languages-title">Language rankings</h2><a href="https://gitranks.com/profile/lirantal/languages"
+				>All language ranks on GitRanks</a
+			>
+		</div>
+		<p>
+			Ranked #1 in Israel for both JavaScript and PHP, with contributions spanning network tools, Node.js, and AI
+			developer tooling.
+		</p>
+		<table class="oss-language-table">
+			<caption class="sr-only">Selected GitRanks language positions, captured {dateLabel(ranks.capturedAt)}</caption>
+			<thead><tr><th scope="col">Language</th><th scope="col">Worldwide</th><th scope="col">Israel</th></tr></thead>
+			<tbody
+				>{
+					ranks.languages.map((language) => (
+						<tr>
+							<>
+								<th scope="row">{language.name}</th>
+								<td>
+									<>
+										<a href={`https://gitranks.com/language/${language.name}/global/1`}>
+											#{language.global.position.toLocaleString('en-US')}
+										</a>
+										<span>{language.global.percentileLabel}</span>
+									</>
+								</td>
+								<td>
+									<>
+										<a href={`https://gitranks.com/language/${language.name}/Israel/1`}>#{language.israel.position}</a>
+										<span>{language.israel.percentileLabel}</span>
+									</>
+								</td>
+							</>
+						</tr>
+					))
+				}</tbody
+			>
+		</table>
+		<p class="oss-caption">
+			Language scores weight owned-repository stars by each repository’s language breakdown. <a
+				href="https://gitranks.com/profile/lirantal/languages/country">View the Israel language rankings</a
+			>.
+		</p>
+	</section>
+	<section class="oss-section" id="sources" aria-labelledby="sources-title">
+		<div class="oss-section-heading"><h2 id="sources-title">Data sources & metric definitions</h2></div>
+		<div class="oss-measures">
+			<article id="project-metrics">
+				<h3>Project callouts</h3><p>
+					The project listings show GitHub repository stars and npm’s reported monthly downloads, captured {
+						dateLabel(projectImpact.asOf)
+					}. Each figure links to its GitHub API or npm registry source.
+				</p>
+			</article>
+			<article>
+				<h3>Package downloads</h3><p>
+					Downloads across the five selected npm packages during the displayed date window, including dependency
+					installs. Package API records are linked in the dashboard.
+				</p>
+			</article>
+			<article>
+				<h3>Repository stars & forks</h3><p>
+					Stars and forks for the six featured repositories listed in the dashboard, captured on the snapshot date.
+				</p>
+			</article>
+			<article>
+				<h3>Yearly GitHub contributions</h3><p>
+					GitHub’s contribution calendar combines qualifying commits, issues, pull requests, and reviews for the
+					displayed year and snapshot date.
+				</p>
+			</article>
+			<article>
+				<h3>Merged upstream PRs</h3><p>
+					The GitHub search <code>{impact.mergedPullRequests.query}</code> covers public merged PRs I authored outside the
+					lirantal namespace, including organization repositories. The repository total counts distinct repositories in those
+					results.
+				</p><p>
+					<a href={impact.mergedPullRequests.source}>Repeat the GitHub search</a> · <a
+						href={impact.mergedPullRequests.apiSource}>GitHub API source</a
+					>
+				</p>
+			</article>
+		</div>
+		<p class="oss-caption">
+			<a href="/recognitions#milestones-heading">GitHub Trending appearances</a> are documented in the recognition milestones.
+		</p>
+	</section>
+</Layout>
