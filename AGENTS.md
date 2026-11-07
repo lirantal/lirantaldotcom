@@ -51,6 +51,8 @@ Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Pro
 
 **npm:** `.npmrc` sets `legacy-peer-deps=true` because **`@astrolib/analytics`** peer range does not yet list Astro 6; installs are still valid. Prefer Node 24 locally (devcontainer image is `typescript-node:24`).
 
+**Social-card renderer:** Satori is pinned to `0.35.1`. Version `0.35.2` throws `ReferenceError: __dirname is not defined` from its ESM bundle during the Node regression tests. Validate `npm test`, the production build, and `npm run check:social` before changing this pin.
+
 **Tailwind theme:** `tailwind.config.mjs` at repo root extends `primary` / `secondary` palettes, Inter `fontFamily`, and prose `typography()` tweaks. Global entry CSS is **`src/assets/styles/base.css`** (imported from `BaseLayout.astro`).
 
 ## Global configuration
