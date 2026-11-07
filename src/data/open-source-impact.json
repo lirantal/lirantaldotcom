@@ -1,0 +1,79 @@
+{
+  "asOf": "2026-11-06",
+  "profile": {
+    "joined": "2010-06-28",
+    "source": "https://api.github.com/users/lirantal"
+  },
+  "mergedPullRequests": {
+    "total": 850,
+    "repositories": 193,
+    "query": "author:lirantal is:pr is:merged -user:lirantal",
+    "source": "https://github.com/search?q=author%3Alirantal%20is%3Apr%20is%3Amerged%20-user%3Alirantal&type=pullrequests",
+    "apiSource": "https://api.github.com/search/issues?q=author%3Alirantal%20is%3Apr%20is%3Amerged%20-user%3Alirantal",
+    "scope": "Public merged pull requests authored by lirantal outside the lirantal namespace, including organization and work-related repositories. Not a count of commits, reviews, unique people, or exclusively volunteer work.",
+    "pagesFetched": 9,
+    "incompleteResults": false,
+    "selectedRepositories": [
+      {
+        "name": "nodejs/node",
+        "mergedPullRequests": 3
+      },
+      {
+        "name": "nodejs/security-wg",
+        "mergedPullRequests": 189
+      },
+      {
+        "name": "OWASP/NodeGoat",
+        "mergedPullRequests": 17
+      },
+      {
+        "name": "OWASP/CheatSheetSeries",
+        "mergedPullRequests": 2
+      },
+      {
+        "name": "OWASP/cwe-tool",
+        "mergedPullRequests": 5
+      },
+      {
+        "name": "OWASP/cwe-sdk-javascript",
+        "mergedPullRequests": 15
+      },
+      {
+        "name": "cncf/tag-security",
+        "mergedPullRequests": 15
+      },
+      {
+        "name": "yarnpkg/berry",
+        "mergedPullRequests": 7
+      },
+      {
+        "name": "fastify/fastify",
+        "mergedPullRequests": 3
+      },
+      {
+        "name": "fastify/env-schema",
+        "mergedPullRequests": 2
+      },
+      {
+        "name": "pact-foundation/pact-js",
+        "mergedPullRequests": 12
+      },
+      {
+        "name": "meanjs/mean",
+        "mergedPullRequests": 144
+      },
+      {
+        "name": "yaronn/blessed-contrib",
+        "mergedPullRequests": 9
+      },
+      {
+        "name": "snyk/agent-scan",
+        "mergedPullRequests": 5
+      },
+      {
+        "name": "github/advisory-database",
+        "mergedPullRequests": 35
+      }
+    ]
+  }
+}

@@ -29,8 +29,8 @@ const dateTime = post.pubDate && Number.isFinite(date.getTime()) ? date.toISOStr
 					class="forma-article-cover"
 					src={post.image}
 					alt={`Cover artwork for ${post.title}`}
-					widths={[640, 1200]}
-					sizes="(max-width:760px) 100vw, 960px"
+					widths={[360, 480, 640, 768, 960, 1200]}
+					sizes="(max-width:760px) calc(100vw - 40px), (max-width:1016px) calc(100vw - 56px), 960px"
 					loading="eager"
 					fetchpriority="high"
 				/>

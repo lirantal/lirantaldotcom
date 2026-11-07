@@ -27,3 +27,14 @@ jobs:
         run: npm run build && npm run check:links && npm run check:social
         env:
           ASTRO_TELEMETRY_DISABLED: '1'
+      - name: Check responsive images and deferred diagrams in Chromium
+        run: |
+          npx playwright install --with-deps chromium
+          python3 -m http.server 4321 --bind 127.0.0.1 --directory dist > /tmp/performance-server.log 2>&1 &
+          performance_server_pid=$!
+          trap 'kill "$performance_server_pid"' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:4321/health.json > /dev/null; then break; fi
+            sleep 1
+          done
+          npm run test:performance

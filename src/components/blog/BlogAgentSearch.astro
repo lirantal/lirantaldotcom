@@ -1,3 +1,7 @@
+---
+import BlogSearchRegistration from './BlogSearchRegistration.astro';
+---
+
 <section class="surface mb-10" aria-labelledby="blog-search-title">
 	<h2 id="blog-search-title" class="!text-xl">Search Liran Tal's writing</h2>
 	<p class="muted text-sm mt-2 mb-5">
@@ -37,6 +41,4 @@
 	<ol id="blog-search-results" class="mt-4 space-y-4" hidden></ol>
 </section>
 
-<script>
-	import '~/scripts/register-blog-search.js';
-</script>
+<BlogSearchRegistration />

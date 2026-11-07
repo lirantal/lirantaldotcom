@@ -45,6 +45,10 @@ test('production agent query precedes HTML and Markdown routing and survives rep
 		path.join(root, 'scripts/generate-markdown-pages.mjs'),
 		path.join(fixture, 'scripts/generate-markdown-pages.mjs')
 	);
+	await fs.copyFile(
+		path.join(root, 'scripts/legacy-speaking-redirects.mjs'),
+		path.join(fixture, 'scripts/legacy-speaking-redirects.mjs')
+	);
 	await fs.writeFile(path.join(fixture, 'dist/index.html'), '<html><main><h1>Liran Tal</h1></main></html>');
 	const configPath = path.join(fixture, '.vercel/output/config.json');
 	await fs.writeFile(configPath, JSON.stringify({ version: 3, routes: [{ handle: 'filesystem' }] }));

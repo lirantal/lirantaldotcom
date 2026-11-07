@@ -41,7 +41,15 @@ test('postbuild emits heading-led twins for HTML, API pages, and llms indexes in
 		await write('dist/api/llms.txt', '# Public API\n\nRead-only resources.');
 		await write('dist/speaking/llms.txt', 'Speaking resources.');
 		await write('dist/_errors/api-not-found.json', '{"status":404}');
-		await write('.vercel/output/config.json', JSON.stringify({ version: 3, routes: [{ handle: 'filesystem' }] }));
+		const assetCacheRoute = {
+			src: '^/_astro/(.*)$',
+			headers: { 'cache-control': 'public, max-age=31536000, immutable' },
+			continue: true,
+		};
+		await write(
+			'.vercel/output/config.json',
+			JSON.stringify({ version: 3, routes: [{ handle: 'filesystem' }, assetCacheRoute] })
+		);
 		await fs.mkdir(path.join(fixture, '.vercel/output/static'), { recursive: true });
 
 		const generate = () => exec(process.execPath, [path.join(fixture, 'scripts/generate-markdown-pages.mjs')]);
@@ -57,6 +65,17 @@ test('postbuild emits heading-led twins for HTML, API pages, and llms indexes in
 		];
 		const configPath = path.join(fixture, '.vercel/output/config.json');
 		const config = JSON.parse(await fs.readFile(configPath, 'utf8'));
+		const cacheRoute = config.routes.find((route) => route.src === assetCacheRoute.src);
+		assert.deepEqual(
+			cacheRoute,
+			{
+				...assetCacheRoute,
+				headers: { ...assetCacheRoute.headers, 'Cloudflare-CDN-Cache-Control': 'public, max-age=31536000, immutable' },
+			},
+			'postbuild must repair the adapter asset cache policy before filesystem handling'
+		);
+		assert.equal(config.routes.filter((route) => route.src === assetCacheRoute.src).length, 1);
+		assert.ok(config.routes.indexOf(cacheRoute) < config.routes.findIndex((route) => route.handle === 'filesystem'));
 		for (const [source, destination] of [
 			['/speaking-events', '/speaking/events'],
 			['/speaking-talks-example', '/speaking/talks/example'],
@@ -77,6 +96,8 @@ test('postbuild emits heading-led twins for HTML, API pages, and llms indexes in
 			assert.equal(config.overrides[twin].contentType, 'text/markdown; charset=utf-8');
 			const negotiation = config.routes.find((route) => route.dest === `/_markdown/${twin}`);
 			assert.ok(negotiation);
+			assert.ok(!Object.keys(negotiation.headers).some((key) => key.toLowerCase().includes('cache-control')));
+			assert.equal(negotiation.headers.Vary, 'Accept');
 			assert.ok(config.routes.indexOf(negotiation) < config.routes.findIndex((route) => route.handle === 'filesystem'));
 		}
 		const cursorMarkdown = await fs.readFile(path.join(fixture, 'dist/api/posts/cursor/0.json.md'), 'utf8');

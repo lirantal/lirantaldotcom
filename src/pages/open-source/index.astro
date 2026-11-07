@@ -1,0 +1,118 @@
+---
+import Layout from '~/layouts/OpenSourceLayout.astro';
+import Highlights from '~/components/open-source/Highlights.astro';
+import impact from '~/data/open-source-impact.json';
+import ranks from '~/data/gitranks.json';
+import projectImpact from '~/data/project-impact.json';
+import { dateLabel, openSourceProjectHighlights } from '~/data/open-source';
+import { getCanonical } from '~/utils/permalinks';
+
+const meta = {
+	title: 'Open source by Liran Tal — projects, contributions & impact',
+	description:
+		'Explore Liran Tal’s open-source work: security tools, Node.js core contributions, OWASP projects, developer resources, and the evidence behind their impact.',
+	canonical: getCanonical('/open-source'),
+};
+---
+
+<Layout {meta}>
+	<section class="oss-intro" aria-labelledby="oss-title">
+		<h1 id="oss-title">Open source</h1>
+		<p>
+			I build tools, contribute fixes upstream, and turn security lessons into resources other developers can use. The
+			work spans Node.js, software supply chains, terminal applications, network infrastructure, and now AI agents.
+		</p>
+		<div class="oss-actions">
+			<a class="forma-button" href="/open-source/projects">Explore projects & resources</a><a
+				href="/open-source/contributions">See ecosystem contributions</a
+			>
+		</div>
+	</section>
+	<dl class="oss-stats">
+		<div>
+			<dt>Merged PRs outside my namespace</dt><dd>{impact.mergedPullRequests.total.toLocaleString('en-US')}</dd>
+		</div>
+		<div><dt>Repositories those PRs reached</dt><dd>{impact.mergedPullRequests.repositories}</dd></div>
+		<div><dt>On GitHub since</dt><dd>{impact.profile.joined.slice(0, 4)}</dd></div>
+	</dl>
+	<p class="oss-caption">
+		GitHub snapshot: {dateLabel(impact.asOf)}. <a href="/open-source/impact#sources">Data sources</a>
+	</p>
+	<aside class="oss-ranking-note" aria-label="GitRanks highlights">
+		<p>
+			GitRanks places my profile in the <strong>top 0.1% worldwide</strong> for owned-repository stars, contributor reach,
+			and followers. In its language rankings, I’m <strong>#1 in Israel for JavaScript and PHP</strong>.
+		</p>
+		<p class="oss-caption">
+			GitRanks snapshot: {dateLabel(ranks.capturedAt)}. <a href="/open-source/impact#gitranks"
+				>Explore the rankings & methodology</a
+			>.
+		</p>
+	</aside>
+	<section class="oss-section" aria-labelledby="core-title">
+		<div class="oss-feature surface">
+			<div>
+				<h2 id="core-title">Node.js child_process hardening</h2>
+				<p>
+					Earlier prototype-pollution hardening had missed some <code>child_process</code> paths. I contributed a regression
+					test and a fix to make that behavior consistent.
+				</p>
+				<p>The pull request was merged on July 21, 2024.</p>
+			</div>
+			<aside>
+				<a href="https://github.com/nodejs/node/pull/53781">Read Node.js PR #53781</a>
+				<p><a href="/open-source/contributions#nodejs-core">More about this contribution</a></p>
+			</aside>
+		</div>
+	</section>
+	<section class="oss-section" aria-labelledby="explore-title">
+		<div class="oss-section-heading"><h2 id="explore-title">Open-source areas</h2></div>
+		<div class="oss-explore">
+			<article>
+				<h3><a href="/open-source/projects">Projects & resources</a></h3><p>
+					Security defenses, developer tools, and community guides. What each project does, my involvement, and where to
+					get started.
+				</p>
+			</article>
+			<article>
+				<h3><a href="/open-source/contributions">Ecosystem contributions</a></h3><p>
+					Selected changes to Node.js, OWASP, CNCF, Fastify, Yarn, and more, with links to the actual work.
+				</p>
+			</article>
+			<article>
+				<h3><a href="/open-source/impact">Impact & rankings</a></h3><p>
+					Package adoption, repository interest, contribution breadth, and GitRanks. Different measures, with their
+					dates and limits.
+				</p>
+			</article>
+		</div>
+	</section>
+	<section class="oss-section" aria-labelledby="beyond-title">
+		<div class="oss-section-heading"><h2 id="beyond-title">Featured projects & resources</h2></div>
+		<Highlights entries={openSourceProjectHighlights} />
+		<p class="oss-caption">
+			Project metrics captured {dateLabel(projectImpact.asOf)}. <a href="/open-source/impact#project-metrics"
+				>Sources & definitions</a>
+		</p>
+	</section>
+	<section class="oss-section" aria-labelledby="community-title">
+		<div class="oss-section-heading">
+			<h2 id="community-title">Open-source leadership & recognition</h2><a href="/recognitions"
+				>Recognition & community stories</a
+			>
+		</div>
+		<p>
+			My work includes historical membership in the Node.js Ecosystem Security Working Group, co-leadership of OWASP
+			NodeGoat, and leadership of OWASP’s CWE tooling.
+		</p>
+		<p>
+			I received GitHub Star recognition in 2021, 2022, and 2023, and the OpenJS Foundation’s Security Pathfinder award
+			in 2022.
+		</p>
+		<div class="oss-actions">
+			<a href="/research">Security research & disclosures</a><a href="/speaking">Talks & workshops</a><a
+				href="https://github.com/lirantal">My GitHub profile</a
+			>
+		</div>
+	</section>
+</Layout>

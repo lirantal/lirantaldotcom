@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import { PROFILE } from '~/config.mjs';
 import portrait from '~/assets/images/liran-tal-portrait-cutout.png';
@@ -35,13 +35,16 @@ import portrait from '~/assets/images/liran-tal-portrait-cutout.png';
 		</div>
 	</div>
 	<div class="refined-profile">
-		<Image
+		<Picture
 			class="refined-portrait"
 			src={portrait}
 			alt="Liran Tal"
-			widths={[320, 640]}
-			sizes="(max-width:760px) 220px, 320px"
-			format="webp"
+			width={660}
+			widths={[220, 320, 440, 660, 960]}
+			sizes="(max-width:760px) 220px, (max-width:1050px) 280px, 320px"
+			formats={['avif', 'webp']}
+			fallbackFormat="webp"
+			quality={45}
 			loading="eager"
 			fetchpriority="high"
 		/>

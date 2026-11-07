@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier -w .",
-    "test": "node --test scripts/tests/*.test.mjs",
+    "test": "node --test scripts/tests/*.test.mjs tests/*.test.mjs",
+    "test:performance": "node --test tests/browser/performance.test.mjs",
     "check:links": "node scripts/check-internal-links.mjs",
     "lint": "eslint .",
     "lint:eslint": "eslint .",
@@ -60,12 +61,13 @@
     "@fontsource-variable/newsreader": "^5.3.0",
     "@fontsource-variable/space-grotesk": "^5.3.0",
     "@fontsource-variable/manrope": "^5.3.0",
-    "satori": "^0.35.0",
+    "satori": "0.35.1",
     "@resvg/resvg-js": "^2.6.2",
     "@fontsource/inter": "^5.3.0",
     "@fontsource/noto-sans-hebrew": "^5.3.0",
     "bidi-js": "^1.1.0",
-    "@shuding/opentype.js": "^1.4.0-beta.0"
+    "@shuding/opentype.js": "^1.4.0-beta.0",
+    "playwright": "^1.63.0"
   },
   "engines": {
     "npm": ">=11.10.0",

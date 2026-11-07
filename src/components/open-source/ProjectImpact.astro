@@ -1,0 +1,77 @@
+---
+import { Icon } from 'astro-icon/components';
+import projectImpact from '~/data/project-impact.json';
+import { dateLabel } from '~/data/open-source';
+
+interface Props {
+	url: string;
+	name: string;
+}
+const { url, name } = Astro.props;
+const metrics = projectImpact.repositories.find((repository) => repository.url === url);
+if (!metrics) throw new Error(`Missing project impact snapshot for ${url}`);
+const captured = dateLabel(projectImpact.asOf);
+---
+
+<dl class="oss-project-impact" aria-label={`${name} impact`}>
+	<div>
+		<dt><Icon name="tabler:star" aria-hidden="true" /> GitHub stars</dt>
+		<dd>
+			<a href={metrics.source} title={`GitHub stars · captured ${captured}`}>{metrics.stars.toLocaleString('en-US')}</a>
+		</dd>
+	</div>
+	{
+		metrics.npm && (
+			<div>
+				<dt>
+					<Icon name="tabler:brand-npm" aria-hidden="true" /> monthly npm downloads
+				</dt>
+				<dd>
+					<a
+						href={metrics.npm.source}
+						title={`npm monthly downloads · source updated ${dateLabel(metrics.npm.updatedAt.slice(0, 10))}`}
+					>
+						{metrics.npm.monthlyDownloads.toLocaleString('en-US')}
+					</a>
+				</dd>
+			</div>
+		)
+	}
+</dl>
+
+<style>
+	.oss-project-impact {
+		display: grid;
+		gap: 6px;
+		margin-top: 16px;
+		font-variant-numeric: tabular-nums;
+	}
+	.oss-project-impact > div {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		column-gap: 8px;
+	}
+	.oss-project-impact dt {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 12px;
+		color: var(--muted);
+	}
+	.oss-project-impact dt :global(svg) {
+		width: 14px;
+		height: 14px;
+		flex-shrink: 0;
+	}
+	.oss-project-impact dd {
+		order: -1;
+		font-size: 15px;
+		font-weight: 650;
+		color: var(--ink);
+	}
+	.oss-project-impact a {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+</style>

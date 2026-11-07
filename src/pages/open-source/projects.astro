@@ -1,0 +1,80 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '~/layouts/OpenSourceLayout.astro';
+import { dateLabel, projectGroups } from '~/data/open-source';
+import projectImpact from '~/data/project-impact.json';
+import ProjectImpact from '~/components/open-source/ProjectImpact.astro';
+import { getCanonical } from '~/utils/permalinks';
+const meta = {
+	title: 'Open-source projects & resources — Liran Tal',
+	description:
+		'Security tools, terminal applications, network infrastructure, and community guides created, maintained, or contributed to by Liran Tal.',
+	canonical: getCanonical('/open-source/projects'),
+};
+---
+
+<Layout {meta}>
+	<section class="oss-intro" aria-labelledby="projects-title">
+		<h1 id="projects-title">Projects & resources</h1>
+		<p>
+			A selection of the tools I build and help maintain, and the practices I share. Start with the problem you want to
+			solve; each repository has its own documentation and contribution process.
+		</p>
+		<nav class="oss-jump-links" aria-label="Project categories">
+			{projectGroups.map((group) => <a href={`#${group.id}`}>{group.title}</a>)}
+		</nav>
+		<p class="oss-caption">
+			Project metrics captured {dateLabel(projectImpact.asOf)}. <a href="/open-source/impact#project-metrics"
+				>Sources & definitions</a>
+		</p>
+	</section>
+	{
+		projectGroups.map((group) => (
+			<section class="oss-section" id={group.id} aria-labelledby={`${group.id}-title`}>
+				<div class="oss-section-heading">
+					<h2 id={`${group.id}-title`}>{group.title}</h2>
+				</div>
+				<p>{group.description}</p>
+				{group.projects.map((project) => (
+					<article class="oss-project" id={project.url.split('/').at(-1)}>
+						<header>
+							<h3>
+								<a href={project.url}>{project.name}</a>
+							</h3>
+							<p class="oss-project-kind">{project.kind}</p>
+							<ProjectImpact url={project.url} name={project.name} />
+						</header>
+						<div>
+							<p class="oss-role">{project.role}</p>
+							<p>{project.description}</p>
+							<nav class="oss-source-links" aria-label={`${project.name} sources`}>
+								<a href={project.url}>
+									<Icon name="tabler:brand-github" aria-hidden="true" />
+									GitHub
+								</a>
+								{project.npm && (
+									<a href={`https://www.npmjs.com/package/${project.npm}`}>
+										<Icon name="tabler:brand-npm" aria-hidden="true" />
+										npm package
+									</a>
+								)}
+							</nav>
+						</div>
+					</article>
+				))}
+			</section>
+		))
+	}
+	<section class="oss-section" aria-labelledby="start-title">
+		<div class="oss-section-heading"><h2 id="start-title">How to contribute</h2></div>
+		<p>
+			Try the project first, then check its README, open issues, and contribution guidelines. A reproducible bug report,
+			a clearer example, or a documentation improvement can be a valuable first contribution.
+		</p>
+		<div class="oss-actions">
+			<a href="https://github.com/lirantal?tab=repositories">Browse all repositories on GitHub</a><a
+				href="/open-source/contributions">Explore my upstream contributions</a
+			>
+		</div>
+	</section>
+</Layout>
