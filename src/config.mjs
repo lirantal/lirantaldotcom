@@ -26,10 +26,10 @@ export const SPEAKING = {
 
 export const FOOTER = {
 	cta: {
-		heading: 'Let’s work together.',
-		description: 'Developer relations, developer experience, and product leadership.',
-		title: 'Work with me',
-		link: '/hire-me',
+		heading: 'Built for developers.',
+		description: 'Explore my open-source tools, projects, and ecosystem contributions.',
+		title: 'Explore the projects',
+		link: '/open-source',
 	},
 	media: { title: 'Media & interviews', link: '/media' },
 	columns: [
