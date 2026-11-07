@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import { openSourceHighlights } from '~/data/open-source';
 interface Props {
 	entries?: typeof openSourceHighlights;
@@ -11,7 +12,10 @@ const { entries = openSourceHighlights } = Astro.props;
 		entries.map((highlight) => (
 			<article>
 				<h3>
-					<a href={highlight.href}>{highlight.title}</a>
+					<a href={highlight.href}>
+						{highlight.icon && <Icon name={highlight.icon} class="oss-highlight-logo" aria-hidden="true" />}
+						<span>{highlight.title}</span>
+					</a>
 				</h3>
 				<p>{highlight.text}</p>
 			</article>
@@ -32,8 +36,20 @@ const { entries = openSourceHighlights } = Astro.props;
 		font-size: 18px;
 	}
 	.oss-highlights a {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		max-width: 100%;
 		text-decoration: underline;
 		text-underline-offset: 4px;
+	}
+	.oss-highlights a span {
+		min-width: 0;
+	}
+	.oss-highlights .oss-highlight-logo {
+		width: 24px;
+		height: 24px;
+		flex-shrink: 0;
 	}
 	.oss-highlights p {
 		margin-top: 12px;

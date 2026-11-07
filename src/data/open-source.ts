@@ -234,19 +234,29 @@ export const contributionStories = [
 	},
 ];
 
-export const openSourceHighlights = [
+type OpenSourceHighlight = {
+	title: string;
+	text: string;
+	href: string;
+	icon?: string;
+};
+
+export const openSourceHighlights: OpenSourceHighlight[] = [
 	{
 		title: 'Node.js core',
+		icon: 'mdi:nodejs',
 		text: 'A merged fix for child_process prototype-pollution hardening.',
 		href: '/open-source/contributions#nodejs-core',
 	},
 	{
 		title: 'OWASP guidance',
+		icon: 'owasp',
 		text: 'Co-authored npm security practices that became the basis of an OWASP cheat sheet.',
 		href: '/open-source/contributions#owasp',
 	},
 	{
 		title: 'JavaScript & PHP in Israel',
+		icon: 'mdi:language-javascript',
 		text:
 			ranks.languages
 				.filter((language) => ['JavaScript', 'PHP'].includes(language.name))
