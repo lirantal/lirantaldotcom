@@ -151,8 +151,7 @@ export const contributionStories = [
 		role: 'Historical working-group member & vulnerability triage contributor',
 		description:
 			'Work in the Node.js Security Working Group included vulnerability records, disclosure processes, bug-bounty guidance, and meeting documentation. This was sustained ecosystem work alongside individual fixes.',
-		context:
-			'Historical work in the working-group repository; this does not imply a current Node.js leadership position.',
+		context: 'The working-group repository records my addition to the vulnerability triage team on January 5, 2018.',
 		sources: [
 			{ label: 'Joining the vulnerability triage team · #78', url: 'https://github.com/nodejs/security-wg/pull/78' },
 			{ label: 'Responsible disclosure policy template · #99', url: 'https://github.com/nodejs/security-wg/pull/99' },
@@ -162,9 +161,9 @@ export const contributionStories = [
 		id: 'owasp',
 		title: 'Helping developers learn security through OWASP',
 		repository: 'OWASP/NodeGoat',
-		role: 'NodeGoat project member · CWE project lead',
+		role: 'NodeGoat project co-lead · CWE project lead',
 		description:
-			'Contributed intentionally vulnerable examples and fixes to NodeGoat, including NoSQL injection and regular-expression denial of service. My profile also records project leadership for OWASP’s CWE command-line tool and JavaScript SDK.',
+			'I co-lead OWASP NodeGoat, contributing intentionally vulnerable examples and fixes, including NoSQL injection and regular-expression denial of service. My profile also records project leadership for OWASP’s CWE command-line tool and JavaScript SDK.',
 		context:
 			'The npm security guidance I co-authored with Juan Picado became the original basis of the evolving OWASP NPM Security Cheat Sheet.',
 		sources: [
@@ -239,6 +238,8 @@ type OpenSourceHighlight = {
 	text: string;
 	href: string;
 	icon?: string;
+	textIcon?: string;
+	items?: { text: string; href?: string; icon?: string }[];
 };
 
 export const openSourceHighlights: OpenSourceHighlight[] = [
@@ -246,13 +247,29 @@ export const openSourceHighlights: OpenSourceHighlight[] = [
 		title: 'Node.js core',
 		icon: 'mdi:nodejs',
 		text: 'A merged fix for child_process prototype-pollution hardening.',
+		textIcon: 'tabler:git-merge',
 		href: '/open-source/contributions#nodejs-core',
+		items: [
+			{
+				text: 'Member of the Node.js Foundation’s Ecosystem Security Working Group (2018).',
+				href: '/open-source/contributions#security-wg',
+				icon: 'tabler:users-group',
+			},
+		],
 	},
 	{
 		title: 'OWASP guidance',
 		icon: 'owasp',
 		text: 'Co-authored npm security practices that became the basis of an OWASP cheat sheet.',
+		textIcon: 'tabler:book-2',
 		href: '/open-source/contributions#owasp',
+		items: [
+			{
+				text: 'Co-lead of the OWASP NodeGoat project.',
+				href: '/open-source/contributions#owasp',
+				icon: 'tabler:users-group',
+			},
+		],
 	},
 	{
 		title: 'JavaScript & PHP in Israel',

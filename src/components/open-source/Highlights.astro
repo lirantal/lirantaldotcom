@@ -17,7 +17,20 @@ const { entries = openSourceHighlights } = Astro.props;
 						<span>{highlight.title}</span>
 					</a>
 				</h3>
-				<p>{highlight.text}</p>
+				{highlight.items || highlight.textIcon ? (
+					<ul class="oss-highlight-items" role="list">
+						{[{ text: highlight.text, icon: highlight.textIcon, href: undefined }, ...(highlight.items || [])].map(
+							(item) => (
+								<li>
+									{item.icon && <Icon name={item.icon} class="oss-highlight-item-icon" aria-hidden="true" />}
+									{item.href ? <a href={item.href}>{item.text}</a> : <span>{item.text}</span>}
+								</li>
+							)
+						)}
+					</ul>
+				) : (
+					<p>{highlight.text}</p>
+				)}
 			</article>
 		))
 	}
@@ -57,12 +70,34 @@ const { entries = openSourceHighlights } = Astro.props;
 		color: var(--muted);
 		max-width: 38ch;
 	}
+	.oss-highlight-items {
+		display: grid;
+		gap: 12px;
+		margin-top: 12px;
+		padding: 0;
+		list-style: none;
+		font-size: 14px;
+		color: var(--muted);
+		max-width: 38ch;
+	}
+	.oss-highlight-items li {
+		display: flex;
+		align-items: flex-start;
+		gap: 8px;
+	}
+	.oss-highlight-items .oss-highlight-item-icon {
+		width: 16px;
+		height: 16px;
+		flex-shrink: 0;
+		margin-top: 4px;
+	}
 	@media (max-width: 760px) {
 		.oss-highlights {
 			grid-template-columns: 1fr;
 			gap: 12px;
 		}
-		.oss-highlights p {
+		.oss-highlights p,
+		.oss-highlight-items {
 			max-width: 65ch;
 		}
 	}
