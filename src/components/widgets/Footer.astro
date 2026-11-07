@@ -13,12 +13,12 @@ const social = [
 
 <footer class="forma-footer">
 	<div class="forma-wrap">
-		<div class="forma-subscribe">
+		<div class="forma-footer-cta">
 			<div>
-				<h2>Get new articles.</h2><p>
-					AI security, Node.js, and the software supply chain.<br />Follow the blog in your feed reader.
-				</p>
-			</div><a class="forma-button" href="/rss.xml"><Icon name="tabler:rss" aria-hidden="true" />Follow via RSS</a>
+				<h2>{FOOTER.cta.heading}</h2><p>{FOOTER.cta.description}</p>
+			</div><a class="forma-button" href={FOOTER.cta.link}
+				>{FOOTER.cta.title}<Icon name="tabler:arrow-right" aria-hidden="true" /></a
+			>
 		</div>
 		<div class="site-footer-columns">
 			<div>

@@ -384,17 +384,17 @@
 	color: #fff;
 	margin-top: 12px;
 }
-.site-theme .forma-subscribe {
+.site-theme .forma-footer-cta {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 40px;
 	padding-block: 58px 52px;
 }
-.site-theme .forma-subscribe h2 {
+.site-theme .forma-footer-cta h2 {
 	font-size: 42px;
 }
-.site-theme .forma-subscribe p {
+.site-theme .forma-footer-cta p {
 	font-size: 15px;
 	color: #d4d0dc;
 	margin-top: 16px;
@@ -835,16 +835,16 @@
 	.site-theme .forma-blog-card .forma-meta {
 		font-size: 11px;
 	}
-	.site-theme .forma-subscribe {
+	.site-theme .forma-footer-cta {
 		align-items: flex-start;
 		flex-direction: column;
 		gap: 26px;
 		padding-block: 44px 34px;
 	}
-	.site-theme .forma-subscribe h2 {
+	.site-theme .forma-footer-cta h2 {
 		font-size: 34px;
 	}
-	.site-theme .forma-subscribe p {
+	.site-theme .forma-footer-cta p {
 		font-size: 14px;
 	}
 	.site-theme .forma-footer-bottom {

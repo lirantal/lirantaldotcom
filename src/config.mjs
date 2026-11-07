@@ -25,6 +25,12 @@ export const SPEAKING = {
 };
 
 export const FOOTER = {
+	cta: {
+		heading: 'Built for developers.',
+		description: 'Explore my open-source tools, projects, and ecosystem contributions.',
+		title: 'Open source advocacy',
+		link: '/open-source',
+	},
 	media: { title: 'Media & interviews', link: '/media' },
 	columns: [
 		{
