@@ -132,3 +132,17 @@ Website DNS observed before migration (2026-11-12):
 The book subdomain currently points to a different IP from the apex. Verify its live ownership and checkout behavior before deciding whether it should move with the main site.
 
 Re-read DNS immediately before cutover and retain the full then-current snapshot. To roll back, remove this Worker's custom-domain bindings and restore only the changed website records from that snapshot. Restore Vercel as the serving host, repeat health/HTML/API checks, and investigate before retrying. No production domain attachment or DNS cutover has been performed by the migration branch.
+
+## Resumed deployed validation (2026-11-12)
+
+The fresh environment has an enforced allowlist for workers.dev, apex and www; fresh HTTPS requests to all three succeed. Apex/www still serve Vercel. Against the manual preview, the complete HTTP checker passed all 980 negotiated routes, alternating representations, discovery, redirects, true errors, HEAD requests, and all eight R2 byte ranges. All nine Chromium regression tests passed. Additional Chromium checks passed mobile navigation, persistent dark mode, real Pagefind results at `/blog`, speaking recording filters (149 to 91 talks), and metadata loading plus midpoint seeking for all eight videos.
+
+Playwright's `route.fetch()` uses a separate HTTP client; in a managed proxy environment, pass `PLAYWRIGHT_PROXY_SERVER="$HTTPS_PROXY"` in addition to `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium`. Ordinary Chromium navigation worked without this, while intercepted fetches otherwise failed with direct-DNS `EAI_AGAIN`. The optional proxy setting leaves local/CI test defaults unchanged. Node HTTP checks use `NODE_USE_ENV_PROXY=1` where needed.
+
+Rebuilt Cloudflare output and bundle passed; 35 Node tests, lint, internal links (966 pages) and social metadata (966 pages, 718 PNGs) passed. Local build used the committed speaking snapshot when the live source fetch failed; this does not establish remote build output parity.
+
+Read-only account inspection found no legacy Page Rules and only managed zone rulesets, with no custom cache/redirect/transform rulesets. Bot Fight Mode, JavaScript bot detection and listed AI crawler blocks are disabled; robots.txt is not managed. Fresh DNS still has the documented Vercel apex/www records and separate book origin. No DNS or zone settings changed. The book subdomain is denied by this environment's outbound policy; its live ownership/checkout remains unverified and it must remain outside the website cutover.
+
+For SCM inspection, use the primary Worker's script tag `7a26bce7fe21463da7baf04fbe5295de`: it watches `main`, with auto builds and previews enabled and the documented production/preview commands. A branch preview has a separate internal script tag (`de0d3008f4df4b22a7d1e4cdd071dc3b` for this branch); its branch-specific settings are not the primary production configuration. Build `e33cb4c0-8784-4ff6-b0f0-8346c138967d` corresponds to commit `725db55`; obtain its successful deployment URL before claiming SCM-preview acceptance.
+
+Pending: latest SCM-preview HTTP/browser acceptance, scheduled bot-push build evidence, preview owner acceptance, and production cutover. No merge or production binding has been authorized by preview acceptance yet.

@@ -14,6 +14,8 @@ before(async () => {
 	browser = await chromium.launch({
 		executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || undefined,
 		args: ['--no-sandbox'],
+		// Playwright's route.fetch uses its own HTTP client and needs an explicit proxy.
+		proxy: process.env.PLAYWRIGHT_PROXY_SERVER ? { server: process.env.PLAYWRIGHT_PROXY_SERVER } : undefined,
 	});
 });
 after(async () => browser?.close());
