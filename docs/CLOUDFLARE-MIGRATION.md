@@ -94,6 +94,18 @@ Skipping automatic dependency installation is necessary so the pinned npm setup 
 
 Verify pushes from the scheduled speaking-data workflow trigger Cloudflare builds. It commits to main or creates an empty commit to refresh date-dependent event listings; keep that behavior after migration.
 
+## Handoff status (2026-11-12)
+
+Draft PR: https://github.com/lirantal/lirantaldotcom/pull/55, branch `feat/cloudflare-migration`.
+
+At implementation commit `d75baa602ab5632af6a0ab0d8f0ca5d710bbb9ce`, all PR checks passed: GitHub `test (cloudflare)`, `test (vercel)`, Workers Builds, Vercel deployment, and Vercel Preview Comments. Local verification also passed 35 Node tests, ESLint, link/social checks across 966 pages and 718 PNGs, all 980 normal/Markdown resource routes, all eight video range checks, and nine Chromium behavior tests against `cf dev`.
+
+The manual preview deployment was uploaded successfully. Immutable deployment URL: https://b091e300-lirantaldotcom.liran-72b.workers.dev. Its live response/browser behavior remains **unverified**: the previous running environment stayed on configuration revision 1 and denied outbound access to workers.dev and both production hostnames even after the owner published an updated environment. The published update is intended to allow `*.workers.dev`, `lirantal.com`, and `www.lirantal.com`. A new session must verify its actual active policy and fresh connections before running remote checks. Native branch-preview URLs may differ from the manual preview; obtain the latest URL from the Cloudflare build for the PR's current commit.
+
+The source, configuration, tests and procedures are committed. Build directories, dependencies, local R2 state and scratch logs are disposable and reproducible. Cloudflare OAuth credentials were stored outside the checkout, under a task-local XDG config directory, and are not part of Git. Expect to authenticate again in a new environment using `cf auth login --no-browser`; never transfer credentials through the handoff prompt or repository. No production domains are attached to this Worker and no production DNS records have been changed.
+
+Next work is deployed-preview acceptance, remaining zone/Page Rule and book-subdomain inspection, then the reviewed production cutover and rollback verification described below. The early failure of an initial `main` build occurred before main contained these migration scripts and is distinct from the successful migration-branch builds.
+
 ## Observed zone settings
 
 Read-only inspection on 2026-11-12 found Browser Cache TTL at 14,400 seconds (four hours), email obfuscation enabled, and cache level `aggressive`. The ruleset inventory contained managed normalization/firewall/DDoS rulesets and no custom cache ruleset. No settings were changed. Keep the email opt-out markers, verify the actual custom-domain cache headers after cutover, and review legacy Page Rules separately before concluding that no cache overrides exist.
