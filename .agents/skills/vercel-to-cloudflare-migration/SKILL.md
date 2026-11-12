@@ -17,7 +17,7 @@ compatibility: >
   the official cf CLI where supported. Python 3 runs the optional offline DNS audit.
 metadata:
   author: lirantal
-  version: 1.0.0
+  version: 1.0.1
 ---
 
 # Vercel to Cloudflare migration
@@ -241,7 +241,9 @@ is needed). Report provider billing failures separately from application CI fail
    and full sensitive operational snapshots out of public documentation.
 2. Mark historical observations as historical. Do not restore intentionally retired
    records from an old migration snapshot during a later cleanup or rollback.
-3. If the user explicitly retires an unused hostname, verify website references and
+3. Before retirement, check known external consumers and related sites too; absence
+   from one repository does not prove a hostname is globally unused. Record unknowns.
+   If the user explicitly retires an unused hostname, verify website references and
    current DNS, remove only its approved records and obsolete rules, verify all others
    unchanged, and close the issue with the actual decision. Do not delete external
    vendor products or working purchase links as a side effect.

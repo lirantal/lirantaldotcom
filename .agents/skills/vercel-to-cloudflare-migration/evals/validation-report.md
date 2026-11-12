@@ -25,3 +25,5 @@ Scores reflect manual review of plan text against the expectations in evals.json
 The fixture sample is small and hand-selected. It does not demonstrate live deployment success, universal framework compatibility or a statistically reliable performance advantage. Timing/token data were not supplied and are not invented. Raw outputs and an official-template static review viewer were generated in the task workspace; only the reusable prompts and this summary ship in the package.
 
 Review feedback added partial-host recovery, managed-record audit guidance, a blocked-preview decision tree, and explicit OAuth/session/Postgres/webhook/scheduler checks. The structural/helper tests were rerun after these refinements. Claude-only trigger optimization and human review feedback were not collected.
+
+Version 1.0.1 records the later DNS restoration after an external site's purchase CTA was discovered. It clarifies that searching one repository cannot prove global disuse. This documentation refinement did not change the auditor; package/frontmatter validation was repeated.
