@@ -1,0 +1,24 @@
+Use the vercel-to-cloudflare-migration skill at:
+https://raw.githubusercontent.com/lirantal/lirantaldotcom/feat/vercel-to-cloudflare-migration-skill/.agents/skills/vercel-to-cloudflare-migration/SKILL.md
+If that branch has been merged/deleted, use the main version:
+https://raw.githubusercontent.com/lirantal/lirantaldotcom/main/.agents/skills/vercel-to-cloudflare-migration/SKILL.md
+Read its referenced files from the same source directory as needed.
+
+I want to migrate this existing Vercel app to Cloudflare:
+- Repository: FILL
+- Domain(s): FILL
+- Cloudflare account: default (verify its current account ID; do not assume a CLI default)
+- Existing migration branch/PR/handoff, if any: FILL
+- Hosting/data/services to preserve or exclude: FILL
+
+Inspect the actual framework/runtime and current deployed behavior before choosing
+an architecture; do not assume it is another static Astro site. Resume committed
+work rather than starting over. Use only the approved app's resources, preserve
+mail/unrelated DNS/services, and verify actual environment access before remote tests.
+
+Implement and verify an automatic Git/PR preview workflow. Present deployed-preview
+results for my acceptance before production cutover unless I explicitly authorize a
+different gate. Keep rollback realistic and recheck Vercel availability. Tell me the
+concrete result and my next manual action after each milestone; proceed autonomously
+through authorized inspection, implementation and fixes. Never ask me to paste API
+tokens into chat. Do not change production DNS before the agreed acceptance gate.

@@ -1,0 +1,25 @@
+Perform only read-only external-origin checks for this migration. Do not change code,
+DNS, deployments, account settings, or purchases. Do not request secret values.
+
+App/repository: FILL
+Exact commit: FILL
+Immutable deployed preview/base URL: FILL
+Specific external origins and parent-page paths to check: FILL
+Expected harmless interactions and contract: FILL
+Known policy denials and previously verified portions: FILL
+Missing identifiers/inputs and proposed checks (not yet collected evidence): FILL
+
+First inspect the selected environment's actual policy and readiness. Report its ID
+and observed revision. Make fresh HTTPS requests with inherited proxies and CA trust.
+Do not bypass denied destinations or assume a published update reached this instance.
+
+For each specified URL, record status, redirect chain/final URL and TLS errors. In a
+real browser, load the parent page and inspect visible rendering plus the specified
+harmless interaction. Iframe attributes alone do not establish a rendering pass.
+Do not submit content, log in, purchase, or trigger paid generation unless explicitly
+authorized. Report further denied provider/player/thumbnail hosts precisely.
+
+Return a concise evidence report: environment ID/revision, exact tested URLs,
+statuses/redirects, visible behavior, interactions, framing/CSP/browser errors,
+proxy denials, and remaining limitations. Label passed, failed or blocked accurately.
+Do not make cutover changes or infer ownership from a vendor's HTML branding.
