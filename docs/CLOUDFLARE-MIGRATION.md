@@ -94,6 +94,10 @@ Skipping automatic dependency installation is necessary so the pinned npm setup 
 
 Verify pushes from the scheduled speaking-data workflow trigger Cloudflare builds. It commits to main or creates an empty commit to refresh date-dependent event listings; keep that behavior after migration.
 
+## Observed zone settings
+
+Read-only inspection on 2026-11-12 found Browser Cache TTL at 14,400 seconds (four hours), email obfuscation enabled, and cache level `aggressive`. The ruleset inventory contained managed normalization/firewall/DDoS rulesets and no custom cache ruleset. No settings were changed. Keep the email opt-out markers, verify the actual custom-domain cache headers after cutover, and review legacy Page Rules separately before concluding that no cache overrides exist.
+
 ## Acceptance and cutover
 
 Before switching production:
@@ -112,5 +116,7 @@ Website DNS observed before migration (2026-11-12):
 | `lirantal.com` | A | `76.76.21.21` | enabled |
 | `www.lirantal.com` | CNAME | `cname.vercel-dns.com` | enabled |
 | `nodejs-secure-coding.lirantal.com` | A | `3.33.255.208` | enabled |
+
+The book subdomain currently points to a different IP from the apex. Verify its live ownership and checkout behavior before deciding whether it should move with the main site.
 
 Re-read DNS immediately before cutover and retain the full then-current snapshot. To roll back, remove this Worker's custom-domain bindings and restore only the changed website records from that snapshot. Restore Vercel as the serving host, repeat health/HTML/API checks, and investigate before retrying. No production domain attachment or DNS cutover has been performed by the migration branch.
