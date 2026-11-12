@@ -98,8 +98,6 @@ test('Cloudflare handles HEAD, CORS preflight and unsupported methods', async ()
 
 test('Cloudflare preserves host and exact legacy redirects', async () => {
 	for (const [url, location] of [
-		['https://nodejs-secure-coding.lirantal.com/', 'https://lirantal.com/books/nodejs-secure-coding'],
-		['https://nodejs-secure-coding.lirantal.com/checkout/product', 'https://lirantal.com/books/nodejs-secure-coding'],
 		['https://www.lirantal.com/writing?a=1', 'https://lirantal.com/writing?a=1'],
 		['https://example.workers.dev/speaking-events/', '/speaking/events'],
 	]) {

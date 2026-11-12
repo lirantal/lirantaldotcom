@@ -133,28 +133,6 @@
   ],
   "redirects": [
     {
-      "source": "/",
-      "destination": "https://lirantal.com/books/nodejs-secure-coding",
-      "permanent": true,
-      "has": [
-        {
-          "type": "host",
-          "value": "nodejs-secure-coding.lirantal.com"
-        }
-      ]
-    },
-    {
-      "source": "/checkout/:path*",
-      "destination": "https://lirantal.com/books/nodejs-secure-coding",
-      "permanent": true,
-      "has": [
-        {
-          "type": "host",
-          "value": "nodejs-secure-coding.lirantal.com"
-        }
-      ]
-    },
-    {
       "source": "/games-chatgpt-chat-meme-generator",
       "destination": "/games/chatgpt-chat-meme-generator",
       "permanent": true
