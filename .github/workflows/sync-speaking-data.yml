@@ -13,6 +13,11 @@ on:
   schedule:
     - cron: '17 */6 * * *'
   workflow_dispatch:
+    inputs:
+      force_rebuild:
+        description: Push an empty commit to refresh date-dependent pages
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -37,6 +42,8 @@ jobs:
           jq -e '.items | type == "array" and length > 0' "$RUNNER_TEMP/README.json" > /dev/null
 
       - name: Commit when talk data changed or the schedule went stale
+        env:
+          FORCE_REBUILD: ${{ inputs.force_rebuild || false }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -46,6 +53,13 @@ jobs:
             cp "$RUNNER_TEMP/README.json" "$SNAPSHOT"
             git add "$SNAPSHOT"
             git commit -m 'chore(speaking): sync speaking data from lirantal/public-speaking'
+            git push
+            exit 0
+          fi
+
+          # Also permits checking bot-push deployment triggers on a preview branch.
+          if [ "$FORCE_REBUILD" = 'true' ]; then
+            git commit --allow-empty -m 'chore(speaking): rebuild to refresh the upcoming schedule'
             git push
             exit 0
           fi
