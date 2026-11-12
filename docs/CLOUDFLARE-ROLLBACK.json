@@ -1,0 +1,28 @@
+{
+  "capturedAt": "2026-11-12T17:10:48.470Z",
+  "accountId": "72bac654168b15b354744bf1e8b6762f",
+  "zoneId": "f719742192b1339446980d33b6aa2d14",
+  "worker": "lirantaldotcom",
+  "warning": "Vercel was paused for billing/quota at cutover. Resolve that restriction before relying on DNS rollback.",
+  "websiteRecords": [
+    {
+      "name": "lirantal.com",
+      "type": "A",
+      "content": "76.76.21.21",
+      "ttl": 1,
+      "proxied": true
+    },
+    {
+      "name": "www.lirantal.com",
+      "type": "CNAME",
+      "content": "cname.vercel-dns.com",
+      "ttl": 1,
+      "proxied": true
+    }
+  ],
+  "previousWebsiteDomainBindings": [],
+  "instructions": "Remove only the lirantal.com and www.lirantal.com Worker custom-domain bindings, then restore these website records. Preserve MX, TXT, unrelated records and subdomains. Re-read current DNS before restoring. Do not change nameservers.",
+  "knownGoodProductionWorkerVersion": "e3c65b75-3e4e-4c87-bc82-3ef555147887",
+  "knownGoodProductionSourceCommit": "2fa777346436f77cd1cea5825326d6ed698ef557",
+  "workerRollback": "For later Worker regressions, roll back to a known-good production Worker version while retaining the custom domains. DNS rollback to Vercel requires resolving its billing/quota restriction first."
+}

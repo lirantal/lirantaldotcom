@@ -1,6 +1,6 @@
 # Cloudflare migration
 
-The migration branch keeps the current Vercel deployment available while a Cloudflare preview is validated. Production domains are deliberately absent from `cloudflare/cloudflare.config.ts`; deploying this branch does not switch lirantal.com.
+Production runs on Cloudflare Workers Static Assets with R2 media. `cloudflare/cloudflare.config.ts` declares only `lirantal.com` and `www.lirantal.com` as production custom domains; preview uploads do not attach those domains. Vercel configuration is retained, but Vercel was paused for billing/quota at cutover and must be re-enabled before it can serve as a DNS rollback target. The separate book subdomain remains outside this cutover (issue #56).
 
 ## Resources
 
@@ -156,3 +156,18 @@ The speaking-data workflow now accepts an optional `force_rebuild` boolean for m
 Fresh settings remain browser TTL 14,400 seconds, cache level aggressive, email obfuscation on and security level medium. No zone settings were changed. The environment also denies the two external game iframe origins (`v0-chat-gpt-meme-generator.vercel.app`, `v0-chat-gpt-clone-website-nu.vercel.app`); live embed verification awaits allowlist access, not a website fix. Requests to the book subdomain likewise receive proxy CONNECT 403. Do not bypass those policy denials or claim those checks passed.
 
 Final acceptance must use the successful SCM build for the latest PR head, then the owner must accept the preview before merge/custom-domain cutover. Any superseded in-flight build can be cancelled to prioritize that head; cancellation is not a deployment failure. No production DNS or bindings changed during these checks.
+
+
+## Production cutover (2026-11-12)
+
+The owner accepted the deployed preview and merged PR #55 as `2fa777346436f77cd1cea5825326d6ed698ef557`. Cloudflare production build `82b6422f-8d06-42d5-ae8a-9bb2fbf080ce` succeeded. A light smoke test passed against its temporary main workers.dev endpoint before attaching domains; the exhaustive preview suite was not repeated.
+
+Vercel had paused the project for billing/over-quota, and fresh apex/www requests returned HTTP 402 `DEPLOYMENT_DISABLED` while DNS still pointed to Vercel. The owner explicitly directed proceeding with the Cloudflare switch. Vercel has not been deleted or disconnected, but DNS rollback to Vercel will not restore service until that restriction is resolved.
+
+A fresh complete DNS/domain/route snapshot was captured at `2026-11-12T17:10:48.470Z`. The website-only restoration records are committed in [CLOUDFLARE-ROLLBACK.json](CLOUDFLARE-ROLLBACK.json). The full operational snapshot remains outside Git. Cloudflare's Custom Domains API required removing the two conflicting website records before attaching the domains. Only the apex A (`76.76.21.21`) and www CNAME (`cname.vercel-dns.com`) were replaced. Cloudflare created managed, proxied AAAA records pointing to `100::` for both hostnames; these are Workers routing records, not conventional origin addresses.
+
+Both hostnames are bound to Worker `lirantaldotcom` in account `default`, with production hostname routing enabled and custom-domain preview routing disabled. There are no zone-wide Worker routes. The main workers.dev endpoint is disabled again; workers.dev preview URLs remain enabled. No nameservers, zone settings, media objects, mail configuration, or unrelated subdomains were changed. All 11 unrelated pre-existing DNS records were compared with the fresh snapshot and remained unchanged, including mail records and the separate book origin.
+
+Post-cutover light checks passed: apex 200, www 308 preserving path/query, verified HTTPS, homepage image/mobile navigation, real Pagefind search, health/posts API, discovery headers, HTML/Markdown/agent representation isolation, Markdown token headers, true HTML/API 404s, a legacy speaking redirect, and an R2 byte-range request. Homepage email opt-out markers remain present, with no generated email-protection links or Vercel Analytics script, and production is not marked noindex.
+
+The initial known-good production Worker version is `e3c65b75-3e4e-4c87-bc82-3ef555147887` (deployment `666fe4d8-e5a1-4a7b-a45d-f8a64efd179a`). For a later Worker regression, prefer rolling back to a known-good production Worker version while preserving domain bindings; do not route traffic back to disabled Vercel. The production domain declarations in configuration keep subsequent Git-based deployments aligned with the applied account state.
