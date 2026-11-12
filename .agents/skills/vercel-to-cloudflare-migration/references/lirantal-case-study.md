@@ -76,14 +76,21 @@ returned 404. It was initially excluded and tracked separately, not blindly migr
 After the owner confirmed it was unused, its single DNS record and obsolete redirects
 were removed, all other records were compared unchanged, and the repair issue was
 closed as not planned. Active book pages and direct checkout links were retained.
-Historical DNS snapshots are not instructions to resurrect retired products.
+The owner later discovered a `/buy/*` purchase link on the separate nodejs-security.com
+site and reversed retirement. The exact original proxied A record was restored; all
+other DNS remained unchanged. The old website redirects stayed removed so vendor buy
+paths/query parameters could reach the vendor. Checkout behavior remained proxy-blocked
+in the original environment and was not claimed verified. Absence of links in one
+repository does not prove global disuse: inventory known related sites and external
+consumers, preserve restoration evidence, and follow the latest owner decision.
+Historical snapshots/retirement notes are not the current desired state after a reversal.
 
 ## Source evidence
 
 - [Application migration PR #55](https://github.com/lirantal/lirantaldotcom/pull/55)
 - [Production configuration/rollback PR #57](https://github.com/lirantal/lirantaldotcom/pull/57)
-- [Explicit legacy-host retirement PR #58](https://github.com/lirantal/lirantaldotcom/pull/58)
-- [Deferred repair, then retirement decision #56](https://github.com/lirantal/lirantaldotcom/issues/56)
+- [Historical legacy-host retirement PR #58](https://github.com/lirantal/lirantaldotcom/pull/58)
+- [Book-host investigation and subsequent owner decisions #56](https://github.com/lirantal/lirantaldotcom/issues/56)
 - [Current handoff](https://github.com/lirantal/lirantaldotcom/blob/main/docs/CLOUDFLARE-MIGRATION.md)
 
 Inspect the repository's `cloudflare/`, build preparation/media/HTTP-check scripts,

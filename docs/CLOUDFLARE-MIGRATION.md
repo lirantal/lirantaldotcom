@@ -1,6 +1,6 @@
 # Cloudflare migration
 
-Production runs on Cloudflare Workers Static Assets with R2 media. `cloudflare/cloudflare.config.ts` declares only `lirantal.com` and `www.lirantal.com` as production custom domains; preview uploads do not attach those domains. Vercel configuration is retained, but Vercel was paused for billing/quota at cutover and must be re-enabled before it can serve as a DNS rollback target. The unused legacy book subdomain was retired after cutover at the owner's request; issue #56 is closed without a landing-page repair. The active book page and purchase links are retained.
+Production runs on Cloudflare Workers Static Assets with R2 media. `cloudflare/cloudflare.config.ts` declares only `lirantal.com` and `www.lirantal.com` as production custom domains; preview uploads do not attach those domains. Vercel configuration is retained, but Vercel was paused for billing/quota at cutover and must be re-enabled before it can serve as a DNS rollback target. The separate `nodejs-secure-coding.lirantal.com` checkout hostname is active: its original proxied A record to `3.33.255.208` was restored after an external buy-link dependency was discovered. Preserve it outside the website Worker; the active book page and purchase links are retained.
 
 ## Resources
 
@@ -173,8 +173,17 @@ Post-cutover light checks passed: apex 200, www 308 preserving path/query, verif
 The initial known-good production Worker version is `e3c65b75-3e4e-4c87-bc82-3ef555147887` (deployment `666fe4d8-e5a1-4a7b-a45d-f8a64efd179a`). For a later Worker regression, prefer rolling back to a known-good production Worker version while preserving domain bindings; do not route traffic back to disabled Vercel. The production domain declarations in configuration keep subsequent Git-based deployments aligned with the applied account state.
 
 
-## Legacy book hostname retired (2026-11-12)
+## Historical book-host retirement, superseded by restoration (2026-11-12)
 
-After confirming that no active website links use `nodejs-secure-coding.lirantal.com`, the owner explicitly retired the hostname and cancelled the proposed repair in issue #56. The single proxied A record to `3.33.255.208` was removed from zone `lirantal.com` in account `default`. All other DNS records, including the production apex/www Workers records and mail, were preserved. Do not recreate that record as part of website rollback or migration follow-up. Earlier references to preserving this record describe the pre-retirement cutover history.
+After confirming that no active website links use `nodejs-secure-coding.lirantal.com`, the owner explicitly retired the hostname and cancelled the proposed repair in issue #56. The single proxied A record to `3.33.255.208` was removed from zone `lirantal.com` in account `default`. All other DNS records, including the production apex/www Workers records and mail, were preserved. This retirement decision was subsequently reversed; follow the restoration section below, not this historical state.
 
 The obsolete host-specific root and `/checkout/:path*` redirects were removed from both `vercel.json` and `cloudflare/http-policy.json`, with their regression expectations updated. The live `/books/nodejs-secure-coding` page, homepage book links, and direct Lemon Squeezy purchase links remain unchanged. No Lemon Squeezy products, store domains, or external checkout services were modified.
+
+
+## Book checkout hostname restored (2026-11-12)
+
+The owner found a purchase CTA on the separate `nodejs-security.com` site targeting `https://nodejs-secure-coding.lirantal.com/buy/81459955-5d6f-4f83-a863-02591d4ca182` with a checkout discount query parameter. The hostname was therefore still in use even though this repository had no active links to it. The owner explicitly requested restoring the DNS mapping.
+
+Restored the original settings in account `default`, zone `lirantal.com`: A record `nodejs-secure-coding.lirantal.com` to `3.33.255.208`, proxied, automatic TTL (`1`). The new record ID is `f2d646e3e39f7dd78112f11b6c6e4c13`. A fresh before/after comparison verified all 12 other DNS records remained unchanged. Preserve this vendor mapping in future cleanup.
+
+Do not attach this hostname to the main website Worker. The obsolete website root/checkout redirect rules remain removed; `/buy/*` and its query parameters must reach the vendor origin. Root or `/checkout/` 404s do not establish that the vendor's `/buy/*` paths are unused or broken. The current environment still denies requests to this hostname at proxy CONNECT 403, so DNS restoration is verified through Cloudflare's API but the supplied checkout's HTTP/browser behavior remains unverified here. No purchase was made and no vendor product/store settings were changed.
