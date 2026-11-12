@@ -61,3 +61,9 @@ apm_modules/
 **/.impeccable/live/deferred-svelte-component-accepts.json
 **/.impeccable/live/*.png
 # impeccable-ignore-end
+
+# Cloudflare generated output, state, and local credentials
+.cloudflare/
+.dev.vars*
+
+.wrangler/

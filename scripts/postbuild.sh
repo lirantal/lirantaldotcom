@@ -28,7 +28,7 @@ done
 # @astrojs/vercel copies dist → .vercel/output/static during astro:build:done, before this script runs.
 # Sync generated Pagefind assets into the deploy bundle so /pagefind/* is not 404 on Vercel.
 VERCEL_STATIC="$ROOT/.vercel/output/static"
-if [ -d "$VERCEL_STATIC" ]; then
+if [ "${ASTRO_DEPLOY_TARGET:-vercel}" != cloudflare ] && [ -d "$VERCEL_STATIC" ]; then
 	if [ ! -d "$SITE/pagefind" ]; then
 		echo "postbuild: pagefind output missing under $SITE/pagefind" >&2
 		exit 1

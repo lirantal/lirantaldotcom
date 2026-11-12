@@ -10,6 +10,9 @@ export default tseslint.config(
 	{
 		ignores: [
 			'dist/**',
+			'**/.cloudflare/**',
+			'**/.wrangler/**',
+			'cloudflare/node_modules/**',
 			'node_modules/**',
 			'.astro/**',
 			'.vercel/**',
@@ -47,5 +50,5 @@ export default tseslint.config(
 		rules: {
 			'@typescript-eslint/no-require-imports': 'off',
 		},
-	},
+	}
 );

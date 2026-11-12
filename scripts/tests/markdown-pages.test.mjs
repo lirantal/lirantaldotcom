@@ -63,6 +63,11 @@ test('postbuild emits heading-led twins for HTML, API pages, and llms indexes in
 			'api/llms.txt.md',
 			'speaking/llms.txt.md',
 		];
+		const manifest = JSON.parse(await fs.readFile(path.join(fixture, 'cloudflare/.cloudflare/routes.json'), 'utf8'));
+		assert.equal(manifest.markdown['/'].destination, '/_markdown/index.md');
+		assert.equal(manifest.markdown['/api/posts/cursor/0.json'].destination, '/_markdown/api/posts/cursor/0.json.md');
+		assert.ok(manifest.notFoundTokens > 0);
+		assert.ok(manifest.redirects.some((entry) => new RegExp(entry.src).test('/speaking-events')));
 		const configPath = path.join(fixture, '.vercel/output/config.json');
 		const config = JSON.parse(await fs.readFile(configPath, 'utf8'));
 		const cacheRoute = config.routes.find((route) => route.src === assetCacheRoute.src);

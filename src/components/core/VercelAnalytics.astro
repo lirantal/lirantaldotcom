@@ -2,4 +2,4 @@
 import Analytics from '@vercel/analytics/astro';
 ---
 
-<Analytics />
+{import.meta.env.ASTRO_DEPLOY_TARGET !== 'cloudflare' && <Analytics />}
