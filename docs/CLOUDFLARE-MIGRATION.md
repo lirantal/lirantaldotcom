@@ -1,6 +1,6 @@
 # Cloudflare migration
 
-Production runs on Cloudflare Workers Static Assets with R2 media. `cloudflare/cloudflare.config.ts` declares only `lirantal.com` and `www.lirantal.com` as production custom domains; preview uploads do not attach those domains. Vercel configuration is retained, but Vercel was paused for billing/quota at cutover and must be re-enabled before it can serve as a DNS rollback target. The separate book subdomain remains outside this cutover (issue #56).
+Production runs on Cloudflare Workers Static Assets with R2 media. `cloudflare/cloudflare.config.ts` declares only `lirantal.com` and `www.lirantal.com` as production custom domains; preview uploads do not attach those domains. Vercel configuration is retained, but Vercel was paused for billing/quota at cutover and must be re-enabled before it can serve as a DNS rollback target. The unused legacy book subdomain was retired after cutover at the owner's request; issue #56 is closed without a landing-page repair. The active book page and purchase links are retained.
 
 ## Resources
 
@@ -43,7 +43,7 @@ Generated output, local R2 state, credentials and dependencies must not be commi
 
 ## Routing and headers
 
-`cloudflare/handler.mjs` handles Markdown negotiation, agent mode, published speaking aliases, host-specific book redirects, legacy game URLs, structured API 404s and Markdown/HTML 404s. `cloudflare/http-policy.json` records the existing redirect/header contract from Vercel. Keep these policies aligned while both deployments are supported.
+`cloudflare/handler.mjs` handles Markdown negotiation, agent mode, published speaking aliases, legacy game URLs, structured API 404s and Markdown/HTML 404s. `cloudflare/http-policy.json` records the existing redirect/header contract from Vercel. Keep these policies aligned while both deployments are supported.
 
 HTML, API and other negotiated requests run through the Worker before static assets. `/_astro/`, `/pagefind/` and `/og/` bypass the Worker and use static delivery. The generated `_headers` sets global isolation headers and year-long immutable caching only for fingerprinted `/_astro/` assets. Worker responses apply headers in code; they do not depend on `_headers` applying to generated responses.
 
@@ -171,3 +171,10 @@ Both hostnames are bound to Worker `lirantaldotcom` in account `default`, with p
 Post-cutover light checks passed: apex 200, www 308 preserving path/query, verified HTTPS, homepage image/mobile navigation, real Pagefind search, health/posts API, discovery headers, HTML/Markdown/agent representation isolation, Markdown token headers, true HTML/API 404s, a legacy speaking redirect, and an R2 byte-range request. Homepage email opt-out markers remain present, with no generated email-protection links or Vercel Analytics script, and production is not marked noindex.
 
 The initial known-good production Worker version is `e3c65b75-3e4e-4c87-bc82-3ef555147887` (deployment `666fe4d8-e5a1-4a7b-a45d-f8a64efd179a`). For a later Worker regression, prefer rolling back to a known-good production Worker version while preserving domain bindings; do not route traffic back to disabled Vercel. The production domain declarations in configuration keep subsequent Git-based deployments aligned with the applied account state.
+
+
+## Legacy book hostname retired (2026-11-12)
+
+After confirming that no active website links use `nodejs-secure-coding.lirantal.com`, the owner explicitly retired the hostname and cancelled the proposed repair in issue #56. The single proxied A record to `3.33.255.208` was removed from zone `lirantal.com` in account `default`. All other DNS records, including the production apex/www Workers records and mail, were preserved. Do not recreate that record as part of website rollback or migration follow-up. Earlier references to preserving this record describe the pre-retirement cutover history.
+
+The obsolete host-specific root and `/checkout/:path*` redirects were removed from both `vercel.json` and `cloudflare/http-policy.json`, with their regression expectations updated. The live `/books/nodejs-secure-coding` page, homepage book links, and direct Lemon Squeezy purchase links remain unchanged. No Lemon Squeezy products, store domains, or external checkout services were modified.
