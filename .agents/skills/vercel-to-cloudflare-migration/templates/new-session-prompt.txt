@@ -1,7 +1,8 @@
 Use the vercel-to-cloudflare-migration skill at:
+https://raw.githubusercontent.com/lirantal/lirantaldotcom/feat/vercel-to-cloudflare-migration-skill/.agents/skills/vercel-to-cloudflare-migration/SKILL.md
+If that branch has been merged/deleted, use the main version:
 https://raw.githubusercontent.com/lirantal/lirantaldotcom/main/.agents/skills/vercel-to-cloudflare-migration/SKILL.md
-Read its referenced files from the same directory as needed. If that URL is not yet
-on main, use the reviewed source branch/PR supplied with the skill instead.
+Read its referenced files from the same source directory as needed.
 
 I want to migrate this existing Vercel app to Cloudflare:
 - Repository: FILL
