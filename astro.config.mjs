@@ -24,7 +24,7 @@ export default defineConfig({
 		port: 3001,
 	},
 	output: 'static',
-	adapter: vercel(),
+	adapter: process.env.ASTRO_DEPLOY_TARGET === 'cloudflare' ? undefined : vercel(),
 	trailingSlash: 'never',
 	integrations: [
 		sitemap({

@@ -19,7 +19,13 @@
     "blog:cover": "node scripts/generate-blog-cover.js",
     "blog:compress-images": "node scripts/compress-large-blog-images.mjs",
     "subfont": "if [ -d dist/client ]; then subfont -ir --no-fallbacks --silent --root dist/client; else subfont -ir --no-fallbacks --silent --root dist; fi",
-    "check:social": "node scripts/check-social-cards.mjs"
+    "check:social": "node scripts/check-social-cards.mjs",
+    "build:cloudflare": "ASTRO_DEPLOY_TARGET=cloudflare npm run build && node scripts/prepare-cloudflare.mjs",
+    "cf:install": "npm install --prefix cloudflare --no-package-lock",
+    "cf:build": "cd cloudflare && ./node_modules/.bin/cf build",
+    "cf:dev": "cd cloudflare && ./node_modules/.bin/cf dev",
+    "cf:preview": "cd cloudflare && ./node_modules/.bin/cf previews deploy",
+    "check:cloudflare": "node scripts/check-cloudflare.mjs"
   },
   "devDependencies": {
     "@astrojs/mdx": "^5.0.4",

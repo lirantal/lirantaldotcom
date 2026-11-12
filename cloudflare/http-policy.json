@@ -1,0 +1,168 @@
+{
+  "headers": [
+    {
+      "source": "/_astro/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Cloudflare-CDN-Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "</.well-known/api-catalog>; rel=\"api-catalog\", </.well-known/ard.json>; rel=\"ard\", </.well-known/ai-catalog.json>; rel=\"ai-catalog\", </.well-known/site-for-agents.json>; rel=\"describedby\", </openapi.json>; rel=\"service-desc\", </docs/agents.md>; rel=\"service-doc\""
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/api-catalog",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/linkset+json; profile=\"https://www.rfc-editor.org/info/rfc9727\""
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/ai-catalog.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/api/posts.json",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600"
+        }
+      ]
+    },
+    {
+      "source": "/api/posts/cursor/(.*).json",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600"
+        }
+      ]
+    },
+    {
+      "source": "/openapi.json",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/vnd.oai.openapi+json;version=3.1.0"
+        }
+      ]
+    },
+    {
+      "source": "/skills/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cross-Origin-Embedder-Policy",
+          "value": "credentialless"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Cross-Origin-Resource-Policy",
+          "value": "cross-origin"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://lirantal.com/books/nodejs-secure-coding",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "nodejs-secure-coding.lirantal.com"
+        }
+      ]
+    },
+    {
+      "source": "/checkout/:path*",
+      "destination": "https://lirantal.com/books/nodejs-secure-coding",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "nodejs-secure-coding.lirantal.com"
+        }
+      ]
+    },
+    {
+      "source": "/games-chatgpt-chat-meme-generator",
+      "destination": "/games/chatgpt-chat-meme-generator",
+      "permanent": true
+    },
+    {
+      "source": "/games-chatgpt-security-models-ui",
+      "destination": "/games/chatgpt-security-models-ui",
+      "permanent": true
+    }
+  ]
+}

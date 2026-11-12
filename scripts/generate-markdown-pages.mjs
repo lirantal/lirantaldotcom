@@ -79,9 +79,23 @@ await fs.writeFile(notFoundMarkdownFile, `${notFoundMarkdown}\n`);
 await syncMarkdownTwinToVercel(notFoundMarkdownFile, path.join('_markdown', '404.md'));
 
 console.log(`markdown-pages: generated ${generated} markdown files in ${path.relative(root, outputRoot)}`);
-await configureVercelOutput(markdownRoutes);
+// Cloudflare consumes a compact lookup table instead of thousands of platform routes.
+const manifestDirectory = path.join(root, 'cloudflare', '.cloudflare');
+await fs.mkdir(manifestDirectory, { recursive: true });
+await fs.writeFile(
+	path.join(manifestDirectory, 'routes.json'),
+	JSON.stringify({
+		notFoundTokens: estimateTokenCount(notFoundMarkdown),
+		markdown: Object.fromEntries(
+			markdownRoutes.map(({ source, destination, tokens }) => [source, { destination, tokens }])
+		),
+		redirects: legacySpeakingRedirects(markdownRoutes.map(({ source }) => source)),
+	})
+);
+if (process.env.ASTRO_DEPLOY_TARGET !== 'cloudflare') await configureVercelOutput(markdownRoutes);
 
 async function syncMarkdownTwinToVercel(sourceFile, markdownPath) {
+	if (process.env.ASTRO_DEPLOY_TARGET === 'cloudflare') return;
 	const vercelStatic = path.join(root, '.vercel', 'output', 'static');
 	const destination = path.join(vercelStatic, markdownPath);
 

@@ -11,6 +11,9 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [vercel, cloudflare]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
@@ -21,20 +24,42 @@ jobs:
       - name: Install dependencies
         # This repository does not commit a package lockfile.
         run: npm install --no-package-lock
+      - name: Install Cloudflare tooling
+        if: matrix.target == 'cloudflare'
+        run: npm run cf:install
       - name: Run regression tests
         run: npm test
       - name: Build and check internal links in the deploy bundle
-        run: npm run build && npm run check:links && npm run check:social
+        run: |
+          if [ "${{ matrix.target }}" = cloudflare ]; then
+            npm run build:cloudflare
+            npm run cf:build
+            node scripts/check-internal-links.mjs dist
+            node scripts/check-social-cards.mjs dist
+          else
+            npm run build && npm run check:links && npm run check:social
+          fi
         env:
           ASTRO_TELEMETRY_DISABLED: '1'
       - name: Check responsive images and deferred diagrams in Chromium
         run: |
           npx playwright install --with-deps chromium
-          python3 -m http.server 4321 --bind 127.0.0.1 --directory dist > /tmp/performance-server.log 2>&1 &
-          performance_server_pid=$!
+          if [ "${{ matrix.target }}" = cloudflare ]; then
+            node scripts/upload-cloudflare-media.mjs --local
+            npm run cf:dev > /tmp/performance-server.log 2>&1 &
+            performance_server_pid=$!
+            export PERFORMANCE_BASE_URL=http://127.0.0.1:8787
+          else
+            python3 -m http.server 4321 --bind 127.0.0.1 --directory dist > /tmp/performance-server.log 2>&1 &
+            performance_server_pid=$!
+            export PERFORMANCE_BASE_URL=http://127.0.0.1:4321
+          fi
           trap 'kill "$performance_server_pid"' EXIT
           for attempt in $(seq 1 30); do
-            if curl --fail --silent http://127.0.0.1:4321/health.json > /dev/null; then break; fi
+            if curl --fail --silent "$PERFORMANCE_BASE_URL/health.json" > /dev/null; then break; fi
             sleep 1
           done
+          if [ "${{ matrix.target }}" = cloudflare ]; then
+            node scripts/check-cloudflare.mjs "$PERFORMANCE_BASE_URL"
+          fi
           npm run test:performance

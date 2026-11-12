@@ -27,6 +27,10 @@ The [impeccable](https://github.com/pbakaus/impeccable) design skill is installe
 
 Start each session with `.agents/skills/impeccable/scripts/impeccable context --target <file>`; there is no `PRODUCT.md`, so it treats `docs/DESIGN.md` and the code as the brief. The deterministic detector is `.agents/skills/impeccable/scripts/impeccable detect --json <files-or-url>`; URL scans need a Chromium, e.g. `IMPECCABLE_BROWSER=$(ls -d ~/.agent-browser/browsers/chrome-*/chrome | head -1)` in an orb. Inter and the retained Speaking gradients, calendar accent, and meaningful labels are owner-approved. Treat mechanical warnings on those explicitly retained choices as sanctioned; the selected homepage uses literal, unnumbered section names.
 
+## Cloudflare migration in progress
+
+Read [docs/CLOUDFLARE-MIGRATION.md](docs/CLOUDFLARE-MIGRATION.md) for the preview workflow, account/resource scope, routing, validation, and cutover/rollback procedure. Vercel remains the default build while the migration is reviewed. `npm run build:cloudflare` selects the adapter-free Astro static build, omits Vercel Analytics, generates a compact routing manifest, and stages Static Assets without the R2 videos. `npm run cf:install` installs the isolated, pinned `cf` toolchain under `cloudflare/`; `npm run cf:build` bundles the prepared Worker and assets; `npm run cf:dev` runs the actual local Cloudflare runtime. The routing Worker is separate from Astro middleware/SSR. Production custom domains are intentionally absent until preview acceptance. All cloud operations must target account `default` (`72bac654168b15b354744bf1e8b6762f`) and only this site's resources.
+
 ## What this repo is
 
 Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Production URL: `https://lirantal.com` (`SITE.origin` in `src/config.mjs`). **Node.js 24+** is required (`package.json` `engines`); Vercel uses `NODE_VERSION` in `vercel.json`.
