@@ -1,7 +1,7 @@
 ---
 title: "Creative Growth Hacking Projects for DevRel"
 description: >-
-    
+  Practical, slightly weird growth experiments you can actually ship as a DevRel person — from turning GitHub stars into real MQLs to mining unfiltered sentiment, and a few other ideas that don't start with another blog post.
 date: '2025-12-12'
 pubDate: '2025-12-12'
 categories: []
@@ -12,12 +12,44 @@ slug: ""
 image: ~/assets/images/blog/
 ---
 
+DevRel in 2026 isn't mostly about writing the next how-to or standing on a stage. Code is cheap, content is even cheaper, and the real leverage is in building small systems that surface intent, capture raw feedback, and create moments that stick. Growth engineering used to be a side quest. Now it's one of the core ways you actually build relationships with developers.
+
+Here are a few concrete projects I've been thinking about (and doing pieces of) that sit at the intersection of DevRel, product, and growth.
+
 ## Grow MQL from GitHub Stars
 
-One example of how you can execute this is via Charmine's Val Town project: https://www.val.town/x/charmaine/GitHub-Stargazers-Alert/branch/main/code/README.md
+Stars are one of the cleanest public intent signals we have. Someone starred your repo (or a competitor's) because they evaluated the problem, looked at the code or the docs, and decided it was worth keeping. That's not a vanity metric if you treat it as the start of a conversation.
+
+One practical way to execute this is Charmaine's Val Town project: [GitHub-Stargazers-Alert](https://www.val.town/x/charmaine/GitHub-Stargazers-Alert/branch/main/code/README.md). It polls for new stargazers (including on repos you don't own), pulls recent ones, tries to surface emails from public commits, and can notify you. You can remix it, point it at your own repos or adjacent ones, and start turning those stars into qualified leads without waiting for someone to fill out a form.
+
+This sits squarely in the growth engineering bucket. Years before ChatGPT existed we built Snyk Advisor — a simple web app that scored package health. It became a top traffic source and drove hundreds of monthly signups because it met developers where they already were (evaluating dependencies) and gave them something useful. Same pattern here: take a public signal developers already generate, make it actionable, and close the loop.
+
+You can extend this further — enrich the stargazer list with company signals, tech stack clues, or even whether they maintain popular packages. Then feed the interesting ones into a lightweight sequence that isn't a hard pitch: "Saw you starred X, here's a related demo/skill/agent we built that might help with Y." Stop fast, start fast. Ship the alert, measure how many turn into conversations or trials, kill or double down.
 
 ## Capture feedback and Sentiment
 
-Monitor your posts on YouTube or elsewhere for comments and analyze them for product feedback and overall user sentiment.
+The most useful product feedback almost never arrives in a formal survey. It shows up in YouTube comments under a demo video, Reddit threads about a competitor, Hacker News discussions, and especially the raw, unfiltered takes on X.
 
-You can also run this on Reddit replies for your competitors posts or adjacent products to get an overall "voice of the customer" and understand pain points, challenges, and opportunities.
+Set up a lightweight monitor for comments on your own (or competitors') YouTube videos, Reddit posts in adjacent subreddits, and the relevant X conversations. Run them through a simple sentiment pass or just cluster the themes. You're looking for the voice of the customer: the exact pain points people phrase in their own words, the workarounds they're already building, the features they assume should exist, and the places where your product (or the category) is failing them.
+
+DevRel should be living in that noise. PMs often get pulled toward the loudest enterprise accounts and the committed roadmap; we get to see the broader surface area and the emerging personas in real time. That signal is gold for market validation — it tells you where the product should go next, not just what the current customers already asked for. I've been doing versions of this operationally for years: feeding structured feedback docs back to product teams from community chatter, Slack, and public posts. It compounds.
+
+Quality over quantity applies here too. Don't dump every comment into a spreadsheet. Surface the high-signal ones (tasteful, specific, multi-modal if there's UI or code involved) and make them actionable. Same principle as good AI PR review: relevant inline feedback beats noise.
+
+## Creative Cross-Domain Demos
+
+Stop shipping another standard TODO app demo. If you want your developer tool or AI agent to cut through the noise, combine it with something unexpected — Blender, Ableton, a terminal dashboard, a game engine, whatever lives in a different domain. Weird and creative cross-domain demos stand out instantly in a crowded feed.
+
+This is pure growth engineering + experimentation. The goal isn't the demo itself; it's the moment of recognition when someone in the target audience sees their own workflow suddenly improved by your tool. Ship it, post the thread or the short video on X (everything happens there first), measure the engagement and the downstream signups or stars, then decide whether to expand it or move on. Momentum is the moat.
+
+## Agents as First-Class Citizens
+
+If your onboarding still starts with "install this CLI and read the docs," you're already behind. Agents are now first-class citizens for DevRel. The new consumable artifact is often a Skill, a prompt, or an MCP server that a coding agent can pick up and use. Meet developers (and their agents) where they already are instead of forcing them through the old funnel.
+
+This changes the growth surface. Instead of (or in addition to) classic content, you're building the thing that makes your product the path of least resistance inside an agent loop. Experiment aggressively here — the "stop fast, start fast" loop applies perfectly.
+
+## Closing the Loop with Product
+
+None of this works if it stays siloed in DevRel. The point of the star alerts, the sentiment monitors, the creative demos, and the agent experiments is to generate real signal you can take back to product and GTM. Live on the bleeding edge so you can inform the roadmap about personas and market trends that the enterprise accounts aren't showing yet. Product-centric advocacy still matters — show the product solving the actual pain in context, not as an abstract concept.
+
+These aren't polished programs. They're small, shippable systems you can stand up in a day or two with tools like Val Town, a bit of scripting, and the platforms developers already use. Measure what actually moves MQLs, conversations, or product direction. Kill the rest. That's the job now.
