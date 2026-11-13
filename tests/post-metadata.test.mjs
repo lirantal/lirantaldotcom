@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { getPostFrontmatter } from '../src/utils/post-metadata.mjs';
+import { remarkReadingTime } from '../src/utils/remark-frontmatter-extensions.mjs';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkGfm from 'remark-gfm';
 
 test('metadata preserves YAML values and computes reading time from the body', () => {
 	const metadata = getPostFrontmatter(
@@ -42,7 +46,12 @@ Article text.`,
 	assert.equal(metadata.readingTime, '1 min read');
 });
 
-test('reading-time parsing handles GFM tables without counting table delimiters', () => {
+test("metadata preserves the article pipeline's existing GFM table reading time", () => {
 	const source = '| Name | Value |\n| --- | --- |\n' + '| alpha | beta |\n'.repeat(250);
-	assert.equal(getPostFrontmatter(source, 'table.md').readingTime, '1 min read');
+	const tree = unified().use(remarkParse).use(remarkGfm).parse(source);
+	const file = { data: { astro: { frontmatter: {} } } };
+	remarkReadingTime()(tree, file);
+	// This PR preserves existing article labels, including their table-cell
+	// undercount. A counting correction must update both consumers together.
+	assert.equal(getPostFrontmatter(source, 'table.md').readingTime, file.data.astro.frontmatter.readingTime);
 });
