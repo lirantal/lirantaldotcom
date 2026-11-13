@@ -84,7 +84,7 @@ Static **Astro 6.x** site for **Liran Tal** — personal homepage plus blog. Pro
 ### Source location and loading
 
 - Posts live in **`data/blog/**/*.md`** and **`data/blog/**/*.mdx`** (including `data/blog/archives/` for older imports).
-- **`src/utils/posts.js`** loads them with `import.meta.glob('../../data/blog/**/*.{md,mdx}', { eager: true })` (paths relative to that file under `src/utils/`), sorts by **`pubDate`** descending, and **drops posts with `draft: true`** from the public site, RSS, and listings. Each module exposes **`frontmatter`** and **`Content`** (use `<Content />` in `.astro` after assigning to a capitalized variable).
+- **`src/utils/posts.js`** loads raw Markdown/MDX sources with an eager `?raw` glob, parses metadata and reading time through **`post-metadata.mjs`**, sorts by **`pubDate`** descending, and **drops posts with `draft: true`** from the public site, RSS, and listings. Keep compiled article imports out of this shared metadata path: they leak embed CSS into every page through social metadata and post lists. Only **`src/pages/[...blog]/[slug].astro`** imports article modules and passes **`Content`** to `SinglePost.astro`.
 
 ### Post identity and URLs
 
