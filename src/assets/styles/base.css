@@ -4,8 +4,15 @@
 @config '../../../tailwind.config.mjs';
 
 @plugin '@tailwindcss/typography';
-@plugin 'flowbite/plugin';
-@source '../../../node_modules/flowbite';
+/* Keep the form reset used by filters; omit unused Flowbite component families.
+   Tailwind discovers utilities from the site itself, not the package examples. */
+@plugin 'flowbite/plugin' {
+	forms: true;
+	charts: false;
+	datatables: false;
+	tooltips: false;
+	wysiwyg: false;
+}
 
 @variant dark (&:where(.dark, .dark *));
 

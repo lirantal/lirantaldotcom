@@ -1,4 +1,4 @@
-/* global document, window, innerWidth, scrollTo */
+/* global document, window, innerWidth, scrollTo, getComputedStyle */
 import assert from 'node:assert/strict';
 import { after, before, test } from 'node:test';
 import { chromium } from 'playwright';
@@ -84,6 +84,53 @@ test('metadata-only pages exclude embed CSS while embedded articles retain it', 
 			const link = page.locator('a[href="/recognitions#milestones-heading"]');
 			assert.ok((await link.getAttribute('aria-label')).includes((await link.innerText()).trim()));
 		}
+		await page.close();
+	}
+});
+
+test('homepage blocking CSS stays within the shared stylesheet budget', async (t) => {
+	const page = await pageFor(t);
+	await page.goto(base);
+	const bytes = await page.evaluate(async () => {
+		const sheets = await Promise.all(
+			[...document.querySelectorAll('link[rel="stylesheet"]')].map(async (link) => {
+				const response = await fetch(link.href);
+				if (!response.ok) throw new Error(`Stylesheet failed: ${link.href}`);
+				return (await response.arrayBuffer()).byteLength;
+			})
+		);
+		return sheets.reduce((total, size) => total + size, 0);
+	});
+	// The pre-optimization bundle was 157,725 bytes. Leave room for site styles
+	// while catching accidental package-wide utility generation again.
+	assert.ok(bytes > 0 && bytes < 140_000, `Homepage blocking CSS: ${bytes} bytes`);
+});
+
+test('search and filter controls retain form styling and work in both themes', async (t) => {
+	for (const theme of ['light', 'dark']) {
+		const page = await pageFor(t);
+		await page.addInitScript((value) => localStorage.setItem('theme', value), theme);
+		await page.goto(base + '/blog');
+		const search = page.locator('.pagefind-ui__search-input');
+		await search.fill('security');
+		await page.locator('.pagefind-ui__result-link').first().waitFor();
+		assert.notEqual(await search.evaluate((node) => getComputedStyle(node).outlineStyle), 'none');
+		await page.goto(base + '/research/advisories');
+		const severity = page.locator('#advisory-severity');
+		assert.equal(await severity.evaluate((node) => getComputedStyle(node).appearance), 'none');
+		await severity.selectOption('Critical');
+		assert.ok((await page.locator('[data-advisory]:visible').count()) > 0);
+		assert.equal(await page.locator('[data-advisory]:visible:not([data-severity="Critical"])').count(), 0);
+		await page.locator('#advisory-query').fill('nonexistent-package-xyz');
+		assert.equal(await page.locator('#advisory-empty').isVisible(), true);
+		await page.locator('button[type="reset"]').click();
+		assert.equal(await page.locator('#advisory-empty').isVisible(), false);
+		await page.goto(base + '/speaking/events');
+		const recording = page.locator('input[data-filter="video"]');
+		await recording.check();
+		assert.equal(await recording.isChecked(), true);
+		assert.ok((await page.locator('[data-filter-item]:visible').count()) > 0);
+		assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
 		await page.close();
 	}
 });
