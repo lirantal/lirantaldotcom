@@ -20,7 +20,7 @@ const dateFormat = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZon
 				latestDeveloperAppearance && (
 					<a
 						href="/recognitions#milestones-heading"
-						aria-label={`Ranked #${latestDeveloperAppearance.rank} among GitHub Trending developers across all languages on ${dateFormat.format(new Date(`${latestDeveloperAppearance.date}T00:00:00Z`))}; view milestones`}
+						aria-label={`#${latestDeveloperAppearance.rank} GitHub Trending · ${latestDeveloperAppearance.date.slice(0, 4)}; ranked among developers across all languages on ${dateFormat.format(new Date(`${latestDeveloperAppearance.date}T00:00:00Z`))}; view milestones`}
 					>
 						<Icon name="tabler:laurel-wreath" aria-hidden="true" />
 						<span>

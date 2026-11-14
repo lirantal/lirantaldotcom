@@ -1,6 +1,6 @@
-const getNormalizedPost = (mod, filePath) => {
-	const frontmatter = mod.frontmatter ?? {};
-	const Content = mod.Content;
+import { getPostFrontmatter } from './post-metadata.mjs';
+
+const getNormalizedPost = (frontmatter, filePath) => {
 	const ID = filePath
 		.split('/')
 		.pop()
@@ -18,7 +18,6 @@ const getNormalizedPost = (mod, filePath) => {
 		title: frontmatter.title,
 		description: frontmatter.description,
 		image: frontmatter.image,
-		Content,
 
 		excerpt: frontmatter.excerpt,
 		authors: frontmatter.authors,
@@ -31,9 +30,13 @@ const getNormalizedPost = (mod, filePath) => {
 const load = async function () {
 	const posts = import.meta.glob('../../data/blog/**/*.{md,mdx}', {
 		eager: true,
+		query: '?raw',
+		import: 'default',
 	});
 
-	const normalizedPosts = Object.entries(posts).map(([key, mod]) => getNormalizedPost(mod, key));
+	const normalizedPosts = Object.entries(posts).map(([key, mod]) =>
+		getNormalizedPost(getPostFrontmatter(mod, key), key)
+	);
 
 	const results = normalizedPosts
 		.sort((a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf())

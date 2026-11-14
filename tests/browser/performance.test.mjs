@@ -62,6 +62,32 @@ test('portrait preserves responsive geometry, priority, and themes', async (t) =
 	}
 });
 
+test('metadata-only pages exclude embed CSS while embedded articles retain it', async (t) => {
+	for (const path of ['/', '/writing', '/blog/2019-10-04_jsconf-budapest-review']) {
+		const page = await pageFor(t);
+		assert.equal((await page.goto(base + path)).status(), 200);
+		const css = await page.evaluate(async () => {
+			const sheets = await Promise.all(
+				[...document.querySelectorAll('link[rel="stylesheet"]')].map(async (link) => {
+					const response = await fetch(link.href);
+					if (!response.ok) throw new Error(`Stylesheet failed: ${link.href}`);
+					return response.text();
+				})
+			);
+			return sheets.join('\n');
+		});
+		assert.equal(css.includes('twitter-tweet'), path.startsWith('/blog/'), path);
+		assert.equal(css.includes('lite-youtube'), path.startsWith('/blog/'), path);
+		const cards = path.startsWith('/blog/') ? '.editorial-row h3 a' : '.forma-blog-card';
+		assert.ok((await page.locator(cards).count()) > 0, 'Recent-post metadata still renders');
+		if (path === '/') {
+			const link = page.locator('a[href="/recognitions#milestones-heading"]');
+			assert.ok((await link.getAttribute('aria-label')).includes((await link.innerText()).trim()));
+		}
+		await page.close();
+	}
+});
+
 test('homepage and writing page register one usable WebMCP search without eagerly fetching posts', async (t) => {
 	for (const path of ['/', '/writing']) {
 		const page = await pageFor(t);
