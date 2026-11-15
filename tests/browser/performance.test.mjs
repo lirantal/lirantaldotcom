@@ -253,6 +253,43 @@ test('article covers choose a fitting source while preserving eager loading and 
 	}
 });
 
+test('article body screenshots defer distant downloads and remain readable without JavaScript', async (t) => {
+	const path = '/blog/advanced-usage-patterns-for-taking-page-element-screenshots-with-playwright';
+	for (const [width, javaScriptEnabled] of [
+		[390, true],
+		[1000, true],
+		[1440, true],
+		[390, false],
+	]) {
+		const page = await pageFor(t, { viewport: { width, height: 844 }, javaScriptEnabled });
+		const requests = [];
+		page.on('request', (request) => requests.push(new URL(request.url()).pathname));
+		await page.goto(base + path);
+		const images = page.locator('.reading-body img');
+		assert.equal(await images.count(), 4);
+		for (const image of await images.all()) {
+			assert.equal(await image.getAttribute('loading'), 'lazy');
+			assert.equal(await image.getAttribute('decoding'), 'async');
+			assert.ok(Number(await image.getAttribute('width')) > 0);
+			assert.ok(Number(await image.getAttribute('height')) > 0);
+		}
+		const last = images.last();
+		const src = await last.getAttribute('src');
+		// Browsers intentionally disable lazy loading when scripting is disabled.
+		if (javaScriptEnabled) {
+			assert.equal(requests.includes(src), false, 'The distant screenshot is not fetched on navigation');
+		}
+		const cover = page.locator('.forma-article-cover');
+		assert.equal(await cover.getAttribute('loading'), 'eager');
+		assert.equal(await cover.getAttribute('fetchpriority'), 'high');
+		await last.scrollIntoViewIfNeeded();
+		await last.evaluate((image) => image.decode());
+		assert.ok(requests.includes(src), 'The screenshot loads when needed, including without JavaScript');
+		assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+		await page.close();
+	}
+});
+
 test('a failed Mermaid download preserves readable diagram source', async (t) => {
 	const page = await pageFor(t);
 	await page.route('**/mermaid.core*.js', (route) => route.abort());
