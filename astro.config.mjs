@@ -13,6 +13,7 @@ import embed from 'astro-embed/integration';
 import { remarkReadingTime } from './src/utils/remark-frontmatter-extensions.mjs';
 import { remarkPreserveMermaidCodeBlocks } from './src/utils/remark-preserve-mermaid.mjs';
 import { remarkImageDimensions } from './src/utils/remark-image-dimensions.mjs';
+import { remarkImageLoading } from './src/utils/remark-image-loading.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -50,7 +51,7 @@ export default defineConfig({
 		},
 	},
 	markdown: {
-		remarkPlugins: [remarkReadingTime, remarkPreserveMermaidCodeBlocks, remarkImageDimensions],
+		remarkPlugins: [remarkReadingTime, remarkPreserveMermaidCodeBlocks, remarkImageDimensions, remarkImageLoading],
 		shikiConfig: {
 			theme: 'github-dark',
 			langs: [],

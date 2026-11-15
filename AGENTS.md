@@ -115,6 +115,8 @@ Use a published post such as `data/blog/2025-10-15.md` as a template. Commonly:
 
 **Large raster files:** run **`npm run blog:compress-images`** (Sharp: JPEG/PNG/WebP/GIF, resize + quality; tune with env vars in **`scripts/compress-large-blog-images.mjs`**). Ahrefs CSV exports are often **UTF-16**; pass the path as the first argument to only process **`/images/blog/*`** URLs from the file (sources under **`public/images/blog/`**). **`/_astro/*`** image URLs in reports are **built** assets from **`src/assets/images/blog/`**—compress sources, then **`npm run build`** so new hashed files deploy.
 
+**Body image loading:** Markdown/MDX image syntax defaults to native lazy loading and asynchronous decoding via **`src/utils/remark-image-loading.mjs`**; public image dimensions are preserved by the separate dimensions plugin. Covers retain eager/high-priority loading. For a body image that must load eagerly, use an HTML/MDX `<img loading="eager" decoding="async" ...>` with explicit dimensions and alt text. Raw HTML/JSX and component-authored images keep their own loading policy. See **`docs/PERFORMANCE.md`** for measurements and scope.
+
 Remote URLs in frontmatter `image` are supported if they start with `http://` or `https://`.
 
 **Homepage Blog & articles:** `src/pages/index.astro` shows the three most recent published posts from `fetchPosts()`. `/writing` (labeled **Blog**) shows eight local posts with their cover images when available, plus archive, RSS, and external publication links.
