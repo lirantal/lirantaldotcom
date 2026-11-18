@@ -1,15 +1,15 @@
 ---
 title: "Complete Guide: Setting Up gogcli - Google APIs in Your Terminal"
 description: >-
-  If you are setting up Personal Assistant AI agents like Clawdbot or OpenClaw and want to give them access to your Google services (Gmail, Calendar, Drive, etc.) via gogcli, this comprehensive guide will walk you through the installation, OAuth setup (including SSH forwarding for remote VMs), and configuring granular permissions using OAuth scopes.
-date: '2026-02-01'
-pubDate: '2026-02-01'
+  Set up gogcli for Google APIs and OpenClaw AI assistants, with OAuth credentials, granular scopes, multiple accounts, and remote VM authorization.
+date: '2026-11-13'
+pubDate: '2026-11-13'
 categories: []
-keywords: []
-draft: true
+keywords: ["gogcli", "google apis", "oauth", "openclaw", "personal assistant ai"]
+draft: false
 tags: ["clawdbot", "openclaw", "agent", "ai", "gog", "personal assistant"]
 slug: "gogcli-setup-guide-for-google-apis-and-openclaw-personal-assistant-ai"
-image: ~/assets/images/blog/
+image: ~/assets/images/blog/gogcli-setup-guide-for-google-apis-and-openclaw-personal-assistant-ai.png
 ---
 
 **gogcli** (`gog`) is a unified command-line interface for Gmail, Calendar, Drive, Contacts, Tasks, Sheets, Docs, Slides, and other Google services. This guide covers installation, OAuth setup (including SSH forwarding for remote VMs), and how to configure granular permissions using OAuth scopes.
