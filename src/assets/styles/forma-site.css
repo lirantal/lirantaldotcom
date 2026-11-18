@@ -258,7 +258,10 @@
 	margin-inline: auto;
 }
 .site-theme .forma .reading-body {
-	width: min(65ch, calc(100% - 40px));
+	width: 100%;
+}
+.site-theme .forma .reading-body p {
+	max-width: none;
 }
 .site-theme .forma .reading-body :is(pre, table) {
 	max-width: 100%;

@@ -653,7 +653,7 @@
 	font-family: var(--forma-font);
 	font-size: 17px;
 	line-height: 1.85;
-	max-width: 65ch;
+	max-width: none;
 	margin: 36px auto;
 }
 .site-theme .forma .reading-body h2 {
