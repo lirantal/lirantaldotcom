@@ -16,6 +16,10 @@ const social = [
 		<div class="forma-footer-cta">
 			<div>
 				<h2>{FOOTER.cta.heading}</h2><p>{FOOTER.cta.description}</p>
+				<a class="mt-3 inline-flex items-center gap-2 text-sm underline" href={`mailto:${PROFILE.email}`}>
+					<Icon name="tabler:mail" class="size-4" aria-hidden="true" />
+					{PROFILE.email}
+				</a>
 			</div><a class="forma-button" href={FOOTER.cta.link}
 				>{FOOTER.cta.title}<Icon name="tabler:arrow-right" aria-hidden="true" /></a
 			>

@@ -1,4 +1,5 @@
 export const PROFILE = {
+	email: 'liran@lirantal.com',
 	githubURL: 'https://github.com/lirantal',
 	twitterURL: 'https://twitter.com/liran_tal',
 	twitterHandle: 'liran_tal',
