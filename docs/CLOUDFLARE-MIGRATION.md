@@ -45,7 +45,9 @@ Generated output, local R2 state, credentials and dependencies must not be commi
 
 `cloudflare/handler.mjs` handles Markdown negotiation, agent mode, published speaking aliases, legacy game URLs, structured API 404s and Markdown/HTML 404s. `cloudflare/http-policy.json` records the existing redirect/header contract from Vercel. Keep these policies aligned while both deployments are supported.
 
-HTML, API and other negotiated requests run through the Worker before static assets. `/_astro/`, `/pagefind/` and `/og/` bypass the Worker and use static delivery. The generated `_headers` sets global isolation headers and year-long immutable caching only for fingerprinted `/_astro/` assets. Worker responses apply headers in code; they do not depend on `_headers` applying to generated responses.
+HTML, API and other negotiated requests run through the Worker before static assets. `/_astro/`, `/pagefind/` and `/og/` bypass the Worker and use static delivery. The generated `_headers` sets the shared opener/resource policies and year-long immutable caching only for fingerprinted `/_astro/` assets. Worker responses apply headers in code; they do not depend on `_headers` applying to generated responses.
+
+Leave `Cross-Origin-Embedder-Policy` unset in both hosting policies. A site-wide `credentialless` policy blocks ordinary YouTube frames whose documents do not opt into COEP, even when the player uses `youtube-nocookie.com`. The site does not require cross-origin-isolated APIs. Keep `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Resource-Policy: cross-origin`. The browser regression suite applies the deployment headers and checks frame navigation after clicking event and talk recordings; YouTube playback itself remains an external integration check.
 
 The Worker returns `Vary: Accept, User-Agent` on negotiated representations and explicitly disables shared CDN caching of routed responses. Source assets still use Cloudflare's asset storage/cache. Agent query responses and errors are not browser-cacheable. Do not add a Cache Everything rule or override these cache directives without repeating representation-isolation checks.
 
