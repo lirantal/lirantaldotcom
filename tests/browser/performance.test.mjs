@@ -2,6 +2,8 @@
 import assert from 'node:assert/strict';
 import { after, before, test } from 'node:test';
 import { chromium } from 'playwright';
+import vercelPolicy from '../../vercel.json' with { type: 'json' };
+import cloudflarePolicy from '../../cloudflare/http-policy.json' with { type: 'json' };
 
 // Run against a completed production build, or the PR's Vercel preview. The
 // caller owns the server; static serving cannot verify Vercel cache/negotiation.
@@ -33,6 +35,53 @@ const mermaidRequests = (page) => {
 	});
 	return urls;
 };
+
+test('event and talk players load cross-origin frames under both deployment header policies', async (t) => {
+	for (const [target, policy] of [
+		['Vercel', vercelPolicy],
+		['Cloudflare', cloudflarePolicy],
+	]) {
+		const page = await pageFor(t, { viewport: { width: 1280, height: 900 } });
+		// Static preview servers omit production headers. Apply the checked-in
+		// policy to navigation responses so COEP regressions also fail locally.
+		await page.route(`${base}/**`, async (route) => {
+			const response = await route.fetch();
+			const headers = { ...response.headers() };
+			if (route.request().isNavigationRequest()) {
+				const path = new URL(route.request().url()).pathname;
+				for (const rule of policy.headers) {
+					if (new RegExp(`^${rule.source}$`).test(path)) {
+						for (const { key, value } of rule.headers) headers[key.toLowerCase()] = value;
+					}
+				}
+			}
+			await route.fulfill({ response, headers });
+		});
+		// Exercise the browser's real iframe policy enforcement without relying
+		// on YouTube availability, consent screens, ads, or video permissions.
+		// This proves frame navigation, not remote video playback.
+		await page.route('https://www.youtube-nocookie.com/embed/**', (route) =>
+			route.fulfill({ contentType: 'text/html', body: '<p>Player document loaded</p>' })
+		);
+		const eventPath = '/speaking/events/2026-06-01-ai-native-dev-2026';
+		await page.goto(base + eventPath);
+		const talkPath = await page.locator('a[href^="/speaking/talks/"]').first().getAttribute('href');
+		assert.ok(talkPath);
+		for (const path of [eventPath, talkPath]) {
+			await page.goto(base + path);
+			const player = page.locator('lite-youtube').first();
+			assert.equal(await player.locator('iframe').count(), 0, 'player stays deferred until clicked');
+			await player.click();
+			await page
+				.frameLocator('lite-youtube iframe')
+				.first()
+				.getByText('Player document loaded')
+				.waitFor({ timeout: 5000 });
+			assert.ok(await player.locator('iframe').getAttribute('src'), `${target}: ${path}`);
+		}
+		await page.close();
+	}
+});
 
 test('portrait preserves responsive geometry, priority, and themes', async (t) => {
 	for (const width of [390, 1000, 1440]) {
