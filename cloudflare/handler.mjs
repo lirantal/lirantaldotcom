@@ -59,10 +59,14 @@ export function createHandler({ markdown, redirects, media, policy, notFoundToke
 				: route === rule.source;
 			if (matches) return redirect(rule.destination);
 		}
-		if (url.hostname === 'www.lirantal.com') return redirect(`https://lirantal.com${pathname}${url.search}`);
+		const canonicalOrigin = url.hostname === 'www.lirantal.com' ? 'https://lirantal.com' : '';
 		for (const rule of legacyRedirects) {
-			if (rule.pattern.test(pathname)) return redirect(pathname.replace(rule.pattern, rule.headers.Location), rule.status);
+			if (rule.pattern.test(pathname)) {
+				const destination = pathname.replace(rule.pattern, rule.headers.Location);
+				return redirect(`${canonicalOrigin}${destination}`, rule.status);
+			}
 		}
+		if (canonicalOrigin) return redirect(`${canonicalOrigin}${pathname}${url.search}`);
 		if (!isRead) {
 			if (
 				request.method === 'OPTIONS' &&

@@ -48,6 +48,9 @@ test('Cloudflare returns the configured 301 before serving HTML or negotiated Ma
 	assert.equal(response.status, 301);
 	assert.equal(response.headers.get('location'), '/writing');
 	assert.equal((await fetch(request('/writing'), env)).status, 200);
+	const www = await fetch(new Request('https://www.lirantal.com/blog/old-slug'), env);
+	assert.equal(www.status, 301);
+	assert.equal(www.headers.get('location'), 'https://lirantal.com/writing');
 });
 
 test('Cloudflare alternates HTML, agent JSON, and Markdown without sharing response caches', async () => {

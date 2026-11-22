@@ -79,7 +79,9 @@ test('postbuild emits heading-led twins for HTML, API pages, and llms indexes in
 			const redirect = manifest.redirects.find((entry) => new RegExp(entry.src).test(source));
 			assert.equal(redirect?.status, 301);
 			assert.equal(redirect.headers.Location, destination);
-			assert.deepEqual(config.routes.find((entry) => entry.src === redirect.src), redirect);
+			const vercelRedirect = config.routes.find((entry) => entry.src === redirect.src);
+			assert.deepEqual(vercelRedirect, redirect);
+			assert.ok(config.routes.indexOf(vercelRedirect) < config.routes.findIndex((route) => route.handle === 'filesystem'));
 		}
 		const cacheRoute = config.routes.find((route) => route.src === assetCacheRoute.src);
 		assert.deepEqual(
