@@ -2,8 +2,10 @@
 import Layout from '~/layouts/PageLayout.astro';
 import { getCanonical } from '~/utils/permalinks';
 
+const editorUrl = import.meta.env.MEME_EDITOR_URL || 'https://v0-chat-gpt-meme-generator.vercel.app';
+
 const meta = {
-	title: 'ChatGPT Chat Meme Generator',
+	title: 'ChatGPT Meme Generator',
 	description: 'Generate ChatGPT memes with ease using this fun and interactive meme generator.',
 	canonical: getCanonical(Astro.url.pathname),
 };
@@ -13,13 +15,23 @@ const meta = {
 	<section>
 		<div class="px-5 py-4 mx-auto">
 			<div class="mx-auto max-w-screen-2xl text-center mb-8">
-				<h1 class="text-2xl tracking-tight mb-4">ChatGPT Security Models</h1>
-				<div class="flex flex-col items-center mr-4 mt-8">
+				<h1 class="text-2xl tracking-tight mb-4">ChatGPT Meme Generator</h1>
+				<div class="mx-auto max-w-prose">
+					<h2 class="text-xl font-semibold">How to make a ChatGPT meme</h2>
+					<p class="mt-2">
+						Start with a short conversation. Write a prompt, then give the assistant a reply that delivers the joke.
+						Use the ChatGPT meme generator below to present it as a mock chat. Try a familiar setup, such as asking
+						for a simple explanation and getting a wildly overcomplicated response. Keep the exchange short enough
+						to read at a glance.
+					</p>
+					<p class="mt-3"><a class="underline font-semibold" href={editorUrl}>Open the meme editor directly</a></p>
+				</div>
+				<div class="flex flex-col items-center mt-8">
 					<iframe
-						src="https://v0-chat-gpt-meme-generator.vercel.app"
-						allow="cross-origin-isolated"
+						src={editorUrl}
+						allow="clipboard-write"
 						class="w-full h-screen"
-						title="ChatGPT Security Models UI"
+						title="ChatGPT meme editor"
 					>
 					</iframe>
 				</div>
