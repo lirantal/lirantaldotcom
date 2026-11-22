@@ -16,6 +16,7 @@ const getNormalizedPost = (frontmatter, filePath) => {
 		slug: frontmatter.slug || ID,
 
 		title: frontmatter.title,
+		seoTitle: frontmatter.seoTitle,
 		description: frontmatter.description,
 		image: frontmatter.image,
 

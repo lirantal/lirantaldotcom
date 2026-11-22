@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import TurndownService from 'turndown';
 import { legacySpeakingRedirects } from './legacy-speaking-redirects.mjs';
+import { legacyBlogRedirects } from './legacy-blog-redirects.mjs';
 
 const root = path.resolve(new URL('..', import.meta.url).pathname);
 const site = await getSiteDirectory();
@@ -81,6 +82,8 @@ await syncMarkdownTwinToVercel(notFoundMarkdownFile, path.join('_markdown', '404
 console.log(`markdown-pages: generated ${generated} markdown files in ${path.relative(root, outputRoot)}`);
 // Cloudflare consumes a compact lookup table instead of thousands of platform routes.
 const manifestDirectory = path.join(root, 'cloudflare', '.cloudflare');
+const publishedPaths = markdownRoutes.map(({ source }) => source);
+const legacyRedirects = [...legacyBlogRedirects(publishedPaths), ...legacySpeakingRedirects(publishedPaths)];
 await fs.mkdir(manifestDirectory, { recursive: true });
 await fs.writeFile(
 	path.join(manifestDirectory, 'routes.json'),
@@ -89,7 +92,7 @@ await fs.writeFile(
 		markdown: Object.fromEntries(
 			markdownRoutes.map(({ source, destination, tokens }) => [source, { destination, tokens }])
 		),
-		redirects: legacySpeakingRedirects(markdownRoutes.map(({ source }) => source)),
+		redirects: legacyRedirects,
 	})
 );
 if (process.env.ASTRO_DEPLOY_TARGET !== 'cloudflare') await configureVercelOutput(markdownRoutes);
@@ -192,8 +195,7 @@ async function configureVercelOutput(routes) {
 		},
 		continue: true,
 	};
-	const speakingRedirects = legacySpeakingRedirects(routes.map((route) => route.source));
-	const speakingRedirectSources = new Set(speakingRedirects.map((route) => route.src));
+	const legacyRedirectSources = new Set(legacyRedirects.map((route) => route.src));
 	const agentViewRoute = {
 		src: '^/$',
 		methods: ['GET', 'HEAD'],
@@ -256,7 +258,7 @@ async function configureVercelOutput(routes) {
 	const routesWithoutOldMarkdownNegotiation = existingRoutes.filter(
 		(route) =>
 			route.src !== assetCacheSource &&
-			!speakingRedirectSources.has(route.src) &&
+			!legacyRedirectSources.has(route.src) &&
 			!(route.dest?.startsWith('/_markdown/') && route.headers?.['x-markdown-tokens']) &&
 			!(route.dest === '/_errors/api-not-found.json') &&
 			!(
@@ -272,7 +274,7 @@ async function configureVercelOutput(routes) {
 	config.routes = [
 		assetCacheRoute,
 		...routesWithoutOldMarkdownNegotiation.slice(0, insertAt),
-		...speakingRedirects,
+		...legacyRedirects,
 		agentViewRoute,
 		...markdownNegotiationRoutes,
 		...routesWithoutOldMarkdownNegotiation.slice(insertAt, notFoundInsertAt),

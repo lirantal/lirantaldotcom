@@ -61,7 +61,7 @@ export function createHandler({ markdown, redirects, media, policy, notFoundToke
 		}
 		if (url.hostname === 'www.lirantal.com') return redirect(`https://lirantal.com${pathname}${url.search}`);
 		for (const rule of legacyRedirects) {
-			if (rule.pattern.test(pathname)) return redirect(pathname.replace(rule.pattern, rule.headers.Location));
+			if (rule.pattern.test(pathname)) return redirect(pathname.replace(rule.pattern, rule.headers.Location), rule.status);
 		}
 		if (!isRead) {
 			if (

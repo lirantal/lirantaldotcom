@@ -7,6 +7,7 @@ import Pagination from '~/components/atoms/Pagination.astro';
 
 import { fetchPosts } from '~/utils/posts';
 import { getCanonical, cleanSlug, TAG_BASE } from '~/utils/permalinks';
+import { isNoindexTagArchive } from '~/utils/tag-indexing.mjs';
 
 export async function getStaticPaths({ paginate }) {
 	if (BLOG?.disabled || BLOG?.tag?.disabled) return [];
@@ -44,7 +45,7 @@ const meta = {
 	title: `Posts by tag '${tag}' ${currentPage > 1 ? `— Page ${currentPage} ` : ''}— ${SITE.name}`,
 	description: SITE.description,
 	canonical: getCanonical(page.url.current),
-	noindex: false,
+	noindex: isNoindexTagArchive(page.url.current),
 };
 ---
 

@@ -6,6 +6,7 @@ import path from 'node:path';
 import { promisify } from 'node:util';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
+import { blogRedirects } from '../legacy-blog-redirects.mjs';
 
 const exec = promisify(execFile);
 const root = fileURLToPath(new URL('../../', import.meta.url));
@@ -27,6 +28,10 @@ test('postbuild emits heading-led twins for HTML, API pages, and llms indexes in
 			'scripts/legacy-speaking-redirects.mjs',
 			await fs.readFile(path.join(root, 'scripts/legacy-speaking-redirects.mjs'))
 		);
+		await write('scripts/legacy-blog-redirects.mjs', await fs.readFile(path.join(root, 'scripts/legacy-blog-redirects.mjs')));
+		for (const destination of Object.values(blogRedirects)) {
+			await write(`dist${destination}/index.html`, '<main><h1>Article</h1></main>');
+		}
 		await write('dist/index.html', '<title>Home</title><main><h1>Liran Tal</h1><p>Welcome</p></main>');
 		await write('dist/speaking/events/index.html', '<title>Events</title><main>Events</main>');
 		await write('dist/speaking/talks/example/index.html', '<title>Talk</title><main>Talk</main>');
@@ -70,6 +75,12 @@ test('postbuild emits heading-led twins for HTML, API pages, and llms indexes in
 		assert.ok(manifest.redirects.some((entry) => new RegExp(entry.src).test('/speaking-events')));
 		const configPath = path.join(fixture, '.vercel/output/config.json');
 		const config = JSON.parse(await fs.readFile(configPath, 'utf8'));
+		for (const [source, destination] of Object.entries(blogRedirects)) {
+			const redirect = manifest.redirects.find((entry) => new RegExp(entry.src).test(source));
+			assert.equal(redirect?.status, 301);
+			assert.equal(redirect.headers.Location, destination);
+			assert.deepEqual(config.routes.find((entry) => entry.src === redirect.src), redirect);
+		}
 		const cacheRoute = config.routes.find((route) => route.src === assetCacheRoute.src);
 		assert.deepEqual(
 			cacheRoute,
