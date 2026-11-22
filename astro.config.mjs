@@ -5,6 +5,7 @@ import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { SITE } from './src/config.mjs';
+import { isNoindexTagArchive } from './src/utils/tag-indexing.mjs';
 import mdx from '@astrojs/mdx';
 import solid from '@astrojs/solid-js';
 import icon from 'astro-icon';
@@ -29,6 +30,7 @@ export default defineConfig({
 	trailingSlash: 'never',
 	integrations: [
 		sitemap({
+			filter: (url) => !isNoindexTagArchive(new URL(url).pathname),
 			changefreq: 'daily',
 			lastmod: new Date(),
 		}),

@@ -40,7 +40,7 @@ const { Content } = await contentModules[contentPath]();
 const postImage = await findImage(post.image);
 
 const meta = {
-	title: `${post.title} — ${SITE.name}`,
+	title: post.seoTitle || `${post.title} — ${SITE.name}`,
 	description: post.description,
 	canonical: post.canonical || getCanonical(getPermalink(post.slug, 'post')),
 	ogTitle: post.title,

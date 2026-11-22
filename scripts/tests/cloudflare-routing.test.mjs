@@ -9,7 +9,10 @@ const fetch = createHandler({
 		'/api/posts.json': { destination: '/_markdown/api/posts.json.md', tokens: 3 },
 		'/writing': { destination: '/_markdown/writing.md', tokens: 5 },
 	},
-	redirects: [{ src: '^/speaking-events/?$', status: 308, headers: { Location: '/speaking/events' } }],
+	redirects: [
+		{ src: '^/speaking-events/?$', status: 308, headers: { Location: '/speaking/events' } },
+		{ src: '^/blog/old-slug/?$', status: 301, headers: { Location: '/writing' } },
+	],
 	media: { '/video.mp4': { key: 'video.mp4', size: 10, contentType: 'video/mp4' } },
 	policy,
 });
@@ -39,6 +42,16 @@ const env = {
 	},
 };
 const request = (path, options) => new Request(new URL(path, 'https://example.workers.dev'), options);
+
+test('Cloudflare returns the configured 301 before serving HTML or negotiated Markdown', async () => {
+	const response = await fetch(request('/blog/old-slug', { headers: { Accept: 'text/markdown' } }), env);
+	assert.equal(response.status, 301);
+	assert.equal(response.headers.get('location'), '/writing');
+	assert.equal((await fetch(request('/writing'), env)).status, 200);
+	const www = await fetch(new Request('https://www.lirantal.com/blog/old-slug'), env);
+	assert.equal(www.status, 301);
+	assert.equal(www.headers.get('location'), 'https://lirantal.com/writing');
+});
 
 test('Cloudflare alternates HTML, agent JSON, and Markdown without sharing response caches', async () => {
 	for (const [path, options, type, body] of [

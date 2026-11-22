@@ -5,6 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
+import { blogRedirects } from '../scripts/legacy-blog-redirects.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const readJson = async (file) => JSON.parse(await fs.readFile(file, 'utf8'));
@@ -45,10 +46,14 @@ test('production agent query precedes HTML and Markdown routing and survives rep
 		path.join(root, 'scripts/generate-markdown-pages.mjs'),
 		path.join(fixture, 'scripts/generate-markdown-pages.mjs')
 	);
-	await fs.copyFile(
-		path.join(root, 'scripts/legacy-speaking-redirects.mjs'),
-		path.join(fixture, 'scripts/legacy-speaking-redirects.mjs')
-	);
+	for (const helper of ['legacy-speaking-redirects.mjs', 'legacy-blog-redirects.mjs']) {
+		await fs.copyFile(path.join(root, 'scripts', helper), path.join(fixture, 'scripts', helper));
+	}
+	for (const destination of Object.values(blogRedirects)) {
+		const directory = path.join(fixture, 'dist', destination);
+		await fs.mkdir(directory, { recursive: true });
+		await fs.writeFile(path.join(directory, 'index.html'), '<main><h1>Article</h1></main>');
+	}
 	await fs.writeFile(path.join(fixture, 'dist/index.html'), '<html><main><h1>Liran Tal</h1></main></html>');
 	const configPath = path.join(fixture, '.vercel/output/config.json');
 	await fs.writeFile(configPath, JSON.stringify({ version: 3, routes: [{ handle: 'filesystem' }] }));
