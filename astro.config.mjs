@@ -3,9 +3,8 @@ import { fileURLToPath } from 'url';
 import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
-import sitemap from '@astrojs/sitemap';
 import { SITE } from './src/config.mjs';
-import { isNoindexTagArchive } from './src/utils/tag-indexing.mjs';
+import { canonicalSitemap } from './scripts/canonical-sitemap.mjs';
 import mdx from '@astrojs/mdx';
 import solid from '@astrojs/solid-js';
 import icon from 'astro-icon';
@@ -29,11 +28,7 @@ export default defineConfig({
 	adapter: process.env.ASTRO_DEPLOY_TARGET === 'cloudflare' ? undefined : vercel(),
 	trailingSlash: 'never',
 	integrations: [
-		sitemap({
-			filter: (url) => !isNoindexTagArchive(new URL(url).pathname),
-			changefreq: 'daily',
-			lastmod: new Date(),
-		}),
+		canonicalSitemap(),
 		embed(),
 		mdx(),
 		solid(),
