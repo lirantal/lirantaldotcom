@@ -2,6 +2,11 @@ import slugify from 'limax';
 
 const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const redirect = (src, destination) => ({ src, headers: { Location: destination }, status: 308 });
+const retiredEvents = {
+	'2021-10-18-nodeconf-remote': '/speaking/talks/how-react-applications-get-hacked-in-the-real-world',
+	'2022-01-17-aws-startup-showcase-season-2-episode-1':
+		'/speaking/events/2022-01-17-aws-startup-showcase-season-2-episode-1-or-cube-conversation',
+};
 
 // Recover only aliases emitted by the former speaking-page canonical bug.
 export function legacySpeakingRedirects(paths) {
@@ -14,6 +19,13 @@ export function legacySpeakingRedirects(paths) {
 			throw new Error(`Legacy speaking redirect collides with another page: ${source}`);
 		}
 		aliases.set(source, destination);
+	}
+	for (const [slug, destination] of Object.entries(retiredEvents)) {
+		const original = `/speaking/events/${slug}`;
+		if (published.has(original) || !published.has(destination)) continue;
+		for (const source of [original, `/speaking-events-${slug}`]) {
+			if (!published.has(source) && !aliases.has(source)) aliases.set(source, destination);
+		}
 	}
 	const result = [];
 	const groups = new Map();

@@ -1,4 +1,5 @@
 export const blogRedirects = {
+	'/blog/2007-08-20': '/blog/daloradius-logos',
 	'/blog/2023-01-01_advanced_usage_patterns_for_taking_element_screenshots_with_playwright':
 		'/blog/advanced-usage-patterns-for-taking-page-element-screenshots-with-playwright',
 	'/blog/malicious-modules-what-you-need-to-know-when-installing-':
