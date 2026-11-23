@@ -16,6 +16,7 @@ fi
 
 "$PAGEFIND" --site "${SITE}/"
 node "$ROOT/scripts/generate-markdown-pages.mjs"
+node "$ROOT/scripts/restore-legacy-images.mjs" "$SITE"
 
 # Ahrefs (and browsers) request both; one deploy artifact must include the full Pagefind bundle.
 for f in pagefind-ui.css pagefind-ui.js; do
@@ -29,6 +30,7 @@ done
 # Sync generated Pagefind assets into the deploy bundle so /pagefind/* is not 404 on Vercel.
 VERCEL_STATIC="$ROOT/.vercel/output/static"
 if [ "${ASTRO_DEPLOY_TARGET:-vercel}" != cloudflare ] && [ -d "$VERCEL_STATIC" ]; then
+	node "$ROOT/scripts/restore-legacy-images.mjs" "$VERCEL_STATIC"
 	if [ ! -d "$SITE/pagefind" ]; then
 		echo "postbuild: pagefind output missing under $SITE/pagefind" >&2
 		exit 1

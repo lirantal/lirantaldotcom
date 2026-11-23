@@ -38,6 +38,22 @@ test('fails rather than redirecting a real page or an ambiguous alias', () => {
 	assert.throws(() => legacySpeakingRedirects(['/speaking/talks/a.b', '/speaking/talks/a-b']), /collides/);
 });
 
+test('redirects retired event URLs to their published successors and preserves restored events', () => {
+	const retired = '/speaking/events/2021-10-18-nodeconf-remote';
+	const flattened = '/speaking-events-2021-10-18-nodeconf-remote';
+	const successor = '/speaking/talks/how-react-applications-get-hacked-in-the-real-world';
+	const matches = (redirects, source) => redirects.find(({ src }) => new RegExp(src).test(source));
+	const redirects = legacySpeakingRedirects([successor]);
+	for (const path of [retired, flattened, `${retired}/`, `${flattened}/`]) {
+		assert.equal(matches(redirects, path)?.headers.Location, successor);
+	}
+	assert.equal(matches(legacySpeakingRedirects([]), retired), undefined);
+	const restored = legacySpeakingRedirects([successor, retired]);
+	assert.equal(matches(restored, retired), undefined);
+	const redirect = matches(restored, flattened);
+	assert.equal(flattened.replace(new RegExp(redirect.src), redirect.headers.Location), retired);
+});
+
 test('batches exact aliases within the deployment route budget', () => {
 	const paths = Array.from({ length: 419 }, (_, index) => `/speaking/events/2026-01-01-conference-${index}`);
 	const redirects = legacySpeakingRedirects(paths);
