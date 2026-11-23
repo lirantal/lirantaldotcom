@@ -1,6 +1,24 @@
 {
   "headers": [
     {
+      "source": "/rss\\.xml",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/downloads/blog/gemini-cli-invisible-unicode-skill-injection/tampered-skill\\.md\\.txt",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
       "source": "/_astro/(.*)",
       "headers": [
         {

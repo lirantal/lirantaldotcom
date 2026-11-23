@@ -29,6 +29,7 @@ test('postbuild emits heading-led twins for HTML, API pages, and llms indexes in
 			await fs.readFile(path.join(root, 'scripts/legacy-speaking-redirects.mjs'))
 		);
 		await write('scripts/legacy-blog-redirects.mjs', await fs.readFile(path.join(root, 'scripts/legacy-blog-redirects.mjs')));
+		await write('cloudflare/http-policy.json', await fs.readFile(path.join(root, 'cloudflare/http-policy.json')));
 		for (const destination of Object.values(blogRedirects)) {
 			await write(`dist${destination}/index.html`, '<main><h1>Article</h1></main>');
 		}
@@ -53,7 +54,7 @@ test('postbuild emits heading-led twins for HTML, API pages, and llms indexes in
 		};
 		await write(
 			'.vercel/output/config.json',
-			JSON.stringify({ version: 3, routes: [{ handle: 'filesystem' }, assetCacheRoute] })
+			JSON.stringify({ version: 3, routes: [{ src: '^/(.*)/$', status: 308 }, { handle: 'filesystem' }, assetCacheRoute] })
 		);
 		await fs.mkdir(path.join(fixture, '.vercel/output/static'), { recursive: true });
 
@@ -75,12 +76,18 @@ test('postbuild emits heading-led twins for HTML, API pages, and llms indexes in
 		assert.ok(manifest.redirects.some((entry) => new RegExp(entry.src).test('/speaking-events')));
 		const configPath = path.join(fixture, '.vercel/output/config.json');
 		const config = JSON.parse(await fs.readFile(configPath, 'utf8'));
+		const filesystem = config.routes.findIndex((route) => route.handle === 'filesystem');
+		const trailingSlash = config.routes.findIndex((route) => route.src === '^/(.*)/$');
+		const feedNoindex = config.routes.findIndex((route) => route.src === '^/rss\\.xml$');
+		assert.ok(feedNoindex >= 0 && feedNoindex < filesystem);
+		assert.equal(config.routes[feedNoindex].headers['X-Robots-Tag'], 'noindex');
 		for (const [source, destination] of Object.entries(blogRedirects)) {
 			const redirect = manifest.redirects.find((entry) => new RegExp(entry.src).test(source));
 			assert.equal(redirect?.status, 301);
 			assert.equal(redirect.headers.Location, destination);
 			const vercelRedirect = config.routes.find((entry) => entry.src === redirect.src);
 			assert.deepEqual(vercelRedirect, redirect);
+			assert.ok(config.routes.indexOf(vercelRedirect) < trailingSlash);
 			assert.ok(config.routes.indexOf(vercelRedirect) < config.routes.findIndex((route) => route.handle === 'filesystem'));
 		}
 		const cacheRoute = config.routes.find((route) => route.src === assetCacheRoute.src);

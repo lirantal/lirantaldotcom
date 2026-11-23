@@ -196,6 +196,14 @@ async function configureVercelOutput(routes) {
 		continue: true,
 	};
 	const legacyRedirectSources = new Set(legacyRedirects.map((route) => route.src));
+	const trailingSlashRedirect = existingRoutes.find((route) => route.src === '^/(.*)/$' && route.status === 308);
+	const policy = JSON.parse(await fs.readFile(path.join(root, 'cloudflare', 'http-policy.json'), 'utf8'));
+	const noindexRoutes = policy.headers.flatMap(({ source, headers }) =>
+		headers.some(({ key, value }) => key.toLowerCase() === 'x-robots-tag' && value === 'noindex')
+			? [{ src: `^${source}$`, headers: Object.fromEntries(headers.map(({ key, value }) => [key, value])), continue: true }]
+			: []
+	);
+	const noindexSources = new Set(noindexRoutes.map(({ src }) => src));
 	const agentViewRoute = {
 		src: '^/$',
 		methods: ['GET', 'HEAD'],
@@ -258,6 +266,8 @@ async function configureVercelOutput(routes) {
 	const routesWithoutOldMarkdownNegotiation = existingRoutes.filter(
 		(route) =>
 			route.src !== assetCacheSource &&
+			route !== trailingSlashRedirect &&
+			!noindexSources.has(route.src) &&
 			!legacyRedirectSources.has(route.src) &&
 			!(route.dest?.startsWith('/_markdown/') && route.headers?.['x-markdown-tokens']) &&
 			!(route.dest === '/_errors/api-not-found.json') &&
@@ -273,8 +283,10 @@ async function configureVercelOutput(routes) {
 
 	config.routes = [
 		assetCacheRoute,
+		...noindexRoutes,
 		...routesWithoutOldMarkdownNegotiation.slice(0, insertAt),
 		...legacyRedirects,
+		...(trailingSlashRedirect ? [trailingSlashRedirect] : []),
 		agentViewRoute,
 		...markdownNegotiationRoutes,
 		...routesWithoutOldMarkdownNegotiation.slice(insertAt, notFoundInsertAt),

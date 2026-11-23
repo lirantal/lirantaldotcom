@@ -6,6 +6,7 @@
     }
   },
   "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/games-chatgpt-chat-meme-generator",

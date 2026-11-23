@@ -4,6 +4,7 @@ export const blogRedirects = {
 	'/blog/malicious-modules-what-you-need-to-know-when-installing-':
 		'/blog/malicious-modules-what-you-need-to-know-when-installing-npm-packages-12b2f56d3685',
 	'/blog/mcp-server-security-evaluation-framework': '/blog/evaluation-framework-for-mcp-security-threats-and-risks',
+	'/tag/model-context-protocol': '/tag/mcp',
 };
 
 export function legacyBlogRedirects(paths) {

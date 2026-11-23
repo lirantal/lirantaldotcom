@@ -66,7 +66,9 @@ export function createHandler({ markdown, redirects, media, policy, notFoundToke
 				return redirect(`${canonicalOrigin}${destination}`, rule.status);
 			}
 		}
-		if (canonicalOrigin) return redirect(`${canonicalOrigin}${pathname}${url.search}`);
+		const isBlogPage = (route === '/blog' || route.startsWith('/blog/')) && Object.hasOwn(markdown, route);
+		const canonicalPath = isRead && isBlogPage ? route : pathname;
+		if (canonicalOrigin || canonicalPath !== pathname) return redirect(`${canonicalOrigin}${canonicalPath}${url.search}`);
 		if (!isRead) {
 			if (
 				request.method === 'OPTIONS' &&
