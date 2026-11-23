@@ -24,6 +24,7 @@ const files = {
 	'/rss.xml': ['<rss></rss>', 'application/rss+xml'],
 	'/_markdown/index.md': ['# Home', 'text/plain'],
 	'/_markdown/writing.md': ['# Writing', 'text/plain'],
+	'/_markdown/blog/archive-post.md': ['# Archive post', 'text/plain'],
 	'/_markdown/404.md': ['# Page not found', 'text/plain'],
 	'/404': ['<html>Not found</html>', 'text/html'],
 	'/api/posts.json': ['{"items":[]}', 'application/json'],
@@ -82,6 +83,10 @@ test('Cloudflare redirects trailing slashes on published blog URLs in one hop', 
 		assert.equal(new URL(response.headers.get('location'), url).href, 'https://lirantal.com/blog/archive-post?example=1');
 	}
 	assert.equal((await fetch(request('/blog/archive-post'), env)).status, 200);
+	const markdown = await fetch(request('/blog/archive-post', { headers: { Accept: 'text/markdown' } }), env);
+	assert.equal(markdown.status, 200);
+	assert.match(markdown.headers.get('content-type'), /text\/markdown/);
+	assert.equal(await markdown.text(), '# Archive post');
 	assert.equal((await fetch(request('/blog/missing/'), env)).status, 404);
 });
 

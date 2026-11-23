@@ -39,6 +39,8 @@ test('production agent query precedes HTML and Markdown routing and survives rep
 	const fixture = await fs.mkdtemp(path.join(os.tmpdir(), 'agent-view-'));
 	t.after(() => fs.rm(fixture, { recursive: true, force: true }));
 	await fs.mkdir(path.join(fixture, 'scripts'));
+	await fs.mkdir(path.join(fixture, 'cloudflare'));
+	await fs.copyFile(path.join(root, 'cloudflare/http-policy.json'), path.join(fixture, 'cloudflare/http-policy.json'));
 	await fs.mkdir(path.join(fixture, 'dist'));
 	await fs.mkdir(path.join(fixture, '.vercel/output/static'), { recursive: true });
 	await fs.symlink(path.join(root, 'node_modules'), path.join(fixture, 'node_modules'), 'dir');
