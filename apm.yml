@@ -8,5 +8,9 @@ dependencies:
     - blader/humanizer
     - pbakaus/impeccable/.agents/skills/impeccable
     - anthropics/skills/skills/frontend-design#dbd4588f9e1033efb41dad4bef2f7947c8993d44
+    - addyosmani/web-quality-skills/skills/seo#afa8da942115f2961fdbfa80807ea0b232ff6c00
+    - coreyhaines31/marketingskills/skills/ai-seo#5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1
+    - coreyhaines31/marketingskills/skills/programmatic-seo#5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1
+    - GoogleChrome/modern-web-guidance/skills/modern-web-guidance#64a6d708f5a43f2cd3fde5d4d7db3905ba1bdf65
   mcp: []
 scripts: {}
