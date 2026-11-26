@@ -1,0 +1,63 @@
+name: Optimize images
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '**/*.jpg'
+      - '**/*.jpeg'
+      - '**/*.png'
+      - '**/*.webp'
+      - '**/*.avif'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: optimize-images-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  optimize-pr-images:
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref != 'automation/optimize-images'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Optimize changed images and commit savings to the PR
+        uses: calibreapp/image-actions@761ca74da1e23f79c4892b4311e153f2d93780eb # 1.6.0
+
+  optimize-repository-images:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Optimize repository images
+        id: optimize
+        uses: calibreapp/image-actions@761ca74da1e23f79c4892b4311e153f2d93780eb # 1.6.0
+        with:
+          compressOnly: 'true'
+      - name: Open or update the optimization PR
+        if: steps.optimize.outputs.markdown != ''
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          branch: automation/optimize-images
+          commit-message: 'chore: optimize repository images'
+          title: 'chore: optimize repository images'
+          body: ${{ steps.optimize.outputs.markdown }}

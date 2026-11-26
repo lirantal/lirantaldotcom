@@ -12,6 +12,8 @@ const {
 	formats = ['avif', 'webp'],
 	...rest
 } = Astro.props;
+
+const fallbackFormat = ['png', 'jpg', 'jpeg', 'webp', 'avif'].includes(src?.format) ? 'webp' : undefined;
 ---
 
 {
@@ -36,7 +38,8 @@ const {
 			src={src}
 			widths={widths}
 			sizes={sizes}
-			formats={formats}
+			formats={formats.filter((format) => format !== fallbackFormat)}
+			fallbackFormat={fallbackFormat}
 			alt={alt}
 			class={className}
 			loading={loading}
