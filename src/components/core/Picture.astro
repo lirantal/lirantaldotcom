@@ -2,7 +2,7 @@
 import { Picture } from 'astro:assets';
 
 const {
-	src,
+	src: source,
 	alt,
 	sizes,
 	widths = [400, 900, 1200],
@@ -12,6 +12,10 @@ const {
 	formats = ['avif', 'webp'],
 	...rest
 } = Astro.props;
+
+const resolvedSource = await source;
+const src = resolvedSource?.default ?? resolvedSource;
+const fallbackFormat = ['png', 'jpg', 'jpeg', 'webp', 'avif'].includes(src?.format) ? 'webp' : undefined;
 ---
 
 {
@@ -36,7 +40,8 @@ const {
 			src={src}
 			widths={widths}
 			sizes={sizes}
-			formats={formats}
+			formats={formats.filter((format) => format !== fallbackFormat)}
+			fallbackFormat={fallbackFormat}
 			alt={alt}
 			class={className}
 			loading={loading}

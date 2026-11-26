@@ -36,6 +36,12 @@ The previous two candidates (640 and 1200px), combined with a mobile `100vw` hin
 
 The browser suite decodes the actual selected image and checks pixel widths at 390px/1×, 390px/1.75×, 412px/1.75×, 1000px/1×, and 1440px/1×, as well as the rendered aspect ratio and priority. Do not infer selected image resolution from `naturalWidth` alone: browsers can report a density-corrected value. Inspect `currentSrc`, its decoded bitmap dimensions, and transferred bytes.
 
+The shared `Picture.astro` wrapper emits AVIF sources and a responsive WebP `<img>` for local raster covers. Crawlers that follow the `img[src]` URL can therefore fetch the same optimized fallback available to browsers. Changing the fallback changes its fingerprinted URL. Ahrefs listed both HTTP and HTTPS URLs for each of the ten PNG cover fallbacks in its November 2026 report.
+
+The **Optimize images** workflow uses Calibre Image Actions to compress changed JPEG, PNG, WebP, and AVIF sources on same-repository pull requests to `main`. To scan existing sources, open **Actions → Optimize images → Run workflow** and select `main`. Review the resulting `automation/optimize-images` pull request before merging. If GitHub blocks automatic pull request creation after the workflow pushes the branch, you can open a pull request from that branch or enable **Allow GitHub Actions to create and approve pull requests** under **Settings → Actions → General**. GitHub may require approval to run checks on pull requests created or updated by the workflow token. GIF files are outside the workflow's supported formats.
+
+Use lowercase file extensions for new images so Calibre's full-repository scan discovers them.
+
 ### Article body image loading: November 15, 2026
 
 `remark-image-loading.mjs` adds `loading="lazy"` and `decoding="async"` to Markdown image nodes in the shared Markdown/MDX pipeline. This applies to local and remote body images without changing URLs, encoding, dimensions, or alt text. Native lazy loading fetches images as they approach the viewport without a custom script. When scripting is disabled, browsers load lazy images eagerly; the images remain readable. The existing dimensions plugin continues reserving space for public images. Frontmatter covers and component-authored images are outside this transform; retain the cover's eager/high-priority policy.

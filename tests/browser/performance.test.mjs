@@ -288,6 +288,8 @@ test('article covers choose a fitting source while preserving eager loading and 
 				height: img.getBoundingClientRect().height,
 				loading: img.loading,
 				priority: img.fetchPriority,
+				fallback: img.getAttribute('src'),
+				fallbackCandidates: img.srcset.split(', ').map((candidate) => candidate.split(' ')[0]),
 				sizes: img.sizes,
 				sourceSizes: [...img.closest('picture').querySelectorAll('source')].map((source) => source.sizes),
 			};
@@ -297,6 +299,9 @@ test('article covers choose a fitting source while preserving eager loading and 
 		assert.equal(data.height, data.width / 2);
 		assert.equal(data.loading, 'eager');
 		assert.equal(data.priority, 'high');
+		assert.match(data.fallback, /\.webp$/);
+		assert.equal(data.fallbackCandidates.length, 6);
+		assert.ok(data.fallbackCandidates.every((url) => url.endsWith('.webp')));
 		assert.ok(data.sourceSizes.every((sizes) => sizes === data.sizes));
 		await page.close();
 	}
