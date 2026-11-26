@@ -14,6 +14,10 @@ on:
 permissions:
   contents: read
 
+env:
+  # The legacy Drupal screenshot is an empty file.
+  IMAGE_OPTIMIZER_IGNORES: 'node_modules/**,public/images/blog/drupal_perf-1.png'
+
 concurrency:
   group: optimize-images-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
@@ -36,6 +40,8 @@ jobs:
           persist-credentials: false
       - name: Optimize changed images and commit savings to the PR
         uses: calibreapp/image-actions@761ca74da1e23f79c4892b4311e153f2d93780eb # 1.6.0
+        with:
+          ignorePaths: ${{ env.IMAGE_OPTIMIZER_IGNORES }}
 
   optimize-repository-images:
     if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
@@ -53,6 +59,7 @@ jobs:
         uses: calibreapp/image-actions@761ca74da1e23f79c4892b4311e153f2d93780eb # 1.6.0
         with:
           compressOnly: 'true'
+          ignorePaths: ${{ env.IMAGE_OPTIMIZER_IGNORES }}
       - name: Open or update the optimization PR
         if: steps.optimize.outputs.markdown != ''
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
