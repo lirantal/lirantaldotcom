@@ -2,8 +2,8 @@
 title: "Complete Guide: Setting Up gogcli - Google APIs in Your Terminal"
 description: >-
   Set up gogcli for Google APIs and OpenClaw AI assistants, with OAuth credentials, granular scopes, multiple accounts, and remote VM authorization.
-date: '2026-11-13'
-pubDate: '2026-11-13'
+date: '2026-11-26'
+pubDate: '2026-11-26'
 categories: []
 keywords: ["gogcli", "google apis", "oauth", "openclaw", "personal assistant ai"]
 draft: false
