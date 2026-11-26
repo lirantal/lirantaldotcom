@@ -4,11 +4,11 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - '**/*.jpg'
-      - '**/*.jpeg'
-      - '**/*.png'
-      - '**/*.webp'
-      - '**/*.avif'
+      - '**/*.[Jj][Pp][Gg]'
+      - '**/*.[Jj][Pp][Ee][Gg]'
+      - '**/*.[Pp][Nn][Gg]'
+      - '**/*.[Ww][Ee][Bb][Pp]'
+      - '**/*.[Aa][Vv][Ii][Ff]'
   workflow_dispatch:
 
 permissions:
